@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+    @yield('extraBackEndCSS')
 <body>
     <div id="app">
         @yield('back_end_main_contents')
@@ -20,5 +21,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('extraBackEndJS')
 </body>
 </html>
