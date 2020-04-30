@@ -7,11 +7,38 @@
             </div>
 
             <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
+                <form method="POST" action="{{ route('sign-up') }}">
+                    {{ csrf_field() }}
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="E-mail Address">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Confirm Password">
+                    </div>
+
+                    <div class="form-group">
+                        {!! NoCaptcha::renderJs() !!}
+                        {!! NoCaptcha::display() !!}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Sign-up</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
