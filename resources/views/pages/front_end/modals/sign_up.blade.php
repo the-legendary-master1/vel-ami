@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-primary">Sign-up</button>
+                        <button type="submit" class="btn sign_up_btn">Sign-up</button>
                     </div>
                 </form>
             </div>

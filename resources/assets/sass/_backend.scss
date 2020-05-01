@@ -9,6 +9,7 @@
 	padding: 0 50px;
 	border-bottom: solid 1px lightgrey;
 	vertical-align: middle;
+	overflow: hidden;
 
 	.valami_brand{
 		font-size: 36px;
@@ -49,6 +50,7 @@
 	height: calc(100% - 80px);
 	border-right: solid 1px lightgrey;
 	padding: 10px;
+	overflow-x: auto;
 
 	.valami_left_content{
 		background-color: #f5f5f5;
@@ -64,6 +66,7 @@
 	left: 350px;
 	height: calc(100% - 80px);
 	width: calc(100% - 700px);
+	overflow: hidden;
 
 	.vilami_center_top_content{
 		position: absolute;
@@ -94,6 +97,7 @@
 	height: calc(100% - 80px);
 	border-left: solid 1px lightgrey;
 	padding: 10px;
+	overflow-y: auto;
 
 	.valami_right_content{
 		background-color: #f5f5f5;

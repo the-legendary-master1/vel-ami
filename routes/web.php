@@ -15,3 +15,15 @@
 	// Get Requests
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/{url_name}', 'BackEndController@backendLandingPage');
+
+	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
+
+	});	
+	
+	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
+
+	});
+	
+	Route::middleware(['auth', 'user-premium'])->prefix('user-premium')->name('user-premium.')->group(function () {
+
+	});

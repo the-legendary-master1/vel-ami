@@ -20,6 +20,23 @@
         #sign_up_alert{
             display: none;
         }
+        #sign_up_modal .modal-header{
+            background-color: #ede7f1;
+        }
+        #sign_up_modal .modal-body{
+            max-width: 335px;
+            margin: 20px auto;
+        }
+        #sign_up_modal .modal-content{
+            width: 400px;
+            margin: 0 auto;
+        }
+        .sign_up_btn{
+            font-size: 16px;
+            background-color: #ede7f1;
+            padding: 5px 25px;
+            color: #000000;
+        }
     </style>
     @yield('extraCSS')
 <body>
@@ -105,27 +122,31 @@
                     @endauth
 
                     @guest
-                        <a href="#">Sign-up</a>
+                        <a href="#" data-toggle="modal" data-target="#sign_up_modal">Register</a>
                     @endguest
                 </div>
             </div>
         </div>
-
-        <div id="vilami_left">
-            <div class="valami_left_content">
-                test
+        
+        @auth
+            <div id="vilami_left">
+                <div class="valami_left_content">
+                    test
+                </div>
             </div>
-        </div>
+        @endauth
 
         <div id="vilami_center">
             @yield('content')
         </div>
-
-        <div id="vilami_right">
-            <div class="valami_right_content">
-                test
+        
+        @auth
+            <div id="vilami_right">
+                <div class="valami_right_content">
+                    test
+                </div>
             </div>
-        </div>
+        @endauth
     </div>
 
     @include('pages.front_end.modals.sign_up')

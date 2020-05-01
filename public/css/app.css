@@ -11904,6 +11904,7 @@ button.close {
   padding: 0 50px;
   border-bottom: solid 1px lightgrey;
   vertical-align: middle;
+  overflow: hidden;
 }
 
 #vilami_top .valami_brand {
@@ -11946,6 +11947,7 @@ button.close {
   height: calc(100% - 80px);
   border-right: solid 1px lightgrey;
   padding: 10px;
+  overflow-x: auto;
 }
 
 #vilami_left .valami_left_content {
@@ -11961,6 +11963,7 @@ button.close {
   left: 350px;
   height: calc(100% - 80px);
   width: calc(100% - 700px);
+  overflow: hidden;
 }
 
 #vilami_center .vilami_center_top_content {
@@ -11991,6 +11994,7 @@ button.close {
   height: calc(100% - 80px);
   border-left: solid 1px lightgrey;
   padding: 10px;
+  overflow-y: auto;
 }
 
 #vilami_right .valami_right_content {
