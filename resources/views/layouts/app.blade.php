@@ -16,25 +16,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
-    <style>
-        #sign_up_alert{
-            display: none;
-        }
-        .velami_header{
-            height: 70px;
-        }
-        .velami_header a{
-            padding: 24px 15px !important;
-        }
-        .velami_brand{
-            font-size: 36px;
-        } 
-    </style>
-
     @yield('extraCSS')
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top velami_header">
+{{--         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -47,7 +32,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand velami_brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         <strong>Vel</strong> ami
                     </a>
                 </div>
@@ -88,9 +73,40 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        @yield('content')
+        <div id="vilami_top">
+            <div class="row align-items-center">
+                <div class="col-sm-3  vcenter text-left valami_brand">
+                    <span>VEL</span> ami
+                </div>
+
+                <div class="col-sm-6 vcenter text-center">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1"><span class="fa fa-map-marker fa-2x"></span></span>
+                      <input type="text" class="form-control velami_header_search">
+                    </div>
+                </div>
+
+                <div class="col-sm-3 vcenter text-right">test</div>
+            </div>
+        </div>
+
+        <div id="vilami_left">
+            <div class="valami_left_content">
+                test
+            </div>
+        </div>
+
+        <div id="vilami_center">
+            @yield('content')
+        </div>
+
+        <div id="vilami_right">
+            <div class="valami_right_content">
+                test
+            </div>
+        </div>
     </div>
 
     @include('pages.front_end.modals.sign_up')
