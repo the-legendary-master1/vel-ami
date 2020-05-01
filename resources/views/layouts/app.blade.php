@@ -84,7 +84,7 @@
                 <div class="col-sm-6 vcenter text-center">
                     <div class="input-group">
                       <span class="input-group-addon" id="basic-addon1"><span class="fa fa-map-marker fa-2x"></span></span>
-                      <input type="text" class="form-control velami_header_search">
+                      <input type="text" class="form-control velami_header_search text-center" placeholder="What are you looking for?">
                     </div>
                 </div>
 
