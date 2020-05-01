@@ -7,7 +7,11 @@
             </div>
 
             <div class="modal-body">
-                <form method="POST" action="{{ route('sign-up') }}">
+                <div class="alert alert-danger" id="sign_up_alert">
+                    <ul id="sign_up_errors"></ul>
+                </div>
+
+                <form method="POST" id="submit_signup">
                     {{ csrf_field() }}
 
                     <div class="form-group">
@@ -27,7 +31,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirm Password">
+                        <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
                     </div>
 
                     <div class="form-group">
@@ -35,7 +39,7 @@
                         {!! NoCaptcha::display() !!}
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group text-right">
                         <button type="submit" class="btn btn-primary">Sign-up</button>
                     </div>
                 </form>

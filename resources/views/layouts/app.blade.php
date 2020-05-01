@@ -13,6 +13,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+    <style>
+        #sign_up_alert{
+            display: none;
+        }
+    </style>
+
+    @yield('extraCSS')
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
@@ -44,7 +51,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#sign_up_modal">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -74,7 +81,50 @@
         @yield('content')
     </div>
 
+    @include('pages.front_end.modals.sign_up')
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    @yield('extraJS')
+
+    <script>
+        $('#submit_signup').submit(function(e) {
+            e.preventDefault();
+
+            axios.post('{{ url('/sign-up') }}', $(this).serialize())
+                .then(function(response) {
+                    $('#sign_up_modal').modal('hide');
+                    swal({
+                        title: "Good job!",
+                        text: "Successfully Updated",
+                        icon: "success",
+                        timer: 1500,
+                        buttons: false,
+                    })
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000)
+                })
+                .catch(function(error) {
+                    if(error.response.data.errors.length != '') {
+                        $('#sign_up_alert').show();
+
+                        setTimeout(function() {
+                            $('#sign_up_errors').html('');
+
+                            $.each(error.response.data.errors, function(index, val) {
+                                $('#sign_up_errors').append('<li>'+val+'</li>');
+                            })
+                        })
+                    } else {
+                        $('#sign_up_alert').hide();
+                    }
+
+                    grecaptcha.reset();
+                })
+        })
+    </script>
 </body>
 </html>

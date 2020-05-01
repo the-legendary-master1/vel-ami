@@ -21,8 +21,8 @@ class FrontEndController extends Controller
         $this->validate($req, [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
             'g-recaptcha-response' => 'required|captcha',
         ]);
 
@@ -33,6 +33,5 @@ class FrontEndController extends Controller
         $user->save();
 
 		Auth::login($user);
-		return Redirect::to('home');
 	}
 }

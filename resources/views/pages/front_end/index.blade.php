@@ -1,16 +1,14 @@
-@extends('layouts.front_end_layout')
+@extends('layouts.app')
 
-@section('extraFrontEndCSS')
+@section('extraCSS')
 
 @endsection
 
-@section('back_end_main_contents')
-	<button class="btn btn-success" data-toggle="modal" data-target="#sign_up_modal">Sign-up</button>
-
-	@include('pages.front_end.modals.sign_up')
+@section('content')
+Welcome!
 @endsection
 
-@section('extraFrontEndJS')
+@section('extraJS')
 	<script>
 	    jQuery(document).ready(function($) {
 	        const app = new Vue({
