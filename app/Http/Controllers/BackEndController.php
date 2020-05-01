@@ -11,5 +11,8 @@ class BackEndController extends Controller
 		$this->middleware('auth');
 	}
 
-	
+	public function backendLandingPage($url_name)
+	{
+		return view('pages.back_end.landing_page');
+	}
 }

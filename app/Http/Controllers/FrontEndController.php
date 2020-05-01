@@ -39,9 +39,12 @@ class FrontEndController extends Controller
         $user->role = 'User';
         $user->secret = encrypt($req->password);
         $user->password = Hash::make($req->password);
+        $user->url_name = str_replace(' ', '-', strtolower($req->first_name.' '.$req->last_name));
         $user->save();
 
 		Auth::login($user);
+
+        return response()->json(['url_name' => $user->url_name]);
 
 	}
 }

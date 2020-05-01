@@ -14,3 +14,4 @@
 // BackEnd Requests
 	// Get Requests
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/{url_name}', 'BackEndController@backendLandingPage');

@@ -16,6 +16,11 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
+    <style>
+        #sign_up_alert{
+            display: none;
+        }
+    </style>
     @yield('extraCSS')
 <body>
     <div id="app">
@@ -89,13 +94,19 @@
                 </div>
 
                 <div class="col-sm-3 vcenter text-right">
-                    <span class="velami_header_user">
-                        <img src="{{ asset('files/default_user.jpg') }}" class="valami_header_user_img" height="40px" alt="">
-                        <span class="velami_header_user_option">
-                            <span>{{ Auth::user()->name }}</span>
-                            <span class="fa fa-caret-down valami_header_caret"></span>
+                    @auth
+                        <span class="velami_header_user">
+                            <img src="{{ asset('files/default_user.jpg') }}" class="valami_header_user_img" height="40px" alt="">
+                            <span class="velami_header_user_option">
+                                <span>{{ Auth::user()->name }}</span>
+                                <span class="fa fa-caret-down valami_header_caret"></span>
+                            </span>
                         </span>
-                    </span>
+                    @endauth
+
+                    @guest
+                        <a href="#">Sign-up</a>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -127,18 +138,7 @@
 
             axios.post('{{ url('/sign-up') }}', $(this).serialize())
                 .then(function(response) {
-                    $('#sign_up_modal').modal('hide');
-                    swal({
-                        title: "Good job!",
-                        text: "Successfully Updated",
-                        icon: "success",
-                        timer: 1500,
-                        buttons: false,
-                    })
-
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1000)
+                    window.location.replace('{{ url('/') }}/'+response.data.url_name);
                 })
                 .catch(function(error) {
                     if(error.response.data.errors.length != '') {

@@ -11921,7 +11921,8 @@ button.close {
 }
 
 #vilami_top .velami_header_user {
-  font-size: 20px;
+  font-size: 17px;
+  color: grey;
 }
 
 #vilami_top .velami_header_user .valami_header_user_img {
