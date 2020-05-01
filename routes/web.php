@@ -3,6 +3,7 @@
 
 // FrontEnd Requests
 Route::get('/', 'FrontEndController@index');
+Route::post('/sign-up', 'FrontEndController@signUp')->name('sign-up');
 
 Auth::routes();
 
