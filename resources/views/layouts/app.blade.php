@@ -79,7 +79,7 @@
             <div class="row align-items-center">
                 <div class="col-sm-3  vcenter text-left valami_brand">
                     <span>VEL</span> ami
-                </div>
+                </div>  
 
                 <div class="col-sm-6 vcenter text-center">
                     <div class="input-group">
@@ -88,7 +88,15 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3 vcenter text-right">test</div>
+                <div class="col-sm-3 vcenter text-right">
+                    <span class="velami_header_user">
+                        <img src="{{ asset('files/default_user.jpg') }}" class="valami_header_user_img" height="40px" alt="">
+                        <span class="velami_header_user_option">
+                            <span>{{ Auth::user()->name }}</span>
+                            <span class="fa fa-caret-down valami_header_caret"></span>
+                        </span>
+                    </span>
+                </div>
             </div>
         </div>
 

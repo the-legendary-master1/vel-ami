@@ -11920,6 +11920,23 @@ button.close {
   padding: 20px 20px;
 }
 
+#vilami_top .velami_header_user {
+  font-size: 20px;
+}
+
+#vilami_top .velami_header_user .valami_header_user_img {
+  border-radius: 100px;
+  margin-right: 10px;
+}
+
+#vilami_top .velami_header_user .velami_header_user_option {
+  cursor: pointer;
+}
+
+#vilami_top .velami_header_user .velami_header_user_option .valami_header_caret {
+  margin-left: 10px;
+}
+
 #vilami_left {
   position: absolute;
   top: 80px;

@@ -23,6 +23,21 @@
 	.velami_header_search{
 		padding: 20px 20px;
 	}
+	.velami_header_user{
+		font-size: 20px;
+
+		.valami_header_user_img{
+			border-radius: 100px; 
+			margin-right: 10px;
+		}
+		.velami_header_user_option{
+			cursor: pointer;
+			
+			.valami_header_caret{
+				margin-left: 10px;
+			}
+		}
+	}
 }
 
 #vilami_left{
