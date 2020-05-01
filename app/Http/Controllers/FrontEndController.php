@@ -16,6 +16,11 @@ class FrontEndController extends Controller
 		return view('pages.front_end.index');
 	}
 
+	public function viewProduct($id)
+	{
+		return view('pages.front_end.single_product');
+    }
+
 	public function signUp(Request $req)
 	{
         $this->validate($req, [
@@ -33,5 +38,6 @@ class FrontEndController extends Controller
         $user->save();
 
 		Auth::login($user);
+
 	}
 }
