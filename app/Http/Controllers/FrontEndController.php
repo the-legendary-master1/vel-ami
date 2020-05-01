@@ -10,4 +10,8 @@ class FrontEndController extends Controller
 	{
 		return view('pages.front_end.index');
 	}
+	public function viewProduct($id)
+	{
+		return view('pages.front_end.single_product');
+	}
 }
