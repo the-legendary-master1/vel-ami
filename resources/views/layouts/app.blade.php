@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
     <style>
         #sign_up_alert{
@@ -25,7 +28,7 @@
         }
         .velami_brand{
             font-size: 36px;
-        }
+        } 
     </style>
 
     @yield('extraCSS')
@@ -91,9 +94,6 @@
     </div>
 
     @include('pages.front_end.modals.sign_up')
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 
     @yield('extraJS')
 

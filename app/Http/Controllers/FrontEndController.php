@@ -33,7 +33,11 @@ class FrontEndController extends Controller
 
         $user = new User;
         $user->name = $req->first_name.' '.$req->last_name;
+        $user->f_name = $req->first_name;
+        $user->l_name = $req->last_name;
         $user->email = $req->email;
+        $user->role = 'User';
+        $user->secret = encrypt($req->password);
         $user->password = Hash::make($req->password);
         $user->save();
 

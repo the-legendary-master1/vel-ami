@@ -324,7 +324,7 @@ th {
 @font-face {
   font-family: "Glyphicons Halflings";
   src: url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.eot?f4769f9bdb7466be65088239c12046d1);
-  src: url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.eot?f4769f9bdb7466be65088239c12046d1) format("embedded-opentype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb) format("woff2"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158) format("woff"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512) format("truetype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.svg?f721466883998665b87923b92dea655b) format("svg");
+  src: url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.eot?f4769f9bdb7466be65088239c12046d1) format("embedded-opentype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb) format("woff2"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158) format("woff"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512) format("truetype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.svg?89889688147bd7575d6327160d64e760) format("svg");
 }
 
 .glyphicon {
@@ -8344,7 +8344,7 @@ button.close {
 @font-face {
   font-family: 'FontAwesome';
   src: url(/fonts/vendor/font-awesome/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713);
-  src: url(/fonts/vendor/font-awesome/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/vendor/font-awesome/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.svg?acf3dcb7ff752b5296ca23ba2c7c2606) format("svg");
+  src: url(/fonts/vendor/font-awesome/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/vendor/font-awesome/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.svg?912ec66d7572ff821749319396470bde) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -11389,7 +11389,7 @@ button.close {
 @font-face {
   font-family: 'dropify';
   src: url(/fonts/vendor/dropify/src/dropify.eot?4e8b017aef78cc114006cba896850fbd);
-  src: url(/fonts/vendor/dropify/src/dropify.eot?4e8b017aef78cc114006cba896850fbd) format("embedded-opentype"), url(/fonts/vendor/dropify/src/dropify.woff?950ffd1efa29c33a70dd86ea761cb3d8) format("woff"), url(/fonts/vendor/dropify/src/dropify.ttf?86cb1ab018f1680d8e0fa0ca6a53d64c) format("truetype"), url(/fonts/vendor/dropify/src/dropify.svg?5a36392239b15ac274385d2cc3584981) format("svg");
+  src: url(/fonts/vendor/dropify/src/dropify.eot?4e8b017aef78cc114006cba896850fbd) format("embedded-opentype"), url(/fonts/vendor/dropify/src/dropify.woff?950ffd1efa29c33a70dd86ea761cb3d8) format("woff"), url(/fonts/vendor/dropify/src/dropify.ttf?86cb1ab018f1680d8e0fa0ca6a53d64c) format("truetype"), url(/fonts/vendor/dropify/src/dropify.svg?b321d818cc153b16e739072ea8bc94b8) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -11893,7 +11893,6 @@ button.close {
   }
 }
 
-
 body {
   font-size: 12px;
   line-height: 18px;
@@ -12116,11 +12115,6 @@ a:hover {
   border-width: .2rem;
 }
 
-@media (min-width: 1200px) {
-  .container {
-    width: 1280px;
-  }
-
 .modal {
   text-align: center;
   padding: 0 !important;
@@ -12138,6 +12132,11 @@ a:hover {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+}
 
+@media (min-width: 1200px) {
+  .container {
+    width: 1280px;
+  }
 }
 
