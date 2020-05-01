@@ -41,65 +41,9 @@
     @yield('extraCSS')
 <body>
     <div id="app">
-{{--         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <strong>Vel</strong> ami
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#sign_up_modal">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav> --}}
-
         <div id="vilami_top">
-            <div class="row align-items-center">
-                <div class="col-sm-3  vcenter text-left valami_brand">
+            <div class="row">
+                <div class="col-sm-3 vcenter text-left valami_brand">
                     <span>VEL</span> ami
                 </div>  
 
@@ -112,13 +56,20 @@
 
                 <div class="col-sm-3 vcenter text-right">
                     @auth
-                        <span class="velami_header_user">
+                        <div class="velami_header_user">
                             <img src="{{ asset('files/default_user.jpg') }}" class="valami_header_user_img" height="40px" alt="">
-                            <span class="velami_header_user_option">
-                                <span>{{ Auth::user()->name }}</span>
-                                <span class="fa fa-caret-down valami_header_caret"></span>
-                            </span>
-                        </span>
+                            {{ Auth::user()->name }}
+                            <span class="fa fa-caret-down valami_header_caret"></span>
+                            
+                            <div class="user_dropdown_options">
+                                <a href="{{ url('/') }}/{{ Auth::user()->url_name }}"><span class="fa fa-user-circle-o"></span> Profile</a>
+                                <a href="#"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-sign-out"></span> Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </div>
                     @endauth
 
                     @guest
@@ -127,7 +78,7 @@
                 </div>
             </div>
         </div>
-        
+
         @auth
             <div id="vilami_left">
                 <div class="valami_left_content">

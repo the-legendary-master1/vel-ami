@@ -9,7 +9,6 @@
 	padding: 0 50px;
 	border-bottom: solid 1px lightgrey;
 	vertical-align: middle;
-	overflow: hidden;
 
 	.valami_brand{
 		font-size: 36px;
@@ -25,18 +24,56 @@
 		padding: 20px 20px;
 	}
 	.velami_header_user{
+		display: inline-block;
 		font-size: 17px;
-		color: grey;
+		cursor: pointer;
+		padding: 0 10px;
+
+		&:hover{
+			background-color: #dfdfdf;
+
+			.user_dropdown_options{
+				display: inline-block;
+			}
+		}
 
 		.valami_header_user_img{
 			border-radius: 100px; 
 			margin-right: 10px;
+		}	
+
+		.valami_header_caret{
+			margin-left: 10px;
 		}
-		.velami_header_user_option{
-			cursor: pointer;
-			
-			.valami_header_caret{
-				margin-left: 10px;
+
+		.user_dropdown_options{
+			display: none;
+			position: absolute;
+			top: 80px;
+			right: 15px;
+			background-color: #ffffff;
+			border: solid 1px #cccccc;
+			z-index: 1;
+			line-height: 20px;
+			width: 250px;
+			text-align: left;
+
+			a{
+				display: block;
+				margin: 10px;
+				padding: 15px 30px;
+				vertical-align: middle;
+				font-size: 20px;
+				text-decoration: none;
+
+				span{
+					margin-right: 10px;
+					font-size: 25px;
+				}
+
+				&:hover{
+					background-color: #ede7f1;
+				}
 			}
 		}
 	}

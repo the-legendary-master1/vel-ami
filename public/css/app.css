@@ -11904,7 +11904,6 @@ button.close {
   padding: 0 50px;
   border-bottom: solid 1px lightgrey;
   vertical-align: middle;
-  overflow: hidden;
 }
 
 #vilami_top .valami_brand {
@@ -11922,8 +11921,18 @@ button.close {
 }
 
 #vilami_top .velami_header_user {
+  display: inline-block;
   font-size: 17px;
-  color: grey;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+#vilami_top .velami_header_user:hover {
+  background-color: #dfdfdf;
+}
+
+#vilami_top .velami_header_user:hover .user_dropdown_options {
+  display: inline-block;
 }
 
 #vilami_top .velami_header_user .valami_header_user_img {
@@ -11931,12 +11940,39 @@ button.close {
   margin-right: 10px;
 }
 
-#vilami_top .velami_header_user .velami_header_user_option {
-  cursor: pointer;
+#vilami_top .velami_header_user .valami_header_caret {
+  margin-left: 10px;
 }
 
-#vilami_top .velami_header_user .velami_header_user_option .valami_header_caret {
-  margin-left: 10px;
+#vilami_top .velami_header_user .user_dropdown_options {
+  display: none;
+  position: absolute;
+  top: 80px;
+  right: 15px;
+  background-color: #ffffff;
+  border: solid 1px #cccccc;
+  z-index: 1;
+  line-height: 20px;
+  width: 250px;
+  text-align: left;
+}
+
+#vilami_top .velami_header_user .user_dropdown_options a {
+  display: block;
+  margin: 10px;
+  padding: 15px 30px;
+  vertical-align: middle;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#vilami_top .velami_header_user .user_dropdown_options a span {
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+#vilami_top .velami_header_user .user_dropdown_options a:hover {
+  background-color: #ede7f1;
 }
 
 #vilami_left {
