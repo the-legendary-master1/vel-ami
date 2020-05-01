@@ -17,12 +17,21 @@
         #sign_up_alert{
             display: none;
         }
+        .velami_header{
+            height: 70px;
+        }
+        .velami_header a{
+            padding: 24px 15px !important;
+        }
+        .velami_brand{
+            font-size: 36px;
+        }
     </style>
 
     @yield('extraCSS')
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top velami_header">
             <div class="container">
                 <div class="navbar-header">
 
@@ -35,8 +44,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand velami_brand" href="{{ url('/') }}">
+                        <strong>Vel</strong> ami
                     </a>
                 </div>
 
