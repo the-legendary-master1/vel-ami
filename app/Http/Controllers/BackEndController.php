@@ -12,10 +12,15 @@ class BackEndController extends Controller
 		$this->middleware('auth');
 	}
 
+	public function dashboard()
+	{
+		return view('pages.back_end.dashboard');
+	}
+
 	public function backendLandingPage($url_name)
 	{
 		if(Auth::user()->url_name == $url_name) {
-			return view('pages.back_end.landing_page');
+			return view('pages.back_end.profile');
 		} else {
 		    $data['title'] = '404';
 		    $data['name'] = 'Page not found';

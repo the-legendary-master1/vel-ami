@@ -13,7 +13,7 @@
 
 // BackEnd Requests
 	// Get Requests
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/dashboard', 'BackEndController@dashboard');
 	Route::get('/{url_name}', 'BackEndController@backendLandingPage');
 
 	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
