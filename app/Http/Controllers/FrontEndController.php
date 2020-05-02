@@ -15,10 +15,17 @@ class FrontEndController extends Controller
 	{
 		return view('pages.front_end.index');
 	}
-
 	public function viewProduct($id)
 	{
 		return view('pages.front_end.single_product');
+    }
+    public function chat()
+    {
+        return view('pages.front_end.chat');
+    }
+    public function viewShop()
+    {
+        return view('pages.front_end.single_shop');
     }
 
 	public function signUp(Request $req)
