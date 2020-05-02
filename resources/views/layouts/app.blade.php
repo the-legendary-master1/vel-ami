@@ -110,7 +110,7 @@
 
             axios.post('{{ url('/sign-up') }}', $(this).serialize())
                 .then(function(response) {
-                    window.location.replace('{{ url('/') }}/'+response.data.url_name);
+                    window.location.replace('{{ url('dashbaord') }}');
                 })
                 .catch(function(error) {
                     if(error.response.data.errors.length != '') {

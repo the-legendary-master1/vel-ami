@@ -43,8 +43,5 @@ class FrontEndController extends Controller
         $user->save();
 
 		Auth::login($user);
-
-        return response()->json(['url_name' => $user->url_name]);
-
 	}
 }
