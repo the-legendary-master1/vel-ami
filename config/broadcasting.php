@@ -37,7 +37,7 @@ return [
             'app_id' => '991941',
             'options' => [
                 'cluster' => 'ap1',
-                'encrypted' => true,
+                'forceTLS' => true,
             ],
         ],
 

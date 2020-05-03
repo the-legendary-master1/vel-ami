@@ -12178,7 +12178,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */](
     broadcaster: 'pusher',
     key: '2368f8e90052c4fe50ea',
     cluster: 'ap1',
-    encrypted: true
+    forceTLS: true
 });
 
 /***/ }),
@@ -33567,7 +33567,7 @@ class Echo {
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
- * Pusher JavaScript Library v6.0.0
+ * Pusher JavaScript Library v6.0.2
  * https://pusher.com/
  *
  * Copyright 2017, Pusher
@@ -34160,7 +34160,7 @@ var ScriptReceivers = new ScriptReceiverFactory('_pusher_script_', 'Pusher.Scrip
 
 // CONCATENATED MODULE: ./src/core/defaults.ts
 var Defaults = {
-    VERSION: "6.0.0",
+    VERSION: "6.0.2",
     PROTOCOL: 7,
     wsPort: 80,
     wssPort: 443,

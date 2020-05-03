@@ -192,6 +192,18 @@
     float: none;
     margin: 0 -2px;
 }
+
+.velami_btn{
+	padding: 10px 20px;
+	background-color: #ede7f1;
+	border: 1px solid rgba(187, 181, 190, 0.5);
+	color: #000000;
+
+	&:focus{
+		outline: none !important;
+	}
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 } 

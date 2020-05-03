@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Category;
+use App\Events\GetCategories;
+use DB;
 
 class BackEndController extends Controller
 {
@@ -29,7 +31,6 @@ class BackEndController extends Controller
 		}
 	}
 
-	
 	public function users() {
 		return view('pages.back_end.users');
 	}
@@ -43,6 +44,43 @@ class BackEndController extends Controller
 	}
 	
 	public function categories() {
-		return view('pages.back_end.categories');
+		$categories = Category::all();
+
+		return view('pages.back_end.categories', compact('categories'));
+	}
+
+	public function newCategory(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$category = new Category;
+				$category->name = $req->name;
+				$category->save();
+			}, 2);
+
+			event(new GetCategories());
+		} catch (Exception $e) {
+			return;
+		}
+	}
+
+	public function getCategories()
+	{
+		return Category::all();
+	}
+
+	public function updateCategory(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$category = Category::find($req->id);
+				$category->name = $req->name;
+				$category->save();
+			}, 2);
+
+			event(new GetCategories());
+		} catch (Exception $e) {
+			return;
+		}
 	}
 }

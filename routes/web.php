@@ -23,6 +23,10 @@
 		Route::get('/products', 'BackEndController@products');
 		Route::get('/shops', 'BackEndController@shops');
 		Route::get('/categories', 'BackEndController@categories');
+		Route::get('/get-categories', 'BackEndController@getCategories');
+
+		Route::post('/new-category', 'BackEndController@newCategory');
+		Route::post('/update-category', 'BackEndController@updateCategory');
 	});	
 	
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {

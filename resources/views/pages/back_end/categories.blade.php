@@ -16,12 +16,20 @@
 			border-color: #ede7f1 !important;
 			outline:none;
 		}
+        #new_category_modal .modal-content, #update_category_modal .modal-content{
+            width: 400px;
+            margin: 0 auto;
+        }
 	</style>
 @endsection
 
 @section('content')
     <h3>Categories Information</h3>
     <hr>
+
+    <div class="text-center">
+    	<button class="btn velami_btn" data-toggle="modal" data-target="#new_category_modal">Crate New Category</button>
+    </div>
 
     <table class="table table-bordered display nowrap my-table" width="100%">
         <thead>
@@ -34,15 +42,18 @@
             </tr>
         </thead>
         <tbody>
-        	<tr>
-        		<td class="text-center">test</td>
-        		<td class="text-center">test</td>
-        		<td class="text-center">test</td>
-        		<td class="text-center">test</td>
-        		<td class="text-center">test</td>
+        	<tr v-for="item in allCategories">
+        		<td class="text-center"></td>
+        		<td class="text-center">#@{{ pad(item.id, 5) }}</td>
+        		<td class="text-center">@{{ item.name }}</td>
+        		<td class="text-center">@{{ item.created_at }}</td>
+        		<td class="text-center"><button class="btn btn-primary" @click="editCategory(item)"><span class="fa fa-pencil"></span></button></td>
         	</tr>
         </tbody>
     </table>
+
+    @include('pages.back_end.modals.super_admin.new_category')
+    @include('pages.back_end.modals.super_admin.update_category')
 @endsection
 
 @section('extraJS')
@@ -56,10 +67,20 @@
 	        const app = new Vue({
 	            el: '#app',
 	            data: {
+	            	allCategories: {!! json_encode($categories) !!},
 
+	            	newCategoryData: {
+	            		name: '',
+	            	},
+	            	updateCategoryData: '',
 	            },
 	            mounted() {
 	                this.getDatatable();
+
+	                Echo.channel('get-categories')
+	                	.listen('.get-categories', () => {
+	                		this.getCategories();
+	                	})
 	            },
 	            methods: {
 	                getDatatable() {
@@ -101,10 +122,75 @@
 	                            ]
 	                        });
 
-	                        setInterval(function(){
-	                            allDatatable.columns.adjust();
-	                        }, 0);
+	                        // setInterval(function(){
+	                        //     allDatatable.columns.adjust();
+	                        // }, 0);
 	                    }, 0);
+	                },
+	                getCategories() {
+	                	axios.get('{{ url('super-admin/get-categories') }}')
+	                		.then((response) => {
+	                			this.allCategories = response.data;
+	                			this.getDatatable();
+	                		})
+	                },
+	                pad(str, max) {
+	                    str = str.toString();
+	                    return str.length < max ? this.pad("0" + str, max) : str;
+	                },
+
+	                submitNewCategory() {
+	                	if(this.newCategoryData.name == '') {
+	                		swal('Oops!', 'Input are required!', 'warning');
+	                	}
+
+	                	axios.post('{{ url('super-admin/new-category') }}', this.newCategoryData)
+	                		.then(() =>{
+	                			$('#new_category_modal').modal('hide');
+
+	                			swal({
+	                				title: 'Good job!',
+	                				text: 'Successfully Added!',
+	                				icon: 'success',
+	                				timer: 1500,
+	                				buttons: false,
+	                			})
+
+	                			this.newCategoryData.name = '';
+	                		})
+	                		.catch(() => {
+	                			swal('Oops!', 'Something Went Wrong!', 'warning');
+	                		})
+	                },
+	                editCategory(data) {
+	                	let result = {
+	                		id: data.id,
+	                		name: data.name,
+	                	}
+
+	                	this.updateCategoryData = result
+	                	$('#update_category_modal').modal('show');
+	                },
+	                submitUpdateCategory() {
+	                	if(this.updateCategoryData.name == '') {
+	                		swal('Oops!', 'Input are required!', 'warning');
+	                	}
+
+	                	axios.post('{{ url('super-admin/update-category') }}', this.updateCategoryData)
+	                		.then(() =>{
+	                			$('#update_category_modal').modal('hide');
+
+	                			swal({
+	                				title: 'Good job!',
+	                				text: 'Successfully Updated!',
+	                				icon: 'success',
+	                				timer: 1500,
+	                				buttons: false,
+	                			})
+	                		})
+	                		.catch(() => {
+	                			swal('Oops!', 'Something Went Wrong!', 'warning');
+	                		})
 	                },
 	            }
 	        })
