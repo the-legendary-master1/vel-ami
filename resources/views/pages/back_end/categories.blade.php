@@ -5,6 +5,18 @@
 	<link rel="stylesheet" href="{{ asset('css/extra_css/datatables/datatables.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/extra_css/datatables/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/extra_css/datatables/responsive.css') }}">
+
+	<style>
+		thead{
+			background-color: #ede7f1;
+		}		 
+		.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus{
+			background-color: #ede7f1 !important;
+			color: #000000 !important;
+			border-color: #ede7f1 !important;
+			outline:none;
+		}
+	</style>
 @endsection
 
 @section('content')
@@ -24,6 +36,123 @@
             </tr>
         </thead>
         <tbody>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
+        	<tr>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        		<td class="text-center">test</td>
+        	</tr>
         	<tr>
         		<td class="text-center">test</td>
         		<td class="text-center">test</td>
