@@ -66,6 +66,7 @@
                             <span class="fa fa-caret-down valami_header_caret"></span>
                             
                             <div class="user_dropdown_options">
+                                <a href="{{ url('dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
                                 <a href="{{ url('/') }}/{{ Auth::user()->url_name }}"><span class="fa fa-user-circle-o"></span> Profile</a>
                                 <a href="#"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-sign-out"></span> Logout</a>
@@ -97,6 +98,15 @@
                             <a href="{{ url('super-admin/products') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/products')) ? 'active' : '' }}"><span class="fa fa-product-hunt"></span> Products</a>
                             <a href="{{ url('super-admin/shops') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/shops')) ? 'active' : '' }}"><span class="fa fa-shopping-cart"></span> Shops</a>
                             <a href="{{ url('super-admin/categories') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/categories')) ? 'active' : '' }}"><span class="fa fa-tags"></span> Categories</a>
+                        </div>
+                    @else
+                        <div class="user_profile_img_wrapper">
+                            <img src="{{ asset('files/default_user.jpg') }}" class="profile_img_holder" height="190" alt="">
+                            <div class="user_profile_button">
+                                <div><span class="fa fa-camera"></span></div>
+                                Update
+                            </div>
+                            <h4>{{ Auth::user()->name }}</h4>
                         </div>
                     @endif
                 </div>

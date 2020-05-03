@@ -17,6 +17,9 @@
 	// Get Requests
 	Route::get('/dashboard', 'BackEndController@dashboard');
 	Route::get('/{url_name}', 'BackEndController@backendLandingPage');
+	Route::get('/get-user/{id}', 'BackEndController@getUser');
+
+	Route::post('/update-profile-field', 'BackEndController@updateProfileField');
 
 	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
 		Route::get('/users', 'BackEndController@users');

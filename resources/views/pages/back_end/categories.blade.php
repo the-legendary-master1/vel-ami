@@ -142,6 +142,7 @@
 	                submitNewCategory() {
 	                	if(this.newCategoryData.name == '') {
 	                		swal('Oops!', 'Input are required!', 'warning');
+	                		return;
 	                	}
 
 	                	axios.post('{{ url('super-admin/new-category') }}', this.newCategoryData)

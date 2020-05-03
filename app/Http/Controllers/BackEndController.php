@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Category;
 use App\Events\GetCategories;
+use App\Events\getUsers;
 use DB;
 use App\User;
+use Hash;
 
 class BackEndController extends Controller
 {
@@ -24,7 +26,10 @@ class BackEndController extends Controller
 	public function backendLandingPage($url_name)
 	{
 		if(Auth::user()->url_name == $url_name) {
-			return view('pages.back_end.profile');
+			$user = User::where('url_name', $url_name)->first();
+			$user->secret = decrypt($user->secret);
+
+			return view('pages.back_end.profile', compact('user'));
 		} else {
 		    $data['title'] = '404';
 		    $data['name'] = 'Page not found';
@@ -90,5 +95,36 @@ class BackEndController extends Controller
 	public function getUsers()
 	{
 		return User::all();
+	}
+
+	public function getUser($id) {
+		$user = User::find($id);
+		$user->secret = decrypt($user->secret);
+
+		return $user;
+	}
+
+	public function updateProfileField(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$user = User::find($req->id);
+		        $user->name = $req->f_name.' '.$req->l_name;
+		        $user->f_name = $req->f_name;
+		        $user->m_name = $req->m_name;
+		        $user->l_name = $req->l_name;
+		        $user->email = $req->email;
+		        $user->secret = encrypt($req->secret);
+		        $user->password = Hash::make($req->secret);
+		        $user->url_name = str_replace(' ', '-', strtolower($req->f_name.' '.$req->l_name));
+		        $user->save();
+
+			}, 2);
+
+			event(new getUsers());
+			return User::find($req->id);
+		} catch (Exception $e) {
+			return;
+		}
 	}
 }

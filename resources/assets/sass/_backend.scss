@@ -134,6 +134,39 @@
 				background-color: #ede7f1;
 			}
 		}
+
+		.user_profile_img_wrapper{
+			text-align: center;
+
+			.profile_img_holder{
+				border-radius: 100px;
+			}
+
+			h4{
+				margin: 20px 0;
+			}
+
+			.user_profile_button{
+				display: inline-block;
+				height: 95px;
+				width: 190px;
+				border-bottom-left-radius: 100px;
+				border-bottom-right-radius: 100px;
+				position: absolute;
+				top: 115px;
+				left: calc(50% - 95px);
+				font-size: 20px;
+				padding-top: 20px;
+				color: #ffffff;
+				background-color: rgba(0, 0, 0, .6);
+				cursor: pointer;
+				opacity: 0;
+
+				&:hover{
+					opacity: 1;
+				}
+			}
+		}
 	}
 }
 
