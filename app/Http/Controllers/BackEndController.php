@@ -27,4 +27,21 @@ class BackEndController extends Controller
 		    return response()->view('errors.404',$data,404);
 		}
 	}
+
+	
+	public function users() {
+		return view('pages.back_end.users');
+	}
+	
+	public function products() {
+		return view('pages.back_end.products');
+	}
+	
+	public function shops() {
+		return view('pages.back_end.shops');
+	}
+	
+	public function categories() {
+		return view('pages.back_end.categories');
+	}
 }

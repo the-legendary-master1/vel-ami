@@ -19,7 +19,10 @@
 	Route::get('/{url_name}', 'BackEndController@backendLandingPage');
 
 	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
-
+		Route::get('/users', 'BackEndController@users');
+		Route::get('/products', 'BackEndController@products');
+		Route::get('/shops', 'BackEndController@shops');
+		Route::get('/categories', 'BackEndController@categories');
 	});	
 	
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
