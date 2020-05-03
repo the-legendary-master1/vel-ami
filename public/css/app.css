@@ -11999,6 +11999,36 @@ button.close {
   position: relative;
   height: 100%;
   width: 100%;
+  padding: 20px;
+}
+
+#vilami_left .valami_left_content .valami_left_content_sidebar_title {
+  margin-bottom: 15px;
+}
+
+#vilami_left .valami_left_content .valami_left_content_sidebar_item_wrapper .valami_left_content_sidebar_item {
+  display: block;
+  padding: 20px;
+  font-size: 17px;
+  border-bottom: solid 1px #cccccc;
+  vertical-align: middle;
+}
+
+#vilami_left .valami_left_content .valami_left_content_sidebar_item_wrapper .valami_left_content_sidebar_item:first-child {
+  border-top: solid 1px #cccccc;
+}
+
+#vilami_left .valami_left_content .valami_left_content_sidebar_item_wrapper .valami_left_content_sidebar_item:hover {
+  background-color: #ede7f1;
+}
+
+#vilami_left .valami_left_content .valami_left_content_sidebar_item_wrapper .valami_left_content_sidebar_item span {
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+#vilami_left .valami_left_content .valami_left_content_sidebar_item_wrapper .valami_left_content_sidebar_item.active {
+  background-color: #ede7f1;
 }
 
 #vilami_center {

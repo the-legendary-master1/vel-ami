@@ -85,7 +85,16 @@
         @auth
             <div id="vilami_left">
                 <div class="valami_left_content">
-                    test
+                    @if (Auth::user()->role == 'Super-Admin')
+                        <h3 class="text-center valami_left_content_sidebar_title">Main Menu</h3>
+                        <div class="valami_left_content_sidebar_item_wrapper">
+                            <a href="{{ url('dashboard') }}" class="valami_left_content_sidebar_item {{ (request()->is('dashboard')) ? 'active' : '' }}"><span class="fa fa-dashboard"></span> Dashboard</a>
+                            <a href="#" class="valami_left_content_sidebar_item"><span class="fa fa-users"></span> Users</a>
+                            <a href="#" class="valami_left_content_sidebar_item"><span class="fa fa-product-hunt"></span> Products</a>
+                            <a href="#" class="valami_left_content_sidebar_item"><span class="fa fa-shopping-cart"></span> Shops</a>
+                            <a href="#" class="valami_left_content_sidebar_item"><span class="fa fa-tags"></span> Categories</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         @endauth

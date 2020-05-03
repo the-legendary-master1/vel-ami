@@ -103,6 +103,37 @@
 		position: relative;
 		height: 100%;
 		width: 100%;
+		padding: 20px;
+
+
+		.valami_left_content_sidebar_title{
+			margin-bottom: 15px;
+		}
+
+		.valami_left_content_sidebar_item_wrapper{
+			.valami_left_content_sidebar_item{
+				display: block;
+				padding:20px;
+				font-size: 17px;
+				border-bottom: solid 1px #cccccc;
+				vertical-align: middle;
+
+				&:first-child{
+					border-top: solid 1px #cccccc;
+				}
+				&:hover{
+					background-color: #ede7f1;
+				}
+
+				span{
+					margin-right: 10px;
+					font-size: 25px;
+				}
+			}
+			.valami_left_content_sidebar_item.active{
+				background-color: #ede7f1;
+			}
+		}
 	}
 }
 
