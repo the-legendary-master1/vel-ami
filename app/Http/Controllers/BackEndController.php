@@ -7,6 +7,7 @@ use Auth;
 use App\Category;
 use App\Events\GetCategories;
 use DB;
+use App\User;
 
 class BackEndController extends Controller
 {
@@ -32,7 +33,9 @@ class BackEndController extends Controller
 	}
 
 	public function users() {
-		return view('pages.back_end.users');
+		$users = User::all();
+
+		return view('pages.back_end.users', compact('users'));
 	}
 	
 	public function products() {
@@ -82,5 +85,10 @@ class BackEndController extends Controller
 		} catch (Exception $e) {
 			return;
 		}
+	}
+
+	public function getUsers()
+	{
+		return User::all();
 	}
 }

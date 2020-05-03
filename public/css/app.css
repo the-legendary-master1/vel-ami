@@ -12099,6 +12099,11 @@ button.close {
   outline: none !important;
 }
 
+table th,
+table td {
+  vertical-align: middle !important;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

@@ -24,6 +24,7 @@
 		Route::get('/shops', 'BackEndController@shops');
 		Route::get('/categories', 'BackEndController@categories');
 		Route::get('/get-categories', 'BackEndController@getCategories');
+		Route::get('/get-users', 'BackEndController@getUsers');
 
 		Route::post('/new-category', 'BackEndController@newCategory');
 		Route::post('/update-category', 'BackEndController@updateCategory');

@@ -204,6 +204,12 @@
 	}
 }
 
+table{
+	th,td{
+		vertical-align: middle !important;
+	}
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 } 

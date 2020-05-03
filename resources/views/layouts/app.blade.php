@@ -44,14 +44,18 @@
         <div id="vilami_top">
             <div class="row">
                 <div class="col-sm-3 vcenter text-left valami_brand">
-                    <span>VEL</span> ami
+                    <a href="{{ url('/') }}"><span>VEL</span> ami</a>
                 </div>  
 
                 <div class="col-sm-6 vcenter text-center">
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="fa fa-map-marker fa-2x"></span></span>
-                      <input type="text" class="form-control velami_header_search text-center" placeholder="What are you looking for?">
-                    </div>
+                    @auth
+                        @if (Auth::user()->role != 'Super-Admin')
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="fa fa-map-marker fa-2x"></span></span>
+                              <input type="text" class="form-control velami_header_search text-center" placeholder="What are you looking for?">
+                            </div>
+                        @endif
+                    @endauth
                 </div>
 
                 <div class="col-sm-3 vcenter text-right">
