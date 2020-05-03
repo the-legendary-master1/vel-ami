@@ -73,7 +73,10 @@
                     @endauth
 
                     @guest
-                        <a href="#" data-toggle="modal" data-target="#sign_up_modal">Register</a>
+                        <div class="velami_header_guest">
+                            <a href="{{ url('login') }}">Login</a> |
+                            <a href="#" data-toggle="modal" data-target="#sign_up_modal">Register</a>
+                        </div>
                     @endguest
                 </div>
             </div>
@@ -82,58 +85,7 @@
         @auth
             <div id="vilami_left">
                 <div class="valami_left_content">
-                    <div class="sidebar-wrapper">
-                        <div class="menus">
-                            <h5 class="title text-uppercase text-center">Categories</h5>
-                            <ul>
-                                <li class="menu-item">
-                                    <a href="#">Automotives & Motorcylcles</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Babies & Kids</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Construction & Industrial</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Electronics</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Fashion Accessories</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Men’s Fashion</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Women’s Fashion</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Food & Beverages</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Groceries</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Health & Personal Care</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Home & Living</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Hobbies & Stationaries</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Pet Care</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Sports & Travel</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Toys, Games & Collectibles</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    test
                 </div>
             </div>
         @endauth
@@ -145,22 +97,7 @@
         @auth
             <div id="vilami_right">
                 <div class="valami_right_content">
-                    <div class="ads-wrapper">
-                        @for ($i = 0; $i < 3; $i++)
-                            <article class="mb-4">
-                                <figure>
-                                    {{-- Ads img --}}
-                                </figure>
-                                <div class="ads-info">
-                                    <h5 class="ads-title">Ad Title</h5>
-                                    <a href="#" class="ads-link">www.ad-link.com</a>
-                                    <div class="excerpt mt-2">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                                    </div>
-                                </div>
-                            </article>
-                        @endfor
-                    </div>
+                    test
                 </div>
             </div>
         @endauth

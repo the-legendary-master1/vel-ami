@@ -23,6 +23,7 @@
 	.velami_header_search{
 		padding: 20px 20px;
 	}
+
 	.velami_header_user{
 		display: inline-block;
 		font-size: 17px;
@@ -75,6 +76,14 @@
 					background-color: #ede7f1;
 				}
 			}
+		}
+	}
+	
+	.velami_header_guest{
+		font-size: 17px;
+
+		a{
+			text-decoration: none;
 		}
 	}
 }
