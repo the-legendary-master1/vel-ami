@@ -7,13 +7,13 @@
                 </button>
                 <h5 class="modal-title">Member Login</h5>
             </div>
-            <div class="modal-body login-form">
+            <div class="modal-body modal-form-icon">
                 <form method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                         <i class="fa fa-user"></i>
-                        <input type="email" class="form-control" placeholder="Emaill address" name="email" value="{{ old('email') }}" required autofocus>
+                        <input type="email" class="form-control" placeholder="Email address" name="email" value="{{ old('email') }}" required autofocus>
 
                         @if ($errors->has('email'))
                             <span class="help-block">
@@ -38,7 +38,7 @@
                             </label>
                         </div>
                         <div class="forgot-pw">
-                            <a href="#" data-toggle="modal" data-target="#forgotPassword">Forgot Your Password?</a>
+                            <a href="#" data-toggle="modal" data-target="#forgotPassword" data-dismiss="modal" class="hover-nav-link">Forgot Your Password?</a>
                         </div>
                     </div>
                     <div class="form-group">

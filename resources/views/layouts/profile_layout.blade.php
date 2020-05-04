@@ -87,55 +87,27 @@
             <div class="row">
                 <div class="col-md-3 col-lg-3 mt12">
                     <div class="sidebar-wrapper">
-                        <div class="menus">
-                            <h5 class="title text-uppercase text-center">Categories</h5>
-                            <ul>
-                                <li class="menu-item">
-                                    <a href="#">Automotives & Motorcylcles</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Babies & Kids</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Construction & Industrial</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Electronics</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Fashion Accessories</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Men’s Fashion</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Women’s Fashion</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Food & Beverages</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Groceries</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Health & Personal Care</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Home & Living</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Hobbies & Stationaries</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Pet Care</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Sports & Travel</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">Toys, Games & Collectibles</a>
-                                </li>
-                            </ul>
+                        <div class="profile-wrapper text-center">
+                            <figure>
+                                <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-thumbnail img-responsive">
+                            </figure>
+                            <span>Lastname, Firstname</span>
+                        </div>
+                        <div class="ads-wrapper">
+                            @for ($i = 0; $i < 3; $i++)
+                                <article class="mb-4">
+                                    <figure>
+                                        {{-- Ads img --}}
+                                    </figure>
+                                    <div class="ads-info">
+                                        <h5 class="ads-title">Ad Title</h5>
+                                        <a href="#" class="ads-link">www.ad-link.com</a>
+                                        <div class="excerpt mt-2">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            @endfor
                         </div>
                     </div>
                 </div>
@@ -164,14 +136,9 @@
             </div>
         </main>
     </div>
-
-    @include('pages.front_end.modals.forgot_password')
-    @include('pages.front_end.modals.login')
-    @include('pages.back_end.modals.setup_shop')
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    @yield('extraJS')
     <script>
         $('.navbar-menu--click').on('click', function() {
             $(this).next().toggle('400');

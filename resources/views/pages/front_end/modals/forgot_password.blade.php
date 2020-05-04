@@ -7,7 +7,7 @@
                 </button>
                 <h5 class="modal-title">Reset Password</h5>
             </div>
-            <div class="modal-body reset-form">
+            <div class="modal-body modal-form-icon">
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}

@@ -2,19 +2,14 @@
 @extends('layouts.frontend_layout')
 
 @section('content')
-    <div class="main-content shop-seller mt2">
-        <div class="content-title text-center pb2 clearfix">
-            <figure>
-                <img src="{{ url('/') }}/files/shop.png" class="img-responsive img-circle">
-            </figure>
-            <div class="shop-info-container">
-                <h2 class="page-title">Shop Name</h2>
-                <div class="line"></div>
-                <h6 class="strapline">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua </h6>
-            </div>
+    <div class="main-content mt2">
+        <div class="content-title text-center pb2">
+            <h2 class="page-title">Featured Products</h2>
+            <div class="line"></div>
+            <h6 class="strapline">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua </h6>
         </div>
         @auth
-            <div class="products--wrapper text-right mt2 mb2">
+            <div class="products--wrapper">
                 <div class="product--actions">
                     <button class="btn btn-default add--product">Add</button>
                     <button class="btn btn-default delete--product" disabled>Delete</button>
@@ -73,6 +68,8 @@
             </div>
         </div>
     </div>
+
+    @include('pages.front_end.modals.edit_product')
 @endsection
 @section('extraJS')
     <script>

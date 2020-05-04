@@ -5,13 +5,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title">Setup Shop</h5>
+                <h5 class="modal-title">Setup Your Shop</h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-form-icon">
                 <div class="form-group">
-                    <p class="setup-shopname" data-toggle="tooltip" title="You cannot change the shop name after setting it up. This is for branding purposes so make sure there is no mistake.">
-                        <input type="text" class="form-control " placeholder="Enter a shop name">
-                    </p>
+                    <i class="fa fa-shopping-cart"></i>
+                    <input type="text" class="form-control " placeholder="Enter a shop name" data-toggle="tooltip" title="You cannot change the shop name after setting it up. This is for branding purposes so make sure there is no mistake.">
                 </div>
             </div>
             <div class="modal-footer justify-content-center">

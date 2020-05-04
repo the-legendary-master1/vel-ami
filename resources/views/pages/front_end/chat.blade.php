@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.frontend_layout')
 
 @section('content')
     <div class="main-content shop-seller mt2">

@@ -27,6 +27,10 @@ class FrontEndController extends Controller
     {
         return view('pages.front_end.single_shop');
     }
+    public function profile()
+    {
+        return view('pages.front_end.profile');
+    }
 
 	public function signUp(Request $req)
 	{

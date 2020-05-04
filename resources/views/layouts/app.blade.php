@@ -20,23 +20,6 @@
         #sign_up_alert{
             display: none;
         }
-        #sign_up_modal .modal-header{
-            background-color: #ede7f1;
-        }
-        #sign_up_modal .modal-body{
-            max-width: 335px;
-            margin: 20px auto;
-        }
-        #sign_up_modal .modal-content{
-            width: 400px;
-            margin: 0 auto;
-        }
-        .sign_up_btn{
-            font-size: 16px;
-            background-color: #ede7f1;
-            padding: 5px 25px;
-            color: #000000;
-        }
     </style>
     @yield('extraCSS')
 <body>
@@ -68,7 +51,7 @@
                             <div class="user_dropdown_options">
                                 <a href="{{ url('dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
                                 <a href="{{ url('/') }}/{{ Auth::user()->url_name }}"><span class="fa fa-user-circle-o"></span> Profile</a>
-                                <a href="#"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                <a href="#" data-toggle="modal" data-target="#setupShopModal"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-sign-out"></span> Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
@@ -90,6 +73,7 @@
         @auth
             <div id="vilami_left">
                 <div class="valami_left_content">
+<<<<<<< Updated upstream
                     @if (Auth::user()->role == 'Super-Admin')
                         <h3 class="text-center valami_left_content_sidebar_title">Main Menu</h3>
                         <div class="valami_left_content_sidebar_item_wrapper">
@@ -109,6 +93,8 @@
                             <h4>{{ Auth::user()->name }}</h4>
                         </div>
                     @endif
+=======
+>>>>>>> Stashed changes
                 </div>
             </div>
         @endauth
@@ -120,7 +106,10 @@
         @auth
             <div id="vilami_right">
                 <div class="valami_right_content">
+<<<<<<< Updated upstream
                     test
+=======
+>>>>>>> Stashed changes
                 </div>
             </div>
         @endauth

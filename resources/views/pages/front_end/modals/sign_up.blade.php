@@ -1,5 +1,5 @@
 <div id="sign_up_modal" class="modal fade my-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -11,7 +11,6 @@
                     <div class="alert alert-danger" id="sign_up_alert">
                         <ul id="sign_up_errors"></ul>
                     </div>
-
                         {{ csrf_field() }}
 
                         <div class="form-group">
