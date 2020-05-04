@@ -51,7 +51,17 @@
                             <div class="user_dropdown_options">
                                 <a href="{{ url('dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
                                 <a href="{{ url('/') }}/{{ Auth::user()->url_name }}"><span class="fa fa-user-circle-o"></span> Profile</a>
-                                <a href="#" data-toggle="modal" data-target="#setupShopModal"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                
+                                @if (Auth::user()->role == 'User-Premium')
+                                    @if (Auth::user()->my_shop)
+                                        <a href="{{ url('user-premium') }}/{{ Auth::user()->url_name }}/{{ Auth::user()->my_shop->shop_url }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                    @else
+                                        <a href="#" data-toggle="modal" data-target="#setupShopModal"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                    @endif
+                                @else
+                                    <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                @endif
+
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-sign-out"></span> Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
@@ -123,7 +133,7 @@
         $('#submit_signup').submit(function(e) {
             e.preventDefault();
 
-            axios.post('{{ url('/sign-up') }}', $(this).serialize())
+            axios.post('{{ url('sign-up') }}', $(this).serialize())
                 .then(function(response) {
                     window.location.replace('{{ url('dashbaord') }}');
                 })
@@ -143,6 +153,39 @@
                     }
 
                     grecaptcha.reset();
+                })
+        })
+
+        $('body').on('click', '.need_upgrade', function() {
+            swal({
+                title: "Upgrade Now!",
+                text: "To avail this feature need to account to upgrage.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete,) => {
+                  if (willDelete) {
+                      axios.post('{{ url('upgrade-account') }}', {id: {{ Auth::user()->id }}})
+                        .then(() => {
+                            $('#setupShopModal').modal('show');
+                        })
+                        .catch(() => {
+                            swal('Oops!', 'Something Went Wrong!', 'warning');
+                        })
+                  }
+              });
+        })
+
+        $('#submitMyShop').submit(function(e) {
+            e.preventDefault();
+
+            axios.post('{{ url('user-premium/create-shop') }}', $(this).serialize())
+                .then(function(response) {
+                    window.location.replace('{{ url('user-premium') }}/'+response.data.url_name+'/'+response.data.url);
+                })
+                .catch(function(error) {
+                    swal('Oops!', 'Something Went Wrong!', 'warning');
                 })
         })
     </script>

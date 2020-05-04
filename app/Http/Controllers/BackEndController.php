@@ -11,6 +11,7 @@ use DB;
 use App\User;
 use Hash;
 use Carbon\Carbon;
+use App\MyShop;
 
 class BackEndController extends Controller
 {
@@ -146,5 +147,44 @@ class BackEndController extends Controller
 		} catch (Exception $e) {
 			return;
 		}
+	}
+
+	public function upgradeAccount(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$user = User::find($req->id);
+				$user->role = 'User-Premium';
+				$user->save();
+			}, 2);
+
+			event(new getUsers());
+		} catch (Exception $e) {
+			return;
+		}
+	}
+
+	public function createShop(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$shop = new MyShop;
+				$shop->user_id = Auth::user()->id;
+				$shop->name = $req->shop_name;
+				$shop->shop_url = str_replace(' ', '-', strtolower($req->shop_name));
+				$shop->save();
+			}, 2);
+
+			$url = str_replace(' ', '-', strtolower($req->shop_name));
+			
+			return response()->json(['url_name' => Auth::user()->url_name, 'url' => $url]);
+		} catch (Exception $e) {
+			return response()->json(['message' => $e]);
+		}
+	}
+
+	public function myShop($url_name, $shop_url)
+	{
+		return view('pages.back_end.my_shop');
 	}
 }

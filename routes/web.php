@@ -23,6 +23,7 @@
 
 	Route::post('/update-profile-field', 'BackEndController@updateProfileField');
 	Route::post('/upload-profile-img', 'BackEndController@uploadProfileImg');
+	Route::post('/upgrade-account', 'BackEndController@upgradeAccount');
 
 	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
 		Route::get('/users', 'BackEndController@users');
@@ -41,5 +42,7 @@
 	});
 	
 	Route::middleware(['auth', 'user-premium'])->prefix('user-premium')->name('user-premium.')->group(function () {
+		Route::get('/{url_name}/{shop_url}', 'BackEndController@myShop');
 
+		Route::post('/create-shop', 'BackEndController@createShop');
 	});
