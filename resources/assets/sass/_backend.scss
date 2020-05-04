@@ -140,6 +140,7 @@
 
 			.profile_img_holder{
 				border-radius: 100px;
+				border:solid 2px #cccccc;
 			}
 
 			h4{
@@ -240,6 +241,17 @@
 table{
 	th,td{
 		vertical-align: middle !important;
+	}
+}
+
+.velami_modal{
+	width: 400px;
+}
+.file-icon{
+	font-size: 50px !important;
+
+	p{
+		font-size: 15px;
 	}
 }
 

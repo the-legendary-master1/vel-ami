@@ -26,9 +26,6 @@
         .profile_title{
             font-size: 15px;
         }
-        #profile_field_modal .modal-dialog{
-            width: 400px;
-        }
     </style>
 @endsection
 
@@ -88,6 +85,7 @@
     </div>
 
     @include('pages.back_end.modals.profile_field')
+    @include('pages.back_end.modals.profile_img')
 @endsection
 
 @section('extraJS')
@@ -102,6 +100,9 @@
                     profileFieldData: '',
                 },
                 mounted() {
+                    // Dropify
+                    $('.dropify').dropify();
+
                     Echo.channel('get-users')
                         .listen('.get-users', () => {
                             this.getUser();
@@ -157,6 +158,54 @@
                             })
                             .catch(() => {
                                 swal('Oops!', 'Something went wrong', 'warning');
+                            })
+                    },
+                    submitProfileImg() {
+                        let passport_img = this.$refs.passport_img.files[0];
+                        let img_path = '';
+
+                        if(passport_img) {
+                            img_path = passport_img;         
+                        } else {
+                            img_path = ''; 
+                        }
+
+                        if(img_path == '') {
+                            swal('Oops!', 'Field is required!', 'warning');
+                            return;
+                        }
+
+                        let formData = new FormData();
+                        formData.append('id', this.thisUser.id);
+                        formData.append('img_path', img_path);
+
+                        axios.post('{{ url('upload-profile-img') }}', formData)
+                            .then(() => {
+                                $('#profile_img_modal').modal('hide');
+
+                                swal({
+                                    title: 'Good job!',
+                                    text: 'successfully Added!',
+                                    icon: 'success',
+                                    timer: 1500,
+                                    buttons: false,
+                                })
+
+                                $('#passport_img').val('');
+                                var passport_img = "";
+                                var passport_drEvent = $('#passport_img').dropify();
+                                passport_drEvent = passport_drEvent.data('dropify');
+                                passport_drEvent.resetPreview();
+                                passport_drEvent.clearElement();
+                                passport_drEvent.settings.defaultFile = passport_img;
+                                passport_drEvent.destroy();
+                                passport_drEvent.init();    
+                                $('.dropify#passport_img').dropify({
+                                    defaultFile: passport_img,
+                                });  
+                            })
+                            .catch(() => {
+                                swal('Oops!', 'Something Went Wrong!', 'warning');
                             })
                     }
                 }

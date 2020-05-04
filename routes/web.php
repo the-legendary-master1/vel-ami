@@ -22,6 +22,7 @@
 	Route::get('/get-user/{id}', 'BackEndController@getUser');
 
 	Route::post('/update-profile-field', 'BackEndController@updateProfileField');
+	Route::post('/upload-profile-img', 'BackEndController@uploadProfileImg');
 
 	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
 		Route::get('/users', 'BackEndController@users');

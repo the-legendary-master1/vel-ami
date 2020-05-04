@@ -12037,6 +12037,7 @@ button.close {
 
 #vilami_left .valami_left_content .user_profile_img_wrapper .profile_img_holder {
   border-radius: 100px;
+  border: solid 2px #cccccc;
 }
 
 #vilami_left .valami_left_content .user_profile_img_wrapper h4 {
@@ -12135,6 +12136,18 @@ button.close {
 table th,
 table td {
   vertical-align: middle !important;
+}
+
+.velami_modal {
+  width: 400px;
+}
+
+.file-icon {
+  font-size: 50px !important;
+}
+
+.file-icon p {
+  font-size: 15px;
 }
 
 ::-webkit-scrollbar {

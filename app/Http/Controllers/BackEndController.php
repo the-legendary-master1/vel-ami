@@ -10,6 +10,7 @@ use App\Events\getUsers;
 use DB;
 use App\User;
 use Hash;
+use Carbon\Carbon;
 
 class BackEndController extends Controller
 {
@@ -123,6 +124,25 @@ class BackEndController extends Controller
 
 			event(new getUsers());
 			return User::find($req->id);
+		} catch (Exception $e) {
+			return;
+		}
+	}
+
+	public function uploadProfileImg(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$user = User::find($req->id);
+                    if ($req->hasFile('img_path')) {
+                        $img_path_extension = $req->file('img_path')->extension();
+                        $img_path_path = $req->img_path->storeAs('img_path', 'img_path_' . $req->id . date('is', strtotime(Carbon::now())) . '.'.$img_path_extension, 'public');
+                        $user->img_path = $img_path_path;
+                    }
+				$user->save();
+			}, 2);
+
+			event(new getUsers());
 		} catch (Exception $e) {
 			return;
 		}

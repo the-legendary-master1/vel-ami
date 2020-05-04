@@ -16,10 +16,6 @@
 			border-color: #ede7f1 !important;
 			outline:none;
 		}
-        #new_category_modal .modal-content, #update_category_modal .modal-content{
-            width: 400px;
-            margin: 0 auto;
-        }
 	</style>
 @endsection
 

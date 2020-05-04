@@ -73,7 +73,6 @@
         @auth
             <div id="vilami_left">
                 <div class="valami_left_content">
-<<<<<<< Updated upstream
                     @if (Auth::user()->role == 'Super-Admin')
                         <h3 class="text-center valami_left_content_sidebar_title">Main Menu</h3>
                         <div class="valami_left_content_sidebar_item_wrapper">
@@ -84,17 +83,19 @@
                             <a href="{{ url('super-admin/categories') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/categories')) ? 'active' : '' }}"><span class="fa fa-tags"></span> Categories</a>
                         </div>
                     @else
-                        <div class="user_profile_img_wrapper">
-                            <img src="{{ asset('files/default_user.jpg') }}" class="profile_img_holder" height="190" alt="">
-                            <div class="user_profile_button">
-                                <div><span class="fa fa-camera"></span></div>
-                                Update
+                        @if (request()->is(Auth::user()->url_name))
+                            <div class="user_profile_img_wrapper">
+                                <img :src="'{{ asset('files') }}/'+thisUser.img_path" class="profile_img_holder" height="190" width="190" alt="" v-if="thisUser.img_path">
+                                <img src="{{ asset('files/default_user.jpg') }}" class="profile_img_holder" height="190" width="190" alt="" v-else>
+                                <div class="user_profile_button" data-toggle="modal" data-target="#profile_img_modal">
+                                    <div><span class="fa fa-camera"></span></div>
+                                    Update
+                                </div>
+                                <h4>@{{ thisUser.name }}</h4>
                             </div>
-                            <h4>{{ Auth::user()->name }}</h4>
-                        </div>
+                        @endif
                     @endif
-=======
->>>>>>> Stashed changes
+
                 </div>
             </div>
         @endauth
@@ -106,16 +107,15 @@
         @auth
             <div id="vilami_right">
                 <div class="valami_right_content">
-<<<<<<< Updated upstream
                     test
-=======
->>>>>>> Stashed changes
+
                 </div>
             </div>
         @endauth
     </div>
 
     @include('pages.front_end.modals.sign_up')
+    @include('pages.back_end.modals.setup_shop')
 
     @yield('extraJS')
 
