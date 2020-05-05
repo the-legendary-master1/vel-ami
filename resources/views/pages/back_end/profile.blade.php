@@ -160,12 +160,12 @@
                                 swal('Oops!', 'Something went wrong', 'warning');
                             })
                     },
-                    submitProfileImg() {
-                        let passport_img = this.$refs.passport_img.files[0];
+                    submitUserIMG() {
+                        let user_img = this.$refs.user_img.files[0];
                         let img_path = '';
 
-                        if(passport_img) {
-                            img_path = passport_img;         
+                        if(user_img) {
+                            img_path = user_img;         
                         } else {
                             img_path = ''; 
                         }
@@ -191,17 +191,17 @@
                                     buttons: false,
                                 })
 
-                                $('#passport_img').val('');
-                                var passport_img = "";
-                                var passport_drEvent = $('#passport_img').dropify();
+                                $('#user_img').val('');
+                                var user_img = "";
+                                var passport_drEvent = $('#user_img').dropify();
                                 passport_drEvent = passport_drEvent.data('dropify');
                                 passport_drEvent.resetPreview();
                                 passport_drEvent.clearElement();
-                                passport_drEvent.settings.defaultFile = passport_img;
+                                passport_drEvent.settings.defaultFile = user_img;
                                 passport_drEvent.destroy();
                                 passport_drEvent.init();    
-                                $('.dropify#passport_img').dropify({
-                                    defaultFile: passport_img,
+                                $('.dropify#user_img').dropify({
+                                    defaultFile: user_img,
                                 });  
                             })
                             .catch(() => {

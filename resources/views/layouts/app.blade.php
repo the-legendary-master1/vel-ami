@@ -58,7 +58,7 @@
                                     @else
                                         <a href="#" data-toggle="modal" data-target="#setupShopModal"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                     @endif
-                                @else
+                                @elseif(Auth::user()->role == 'User')
                                     <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                 @endif
 
@@ -156,6 +156,8 @@
                 })
         })
 
+        @auth
+
         $('body').on('click', '.need_upgrade', function() {
             swal({
                 title: "Upgrade Now!",
@@ -188,6 +190,7 @@
                     swal('Oops!', 'Something Went Wrong!', 'warning');
                 })
         })
+        @endauth
     </script>
 </body>
 </html>
