@@ -5,7 +5,7 @@
     <div class="main-content shop-seller mt2">
         <div class="content-title text-center pb2 clearfix">
             <figure>
-                <img src="{{ url('/') }}/files/shop.png" class="img-responsive img-circle">
+                <img src="{{ url('/') }}/files/shop.png" class="img-responsive img-thumbnail img-circle">
             </figure>
             <div class="shop-info-container">
                 <h2 class="page-title">Shop Name</h2>

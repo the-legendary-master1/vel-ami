@@ -1,17 +1,15 @@
 @extends('layouts.frontend_layout')
 
 @section('content')
-    <div class="content-title text-left pb2">
-        <nav class="navbar navbar-expand-md navbar-dark primary-color mb-5 no-content">
-            <div class="mr-auto text-left">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb clearfix d-none d-md-inline-flex pt-0">
-                        <li class="breadcrumb-item"><a class="white-text" href="#!">Home</a></li>
-                        <li class="breadcrumb-item active">Library</li>
-                    </ol>
-                </nav>
-            </div>
-        </nav>
+    <div class="content-title text-left">
+        <div class="mr-auto text-left">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb clearfix d-none d-md-inline-flex pt-0">
+                    <li class="breadcrumb-item"><a class="white-text" href="#!">Home</a></li>
+                    <li class="breadcrumb-item active">Library</li>
+                </ol>
+            </nav>
+        </div>
     </div>
     <div class="main-content mt2">
         <div class="post-wrapper">

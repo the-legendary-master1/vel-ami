@@ -17,70 +17,103 @@
     <div id="app">
         <nav class="navbar navbar-default">
             <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        VEL-AMI
-                    </a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        @guest
-                            <li><a href="{{ route('register') }}">Sign Up</a></li>
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                        @else
-                            <li>
-                                <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
-                                    <figure>
-                                        <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive">
-                                    </figure>
-                                    <div class="ctr-notif">
-                                        <span class="label label-danger">5</span>
-                                    </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                VEL-AMI
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        @auth
+                            @if (Auth::user()->role != 'Super-Admin')
+                                <div class="search-operation">
+                                    <span><span class="fa fa-map-marker"></span></span>
+                                    <input type="text" class="form-control velami_header_search text-center" placeholder="What are you looking for?">
+                                    <span><span class="fa fa-search"></span></span>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
-                                    <figure>
-                                        <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive">
-                                    </figure>
-                                    <div class="ctr-notif">
-                                        <span class="label label-danger">5</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dropdown">
-                                <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
-                                    <div class="nav-profile">
-                                        <figure>
-                                            <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive">
-                                        </figure>
-                                        <div class="profile-option">
-                                            <span class="profile-name">{{ Auth::user()->name }}</span>
-                                            <span class="fa fa-caret-down valami_header_caret"></span>
+                            @endif
+                        @endauth
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right navbar-logregs">
+                                @guest
+                                    <li class="reg"><a href="#" class="hover-nav-link" data-toggle="modal" data-target="#sign_up_modal">Sign Up</a></li>
+                                    <li class="log"><a href="#" class="hover-nav-link" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                                @else
+                                    <li>
+                                        <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
+                                            <figure>
+                                                <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive">
+                                            </figure>
+                                            <div class="ctr-notif">
+                                                <span class="label label-danger">5</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ url('/') }}/profile/1"><i class="fa fa-user"></i> Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#" data-toggle="modal" data-target="#setupShopModal"><i class="fa fa-shopping-cart"></i> My Shop</a>
+                                        <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
+                                            <figure>
+                                                <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive">
+                                            </figure>
+                                            <div class="ctr-notif">
+                                                <span class="label label-danger">5</span>
+                                            </div>
+                                        </div>
                                     </li>
-                                    <li>
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out"></i> Logout
-                                        </a>
+                                    <li class="dropdown">
+                                        <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
+                                            <div class="nav-profile">
+                                                <figure>
+                                                    <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive">
+                                                </figure>
+                                                <div class="profile-option">
+                                                    <span class="profile-name">{{ Auth::user()->name }}</span>
+                                                    <span class="fa fa-caret-down valami_header_caret"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="{{ url('dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('/') }}/{{ Auth::user()->url_name }}"><span class="fa fa-user-circle-o"></span> Profile</a>
+                                            </li>
+                                            @if (Auth::user()->role == 'User-Premium')
+                                                @if (Auth::user()->my_shop)
+                                                    <li>
+                                                        <a href="{{ url('user-premium') }}/{{ Auth::user()->url_name }}/{{ Auth::user()->my_shop->shop_url }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <a href="#" data-toggle="modal" data-target="#setupShopModal"><i class="fa fa-shopping-cart"></i> My Shop</a>
+                                                    </li>
+                                                @endif
+                                            @else
+                                                <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                            @endif
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                                            <li>
+                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <i class="fa fa-sign-out"></i> Logout
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    {{ csrf_field() }}
+                                                </form>
+                                            </li>
+                                        </ul>
                                     </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
+                                @endguest
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                    
+                
             </div>
         </nav>
         <main>
@@ -168,6 +201,7 @@
 
     @include('pages.front_end.modals.forgot_password')
     @include('pages.front_end.modals.login')
+    @include('pages.front_end.modals.sign_up')
     @include('pages.back_end.modals.setup_shop')
     
     <!-- Scripts -->
