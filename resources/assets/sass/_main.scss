@@ -35,11 +35,19 @@ a:hover {
 .fa-md {
 	font-size: 25px;
 }
+.navbar {
+    min-height: 60px;
+
+    .navbar-brand {
+		height: 60px;
+		line-height: 30px;
+    }
+}
 .navbar .navbar-nav ul li > a {
 	padding: 10px 12px;
 }
 .navbar-default .navbar-nav > li > a {
-	padding: 18px 15px;
+	padding: 15px 15px;
 }
 
 /* SIDEBAR */
@@ -67,9 +75,17 @@ a:hover {
 .pt3 {
 	padding-top: 3rem;
 }
-.sidebar-wrapper {
-	background: #efefef;
-    padding: 15px 12px;
+.sticky-sidebar {
+    position: sticky;
+    top: 15px;
+    height: 100%;
+
+	.sidebar-wrapper {
+		background: #efefef;
+	    padding: 15px 12px;
+	    overflow-y: auto;
+    	max-height: calc(100vh - 10rem);
+	}
 }
 .menus > h5 {
 	padding-bottom: 10px;
@@ -86,18 +102,16 @@ a:hover {
     display: block;
     padding: 10px 7px;
     color: #111;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 /* ADS ADS ADS ADS */
 .ads-wrapper {
-	background: #efefef;
-    padding: 15px 12px;
 
 	figure {
 	    width: 100%;
 	    height: 110px;
-	    border: thin solid #d6d6d6;
+	    border: thin solid rgba(0, 0, 0, .1);
 	    background: #fff;
     }
     .ads-info {
@@ -123,12 +137,12 @@ a:hover {
 
 /* MAIN */
 .bordered {
-	border-left: 1px solid #d6d6d6;
-	border-right: 1px solid #d6d6d6;
+	border-left: 1px solid rgba(0, 0, 0, .1);
+	border-right: 1px solid rgba(0, 0, 0, .1);
 }
 .line {
     height: 1px;
-    background-color: #d6d6d6;
+    background-color: rgba(0, 0, 0, .1);
     margin: 20px 0;
 }
 .strapline {
@@ -271,7 +285,7 @@ a:hover {
     position: absolute;
     left: -28px;
     right: -28px;
-    border: 1px solid #d6d6d6;
+    border: 1px solid rgba(0, 0, 0, .1);
     border-bottom: none;
 
 	.inputtts {
@@ -489,7 +503,7 @@ a:hover {
 }
 .shop-seller {
 	.input-container {
-		border-bottom: 1px solid #d6d6d6;
+		border-bottom: 1px solid rgba(0, 0, 0, .1);
 	    left: -1px;
 	    right: -1px;
 
@@ -839,4 +853,22 @@ a:hover {
 		opacity: 0;
 		z-index: -1;
 	}
+}
+/* CUSTOM COLUMN */
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+
+    .col-md-3 {
+		flex: 0 0 25%;
+		max-width: 25%;
+    }
+    .col-md-7 {
+		flex: 0 0 58.333333%;
+	    max-width: 58.333333%;
+    }
+    .col-md-2 {
+		flex: 0 0 16.666667%;
+    	max-width: 16.666667%;
+    }
 }

@@ -10,7 +10,7 @@
         </div>
         <div class="products mt2">
             <div class="row">
-                @for ($i = 0; $i < 5; $i++)
+                @for ($i = 0; $i < 15; $i++)
                     <div class="col-md-4">
                         <div class="product--details">
                             <a href="{{ url('/') }}/product/1" class="item-link">
