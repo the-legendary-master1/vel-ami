@@ -12,6 +12,7 @@ use App\User;
 use Hash;
 use Carbon\Carbon;
 use App\MyShop;
+use App\Events\GetShops;
 
 class BackEndController extends Controller
 {
@@ -185,6 +186,55 @@ class BackEndController extends Controller
 
 	public function myShop($url_name, $shop_url)
 	{
-		return view('pages.back_end.my_shop');
+		$user = User::where('url_name', $url_name)->first();
+		$shop = MyShop::where('shop_url', $shop_url)->first();
+
+
+		if($user && $shop) {
+			return view('pages.back_end.my_shop', compact('shop'));
+		} else {
+		    $data['title'] = '404';
+		    $data['name'] = 'Page not found';
+		    return response()->view('errors.404',$data,404);
+		}
+	}
+
+	public function uploadShopIMG(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$shop = MyShop::find($req->id);
+                    if ($req->hasFile('shop_img')) {
+                        $shop_img_extension = $req->file('shop_img')->extension();
+                        $shop_img_path = $req->shop_img->storeAs('shop_img', 'shop_img_' . $req->id . date('is', strtotime(Carbon::now())) . '.'.$shop_img_extension, 'public');
+                        $shop->shop_img = $shop_img_path;
+                    }
+				$shop->save();
+			}, 2);
+
+			event(new GetShops());
+		} catch (Exception $e) {
+			return;
+		}
+	}
+
+	public function getMyShop($id)
+	{
+		return MyShop::find($id);
+	}
+
+	public function updateShopDesc(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$shop = MyShop::find($req->id);
+				$shop->desc = $req->desc;
+				$shop->save();
+			}, 2);
+			
+			event(new GetShops());
+		} catch (Exception $e) {
+			return;
+		}
 	}
 }

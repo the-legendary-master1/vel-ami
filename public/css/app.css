@@ -12084,6 +12084,49 @@ button.close {
   padding: 50px 50px 0 50px;
 }
 
+#vilami_center .vilami_center_top_content .vilami_center_top_content_left {
+  display: inline-block;
+  width: 150px;
+}
+
+#vilami_center .vilami_center_top_content .vilami_center_top_content_left .shop_img {
+  border-radius: 100px;
+  height: 150px;
+  width: 150px;
+  border: solid 2px #ccc;
+}
+
+#vilami_center .vilami_center_top_content .vilami_center_top_content_left .shop_img_btn {
+  position: absolute;
+  top: 125px;
+  left: 48px;
+  font-size: 20px;
+  padding-top: 20px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  opacity: 0;
+  display: inline-block;
+  height: 75px;
+  width: 150px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  text-align: center;
+}
+
+#vilami_center .vilami_center_top_content .vilami_center_top_content_left .shop_img_btn:hover {
+  opacity: 1;
+}
+
+#vilami_center .vilami_center_top_content .vilami_center_top_content_right {
+  display: inline-block;
+  width: calc(100% - 150px);
+}
+
+#vilami_center .vilami_center_top_content .vilami_center_top_content_right p {
+  padding: 0 100px;
+}
+
 #vilami_center .vilami_center_bottom_content {
   position: absolute;
   top: 200px;
@@ -12114,6 +12157,10 @@ button.close {
 }
 
 /*all*/
+
+[v-cloak] {
+  display: none;
+}
 
 .vcenter {
   display: inline-block;

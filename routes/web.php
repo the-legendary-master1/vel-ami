@@ -45,4 +45,7 @@
 		Route::get('/{url_name}/{shop_url}', 'BackEndController@myShop');
 
 		Route::post('/create-shop', 'BackEndController@createShop');
+		Route::post('/upload-shop-img', 'BackEndController@uploadShopIMG');
+		Route::post('/get-my-shop/{id}', 'BackEndController@getMyShop');
+		Route::post('/update-shop-desc', 'BackEndController@updateShopDesc');
 	});

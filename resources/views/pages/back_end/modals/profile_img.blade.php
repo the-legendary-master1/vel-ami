@@ -7,11 +7,11 @@
             </div>
 
             <div class="modal-body">
-                <input type="file" id="passport_img" ref="passport_img" class="dropify" data-show-remove="false" data-height="150" data-max-file-size="3M" data-allowed-file-extensions="jpeg jpg png">
+                <input type="file" id="user_img" ref="user_img" class="dropify" data-show-remove="false" data-height="150" data-max-file-size="3M" data-allowed-file-extensions="jpeg jpg png">
             </div>
 
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-primary" @click="submitProfileImg()">Submit</button>
+                <button type="button" class="btn btn-primary" @click="submitUserIMG()">Submit</button>
             </div>
         </div>
     </div>
