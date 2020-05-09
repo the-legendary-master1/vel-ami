@@ -46,10 +46,6 @@ class BackEndController extends Controller
 		return view('pages.back_end.users', compact('users'));
 	}
 	
-	public function products() {
-		return view('pages.back_end.products');
-	}
-	
 	public function shops() {
 		return view('pages.back_end.shops');
 	}
@@ -188,10 +184,11 @@ class BackEndController extends Controller
 	{
 		$user = User::where('url_name', $url_name)->first();
 		$shop = MyShop::where('shop_url', $shop_url)->first();
+		$categories = Category::all();
 
 
 		if($user && $shop) {
-			return view('pages.back_end.my_shop', compact('shop'));
+			return view('pages.back_end.my_shop', compact('shop', 'categories'));
 		} else {
 		    $data['title'] = '404';
 		    $data['name'] = 'Page not found';

@@ -167,7 +167,7 @@
 
     @include('pages.front_end.modals.forgot_password')
     @include('pages.front_end.modals.login')
-    @include('pages.back_end.modals.setup_shop')
+    @include('pages.back_end.modals.user_premium.setup_shop')
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

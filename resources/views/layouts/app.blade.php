@@ -125,7 +125,7 @@
     </div>
 
     @include('pages.front_end.modals.sign_up')
-    @include('pages.back_end.modals.setup_shop')
+    @include('pages.back_end.modals.user_premium.setup_shop')
 
     @yield('extraJS')
 

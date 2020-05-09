@@ -20,6 +20,7 @@
 	Route::get('/dashboard', 'BackEndController@dashboard');
 	Route::get('/{url_name}', 'BackEndController@backendLandingPage');
 	Route::get('/get-user/{id}', 'BackEndController@getUser');
+	Route::get('/get-categories', 'BackEndController@getCategories');
 
 	Route::post('/update-profile-field', 'BackEndController@updateProfileField');
 	Route::post('/upload-profile-img', 'BackEndController@uploadProfileImg');
@@ -27,10 +28,8 @@
 
 	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
 		Route::get('/users', 'BackEndController@users');
-		Route::get('/products', 'BackEndController@products');
 		Route::get('/shops', 'BackEndController@shops');
 		Route::get('/categories', 'BackEndController@categories');
-		Route::get('/get-categories', 'BackEndController@getCategories');
 		Route::get('/get-users', 'BackEndController@getUsers');
 
 		Route::post('/new-category', 'BackEndController@newCategory');

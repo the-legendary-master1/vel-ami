@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('extraCSS')
+	{{-- Select Picker CSS --}}
+	<link rel="stylesheet" href="{{ asset('css/extra_css/selectpicker.css') }}">
+
 	<style>
         .title_edit{
             position: absolute;
@@ -71,9 +74,7 @@
 
     <div class="vilami_center_bottom_content">
     	<div class="shop_options text-right">
-    		<button class="btn shop_option_btn" {{-- data-toggle="modal" data-target="#new_category_modal" --}}>ADD</button>
-    		<button class="btn shop_option_btn" {{-- data-toggle="modal" data-target="#new_category_modal" --}}>EDIT</button>
-    		<button class="btn shop_option_btn" {{-- data-toggle="modal" data-target="#new_category_modal" --}}>DELETE</button>
+    		<button class="btn shop_option_btn" data-toggle="modal" data-target="#new_product_modal">ADD</button>
     	</div>
 
     	<div class="shop_product_wrapper">
@@ -109,17 +110,22 @@
     	</div>
     </div>
 
-    @include('pages.back_end.modals.shop_img')
-    @include('pages.back_end.modals.shop_desc')
+    @include('pages.back_end.modals.user_premium.shop_img')
+    @include('pages.back_end.modals.user_premium.shop_desc')
+    @include('pages.back_end.modals.user_premium.new_product')
 @endsection
 
 @section('extraJS')
+	{{-- Select Picker JS --}}
+	<script src="{{ asset('js/extra_js/selectpicker.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             const app = new Vue({
                 el: '#app',
                 data: {
                 	myShopData: {!! json_encode($shop) !!},
+                	allCategories: {!! json_encode($categories) !!},
 
                 	shopDescData: '',
                 }, 
@@ -127,10 +133,18 @@
                     // Dropify
                     $('.dropify').dropify();
 
+	                // Selectpicker
+	                $('#student_list').selectpicker();
+
                     Echo.channel('get-shops')
                         .listen('.get-shops', () => {
                             this.getShop();
                         })
+
+	                Echo.channel('get-categories')
+	                	.listen('.get-categories', () => {
+	                		this.getCategories();
+	                	})
                 },
                 methods: {
                 	getShop() {
@@ -139,6 +153,19 @@
                                 this.myShopData = response.data;
                             })
                 	},
+	                getCategories() {
+	                	axios.get('{{ url('get-categories') }}')
+	                		.then((response) => {
+	                			this.allCategories = response.data;
+
+	                            $('#categories_list').empty();
+	                            $.each(this.allCategories, function(index, val) {
+	                               $('#categories_list').append('<option value="' + val.id + '">' + val.name + '</option>');
+	                            });
+	                            $("#categories_list").selectpicker("refresh");
+	                            $("#categories_list").selectpicker("render");
+	                		})
+	                },
 
                     submitShopIMG() {
                         let shop_img_file = this.$refs.shop_img_file.files[0];
@@ -213,6 +240,9 @@
                     		.catch(() => {
                     			swal('Oops!', 'Something Went Wrong!', 'warning');
                     		})
+                    },
+                    submitNewProduct() {
+                    	console.log('test')
                     }
                 }
             })
