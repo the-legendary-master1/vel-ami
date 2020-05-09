@@ -2,10 +2,20 @@
 @extends('layouts.frontend_layout')
 
 @section('content')
-    <div class="main-content shop-seller mt2">
+    <div class="content-title text-left">
+        <div class="mr-auto text-left">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb clearfix d-none d-md-inline-flex pt-0">
+                    <li class="breadcrumb-item"><a class="white-text" href="#!">Home</a></li>
+                    <li class="breadcrumb-item active">Shop Name</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <section class="header-content shop-seller">
         <div class="content-title text-center pb2 clearfix">
             <figure>
-                <img src="{{ url('/') }}/files/shop.png" class="img-responsive img-circle">
+                <img src="{{ url('/') }}/files/shop.png" class="img-responsive img-thumbnail img-circle">
             </figure>
             <div class="shop-info-container">
                 <h2 class="page-title">Shop Name</h2>
@@ -13,6 +23,8 @@
                 <h6 class="strapline">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua </h6>
             </div>
         </div>
+    </section>
+    <div class="main-content shop-seller mt2">
         @auth
             <div class="products--wrapper text-right mt2 mb2">
                 <div class="product--actions">
@@ -24,7 +36,7 @@
         @endauth
         <div class="products mt2">
             <div class="row">
-                @for ($i = 0; $i < 5; $i++)
+                @for ($i = 0; $i < 15; $i++)
                     <div class="col-md-4">
                         <div class="product--details">
                             @auth

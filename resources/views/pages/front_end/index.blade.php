@@ -2,6 +2,15 @@
 @extends('layouts.frontend_layout')
 
 @section('content')
+    <div class="content-title text-left">
+        <div class="mr-auto text-left">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb clearfix d-none d-md-inline-flex pt-0">
+                    <li class="breadcrumb-item active">Home</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <div class="main-content mt2">
         <div class="content-title text-center pb2">
             <h2 class="page-title">Featured Products</h2>
@@ -10,7 +19,7 @@
         </div>
         <div class="products mt2">
             <div class="row">
-                @for ($i = 0; $i < 5; $i++)
+                @for ($i = 0; $i < 15; $i++)
                     <div class="col-md-4">
                         <div class="product--details">
                             <a href="{{ url('/') }}/product/1" class="item-link">
