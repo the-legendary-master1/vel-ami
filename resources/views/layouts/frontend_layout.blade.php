@@ -122,79 +122,83 @@
         <main>
             <div class="container-fluid">
                 <div class="row main-cont d-flex">
-                    <div class="col-md-3 col-lg-3 mt12 sticky-sidebar">
+                    <div class="col-md-3 cus-col mt12 sticky-sidebar">
                         <div class="sidebar-wrapper">
                             <div class="menus">
                                 <h5 class="title text-uppercase text-center">Categories</h5>
                                 <ul>
                                     <li class="menu-item">
-                                        <a href="#">Automotives & Motorcylcles</a>
+                                        <a href="#"><i class="fa fa-car"></i> Automotives & Motorcylcles</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Babies & Kids</a>
+                                        <a href="#"><i class="fa fa-university"></i> Babies & Kids</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Construction & Industrial</a>
+                                        <a href="#"><i class="fa fa-car"></i> Construction & Industrial</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Electronics</a>
+                                        <a href="#"><i class="fa fa-car"></i> Electronics</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Fashion Accessories</a>
+                                        <a href="#"><i class="fa fa-car"></i> Fashion Accessories</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Men’s Fashion</a>
+                                        <a href="#"><i class="fa fa-male"></i> Men’s Fashion</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Women’s Fashion</a>
+                                        <a href="#"><i class="fa fa-female"></i> Women’s Fashion</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Food & Beverages</a>
+                                        <a href="#"><i class="fa fa-apple"></i> Food & Beverages</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Groceries</a>
+                                        <a href="#"><i class="fa fa-car"></i> Groceries</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Health & Personal Care</a>
+                                        <a href="#"><i class="fa fa-medkit"></i> Health & Personal Care</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Home & Living</a>
+                                        <a href="#"><i class="fa fa-home"></i> Home & Living</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Hobbies & Stationaries</a>
+                                        <a href="#"><i class="fa fa-h-square"></i> Hobbies & Stationaries</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Pet Care</a>
+                                        <a href="#"><i class="fa fa-paw"></i> Pet Care</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Sports & Travel</a>
+                                        <a href="#"><i class="fa fa-car"></i> Sports & Travel</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Toys, Games & Collectibles</a>
+                                        <a href="#"><i class="fa fa-gamepad"></i> Toys, Games & Collectibles</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7 col-lg-7 bordered">
-                        @yield('content')
-                    </div>
-                    <div class="col-md-2 col-lg-2 mt12 sticky-sidebar">
-                        <div class="sidebar-wrapper ads-wrapper">
-                            @for ($i = 0; $i < 3; $i++)
-                                <article class="mb-4">
-                                    <figure>
-                                        {{-- Ads img --}}
-                                    </figure>
-                                    <div class="ads-info">
-                                        <h5 class="ads-title">Ad Title</h5>
-                                        <a href="#" class="ads-link">www.ad-link.com</a>
-                                        <div class="excerpt mt-2">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                                        </div>
-                                    </div>
-                                </article>
-                            @endfor
+                    <div class="col-md-9 cus-col">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-9 bordered">
+                                @yield('content')
+                            </div>
+                            <div class="col-lg-3 col-md-3 mt12">
+                                <div class="sidebar-wrapper ads-wrapper">
+                                    @for ($i = 0; $i < 3; $i++)
+                                        <article class="mb-4">
+                                            <figure>
+                                                {{-- Ads img --}}
+                                            </figure>
+                                            <div class="ads-info">
+                                                <h5 class="ads-title">Ad Title</h5>
+                                                <a href="#" class="ads-link">www.ad-link.com</a>
+                                                <div class="excerpt mt-2">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    @endfor
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -204,13 +208,9 @@
 
     @include('pages.front_end.modals.forgot_password')
     @include('pages.front_end.modals.login')
-<<<<<<< HEAD
     @include('pages.back_end.modals.user_premium.setup_shop')
-=======
     @include('pages.front_end.modals.sign_up')
-    @include('pages.back_end.modals.setup_shop')
->>>>>>> 88b7032e8147ce69388bf953bd563e4a580c0fa7
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('extraJS')
