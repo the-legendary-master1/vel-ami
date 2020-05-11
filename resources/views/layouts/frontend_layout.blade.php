@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="sp">
     <div id="app">
         <nav class="navbar navbar-default">
             <div class="container">
@@ -26,15 +26,15 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        @auth
-                            @if (Auth::user()->role != 'Super-Admin')
+                        {{-- @auth --}}
+                            {{-- @if (Auth::user()->role != 'Super-Admin') --}}
                                 <div class="search-operation">
                                     <span><span class="fa fa-map-marker"></span></span>
                                     <input type="text" class="form-control velami_header_search text-center" placeholder="What are you looking for?">
                                     <span><span class="fa fa-search"></span></span>
                                 </div>
-                            @endif
-                        @endauth
+                            {{-- @endif --}}
+                        {{-- @endauth --}}
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <div id="navbar" class="navbar-collapse collapse">
@@ -108,6 +108,9 @@
                                         </ul>
                                     </li>
                                 @endguest
+                                <li class="show-mobile">
+                                    <a href="#">...</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

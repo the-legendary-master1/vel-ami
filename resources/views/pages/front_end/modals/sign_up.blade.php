@@ -8,7 +8,7 @@
 
             <form method="POST" id="submit_signup">
                 <div class="modal-body">
-                    <div class="alert alert-danger" id="sign_up_alert">
+                    <div class="alert alert-danger" id="sign_up_alert" style="display:none">
                         <ul id="sign_up_errors"></ul>
                     </div>
                         {{ csrf_field() }}

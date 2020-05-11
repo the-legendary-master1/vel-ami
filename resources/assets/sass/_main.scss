@@ -3,6 +3,10 @@ body {
 	font-size: 12px;
 	line-height: 18px;
 }
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+}
 ul {
 	list-style-type: none;
 	padding: 0;
@@ -368,6 +372,9 @@ a:hover {
 		    }
     	}
 	}
+}
+.show-mobile {
+	display: none;
 }
 
 /* BREADCRUMBS */

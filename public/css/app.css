@@ -12214,6 +12214,11 @@ body {
   line-height: 18px;
 }
 
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -12641,6 +12646,10 @@ a:hover {
   border: none;
   outline: 0;
   background-color: transparent;
+}
+
+.show-mobile {
+  display: none;
 }
 
 /* BREADCRUMBS */
@@ -13245,6 +13254,26 @@ a:hover {
 @media (min-width: 1200px) {
   .container {
     width: 1280px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: 12px;
+  }
+
+  .menus > h5 {
+    font-size: 12px;
+  }
+
+  .menus .menu-item > a {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 11px;
+  }
+
+  .sp .show-mobile {
+    display: block;
   }
 }
 

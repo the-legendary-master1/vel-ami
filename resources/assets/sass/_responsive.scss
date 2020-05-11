@@ -3,3 +3,25 @@
 	    width: 1280px;
 	}
 }
+@media screen and (max-width: 1024px) {
+	body {
+		font-size: 12px;
+	}
+	.menus {
+		> h5 {
+			font-size: 12px;
+		}
+		.menu-item {
+			> a {
+				padding-top: 7px;
+				padding-bottom: 7px;
+				font-size: 11px;
+			}
+		}
+	}
+	.sp {
+		.show-mobile {
+			display: block;
+		}
+	}
+}
