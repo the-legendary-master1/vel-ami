@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Auth;
-use App\Category;
-use App\Events\GetCategories;
-use App\Events\getUsers;
 use DB;
-use App\User;
 use Hash;
-use Carbon\Carbon;
+use Auth;
+use App\Tag;
+use App\User;
 use App\MyShop;
+use App\Category;
+use Carbon\Carbon;
+use App\Events\GetTags;
+use App\Events\getUsers;
 use App\Events\GetShops;
+use Illuminate\Http\Request;
+use App\Events\GetCategories;
 
 class BackEndController extends Controller
 {
@@ -47,12 +49,17 @@ class BackEndController extends Controller
 	}
 	
 	public function shops() {
-		return view('pages.back_end.shops');
+		$shops = MyShop::all();
+		return view('pages.back_end.shops', compact('shops'));
+	}
+
+	public function getShops()
+	{
+		return MyShop::all();
 	}
 	
 	public function categories() {
 		$categories = Category::all();
-
 		return view('pages.back_end.categories', compact('categories'));
 	}
 
@@ -89,6 +96,47 @@ class BackEndController extends Controller
 		} catch (Exception $e) {
 			return;
 		}
+	}
+
+	public function tags()
+	{
+		$tags = Tag::all();
+		return view('pages.back_end.tags', compact('tags'));
+	}
+
+	public function newTag(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$tag = new Tag;
+				$tag->name = $req->name;
+				$tag->save();
+			}, 2);
+
+			event(new GetTags());
+		} catch (Exception $e) {
+			return;
+		}
+	}
+
+	public function updateTag(Request $req)
+	{
+		try {
+			DB::transaction(function() use ($req) {
+				$tag = Tag::find($req->id);
+				$tag->name = $req->name;
+				$tag->save();
+			}, 2);
+
+			event(new GetTags());
+		} catch (Exception $e) {
+			return;
+		}
+	}
+
+	public function getTags()
+	{
+		return Tag::all();
 	}
 
 	public function getUsers()

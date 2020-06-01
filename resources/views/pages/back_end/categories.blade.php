@@ -124,7 +124,7 @@
 	                    }, 0);
 	                },
 	                getCategories() {
-	                	axios.get('{{ url('get-categories') }}')
+	                	axios.get('{{ url('super-admin/get-categories') }}')
 	                		.then((response) => {
 	                			this.allCategories = response.data;
 	                			this.getDatatable();

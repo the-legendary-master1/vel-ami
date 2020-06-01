@@ -20,7 +20,6 @@
 	Route::get('/dashboard', 'BackEndController@dashboard');
 	Route::get('/{url_name}', 'BackEndController@backendLandingPage');
 	Route::get('/get-user/{id}', 'BackEndController@getUser');
-	Route::get('/get-categories', 'BackEndController@getCategories');
 
 	Route::post('/update-profile-field', 'BackEndController@updateProfileField');
 	Route::post('/upload-profile-img', 'BackEndController@uploadProfileImg');
@@ -30,10 +29,16 @@
 		Route::get('/users', 'BackEndController@users');
 		Route::get('/shops', 'BackEndController@shops');
 		Route::get('/categories', 'BackEndController@categories');
+		Route::get('/tags', 'BackEndController@tags');
 		Route::get('/get-users', 'BackEndController@getUsers');
+		Route::get('/get-shops', 'BackEndController@getShops');
+		Route::get('/get-categories', 'BackEndController@getCategories');
+		Route::get('/get-tags', 'BackEndController@getTags');
 
 		Route::post('/new-category', 'BackEndController@newCategory');
 		Route::post('/update-category', 'BackEndController@updateCategory');
+		Route::post('/new-tag', 'BackEndController@newTag');
+		Route::post('/update-tag', 'BackEndController@updateTag');
 	});	
 	
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
