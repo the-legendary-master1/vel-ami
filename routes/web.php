@@ -12,6 +12,7 @@
 
 	// Post Requests
 	Route::post('/sign-up', 'FrontEndController@signUp')->name('sign-up');
+	Route::post('/login-user', 'FrontEndController@loginUser')->name('login');
 
 	Auth::routes();
 

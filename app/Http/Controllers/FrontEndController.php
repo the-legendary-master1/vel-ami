@@ -55,4 +55,21 @@ class FrontEndController extends Controller
 
 		Auth::login($user);
 	}
+    public function loginUser(Request $request)
+    {
+        try {
+            $this->validate($request, [
+                'email' => 'required',
+                'password'  => 'required',
+            ]);
+            if ( Auth::attempt( ['email' => $request->email, 'password' => $request->password] , true) ){
+                Auth::login($user);
+            } 
+            else {
+                return response()->json([ 'message' => 'Error' ]);
+            }
+        } catch (Exception $e) {
+            return response()->json([ 'message' => 'Error' ]);
+        }
+    }
 }

@@ -14,18 +14,16 @@
                     </div>
                 @endif
 
-                <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                <form method="POST" id="resetPassword">
                     {{ csrf_field() }}
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="form-group">
                         <i class="fa fa-envelope"></i>
-                        <input id="email" type="email" class="form-control" placeholder="Enter your email address" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control" placeholder="Enter your email address" name="email" required autofocus>
 
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
+                        <span class="help-block">
+                            <strong></strong>
+                        </span>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block btn-lg">

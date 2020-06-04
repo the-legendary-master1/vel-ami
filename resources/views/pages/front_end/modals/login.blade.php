@@ -8,28 +8,24 @@
                 <h5 class="modal-title">Member Login</h5>
             </div>
             <div class="modal-body modal-form-icon">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" id="authenticate">
                     {{ csrf_field() }}
 
-                    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <div class="form-group">
                         <i class="fa fa-user"></i>
-                        <input type="email" class="form-control" placeholder="Email address" name="email" value="{{ old('email') }}" required autofocus>
+                        <input type="email" class="form-control" placeholder="Email address" name="email" required autofocus>
 
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
+                        <span class="help-block" style="display:none">
+                            <strong></strong>
+                        </span>
                     </div>
-                    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="form-group">
                         <i class="fa fa-lock"></i>
-                        <input type="password" class="form-control" placeholder="Password" required="required">
+                        <input type="password" class="form-control" placeholder="Password" name="password" required="required">
 
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
+                        <span class="help-block" style="display:none">
+                            <strong></strong>
+                        </span>
                     </div>
                     <div class="form-group login-options">
                         <div class="remember">

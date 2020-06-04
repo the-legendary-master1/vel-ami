@@ -312,6 +312,50 @@
                 });
             // }
         });
+
+        $('#authenticate').on('submit', function(e) {
+            axios.post('{{ url('login') }}', $(this).serialize())
+                .then(function(response) {
+                    window.location.reload();
+                })
+                .catch(function(error) {
+                    var errors = error.response;
+
+                            console.log(errors);
+
+                    if (errors.statusText === 'Unprocessable Entity' || errors.status === 422) {
+                        if (errors.data) {
+                            console.log(errors.data.errors.email);
+                            if (errors.data.errors.email) {
+                                $('input[type="email"]').parents('.form-group').addClass('has-error');
+                                $('input[type="email"]').next().show();
+                                $('input[type="email"]').next().find('strong').text(errors.data.errors.email);
+                            }
+                            if (errors.data.errors.password) {
+                                $('input[type="password"]').parents('.form-group').addClass('has-error');
+                                $('input[type="password"]').next().show();
+                                $('input[type="password"]').next().find('strong').text(errors.data.errors.password);
+                            }
+                        }
+                    }
+                })
+            e.preventDefault();
+            return false;
+        })
+        $('#resetPassword').on('submit', function(e) {
+
+            axios.post('{{ url('password/email') }}', $(this).serialize())
+                .then(function(response) {
+                    console.log(response);
+                    // window.location.reload();
+                })
+                .catch(function(error) {
+                    var errors = error.response;
+                    console.log(errors);
+                })
+            e.preventDefault();
+            return false;
+        });
     </script>
 </body>
 </html>

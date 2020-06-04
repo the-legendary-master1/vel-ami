@@ -119,7 +119,6 @@
                         str = str.toString();
                         return str.length < max ? this.pad("0" + str, max) : str;
                     },
-
                     updateProfileField(data) {
                         this.fieldType = data;
 

@@ -324,7 +324,7 @@ th {
 @font-face {
   font-family: "Glyphicons Halflings";
   src: url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.eot?f4769f9bdb7466be65088239c12046d1);
-  src: url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.eot?f4769f9bdb7466be65088239c12046d1) format("embedded-opentype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb) format("woff2"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158) format("woff"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512) format("truetype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.svg?89889688147bd7575d6327160d64e760) format("svg");
+  src: url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.eot?f4769f9bdb7466be65088239c12046d1) format("embedded-opentype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb) format("woff2"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158) format("woff"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512) format("truetype"), url(/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.svg?f721466883998665b87923b92dea655b) format("svg");
 }
 
 .glyphicon {
@@ -8344,7 +8344,7 @@ button.close {
 @font-face {
   font-family: 'FontAwesome';
   src: url(/fonts/vendor/font-awesome/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713);
-  src: url(/fonts/vendor/font-awesome/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/vendor/font-awesome/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.svg?912ec66d7572ff821749319396470bde) format("svg");
+  src: url(/fonts/vendor/font-awesome/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/vendor/font-awesome/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/vendor/font-awesome/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/vendor/font-awesome/fontawesome-webfont.svg?acf3dcb7ff752b5296ca23ba2c7c2606) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -11389,7 +11389,7 @@ button.close {
 @font-face {
   font-family: 'dropify';
   src: url(/fonts/vendor/dropify/src/dropify.eot?4e8b017aef78cc114006cba896850fbd);
-  src: url(/fonts/vendor/dropify/src/dropify.eot?4e8b017aef78cc114006cba896850fbd) format("embedded-opentype"), url(/fonts/vendor/dropify/src/dropify.woff?950ffd1efa29c33a70dd86ea761cb3d8) format("woff"), url(/fonts/vendor/dropify/src/dropify.ttf?86cb1ab018f1680d8e0fa0ca6a53d64c) format("truetype"), url(/fonts/vendor/dropify/src/dropify.svg?b321d818cc153b16e739072ea8bc94b8) format("svg");
+  src: url(/fonts/vendor/dropify/src/dropify.eot?4e8b017aef78cc114006cba896850fbd) format("embedded-opentype"), url(/fonts/vendor/dropify/src/dropify.woff?950ffd1efa29c33a70dd86ea761cb3d8) format("woff"), url(/fonts/vendor/dropify/src/dropify.ttf?86cb1ab018f1680d8e0fa0ca6a53d64c) format("truetype"), url(/fonts/vendor/dropify/src/dropify.svg?5a36392239b15ac274385d2cc3584981) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -12880,7 +12880,7 @@ a:hover {
 }
 
 .modal-content .btn {
-  margin: .375rem !important;
+  margin: .375rem 0 !important;
   color: inherit;
   text-transform: uppercase;
   word-wrap: break-word;
@@ -13257,33 +13257,6 @@ ul#item-list li > a .item > .item-name-price .i-name {
 
 .nav.navbar-right {
   margin-right: 0;
-  background: #fff;
-  border: thin solid #dedede;
-  margin-top: 14px;
-  width: 220px;
-}
-
-.nav.navbar-right:before,
-.nav.navbar-right:after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-}
-
-.nav.navbar-right:before {
-  border-bottom: 12px solid #dedede;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  top: -12px;
-  right: 26px;
-}
-
-.nav.navbar-right:after {
-  border-bottom: 10px solid #ffffff;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  top: -10px;
-  right: 28px;
 }
 
 .nav.navbar-right > li {
@@ -13365,6 +13338,34 @@ ul#item-list li > a .item > .item-name-price .i-name {
 
 .navbar-default {
   margin-bottom: 0;
+}
+
+.navbar-default .nav.navbar-right .dropdown-menu {
+  margin-top: 15px;
+  border: 1px solid #dedede;
+}
+
+.navbar-default .nav.navbar-right .dropdown-menu:before,
+.navbar-default .nav.navbar-right .dropdown-menu:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+}
+
+.navbar-default .nav.navbar-right .dropdown-menu:before {
+  border-bottom: 12px solid #dedede;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  top: -12px;
+  right: 10px;
+}
+
+.navbar-default .nav.navbar-right .dropdown-menu:after {
+  border-bottom: 10px solid #ffffff;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  top: -10px;
+  right: 12px;
 }
 
 /* PROFILE */
@@ -13691,6 +13692,46 @@ ul#item-list li > a .item > .item-name-price .i-name {
     margin-top: 3px;
   }
 
+  .sp .navbar-default .nav.navbar-right {
+    background: #fff;
+    border: none;
+    margin-top: 14px;
+    width: 220px;
+  }
+
+  .sp .navbar-default .nav.navbar-right .dropdown-menu:before,
+  .sp .navbar-default .nav.navbar-right .dropdown-menu:after {
+    content: none;
+  }
+
+  .sp .navbar-default .nav.navbar-right:before,
+  .sp .navbar-default .nav.navbar-right:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+  }
+
+  .sp .navbar-default .nav.navbar-right:before {
+    border-bottom: 12px solid #dedede;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    top: -11px;
+    right: 32px;
+  }
+
+  .sp .navbar-default .nav.navbar-right:after {
+    border-bottom: 10px solid #ffffff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    top: -9px;
+    right: 34px;
+  }
+
+  .sp .navbar-default .nav.navbar-right .dropdown {
+    padding: 0 !important;
+    border-bottom: 0 !important;
+  }
+
   .sp .navbar-default .row {
     /*.col-xs-3.col-sm-3 {
                     width: 180px;
@@ -13700,7 +13741,7 @@ ul#item-list li > a .item > .item-name-price .i-name {
   .sp .navbar-default .row #navbar-menu {
     border: none;
     position: absolute;
-    top: 45px;
+    top: 55px;
     right: -8px;
     z-index: 9999;
     display: none;
