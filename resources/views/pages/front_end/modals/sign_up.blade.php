@@ -39,7 +39,7 @@
                         </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-primary">Sign Up</button>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal" >Close</button>
                 </div>
             </form>

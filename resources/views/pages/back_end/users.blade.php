@@ -36,6 +36,7 @@
                 <th class="text-center">User Type</th>
                 <th class="text-center">Date Created</th>
                 <th class="text-center">Shop</th>
+                <th class="text-center">Upgrade Request</th>
             </tr>
         </thead>
         <tbody>
@@ -51,6 +52,14 @@
         		<td class="text-center">@{{ item.created_at }}</td>
         		<td class="text-center">
         			<button class="btn btn-primary" v-if="item.role == 'User-Premium'">View Shop</button>
+        			<span v-else>---</span>
+        		</td>
+        		<td class="text-center">
+        			<div class="btn-group" v-if="item.role != 'Super-Admin' && item.for_upgrade == 1">
+        				<button class="btn btn-success" @click="approveUserRequest(item)">Approve</button>
+        				<button class="btn btn-warning">Disapprove</button>
+        			</div>
+        			<span v-else-if="item.role == 'User-Premium'">Approved</span>
         			<span v-else>---</span>
         		</td>
         	</tr>
@@ -135,6 +144,32 @@
 	                    str = str.toString();
 	                    return str.length < max ? this.pad("0" + str, max) : str;
 	                },
+	                approveUserRequest(data) {
+		                swal({
+		                    title: "Are you sure?",
+		                    text: "If approve user will be premium and can create its shop!",
+		                    icon: "warning",
+		                    buttons: true,
+		                    dangerMode: true,
+		                  })
+		                  .then((willDelete,) => {
+		                      if (willDelete) {
+		                          axios.post('{{ url('super-admin/approve-user-request') }}', {id: data.id})
+		                            .then(() => {
+		                                swal({
+		                                	title: 'Good job!',
+		                                	text: 'Successfully Approved',
+		                                	icon: 'success',
+		                                	timer: 1500,
+		                                	buttons: false,
+		                                });
+		                            })
+		                            .catch(() => {
+		                                swal('Oops!', 'Something Went Wrong!', 'warning');
+		                            })
+		                      }
+		                  });
+	                }
 	            }
 	        })
 	    });

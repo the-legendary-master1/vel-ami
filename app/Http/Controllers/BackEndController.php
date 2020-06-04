@@ -199,7 +199,7 @@ class BackEndController extends Controller
 		try {
 			DB::transaction(function() use ($req) {
 				$user = User::find($req->id);
-				$user->role = 'User-Premium';
+				$user->for_upgrade = '1';
 				$user->save();
 			}, 2);
 
@@ -278,6 +278,22 @@ class BackEndController extends Controller
 			}, 2);
 			
 			event(new GetShops());
+		} catch (Exception $e) {
+			return;
+		}
+	}
+
+	public function approveUserRequest(Request $req)
+	{
+		try {
+			DB::transaction(function() use($req) {
+				$user = User::find($req->id);
+				$user->role = 'User-Premium';
+				$user->for_upgrade = 0;
+				$user->save();
+			}, 2);
+
+			event(new getUsers());
 		} catch (Exception $e) {
 			return;
 		}

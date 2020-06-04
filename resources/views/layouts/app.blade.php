@@ -59,7 +59,11 @@
                                         <a href="#" data-toggle="modal" data-target="#setupShopModal"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                     @endif
                                 @elseif(Auth::user()->role == 'User')
-                                    <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                    @if(Auth::user()->for_upgrade == 0)
+                                        <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                    @elseif(Auth::user()->for_upgrade == 1)
+                                        <a href="#" class="need_upgrade_sent"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                    @endif
                                 @endif
 
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-sign-out"></span> Logout</a>
@@ -84,24 +88,36 @@
             <div id="vilami_left">
                 <div class="valami_left_content">
                     @if (Auth::user()->role == 'Super-Admin')
-                        <h3 class="text-center valami_left_content_sidebar_title">Main Menu</h3>
-                        <div class="valami_left_content_sidebar_item_wrapper">
-                            <a href="{{ url('dashboard') }}" class="valami_left_content_sidebar_item {{ (request()->is('dashboard')) ? 'active' : '' }}">
-                                <span class="fa fa-dashboard"></span> Dashboard
-                            </a>
-                            <a href="{{ url('super-admin/users') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/users')) ? 'active' : '' }}">
-                                <span class="fa fa-users"></span> Users
-                            </a>
-                            <a href="{{ url('super-admin/shops') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/shops')) ? 'active' : '' }}">
-                                <span class="fa fa-shopping-cart"></span> Shops
-                            </a>
-                            <a href="{{ url('super-admin/categories') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/categories')) ? 'active' : '' }}">
-                                <span class="fa fa-th"></span> Categories
-                            </a>
-                            <a href="{{ url('super-admin/tags') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/tags')) ? 'active' : '' }}">
-                                <span class="fa fa-tags"></span> Tags
-                            </a>
-                        </div>
+                        @if (request()->is(Auth::user()->url_name))
+                            <div class="user_profile_img_wrapper">
+                                <img :src="'{{ asset('files') }}/'+thisUser.img_path" class="profile_img_holder" height="190" width="190" alt="" v-if="thisUser.img_path">
+                                <img src="{{ asset('files/default_user.jpg') }}" class="profile_img_holder" height="190" width="190" alt="" v-else>
+                                <div class="user_profile_button" data-toggle="modal" data-target="#profile_img_modal">
+                                    <div><span class="fa fa-camera"></span></div>
+                                    Update
+                                </div>
+                                <h4>@{{ thisUser.name }}</h4>
+                            </div>
+                        @else
+                            <h3 class="text-center valami_left_content_sidebar_title">Main Menu</h3>
+                            <div class="valami_left_content_sidebar_item_wrapper">
+                                <a href="{{ url('dashboard') }}" class="valami_left_content_sidebar_item {{ (request()->is('dashboard')) ? 'active' : '' }}">
+                                    <span class="fa fa-dashboard"></span> Dashboard
+                                </a>
+                                <a href="{{ url('super-admin/users') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/users')) ? 'active' : '' }}">
+                                    <span class="fa fa-users"></span> Users
+                                </a>
+                                <a href="{{ url('super-admin/shops') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/shops')) ? 'active' : '' }}">
+                                    <span class="fa fa-shopping-cart"></span> Shops
+                                </a>
+                                <a href="{{ url('super-admin/categories') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/categories')) ? 'active' : '' }}">
+                                    <span class="fa fa-th"></span> Categories
+                                </a>
+                                <a href="{{ url('super-admin/tags') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/tags')) ? 'active' : '' }}">
+                                    <span class="fa fa-tags"></span> Tags
+                                </a>
+                            </div>
+                        @endif
                     @else
                         @if (request()->is(Auth::user()->url_name))
                             <div class="user_profile_img_wrapper">
@@ -133,6 +149,7 @@
     <script>
         $('#submit_signup').submit(function(e) {
             e.preventDefault();
+            console.log('yes')
 
             axios.post('{{ url('sign-up') }}', $(this).serialize())
                 .then(function(response) {
@@ -158,39 +175,42 @@
         })
 
         @auth
+            $('body').on('click', '.need_upgrade', function() {
+                swal({
+                    title: "Upgrade Now!",
+                    text: "To avail this feature need to account to upgrage.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((willDelete,) => {
+                      if (willDelete) {
+                          axios.post('{{ url('upgrade-account') }}', {id: {{ Auth::user()->id }}})
+                            .then(() => {
+                                swal('Request sent!', 'Please contact the admin and wait for approval!', 'success');
+                            })
+                            .catch(() => {
+                                swal('Oops!', 'Something Went Wrong!', 'warning');
+                            })
+                      }
+                  });
+            })
 
-        $('body').on('click', '.need_upgrade', function() {
-            swal({
-                title: "Upgrade Now!",
-                text: "To avail this feature need to account to upgrage.",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-              })
-              .then((willDelete,) => {
-                  if (willDelete) {
-                      axios.post('{{ url('upgrade-account') }}', {id: {{ Auth::user()->id }}})
-                        .then(() => {
-                            $('#setupShopModal').modal('show');
-                        })
-                        .catch(() => {
-                            swal('Oops!', 'Something Went Wrong!', 'warning');
-                        })
-                  }
-              });
-        })
+            $('body').on('click', '.need_upgrade_sent', function() {
+                swal('Request sent!', 'Please contact the admin and wait for approval!', 'warning');
+            })
 
-        $('#submitMyShop').submit(function(e) {
-            e.preventDefault();
+            $('#submitMyShop').submit(function(e) {
+                e.preventDefault();
 
-            axios.post('{{ url('user-premium/create-shop') }}', $(this).serialize())
-                .then(function(response) {
-                    window.location.replace('{{ url('user-premium') }}/'+response.data.url_name+'/'+response.data.url);
-                })
-                .catch(function(error) {
-                    swal('Oops!', 'Something Went Wrong!', 'warning');
-                })
-        })
+                axios.post('{{ url('user-premium/create-shop') }}', $(this).serialize())
+                    .then(function(response) {
+                        window.location.replace('{{ url('user-premium') }}/'+response.data.url_name+'/'+response.data.url);
+                    })
+                    .catch(function(error) {
+                        swal('Oops!', 'Something Went Wrong!', 'warning');
+                    })
+            })
         @endauth
     </script>
 </body>

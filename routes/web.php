@@ -40,6 +40,7 @@
 		Route::post('/update-category', 'BackEndController@updateCategory');
 		Route::post('/new-tag', 'BackEndController@newTag');
 		Route::post('/update-tag', 'BackEndController@updateTag');
+		Route::post('/approve-user-request', 'BackEndController@approveUserRequest');
 	});	
 	
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {

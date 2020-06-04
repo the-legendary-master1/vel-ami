@@ -24,7 +24,7 @@
 	
 @section('extraJS')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function() {	
             const app = new Vue({
                 el: '#app',
                 data: {

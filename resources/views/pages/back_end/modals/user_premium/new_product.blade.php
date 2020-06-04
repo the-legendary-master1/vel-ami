@@ -7,12 +7,12 @@
             </div>
 
             <div class="modal-body">
-                    <div class="form-group">
-                        <label>Students</label>
-                        <select id="student_list" class="form-control" title="Select here . . ." data-show-subtext="true" data-live-search="true">
-                            <option v-for="item,key in allCategories" :value="item.id">@{{ item.name }}</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="student_list" class="form-control" title="Select here . . ." data-show-subtext="true" data-live-search="true">
+                        <option v-for="item,key in allCategories" :value="item.id">@{{ item.name }}</option>
+                    </select>
+                </div>
             </div>
 
             <div class="modal-footer justify-content-center">
