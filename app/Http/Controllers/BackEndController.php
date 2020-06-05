@@ -42,13 +42,15 @@ class BackEndController extends Controller
 		}
 	}
 
-	public function users() {
-		$users = User::all();
+	public function users() 
+	{
+		$users = User::with('my_shop')->get();
 
 		return view('pages.back_end.users', compact('users'));
 	}
 	
-	public function shops() {
+	public function shops() 
+	{
 		$shops = MyShop::all();
 		return view('pages.back_end.shops', compact('shops'));
 	}
@@ -58,7 +60,8 @@ class BackEndController extends Controller
 		return MyShop::all();
 	}
 	
-	public function categories() {
+	public function categories() 
+	{
 		$categories = Category::all();
 		return view('pages.back_end.categories', compact('categories'));
 	}
@@ -141,10 +144,11 @@ class BackEndController extends Controller
 
 	public function getUsers()
 	{
-		return User::all();
+		return User::with('my_shop')->get();
 	}
 
-	public function getUser($id) {
+	public function getUser($id) 
+	{
 		$user = User::find($id);
 		$user->secret = decrypt($user->secret);
 

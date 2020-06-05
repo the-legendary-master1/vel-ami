@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
 use Auth;
-use Validator;
-use Redirect;
 use Hash;
+use App\User;
+use Redirect;
+use Validator;
+use App\MyShop;
+use App\Category;
+use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
@@ -70,6 +72,21 @@ class FrontEndController extends Controller
             }
         } catch (Exception $e) {
             return response()->json([ 'message' => 'Error' ]);
+        }
+    }
+
+    public function shop($shop_url)
+    {
+        $shop = MyShop::where('shop_url', $shop_url)->first();
+        $categories = Category::all();
+
+
+        if($shop) {
+            return view('pages.back_end.my_shop', compact('shop', 'categories'));
+        } else {
+            $data['title'] = '404';
+            $data['name'] = 'Page not found';
+            return response()->view('errors.404',$data,404);
         }
     }
 }
