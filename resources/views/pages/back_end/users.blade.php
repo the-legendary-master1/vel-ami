@@ -51,7 +51,7 @@
         		<td class="text-center">@{{ item.role }}</td>
         		<td class="text-center">@{{ item.created_at }}</td>
         		<td class="text-center">
-        			<a :href="'{{ url('/shop') }}/'+item.my_shop.shop_url" class="btn btn-primary" v-if="item.role == 'User-Premium'" target="_blank">View Shop</a>
+        			<a :href="'{{ url('/shop') }}/'+item.my_shop.shop_url" class="btn btn-primary" v-if="item.role == 'User-Premium' && item.my_shop != null" target="_blank">View Shop</a>
         			<span v-else>---</span>
         		</td>
         		<td class="text-center">

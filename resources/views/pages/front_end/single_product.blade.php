@@ -153,6 +153,7 @@
                     </div>
                 </div>
             </section>
+            
             <section class="post-more-info pt3">
                 <div class="row">
                     <div class="col-md-12 col-lg-12">

@@ -1,4 +1,4 @@
- <div class="modal fade" id="setupShopModal" tabindex="-1" role="dialog">
+ <div class="modal fade" id="setup_shop_modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">

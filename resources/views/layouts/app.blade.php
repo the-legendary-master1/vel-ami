@@ -15,13 +15,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-</head>
-    <style>
-        #sign_up_alert{
-            display: none;
-        }
-    </style>
     @yield('extraCSS')
+</head>
 <body>
     <div id="app">
         <div id="vilami_top">
@@ -49,23 +44,8 @@
                             <span class="fa fa-caret-down valami_header_caret"></span>
                             
                             <div class="user_dropdown_options">
-                                <a href="{{ url('dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
+                                <a href="{{ url('super-admin/dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
                                 <a href="{{ url('/') }}/{{ Auth::user()->url_name }}"><span class="fa fa-user-circle-o"></span> Profile</a>
-                                
-                                @if (Auth::user()->role == 'User-Premium')
-                                    @if (Auth::user()->my_shop)
-                                        <a href="{{ url('user-premium') }}/{{ Auth::user()->url_name }}/{{ Auth::user()->my_shop->shop_url }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
-                                    @else
-                                        <a href="#" data-toggle="modal" data-target="#setupShopModal"><span class="fa fa-shopping-cart"></span> My Shop</a>
-                                    @endif
-                                @elseif(Auth::user()->role == 'User')
-                                    @if(Auth::user()->for_upgrade == 0)
-                                        <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
-                                    @elseif(Auth::user()->for_upgrade == 1)
-                                        <a href="#" class="need_upgrade_sent"><span class="fa fa-shopping-cart"></span> My Shop</a>
-                                    @endif
-                                @endif
-
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-sign-out"></span> Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
@@ -101,7 +81,7 @@
                         @else
                             <h3 class="text-center valami_left_content_sidebar_title">Main Menu</h3>
                             <div class="valami_left_content_sidebar_item_wrapper">
-                                <a href="{{ url('dashboard') }}" class="valami_left_content_sidebar_item {{ (request()->is('dashboard')) ? 'active' : '' }}">
+                                <a href="{{ url('super-admin/dashboard') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/dashboard')) ? 'active' : '' }}">
                                     <span class="fa fa-dashboard"></span> Dashboard
                                 </a>
                                 <a href="{{ url('super-admin/users') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/users')) ? 'active' : '' }}">
@@ -145,73 +125,5 @@
     @include('pages.back_end.modals.user_premium.setup_shop')
 
     @yield('extraJS')
-
-    <script>
-        $('#submit_signup').submit(function(e) {
-            e.preventDefault();
-            console.log('yes')
-
-            axios.post('{{ url('sign-up') }}', $(this).serialize())
-                .then(function(response) {
-                    window.location.replace('{{ url('dashbaord') }}');
-                })
-                .catch(function(error) {
-                    if(error.response.data.errors.length != '') {
-                        $('#sign_up_alert').show();
-
-                        setTimeout(function() {
-                            $('#sign_up_errors').html('');
-
-                            $.each(error.response.data.errors, function(index, val) {
-                                $('#sign_up_errors').append('<li>'+val+'</li>');
-                            })
-                        })
-                    } else {
-                        $('#sign_up_alert').hide();
-                    }
-
-                    grecaptcha.reset();
-                })
-        })
-
-        @auth
-            $('body').on('click', '.need_upgrade', function() {
-                swal({
-                    title: "Upgrade Now!",
-                    text: "To avail this feature need to account to upgrage.",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  })
-                  .then((willDelete,) => {
-                      if (willDelete) {
-                          axios.post('{{ url('upgrade-account') }}', {id: {{ Auth::user()->id }}})
-                            .then(() => {
-                                swal('Request sent!', 'Please contact the admin and wait for approval!', 'success');
-                            })
-                            .catch(() => {
-                                swal('Oops!', 'Something Went Wrong!', 'warning');
-                            })
-                      }
-                  });
-            })
-
-            $('body').on('click', '.need_upgrade_sent', function() {
-                swal('Request sent!', 'Please contact the admin and wait for approval!', 'warning');
-            })
-
-            $('#submitMyShop').submit(function(e) {
-                e.preventDefault();
-
-                axios.post('{{ url('user-premium/create-shop') }}', $(this).serialize())
-                    .then(function(response) {
-                        window.location.replace('{{ url('user-premium') }}/'+response.data.url_name+'/'+response.data.url);
-                    })
-                    .catch(function(error) {
-                        swal('Oops!', 'Something Went Wrong!', 'warning');
-                    })
-            })
-        @endauth
-    </script>
 </body>
 </html>

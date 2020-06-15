@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.17/dist/css/bootstrap-select.min.css">
     @yield('extraCSS')
 </head>
+<style>
+    #sign_up_alert{
+        display: none;
+    }
+    .sign_up_modal{
+        padding: 30px 60px !important;
+    }
+</style>
 <body class="sp">
     <div id="app">
         <nav class="navbar navbar-default @auth @else not-authen @endauth">
@@ -27,7 +35,7 @@
                             <a href="#"><span class="fa fa-bars"></span></a>
                         </div>
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#">
+                            <a class="navbar-brand" href="{{ url('/') }}">
                                 VEL-AMI
                             </a>
                         </div>
@@ -122,17 +130,19 @@
                                                     <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive img-thumbnail">
                                                 </figure>
                                                 <div class="profile-option">
-                                                    <span class="profile-name">Marky</span>
+                                                    <span class="profile-name">{{ Auth::user()->name }}</span>
                                                     <span class="fa fa-caret-down valami_header_caret"></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <ul class="dropdown-menu">
+                                            @if (Auth::user()->role == 'Super-Admin')
+                                                <li>
+                                                    <a href="{{ url('super-admin/dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
+                                                </li>
+                                            @endif
                                             <li>
-                                                <a href="{{ url('dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url('/') }}/"><span class="fa fa-user-circle-o"></span> Profile</a>
+                                                <a href="{{ url('profile') }}/{{ Auth::user()->id }}"><span class="fa fa-user-circle-o"></span> Profile</a>
                                             </li>
                                             <li class="show-mobile">
                                                 <a href="#" class="msgs" data-toggle="modal" data-target="#msgsModal">
@@ -144,16 +154,21 @@
                                             @if (Auth::user()->role == 'User-Premium')
                                                 @if (Auth::user()->my_shop)
                                                     <li>
-                                                        <a href="{{ url('user-premium') }}/{{ Auth::user()->url_name }}/{{ Auth::user()->my_shop->shop_url }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                                        <a href="{{ url('view-shop') }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                                     </li>
                                                 @else
                                                     <li>
-                                                        <a href="#" data-toggle="modal" data-target="#setupShopModal"><i class="fa fa-shopping-cart"></i> My Shop</a>
+                                                        <a href="#" data-toggle="modal" data-target="#setup_shop_modal"><i class="fa fa-shopping-cart"></i> My Shop</a>
                                                     </li>
                                                 @endif
-                                            @else
+                                            @endif
+                                            @if (Auth::user()->role == 'User')
                                                 <li>
-                                                    <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                                    @if(Auth::user()->for_upgrade == 0)
+                                                        <a href="#" class="need_upgrade"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                                    @elseif(Auth::user()->for_upgrade == 1)
+                                                        <a href="#" class="need_upgrade_sent"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                                    @endif
                                                 </li>
                                             @endif
                                             <li>
@@ -356,6 +371,77 @@
             e.preventDefault();
             return false;
         });
+    </script>
+
+    <script>
+        $('#submit_signup').submit(function(e) {
+            e.preventDefault();
+
+            axios.post('{{ url('sign-up') }}', $(this).serialize())
+                .then(function(response) {
+                    window.location.reload();
+                })
+                .catch(function(error) {
+                    if(error.response.data.errors.length != '') {
+                        $('#sign_up_alert').show();
+
+                        setTimeout(function() {
+                            $('#sign_up_errors').html('');
+
+                            $.each(error.response.data.errors, function(index, val) {
+                                $('#sign_up_errors').append('<li>'+val+'</li>');
+                            })
+                        })
+                    } else {
+                        $('#sign_up_alert').hide();
+                    }
+
+                    grecaptcha.reset();
+                })
+        })
+
+        @auth
+            $('body').on('click', '.need_upgrade', function() {
+                swal({
+                    title: "Upgrade Now!",
+                    text: "To avail this feature need to account to upgrage.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((willDelete,) => {
+                      if (willDelete) {
+                          axios.post('{{ url('upgrade-account') }}', {id: {{ Auth::user()->id }}})
+                            .then(() => {
+                                swal('Request sent!', 'Please contact the admin and wait for approval!', 'success');
+
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1500)
+                            })
+                            .catch(() => {
+                                swal('Oops!', 'Something Went Wrong!', 'warning');
+                            })
+                      }
+                  });
+            })
+
+            $('body').on('click', '.need_upgrade_sent', function() {
+                swal('Request sent!', 'Please contact the admin and wait for approval!', 'warning');
+            })
+
+            $('#submitMyShop').submit(function(e) {
+                e.preventDefault();
+
+                axios.post('{{ url('user-premium/create-shop') }}', $(this).serialize())
+                    .then(function(response) {
+                        window.location.replace('{{ url('view-shop') }}');
+                    })
+                    .catch(function(error) {
+                        swal('Oops!', 'Something Went Wrong!', 'warning');
+                    })
+            })
+        @endauth
     </script>
 </body>
 </html>

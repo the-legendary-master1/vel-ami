@@ -65,7 +65,7 @@ class FrontEndController extends Controller
                 'password'  => 'required',
             ]);
             if ( Auth::attempt( ['email' => $request->email, 'password' => $request->password] , true) ){
-                Auth::login($user);
+                return response()->json([ 'message' => 'Success' ]);
             } 
             else {
                 return response()->json([ 'message' => 'Error' ]);

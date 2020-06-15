@@ -17,10 +17,15 @@
 	Route::post('/login-user', 'FrontEndController@loginUser')->name('login');
 
 	Auth::routes();
+	Route::get('login', function () {
+		return redirect('/');
+	});
+	Route::get('register', function () {
+		return redirect('/');
+	});
 
 // BackEnd Requests
 	// Get Requests
-	Route::get('/dashboard', 'BackEndController@dashboard');
 	Route::get('/{url_name}', 'BackEndController@backendLandingPage');
 	Route::get('/get-user/{id}', 'BackEndController@getUser');
 
@@ -29,6 +34,7 @@
 	Route::post('/upgrade-account', 'BackEndController@upgradeAccount');
 
 	Route::middleware(['auth', 'super-admin'])->prefix('super-admin')->name('super-admin.')->group(function () {
+		Route::get('/dashboard', 'BackEndController@dashboard');
 		Route::get('/users', 'BackEndController@users');
 		Route::get('/shops', 'BackEndController@shops');
 		Route::get('/categories', 'BackEndController@categories');
