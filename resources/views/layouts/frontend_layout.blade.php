@@ -194,7 +194,7 @@
         <main>
             <div class="container-fluid">
                 <div class="row main-cont d-flex">
-                    <div class="col-md-3 cus-col mt12 sticky-sidebar show-desktop" id="categories">
+                    <div class="col-md-3 cus-col sticky-sidebar show-desktop no-padding" id="categories">
                         <div class="sidebar-wrapper">
                             <div class="menus">
                                 <h5 class="title text-uppercase text-center">Categories</h5>
@@ -253,7 +253,7 @@
                             <div class="col-lg-9 col-md-9 col-xs-12 bordered">
                                 @yield('content')
                             </div>
-                            <div class="col-lg-3 col-md-3 mt12 show-desktop">
+                            <div class="col-lg-3 col-md-3 show-desktop no-padding">
                                 <div class="sidebar-wrapper ads-wrapper">
                                     @for ($i = 0; $i < 3; $i++)
                                         <article class="mb-4">

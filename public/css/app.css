@@ -12213,7 +12213,8 @@ p {
 }
 
 main {
-  padding: 0 12px;
+  /*padding: 0 12px;*/
+  margin-top: 62px;
 }
 
 .cursor {
@@ -12248,6 +12249,14 @@ a:hover {
 
 .fa-1x {
   font-size: 1rem;
+}
+
+#app > .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .navbar {
@@ -12328,7 +12337,8 @@ a:hover {
   background: #efefef;
   padding: 15px 12px;
   overflow-y: auto;
-  max-height: calc(100vh - 10rem);
+  /* max-height: calc(100vh - 10rem); */
+  max-height: 100vh;
 }
 
 .menus > h5 {
@@ -12359,6 +12369,11 @@ a:hover {
   float: left;
   vertical-align: middle;
   line-height: 17px;
+}
+
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* ADS ADS ADS ADS */
@@ -12508,9 +12523,8 @@ a:hover {
 }
 
 .product--details .item-link .item--product {
-  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-  border: thin solid #f6fcff;
+  /*box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+		    border: thin solid #f6fcff;*/
   -webkit-transition: all .3s;
   transition: all .3s;
 }
@@ -12936,7 +12950,7 @@ a:hover {
 .sticky-header-shop {
   position: -webkit-sticky;
   position: sticky;
-  top: 0;
+  top: 62px;
   z-index: 999;
 }
 
@@ -12968,14 +12982,13 @@ a:hover {
 .shop-seller .content-title figure {
   float: left;
   height: auto;
-  width: 160px;
+  width: 110px;
   border-radius: 50%;
   position: relative;
 }
 
 .shop-seller .content-title .shop-info-container {
   float: left;
-  padding: 20px 0;
 }
 
 .shop-seller .content-title .shop-info-container h2.page-title {
