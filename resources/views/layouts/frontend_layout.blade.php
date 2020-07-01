@@ -21,9 +21,6 @@
     #sign_up_alert{
         display: none;
     }
-    .sign_up_modal{
-        padding: 30px 60px !important;
-    }
 </style>
 <body class="sp">
     <div id="app">
@@ -35,9 +32,7 @@
                             <a href="#"><span class="fa fa-bars"></span></a>
                         </div>
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="{{ url('/') }}">
-                                VEL-AMI
-                            </a>
+                            <a class="navbar-brand" href="{{ url('/') }}">VEL-AMI</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -154,7 +149,7 @@
                                             @if (Auth::user()->role == 'User-Premium')
                                                 @if (Auth::user()->my_shop)
                                                     <li>
-                                                        <a href="{{ url('view-shop') }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                                        <a href="{{ url('shop/' .strtolower(Auth::user()->my_shop['name'])). '/' .base64_encode(Auth::user()->my_shop['id']) }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                                     </li>
                                                 @else
                                                     <li>
@@ -291,85 +286,89 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.17/dist/js/bootstrap-select.min.js"></script>
     @yield('extraJS')
     <script>
-        $('.navbar-menu--click').on('click', function(e) {
-            var nxt = $(this).next();
-            
-            $('#navbar-menu').find('.dropdown-menu').removeClass('show');
-            nxt.toggleClass('show');
-            $(this).toggleClass('active');
+        $(function() {
 
-            e.stopPropagation();
-            $(document).click(function() {
-                nxt.removeClass('show'); 
-            });
-        });
-        $('.navbar-sp-categ, .click--ellipsis, .click--search').on('click', function(e) {
-            var target = $(this).data('target');
+            $('.navbar-menu--click').on('click', function(e) {
+                var nxt = $(this).next();
+                
+                $('#navbar-menu').find('.dropdown-menu').removeClass('show');
+                nxt.toggleClass('show');
+                $(this).toggleClass('active');
 
-            $(target).toggle();
-            $(target).toggleClass('active');
-
-            $(target).find('a').click(function(e) {
-                e.preventDefault();
-
-                $(this).parents(target).hide();
-            });
-
-            e.stopPropagation();
-            
-            $('.search-operation input').click(function(e) {
                 e.stopPropagation();
+                $(document).click(function() {
+                    nxt.removeClass('show'); 
+                });
             });
 
-            // if (target != ".search-operation") {
-                 $(document).click(function(){
-                    $(target).hide(); 
+            $('.navbar-sp-categ, .click--ellipsis, .click--search').on('click', function(e) {
+                var target = $(this).data('target');
+
+                $(target).toggle();
+                $(target).toggleClass('active');
+
+                $(target).find('a').click(function(e) {
+                    e.preventDefault();
+
+                    $(this).parents(target).hide();
                 });
-            // }
-        });
 
-        $('#authenticate').on('submit', function(e) {
-            axios.post('{{ url('login') }}', $(this).serialize())
-                .then(function(response) {
-                    window.location.reload();
-                })
-                .catch(function(error) {
-                    var errors = error.response;
+                e.stopPropagation();
+                
+                $('.search-operation input').click(function(e) {
+                    e.stopPropagation();
+                });
 
-                            console.log(errors);
+                // if (target != ".search-operation") {
+                     $(document).click(function(){
+                        $(target).hide(); 
+                    });
+                // }
+            });
 
-                    if (errors.statusText === 'Unprocessable Entity' || errors.status === 422) {
-                        if (errors.data) {
-                            console.log(errors.data.errors.email);
-                            if (errors.data.errors.email) {
-                                $('input[type="email"]').parents('.form-group').addClass('has-error');
-                                $('input[type="email"]').next().show();
-                                $('input[type="email"]').next().find('strong').text(errors.data.errors.email);
-                            }
-                            if (errors.data.errors.password) {
-                                $('input[type="password"]').parents('.form-group').addClass('has-error');
-                                $('input[type="password"]').next().show();
-                                $('input[type="password"]').next().find('strong').text(errors.data.errors.password);
+            $('#authenticate').on('submit', function(e) {
+                axios.post('{{ url('login') }}', $(this).serialize())
+                    .then(function(response) {
+                        window.location.reload();
+                    })
+                    .catch(function(error) {
+                        var errors = error.response;
+
+                                console.log(errors);
+
+                        if (errors.statusText === 'Unprocessable Entity' || errors.status === 422) {
+                            if (errors.data) {
+                                console.log(errors.data.errors.email);
+                                if (errors.data.errors.email) {
+                                    $('input[type="email"]').parents('.form-group').addClass('has-error');
+                                    $('input[type="email"]').next().show();
+                                    $('input[type="email"]').next().find('strong').text(errors.data.errors.email);
+                                }
+                                if (errors.data.errors.password) {
+                                    $('input[type="password"]').parents('.form-group').addClass('has-error');
+                                    $('input[type="password"]').next().show();
+                                    $('input[type="password"]').next().find('strong').text(errors.data.errors.password);
+                                }
                             }
                         }
-                    }
-                })
-            e.preventDefault();
-            return false;
-        })
-        $('#resetPassword').on('submit', function(e) {
+                    })
+                e.preventDefault();
+                return false;
+            })
+            $('#resetPassword').on('submit', function(e) {
 
-            axios.post('{{ url('password/email') }}', $(this).serialize())
-                .then(function(response) {
-                    console.log(response);
-                    // window.location.reload();
-                })
-                .catch(function(error) {
-                    var errors = error.response;
-                    console.log(errors);
-                })
-            e.preventDefault();
-            return false;
+                axios.post('{{ url('password/email') }}', $(this).serialize())
+                    .then(function(response) {
+                        console.log(response);
+                        // window.location.reload();
+                    })
+                    .catch(function(error) {
+                        var errors = error.response;
+                        console.log(errors);
+                    })
+                e.preventDefault();
+                return false;
+            });
         });
     </script>
 

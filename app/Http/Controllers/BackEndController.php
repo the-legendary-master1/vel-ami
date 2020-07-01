@@ -234,18 +234,18 @@ class BackEndController extends Controller
 
 	public function myShop($url_name, $shop_url)
 	{
-		$user = User::where('url_name', $url_name)->first();
-		$shop = MyShop::where('shop_url', $shop_url)->first();
-		$categories = Category::all();
+		// $user = User::where('url_name', $url_name)->first();
+		// $shop = MyShop::where('shop_url', $shop_url)->first();
+		// $categories = Category::all();
 
 
-		if($user && $shop) {
-			return view('pages.back_end.my_shop', compact('shop', 'categories'));
-		} else {
-		    $data['title'] = '404';
-		    $data['name'] = 'Page not found';
-		    return response()->view('errors.404',$data,404);
-		}
+		// if($user && $shop) {
+		// 	return view('pages.back_end.my_shop', compact('shop', 'categories'));
+		// } else {
+		//     $data['title'] = '404';
+		//     $data['name'] = 'Page not found';
+		//     return response()->view('errors.404',$data,404);
+		// }
 	}
 
 	public function uploadShopIMG(Request $req)

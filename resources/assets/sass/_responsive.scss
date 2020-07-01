@@ -258,6 +258,7 @@
 		}
         .d-flex {
             .col-xs-12 {
+                width: 100%;
                 flex: 0 0 100%;
                 max-width: 100%;
             }
@@ -303,23 +304,12 @@
             top: 45px;
             padding-left: 15px;
             padding-right: 15px;
-            padding-top: 20px;
-
+            padding-top: 0;
             .content-title {
-                max-width: 600px;
                 margin: 0 auto;
-                padding-bottom: 10px;
-                padding-top: 10px;
+                padding: 0;
 
-                figure {
-                    width: 80px;
-                    border: 0;
-                    border-radius: 0;
-                    padding: 13px 0;
-                }
                 .shop-info-container {
-                    width: calc(100% - 80px);
-                    padding: 14px 0;
 
                     .page-title {
                         font-size: 20px;
@@ -340,8 +330,6 @@
             &.single-product-header {
                 max-width: 600px;
                 margin: 0 auto;
-                margin-top: 45px;
-                padding-top: 30px;
             }
 
             .content-title {
@@ -664,8 +652,8 @@
                     }
                 }
                 .modal-body {
-                    .form-control {
-                        padding: 15px 15px;
+                    input.form-control {
+                        padding: 5px 15px;
                         font-size: 12px;
                     }
                 }
@@ -738,8 +726,24 @@
             }
         }
     }
+    .shop-seller {
+        &.sticky-header-shop {
+            position: static;
+        }
+        .content-title {
+            .shop-profile {
+                margin-top: -50px;
+                text-align: center;
+
+                .shop-logo-link {
+                    margin: 0 auto 10px;
+                    position: static;
+                }
+            }
+        }
+    }
 }
-@media screen and (max-width: 610px) {
+/*@media screen and (max-width: 610px) {
     .sp {
         .sticky-header-shop {
             .content-title {
@@ -777,10 +781,10 @@
             }
         }
     }
-}
+}*/
 @media screen and (max-width: 425px) {
     .sp {
-        .sticky-header-shop {
+        /*.sticky-header-shop {
             .content-title {
                 .shop-info-container {
                     .strapline {
@@ -789,7 +793,7 @@
                     }
                 }
             }
-        }
+        }*/
         .chat-wrapper {
             .msg-img {
                 width: 37px !important;
@@ -821,7 +825,6 @@
 
                     h2.page-title {
                         font-size: 15px;
-                        margin: 15px 0;
                         margin-left: 10px;
                     }
                     .vshop {
@@ -831,13 +834,7 @@
             }
             &.sticky-header-shop {
                 .shop-info-container {
-                    .page-title {
-                        margin: 0 !important;
-                    }
-                    .strapline {
-                        font-size: .9rem;
-                        max-width: 220px;
-                    }
+                    width: 100%;
                 }
             }
             .item-details {

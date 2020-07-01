@@ -8,9 +8,7 @@
 	Route::get('/chat', 'FrontEndController@chat'); // dummy lang sa
 	Route::get('/view-shop', 'FrontEndController@viewShop'); // dummy lang sa
 	Route::get('/profile/{id}', 'FrontEndController@profile'); // dummy lang sa
-	Route::get('/shop/{shop_url}', 'FrontEndController@shop');
-
-
+	Route::get('/shop/{shop_url}/{id}', 'FrontEndController@shop');
 
 	// Post Requests
 	Route::post('/sign-up', 'FrontEndController@signUp')->name('sign-up');
@@ -62,4 +60,12 @@
 		Route::post('/upload-shop-img', 'BackEndController@uploadShopIMG');
 		Route::post('/get-my-shop/{id}', 'BackEndController@getMyShop');
 		Route::post('/update-shop-desc', 'BackEndController@updateShopDesc');
+
+		Route::get('/get-categories', 'BackEndController@getCategories');
+		Route::get('/get-tags', 'BackEndController@getTags');
+		Route::get('/get-products', 'FrontEndController@getProducts');
+		Route::post('/store-product', 'FrontEndController@storeProduct');
+		Route::get('/search-tags', 'FrontEndController@searchTags');
+		Route::get('/selected-products', 'FrontEndController@selectedProducts');
+		Route::post('/delete-selected-products', 'FrontEndController@deleteSelectedProducts');
 	});

@@ -23,6 +23,7 @@
         "font-awesome": "^4.7.0",
         "laravel-echo": "^1.7.0",
         "pusher-js": "^6.0.2",
-        "sweetalert": "^2.1.2"
+        "sweetalert": "^2.1.2",
+        "sweetalert2": "^9.15.2"
     }
 }

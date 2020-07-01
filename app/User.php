@@ -21,4 +21,5 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\MyShop');
     }
+
 }

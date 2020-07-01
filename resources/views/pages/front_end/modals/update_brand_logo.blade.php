@@ -14,7 +14,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-primary">Update</button>
-                <button type="button" class="btn btn-outline-primary">Cancel</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
