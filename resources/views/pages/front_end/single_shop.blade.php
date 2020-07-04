@@ -1,5 +1,8 @@
 
 @extends('layouts.frontend_layout')
+@section('extraCSS')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">
+@endsection
 @section('content')
     <div class="content-title text-left show-desktop">
         <div class="mr-auto text-left">
@@ -84,9 +87,9 @@
                                         <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">SHOP_NAME</h6>
                                         <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
 
-                                        <div class="prRa clearfix show-mobile">
-                                            <span class="price pull-left">₱ @{{ product.price }} </span>
-                                            <div class="pull-right">
+                                        <div class="prRa clearfix">
+                                            <span class="price">₱ @{{ product.price }} </span>
+                                            <div class="pull-right show-mobile">
                                                 <span class="fa fa-star text-info"></span>
                                                 <span class="fa fa-star text-info"></span>
                                                 <span class="fa fa-star text-info"></span>
@@ -127,6 +130,7 @@
     @endauth
 @endsection
 @section('extraJS')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
     <script>
             $(function() {
                 const app = new Vue({
@@ -236,6 +240,7 @@
                                 this.tagsList = [];
                             },
                             submitProduct() {
+
                                 let formData = new FormData();
                                     formData.append('category', this.product.category);
                                     formData.append('subcategory', this.product.subcategory);
@@ -246,6 +251,13 @@
                                     formData.append('thumbnail', this.product.thumbnail);
                                     formData.append('tags[]', this.product.selectedTags);
                                     formData.append('my_shop_id', this.myShopData.id);
+
+                                for ( var i = 0; i < this.$refs.product_images.files.length; i++ ) {
+                                    let file = this.$refs.product_images.files[i];
+                                    console.log(file);
+                                    formData.append('images[' + i + ']', file);
+                                }
+
                                 if (this.product.id)
                                     formData.append('id', this.product.id);
 
@@ -261,7 +273,7 @@
 
                                     swal({
                                         title: 'Success!',
-                                        text: 'Product has been' + txt,
+                                        text: 'Product has been ' + txt,
                                         icon: 'success',
                                         timer: 1500,
                                         buttons: false,
@@ -274,7 +286,6 @@
 
                                     form.find('.form-control').removeClass('is-invalid');
                                     $.each(errors, function(index, val) {
-                                        console.log(index);
                                         form.find('#' + index).addClass('is-invalid');
                                         arrErrors.push(index);
                                     });
@@ -293,12 +304,13 @@
                                 
                                 let result = {
                                     id: data.id,
-                                    category: data.category,
+                                    category: data.category_id,
+                                    subcategory: data.sub_category_id,
                                     description: data.description,
                                     details: data.details,
                                     name: data.name,
                                     price: data.price,
-                                    shop_id: data.shop_id,
+                                    shop_id: data.my_shop_id,
                                     selectedTags: tags,
                                 }
                                 this.product = result;
@@ -333,14 +345,17 @@
                                 .then((willDelete) => {
                                     if (willDelete) {
                                         axios.post( this.url + '/delete-selected-products', { ids:selectedProducts }).then( response => {
-                                            swal("Success! Product has been deleted!", {
-                                              icon: "success",
-                                            });
+
+                                            swal({
+                                                title: 'Success!',
+                                                text: 'Product has been deleted!',
+                                                icon: 'success',
+                                                timer: 1500,
+                                                buttons: false,
+                                            })
                                         })
                                         .catch(() => {
-                                            swal("Something wen\'t wrong, please try again later.", {
-                                              icon: "error",
-                                            });
+                                            swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
                                         })
                                     }
                                 });

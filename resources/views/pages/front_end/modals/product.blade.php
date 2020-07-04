@@ -61,6 +61,10 @@
                     <input type="file" class="product--dropify" id="product_thumbnail" @change="changeProductImages" ref="product_thumbnail" data-allowed-file-extensions="jpeg jpg png">
                 </div>
                 <div class="form-group">
+                    {{-- <input type="file" class="product--dropify" id="product_images" ref="product_images" multiple data-allowed-file-extensions="jpeg jpg png"> --}}
+                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                </div>
+                <div class="form-group">
                     <div class="tags-control form-control" tabindex="0">
                         <label>
                             <span v-for="(tag, index) in product.selectedTags" :key="index" @click="removeTags(index)" class="btn btn-info btn-xs text-white">
@@ -80,10 +84,8 @@
                         </ul>
                     </div>
                     <div class="tags-list" v-else>
-                        {{-- <span v-if="!selectedTags.length">Select at least one tag.</span> --}}
                         <div class="tags-wrap" v-if="notags"><i>No tags we're found!</i></div>
                     </div>
-                    {{-- <ul v-if="displayTags" id="show-tags" class="tags-list"></ul> --}}
                     <span v-if="errTags" class="invalid-feedback">
                         <strong>Please select at least one tag</strong>
                     </span>

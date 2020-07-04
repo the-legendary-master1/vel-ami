@@ -30,7 +30,7 @@
                                         </div>
                                         <div class="item-details">
                                             <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">{{ $product->shop['name'] }}</h6>
-                                            <h5 class="item-name text-uppercase mb2 font-weight-bold">{{ $product->name }}</h5>
+                                            <h5 class="item-name mb2 font-weight-bold">{{ $product->name }}</h5>
 
                                             <div class="prRa clearfix">
                                                 <span class="price">₱ {{ $product->price }}</span>

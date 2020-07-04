@@ -314,6 +314,13 @@ a:hover {
 		    	border: 2px solid rgba(243, 119, 116, .7);
 	    		box-shadow: 0 2px 13px 4px rgba(201, 48, 44, .5);
 		    }
+		    .item-img {
+				max-width: 252px;
+				width: 100%;
+				max-height: 189px;
+				height: auto;
+				overflow: hidden;
+		    }
 		}
 		&:hover {
 		    .item--hover {

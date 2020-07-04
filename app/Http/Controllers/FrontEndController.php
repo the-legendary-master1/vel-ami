@@ -17,6 +17,7 @@ use App\Events\GetShops;
 use App\Product;
 use Carbon\Carbon;
 use App\Tag;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class FrontEndController extends Controller
 {
@@ -161,16 +162,40 @@ class FrontEndController extends Controller
                 $product->tags = implode(',', $request->tags);
                 $product->save();
 
-                $productThumb = Product::find($product->id);
-                    if ( $request->hasFile('thumbnail') ) {
-                        $shop = MyShop::find($request->my_shop_id);
-                        $img_ext = $request->file('thumbnail')->extension();
-                        $fakepath = $shop->name . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_thumbnail{' . $shop->name . '}.' . $img_ext;
-                        $img_path = $request->thumbnail->storeAs('products', $fakepath, 'public');
+                $shop = MyShop::find($request->my_shop_id);
+                $images = Product::find($product->id);
 
-                        $productThumb->thumbnail = 'files/' . $img_path;
+                    if ( $request->hasFile('thumbnail') ) {
+                        $image = $request->file('thumbnail');
+                        $img_ext = $image->extension();
+
+                        $fakepath = $shop->name . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_thumbnail_1024x768_' . $product->id . date('is', strtotime(Carbon::now())) . '.' .$img_ext;
+                        $path =  $request->thumbnail->storeAs('products', $fakepath, 'public');
+
+                        $img_resize = Image::make( $image->getRealPath() );
+                        $img_resize->resize(1024, 768);
+                        $img_resize->save( 'files/' . $path );
+
+                        $images->thumbnail = 'files/' . $path;
                     }
-                $productThumb->save();
+                    if ( $request->hasFile('images') ) {
+                        foreach ($request->file('images') as $key => $image) {
+                            $img_ext = $image->extension();
+                            $fakepath = $shop->name . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_1024x768_' . $product->id . date('is', strtotime(Carbon::now())) . $key .'.' .$img_ext;
+                            $path =  $image->storeAs('products', $fakepath, 'public');
+
+                            $img_resize = Image::make( $image->getRealPath() );
+                            $img_resize->resize(1024, 768);
+                            $img_resize->save( 'files/' . $path );
+
+                            $images->images = 'files/' . $path;
+
+                            $data[] = $fakepath;
+                        }
+                    }
+
+                $images->images = json_encode($data);
+                $images->save();
             }, 2);
 
             event(new GetProducts());
