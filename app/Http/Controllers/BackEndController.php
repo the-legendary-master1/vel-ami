@@ -277,7 +277,7 @@ class BackEndController extends Controller
 		try {
 			DB::transaction(function() use ($req) {
 				$shop = MyShop::find($req->id);
-				$shop->desc = $req->desc;
+				$shop->description = $req->desc;
 				$shop->save();
 			}, 2);
 			

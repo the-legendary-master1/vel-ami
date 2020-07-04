@@ -4,9 +4,9 @@
 // FrontEnd Requests
 	// Get Requests
 	Route::get('/', 'FrontEndController@index');
-	Route::get('/product/{id}', 'FrontEndController@viewProduct')->name('product');
+	Route::get('/product/{name}/{id}', 'FrontEndController@viewProduct')->name('product');
 	Route::get('/chat', 'FrontEndController@chat'); // dummy lang sa
-	Route::get('/view-shop', 'FrontEndController@viewShop'); // dummy lang sa
+	Route::get('/view-shop/{shopName}', 'FrontEndController@viewShop'); // dummy lang sa
 	Route::get('/profile/{id}', 'FrontEndController@profile'); // dummy lang sa
 	Route::get('/shop/{shop_url}/{id}', 'FrontEndController@shop');
 
@@ -68,4 +68,5 @@
 		Route::get('/search-tags', 'FrontEndController@searchTags');
 		Route::get('/selected-products', 'FrontEndController@selectedProducts');
 		Route::post('/delete-selected-products', 'FrontEndController@deleteSelectedProducts');
+		Route::post('/update-cover-photo', 'FrontEndController@updateCoverPhoto');
 	});

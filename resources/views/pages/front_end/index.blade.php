@@ -23,13 +23,13 @@
                     @foreach ($products as $product)
                         <div class="col-md-4 pi cus-pad">
                             <div class="product--details">
-                                <a href="{{ url('/') }}/product/1" class="item-link">
+                                <a href="{{ url('/product') }}/{{ preg_replace('/\s+/', '_', $product->name) }}/{{ base64_encode($product->id)}}" class="item-link">
                                     <div class="text-center item--product item--hover">
                                         <div class="item-img mb-3">
                                             <img src="{{ url('/') }}/{{ $product->thumbnail }}" alt="{{ $product->name }}" class="img-responsive">
                                         </div>
                                         <div class="item-details">
-                                            <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">SHOP NAME</h6>
+                                            <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">{{ $product->shop['name'] }}</h6>
                                             <h5 class="item-name text-uppercase mb2 font-weight-bold">{{ $product->name }}</h5>
 
                                             <div class="prRa clearfix">

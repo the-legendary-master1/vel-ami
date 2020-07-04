@@ -12554,6 +12554,7 @@ a:hover {
   display: block;
   color: #333;
   position: relative;
+  cursor: pointer;
 }
 
 .product--details .item-link .item--product {
@@ -13047,6 +13048,41 @@ a:hover {
   width: 100%;
   height: 170px;
   overflow: hidden;
+  position: relative;
+  background: white;
+}
+
+.shop-seller .content-title .cover-photo label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  z-index: 1;
+  color: #efefef;
+  font-size: 11px;
+  font-weight: normal;
+  padding: 7px 10px;
+  border-radius: 4px;
+}
+
+.shop-seller .content-title .cover-photo label .fa {
+  margin-right: 8px;
+}
+
+.shop-seller .content-title .cover-photo label .show-on-hover {
+  opacity: 0;
+}
+
+.shop-seller .content-title .cover-photo:hover label {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.shop-seller .content-title .cover-photo:hover label .fa {
+  font-size: 1.2em;
+}
+
+.shop-seller .content-title .cover-photo:hover label .show-on-hover {
+  opacity: 1;
 }
 
 .shop-seller .content-title .edit--option {
@@ -13067,10 +13103,14 @@ a:hover {
   border-radius: 100%;
   overflow: hidden;
   display: block;
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
 }
 
 .shop-seller .content-title .shop-profile .shop-logo-link img {
-  width: 120px;
+  width: 100%;
+  height: 100%;
 }
 
 .shop-seller .content-title .shop-profile .shop-logo-link .edit--option {
@@ -13255,6 +13295,10 @@ a:hover {
   display: inline;
   vertical-align: middle;
   line-height: 40px;
+}
+
+.swal-overlay {
+  z-index: 99992;
 }
 
 .hover-nav-link {
@@ -14472,6 +14516,18 @@ ul#item-list li > a .item > .item-name-price .i-name {
     bottom: 0;
     top: 3px !important;
     right: 0 !important;
+  }
+
+  .sp .cover-photo label {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .sp .cover-photo label .fa {
+    font-size: 1.2em;
+  }
+
+  .sp .cover-photo label .show-on-hover {
+    opacity: 1 !important;
   }
 }
 

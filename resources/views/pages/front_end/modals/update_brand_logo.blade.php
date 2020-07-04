@@ -9,11 +9,11 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="file" class="form-control dropify">
+                    <input type="file" id="shop_img_file" ref="shop_img_file" class="dropify" data-show-remove="false" data-height="150" data-max-file-size="2M" data-allowed-file-extensions="jpeg jpg png">
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-primary" @click="updateShopLogo()">Update</button>
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
             </div>
         </div>

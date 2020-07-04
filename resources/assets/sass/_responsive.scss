@@ -709,6 +709,18 @@
                 }
             }
         }
+        .cover-photo {
+            label {
+                background-color: rgba(0,0,0,.5);
+
+                .fa {
+                    font-size: 1.2em;
+                }
+                .show-on-hover {
+                    opacity: 1 !important;
+                }
+            }
+        }
 	}
 }
 @media screen and (max-width: 768px) {

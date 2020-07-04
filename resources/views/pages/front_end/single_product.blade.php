@@ -5,8 +5,9 @@
         <div class="mr-auto text-left">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb clearfix d-none d-md-inline-flex pt-0">
-                    <li class="breadcrumb-item"><a class="white-text" href="#!">Home</a></li>
-                    <li class="breadcrumb-item active">Library</li>
+                    <li class="breadcrumb-item"><a class="white-text" href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}/{{ strtolower($product->category->name) }}" class="white-text">{{ $product->category->name }}</a></li>
+                    <li class="breadcrumb-item active">{{ $product->name }}</li>
                 </ol>
             </nav>
         </div>
@@ -36,37 +37,37 @@
                                     <ul id="bx-pager">
                                         <li>
                                             <a data-slide-index="0" href="#/" class="active">
-                                                <img src="{{ url('/') }}/files/products/shopname/categories/test.png" class="img-thumbnail">
+                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
                                             </a>
                                         </li>
                                         <li>
                                             <a data-slide-index="1" href="#/">
-                                                <img src="{{ url('/') }}/files/products/shopname/categories/test.png" class="img-thumbnail">
+                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
                                             </a>
                                         </li>
                                         <li>
                                             <a data-slide-index="2" href="#/">
-                                                <img src="{{ url('/') }}/files/products/shopname/categories/test.png" class="img-thumbnail">
+                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
                                             </a>
                                         </li>
                                         <li>
                                             <a data-slide-index="3" href="#/">
-                                                <img src="{{ url('/') }}/files/products/shopname/categories/test.png" class="img-thumbnail">
+                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
                                             </a>
                                         </li>
                                         <li>
                                             <a data-slide-index="4" href="#/">
-                                                <img src="{{ url('/') }}/files/products/shopname/categories/test.png" class="img-thumbnail">
+                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
                                             </a>
                                         </li>
                                         <li>
                                             <a data-slide-index="5" href="#/">
-                                                <img src="{{ url('/') }}/files/products/shopname/categories/test.png" class="img-thumbnail">
+                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
                                             </a>
                                         </li>
                                         <li>
                                             <a data-slide-index="6" href="#/">
-                                                <img src="{{ url('/') }}/files/products/shopname/categories/test.png" class="img-thumbnail">
+                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
                                             </a>
                                         </li>
                                     </ul>
@@ -74,7 +75,7 @@
                                 <div class="prGal">
                                     <div class="product--slider product--list">
                                         <div class="product--item">
-                                            <img src="{{ url('/') }}/files/products/shopname/categories/6.jpg" class="img-responsive">
+                                            <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-responsive">
                                         </div>
                                         <div class="product--item">
                                             <img src="{{ url('/') }}/files/products/shopname/categories/2.jpg" class="img-responsive">
@@ -115,13 +116,13 @@
                         <div class="post-details">
                             <div class="text-center mb2">
                                 <div class="post-meta post-shop-name show-desktop">
-                                    <label for="shop-name" class="text-uppercase"><h4><strong>SHOP NAME</strong></h4></label>
+                                    <label for="shop-name" class="text-uppercase"><h4><strong>{{ $product->shop->name }}</strong></h4></label>
                                 </div>
                                 <div class="post-meta post-title">
-                                    <label for="title" class="text-uppercase"><h3>Product Name</h3></label>
+                                    <label for="title" class=""><h3>{{ $product->name }}</h3></label>
                                 </div>
                                 <div class="post-meta post-price clearfix">
-                                    <label for="price">P 100.00</label>
+                                    <label for="price">P {{ $product->price }}</label>
                                     <div class="pull-right show-mobile">
                                         <span class="fa fa-star fa-1-5x text-info"></span>
                                         <span class="fa fa-star fa-1-5x text-info"></span>
@@ -161,7 +162,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#post-details" data-toggle="tab"><strong>Details</strong></a></li>
                                 <li><a href="#post-reviews" data-toggle="tab" ><strong>Reviews</strong></a></li>
-                                <li><a href="{{ url('/') }}/view-shop"><strong>View Shop</strong></a></li>
+                                <li><a href="{{ url('/view-shop') }}/{{ $product->shop['shop_url'] }}?id={{ base64_encode($product->shop['id']) }}"><strong>View Shop</strong></a></li>
                                 <li>
                                     <a href="{{ url('/') }}/chat">
                                         <span class="fa fa-circle fa-sm text-online online-indicator"></span>

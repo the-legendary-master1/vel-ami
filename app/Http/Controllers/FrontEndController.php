@@ -13,7 +13,9 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Events\GetCategories;
 use App\Events\GetProducts;
+use App\Events\GetShops;
 use App\Product;
+use Carbon\Carbon;
 use App\Tag;
 
 class FrontEndController extends Controller
@@ -23,18 +25,22 @@ class FrontEndController extends Controller
         $products = Product::with('shop')->orderBy('id', 'desc')->get();
 		return view('pages.front_end.index', compact('products'));
 	}
-	public function viewProduct($id)
+	public function viewProduct($name, $id)
 	{
-		return view('pages.front_end.single_product');
+        $product = Product::find(base64_decode($id));
+		return view('pages.front_end.single_product', compact('product'));
     }
     public function chat()
     {
         return view('pages.front_end.chat');
     }
-    public function viewShop()
+    public function viewShop(Request $request, $name)
     {
-        $products = [];
-        return view('pages.front_end.single_shop', compact('products'));
+        $shopId = base64_decode($request->id);
+        $products = Product::where('my_shop_id', $shopId)->with('shop')->orderBy('id', 'desc')->get();
+        $shop = MyShop::find($shopId);
+        $categories = Category::all();
+        return view('pages.front_end.single_shop', compact('products', 'categories', 'shop'));
     }
     public function profile()
     {
@@ -85,12 +91,11 @@ class FrontEndController extends Controller
     {
         $shopId = base64_decode($shopId);
         $products = Product::where('my_shop_id', $shopId)->orderBy('id', 'desc')->get();
-        $shop = MyShop::where('shop_url', $shop_url)->where('user_id', $shopId)->first();
+        $shop = MyShop::where('shop_url', $shop_url)->where('user_id', $shopId)->get()->first();
         $categories = Category::all();
 
-
         if ($products) {
-            return view('pages.front_end.single_shop', compact('products', 'categories'));
+            return view('pages.front_end.single_shop', compact('products', 'categories', 'shop'));
         } else {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
@@ -147,8 +152,8 @@ class FrontEndController extends Controller
                 }
 
                 $product->my_shop_id = $request->my_shop_id;
-                $product->category = $request->category;
-                $product->sub_category = $request->subcategory;
+                $product->category_id = $request->category;
+                $product->sub_category_id = $request->subcategory;
                 $product->name = $request->name;
                 $product->price = $request->price;
                 $product->description = $request->description;
@@ -188,5 +193,25 @@ class FrontEndController extends Controller
         } catch (Exception $e) {
             return;
         }
+    }
+    public function updateCoverPhoto(Request $request)
+    {
+        try {
+            DB::transaction(function() use ($request) {
+                if ( $request->hasFile('cover_photo') ) {
+                    $shop = MyShop::find($request->id);
+                    $img_ext = $request->file('cover_photo')->extension();
+                    $path = $shop->name . '/cover-photo/cover_photo_' . $shop->name . '_' . $request->id . date('is', strtotime(Carbon::now())) .'.'.$img_ext;
+                    $img_path = $request->cover_photo->storeAs('products', $path, 'public');
+
+                    $shop->cover_photo = $img_path;
+                    $shop->save();
+                }
+
+                event(new GetShops());
+            }, 2);
+        } catch (Exception $e) {
+            return;
+        }        
     }
 }
