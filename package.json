@@ -24,6 +24,7 @@
         "laravel-echo": "^1.7.0",
         "pusher-js": "^6.0.2",
         "sweetalert": "^2.1.2",
-        "sweetalert2": "^9.15.2"
+        "sweetalert2": "^9.15.2",
+        "vue2-dropzone": "^3.6.0"
     }
 }

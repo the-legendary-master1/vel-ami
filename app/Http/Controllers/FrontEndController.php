@@ -35,10 +35,15 @@ class FrontEndController extends Controller
     {
         return view('pages.front_end.chat');
     }
-    public function viewShop(Request $request, $name)
+    public function viewShop(Request $request)
     {
         $shopId = base64_decode($request->id);
         $products = Product::where('my_shop_id', $shopId)->with('shop')->orderBy('id', 'desc')->get();
+
+        foreach ($products as $product) {
+            $product->images = json_decode($product->images, true);
+        }
+
         $shop = MyShop::find($shopId);
         $categories = Category::all();
         return view('pages.front_end.single_shop', compact('products', 'categories', 'shop'));
@@ -105,8 +110,13 @@ class FrontEndController extends Controller
     }
     public function getProducts(Request $request)
     {   
-        return Product::where('my_shop_id', $request->id)->with('shop')->orderBy('id', 'desc')->get();
-        // return Product::with('shop')->get();
+        $products = Product::where('my_shop_id', $request->id)->with('shop')->orderBy('id', 'desc')->get();
+
+        foreach ($products as $product) {
+            $product->images = json_decode($product->images, true);
+        }
+
+        return $products;
     }
     public function searchTags(Request $request)
     {
@@ -138,7 +148,7 @@ class FrontEndController extends Controller
             'price'  => 'required',
             'description'  => 'required',
             'details'  => 'required',
-            'thumbnail'  => 'required',
+            'images'  => 'required',
             'tags'  => 'required',
         ]);
 
@@ -162,40 +172,46 @@ class FrontEndController extends Controller
                 $product->tags = implode(',', $request->tags);
                 $product->save();
 
-                $shop = MyShop::find($request->my_shop_id);
-                $images = Product::find($product->id);
+                
+                    // if ( $request->hasFile('thumbnail') ) {
+                    //     $image = $request->file('thumbnail');
+                    //     $img_ext = $image->extension();
 
-                    if ( $request->hasFile('thumbnail') ) {
-                        $image = $request->file('thumbnail');
-                        $img_ext = $image->extension();
+                    //     $fakepath = $shop->name . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_thumbnail_1024x768_' . $product->id . date('is', strtotime(Carbon::now())) . '.' .$img_ext;
+                    //     $path =  $request->thumbnail->storeAs('products', $fakepath, 'public');
 
-                        $fakepath = $shop->name . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_thumbnail_1024x768_' . $product->id . date('is', strtotime(Carbon::now())) . '.' .$img_ext;
-                        $path =  $request->thumbnail->storeAs('products', $fakepath, 'public');
+                    //     $img_resize = Image::make( $image->getRealPath() );
+                    //     $img_resize->resize(1024, 768);
+                    //     $img_resize->save( 'files/' . $path );
 
-                        $img_resize = Image::make( $image->getRealPath() );
-                        $img_resize->resize(1024, 768);
-                        $img_resize->save( 'files/' . $path );
-
-                        $images->thumbnail = 'files/' . $path;
-                    }
+                    //     $images->thumbnail = 'files/' . $path;
+                    // }
                     if ( $request->hasFile('images') ) {
-                        foreach ($request->file('images') as $key => $image) {
-                            $img_ext = $image->extension();
-                            $fakepath = $shop->name . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_1024x768_' . $product->id . date('is', strtotime(Carbon::now())) . $key .'.' .$img_ext;
-                            $path =  $image->storeAs('products', $fakepath, 'public');
+                        $shop = MyShop::find($request->my_shop_id);
+                        $images = Product::find($product->id);
+                            foreach ($request->file('images') as $key => $image) {
+                                $img_ext = $image->extension();
+                                $filename = strtolower($shop->name) . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_1024x768_' . $product->id . date('is', strtotime(Carbon::now())) . $key;
+                                $path =  $image->storeAs('products', $filename .'.'. $img_ext, 'public');
 
-                            $img_resize = Image::make( $image->getRealPath() );
-                            $img_resize->resize(1024, 768);
-                            $img_resize->save( 'files/' . $path );
+                                $img_resize = Image::make( $image->getRealPath() );
+                                $img_resize->resize(1024, 768);
+                                $img_resize->save( 'files/' . $path );
+                                $img_size = $img_resize->filesize();
+                                $img_type = $img_resize->mime();
 
-                            $images->images = 'files/' . $path;
+                                $images->images = 'files/' . $path;
+                                $data['path'] = $images->images;
+                                $data['name'] = $filename;
+                                $data['type'] = $img_type;
+                                $data['size'] = $img_size;
 
-                            $data[] = $fakepath;
-                        }
+                                $arr[] = $data;
+                            }
+                        $images->images = json_encode($arr);
+                        $images->save();
                     }
 
-                $images->images = json_encode($data);
-                $images->save();
             }, 2);
 
             event(new GetProducts());

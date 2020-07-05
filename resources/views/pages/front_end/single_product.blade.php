@@ -21,80 +21,40 @@
                 <h2 class="page-title">Shop Name</h2>
                 <h6 class="strapline show-desktop">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua </h6>
                 <div class="pull-right vshop">
-                    <a href="{{ url('/') }}/view-shop" class="btn btn-default btn-sm">VIEW SHOP</a>
+                    <a href="{{ url('/') }}/view-shop/{{ $product->shop['name'] }}" class="btn btn-default btn-sm">VIEW SHOP</a>
                 </div>
             </div>
         </div>
     </section>
+
     <div class="main-content mt2">
         <div class="post-wrapper">
             <section class="pb3">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="prSli-wra">
-                            <div class="slida-wrappa">
+                            @php
+                                $images = json_decode($product->images, true);
+                            @endphp
+                            <div class="slida-wrappa clearfix">
                                 <nav class="prThumbnail show-desktop">
                                     <ul id="bx-pager">
-                                        <li>
-                                            <a data-slide-index="0" href="#/" class="active">
-                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-slide-index="1" href="#/">
-                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-slide-index="2" href="#/">
-                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-slide-index="3" href="#/">
-                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-slide-index="4" href="#/">
-                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-slide-index="5" href="#/">
-                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-slide-index="6" href="#/">
-                                                <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-thumbnail">
-                                            </a>
-                                        </li>
+                                        @foreach ( $images as $index => $image )
+                                            <li>
+                                                <a data-slide-index="{{ $index }}" href="#/" class="{{ ($index == 0) ? "active" : "" }}">
+                                                    <img src="{{ url('/') }}/{{ $image['path'] }}" class="img-thumbnail">
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </nav>
                                 <div class="prGal">
                                     <div class="product--slider product--list">
-                                        <div class="product--item">
-                                            <img src="{{ url('/') }}/{{ $product->thumbnail }}" class="img-responsive">
-                                        </div>
-                                        <div class="product--item">
-                                            <img src="{{ url('/') }}/files/products/shopname/categories/2.jpg" class="img-responsive">
-                                        </div>
-                                        <div class="product--item">
-                                            <img src="{{ url('/') }}/files/products/shopname/categories/3.jpg" class="img-responsive">
-                                        </div>
-                                        <div class="product--item">
-                                            <img src="{{ url('/') }}/files/products/shopname/categories/4.jpg" class="img-responsive">
-                                        </div>
-                                        <div class="product--item">
-                                            <img src="{{ url('/') }}/files/products/shopname/categories/5.jpg" class="img-responsive">
-                                        </div>
-                                        <div class="product--item">
-                                            <img src="{{ url('/') }}/files/products/shopname/categories/6.jpg" class="img-responsive">
-                                        </div>
-                                        <div class="product--item">
-                                            <img src="{{ url('/') }}/files/products/shopname/categories/7.jpg" class="img-responsive">
-                                        </div>
+                                        @foreach ( $images as $index => $image )
+                                            <div class="product--item">
+                                                <img src="{{ url('/') }}/{{ $image['path'] }}" class="img-responsive">
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -116,13 +76,13 @@
                         <div class="post-details">
                             <div class="text-center mb2">
                                 <div class="post-meta post-shop-name show-desktop">
-                                    <label for="shop-name" class="text-uppercase"><h4><strong>{{ $product->shop->name }}</strong></h4></label>
+                                    <label for="shop-name" class="text-uppercase"><h4><strong>{{ $product->shop['name'] }}</strong></h4></label>
                                 </div>
                                 <div class="post-meta post-title">
                                     <label for="title" class=""><h3>{{ $product->name }}</h3></label>
                                 </div>
                                 <div class="post-meta post-price clearfix">
-                                    <label for="price">P {{ $product->price }}</label>
+                                    <label for="price"><span class="fa">&#8369;</span> {{ $product->price }}</label>
                                     <div class="pull-right show-mobile">
                                         <span class="fa fa-star fa-1-5x text-info"></span>
                                         <span class="fa fa-star fa-1-5x text-info"></span>
@@ -139,16 +99,7 @@
                                 <div class="desc mb1 show-mobile">
                                     <h5 class="text-muted text-uppercase">* Description</h5>
                                 </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Dolor sed viverra ipsum nunc aliquet bibendum
-                                    enim.
-                                    In massa tempor nec feugiat. Nunc aliquet
-                                    bibendum enim facilisis gravida. Nisl nunc mi
-                                    ipsum faucibus vitae aliquet nec ullamcorper. 
-                                </p>
+                                <p>{{ $product->description }}</p>
                             </div>
                         </div>
                     </div>
@@ -178,7 +129,7 @@
                                         <div class="mb1 show-mobile">
                                             <h5 class="text-muted text-uppercase">* Details</h5>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p>{{ $product->details }}</p>
                                     </div>
                                 </div> 
                             </div>

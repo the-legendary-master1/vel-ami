@@ -58,11 +58,11 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <input type="file" class="product--dropify" id="product_thumbnail" @change="changeProductImages" ref="product_thumbnail" data-allowed-file-extensions="jpeg jpg png">
+                    {{-- <input type="file" class="product--dropify" id="product_thumbnail" @change="changeProductImages" ref="product_thumbnail" data-allowed-file-extensions="jpeg jpg png"> --}}
                 </div>
                 <div class="form-group">
                     {{-- <input type="file" class="product--dropify" id="product_images" ref="product_images" multiple data-allowed-file-extensions="jpeg jpg png"> --}}
-                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                    <vue-dropzone ref="product_images" id="dropzone" :options="dropzoneOptions" vdropzone-complete-multiple="multipleFilesCompleted"></vue-dropzone>
                 </div>
                 <div class="form-group">
                     <div class="tags-control form-control" tabindex="0">
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-primary" @click="submitProduct()">
+                <button type="button" class="btn btn-primary submit" @click="submitProduct()">
                     <span v-if="store">Submit</span>
                     <span v-else="update">Update</span>
                 </button>

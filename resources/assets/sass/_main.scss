@@ -245,17 +245,21 @@ a:hover {
 	}
 	.slida-wrappa {
 		visibility: hidden;
+	    margin-bottom: 1.5rem;
 	}
 	.prSli-wra {
 		.prThumbnail {
 			display: inline-block;
-			width: 60px;
-			height: 310px;
+		    float: left;
+		    width: 60px;
+		    max-height: 310px;
+		    height: auto;
 		}
 		.prGal {
 			display: inline-block;
-			width: calc(100% - 85px);
+			width: calc(100% - 60px);
 			max-height: 310px;
+			float: left;
 
 			.bx-viewport {
 				max-height: 310px;
@@ -269,6 +273,7 @@ a:hover {
 	.bx-wrapper {
 		box-shadow: none !important;
 		border: 0 !important;
+		margin-bottom: 0;
 		
 		#bx-pager {
 			img {
@@ -1352,6 +1357,17 @@ ul#item-list {
 .tags-list .tags-wrap {
     background-color: #efefef;
     padding: 5px 10px;
+}
+#dropzone {
+	padding: 0;
+	text-align: center;
+
+	.dz-preview {
+		margin: 10px;
+	}
+	.dz-error-message {
+	    top: 0;
+	}
 }
 
 @keyframes waveInfinite {

@@ -1,7 +1,7 @@
 
 @extends('layouts.frontend_layout')
 @section('extraCSS')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css"> --}}
 @endsection
 @section('content')
     <div class="content-title text-left show-desktop">
@@ -81,13 +81,13 @@
                             <a class="item-link" @click="viewProduct(product)">
                                 <div class="text-center item--product item--hover">
                                     <div class="item-img mb-3">
-                                        <img :src="'{{ url('/') }}/'+ product.thumbnail" :alt="product.name" class="img-responsive">
+                                        <img v-for="(image, index) in product.images" v-if="index == 0" :src="'{{ url('/') }}/' + image.path" :alt="product.name" class="img-responsive">
                                     </div>
                                     <div class="item-details">
-                                        <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">SHOP_NAME</h6>
+                                        <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">@{{ myShopData.name }}</h6>
                                         <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
 
-                                        <div class="prRa clearfix">
+                                        <div class="prRa clearfix ">
                                             <span class="price">₱ @{{ product.price }} </span>
                                             <div class="pull-right show-mobile">
                                                 <span class="fa fa-star text-info"></span>
@@ -130,13 +130,15 @@
     @endauth
 @endsection
 @section('extraJS')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script> --}}
     <script>
+
             $(function() {
                 const app = new Vue({
                     el: '#app',
                     data: {
                         myShopData: {!! json_encode($shop) !!},
+                        products: {!! json_encode($products) !!},
                         @auth 
                             url: '{{ url('/') }}/{{ strtolower(Auth::user()->role) }}',
                             product: {
@@ -149,7 +151,7 @@
                                 details: '',
                                 tags: '',
                                 selectedTags: [],
-                                thumbnail: '',
+                                // thumbnail: '',
                             },
 
                             shopDescData: '',
@@ -170,11 +172,21 @@
                             removedTags: [],
                             selectedRemoved: [],
                             selectedProduct: [],
+
+                            // Dropzone
+                            dropzoneOptions: {
+                                url: 'https://httpbin.org/post',
+                                maxFilesize: 2, // MB
+                                maxFiles: 5,
+                                thumbnailWidth: 150,
+                                thumbnailHeight: 150,
+                                addRemoveLinks: true,
+                            },
                         @endauth
-                        products: {!! json_encode($products) !!},
                     },
                     @auth
                         mounted() {
+
                             $('.selectpicker').select();
 
                             $('.product--dropify, .dropify').dropify();
@@ -197,6 +209,9 @@
                                 this.getShop();
                             })
 
+                            this.getProducts();
+                            // $('#productModal').find('.submit').prop('disabled', true);
+
                         },
                         methods: {
                             getShop() {
@@ -207,6 +222,7 @@
                             },
                             getProducts() {
                                 axios.get( this.url + '/get-products', { params: { id: this.myShopData.id }} ).then( response => {
+                                    console.log(response);
                                     this.products = response.data;
                                 })
                             },
@@ -230,7 +246,6 @@
                                 this.product.selectedTags = this.product.selectedTags;
                             },
                             selectTags(name) {
-                                console.log(this.product.selectedTags);
                                 this.product.selectedTags.push(name);
                                 this.tagsList = [];
                                 this.product.tags = '';
@@ -239,7 +254,14 @@
                                 this.product.selectedTags.splice(index, 1);
                                 this.tagsList = [];
                             },
+                            multipleFilesCompleted(files) {
+                                console.log('files', files);
+
+                                // $('#productModal').find('.submit').prop('disabled', false);
+                            },
                             submitProduct() {
+                                let images = this.$refs.product_images.getAcceptedFiles();
+                                console.log(images);
 
                                 let formData = new FormData();
                                     formData.append('category', this.product.category);
@@ -248,16 +270,19 @@
                                     formData.append('price', this.product.price);
                                     formData.append('description', this.product.description);
                                     formData.append('details', this.product.details);
-                                    formData.append('thumbnail', this.product.thumbnail);
+                                    // formData.append('thumbnail', this.product.thumbnail);
                                     formData.append('tags[]', this.product.selectedTags);
                                     formData.append('my_shop_id', this.myShopData.id);
 
-                                for ( var i = 0; i < this.$refs.product_images.files.length; i++ ) {
-                                    let file = this.$refs.product_images.files[i];
-                                    console.log(file);
-                                    formData.append('images[' + i + ']', file);
+                                if ( images.length > 0 ) {
+                                    for ( var i = 0; i < images.length; i++ ) {
+                                        let file = images[i];
+                                        formData.append('images[' + i + ']', file);
+                                    }
                                 }
-
+                                else {
+                                        formData.append('images[]', '');
+                                }
                                 if (this.product.id)
                                     formData.append('id', this.product.id);
 
@@ -315,23 +340,25 @@
                                 }
                                 this.product = result;
 
-                                var inputFile = $('#product_thumbnail[type="file"]');
-                                var drEvent = inputFile.dropify();
-                                    drEvent = drEvent.data('dropify');
-                                    drEvent.resetPreview();
-                                    drEvent.clearElement();
-                                    drEvent.settings.defaultFile = '/' + data.thumbnail;
-                                    drEvent.destroy();
-                                    drEvent.init();   
+                                for ( var i = 0; i < data.images.length; i++ ) {
+                                    let file = { size: data.images[i].size, name: data.images[i].name, type: data.images[i].type };
+                                    let url = '{{ url('/') }}/' + data.images[i].path;
+                                    this.$refs.product_images.manuallyAddFile(file, url);
+                                }
+                                // var inputFile = $('#product_thumbnail[type="file"]');
+                                // var drEvent = inputFile.dropify();
+                                //     drEvent = drEvent.data('dropify');
+                                //     drEvent.resetPreview();
+                                //     drEvent.clearElement();
+                                //     drEvent.settings.defaultFile = '/' + data.thumbnail;
+                                //     drEvent.destroy();
+                                //     drEvent.init();   
 
-                                inputFile.dropify({
-                                    defaultFile: '/' + data.thumbnail
-                                });
+                                // inputFile.dropify({
+                                //     defaultFile: '/' + data.thumbnail
+                                // });
                                 
                                 $('#productModal').modal('show');
-                            },
-                            changeProductImages(e) {
-                                this.product.thumbnail = this.$refs.product_thumbnail.files[0];
                             },
                             deleteSelectedProduct(ids) {
                                 let selectedProducts = ids;

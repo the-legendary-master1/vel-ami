@@ -19,14 +19,20 @@
         </div>
         <div class="products mt2">
             <div class="row text-center">
-                @if ( count($products) )
+                @if ( count($products) > 0 )
                     @foreach ($products as $product)
                         <div class="col-md-4 pi cus-pad">
                             <div class="product--details">
                                 <a href="{{ url('/product') }}/{{ preg_replace('/\s+/', '_', $product->name) }}/{{ base64_encode($product->id)}}" class="item-link">
                                     <div class="text-center item--product item--hover">
                                         <div class="item-img mb-3">
-                                            <img src="{{ url('/') }}/{{ $product->thumbnail }}" alt="{{ $product->name }}" class="img-responsive">
+
+                                            @foreach ( json_decode($product->images, true) as $index => $image )
+                                                @if ($index == 0)
+                                                    <img src="{{ url('/') }}/{{ $image['path'] }}" alt="{{ $product->name }}" class="img-responsive"> 
+                                                @endif
+                                            @endforeach
+                                           
                                         </div>
                                         <div class="item-details">
                                             <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">{{ $product->shop['name'] }}</h6>
