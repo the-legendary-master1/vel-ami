@@ -12251,6 +12251,20 @@ a:hover {
   font-size: 1rem;
 }
 
+#wait {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 99999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 #app > .navbar {
   position: fixed;
   top: 0;
@@ -12274,15 +12288,6 @@ a:hover {
   font-size: 12px;
 }
 
-.form-control.is-invalid {
-  border-color: #dc3545;
-  padding-right: calc(1.5em + 0.75rem);
-  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij48Zz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iOCIgZmlsbD0iI2ZmMDAwMCIgc3Ryb2tlPSJub25lIiAvPjx0ZXh0IHg9IjYiIHk9IjEzIiBzdHlsZT0iZm9udC1zaXplOiAxNHB4OyBmb250LWZhbWlseTogU2Fucy1zZXJpZjsgZm9udC13ZWlnaHQ6IGJvbGQ7IHN0cm9rZTogbm9uZTsgZmlsbDogI2ZmZmZmZjsiPiE8L3RleHQ+PC9nPjwvc3ZnPg==");
-  background-repeat: no-repeat;
-  background-position: right calc(0.375em + 0.1875rem) center;
-  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-
 .form-control ~ .btn {
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -12294,6 +12299,15 @@ a:hover {
 .form-control ~ .btn:hover,
 .form-control ~ .btn:focus {
   outline: 0;
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+  padding-right: calc(1.5em + 0.75rem) !important;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij48Zz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iOCIgZmlsbD0iI2ZmMDAwMCIgc3Ryb2tlPSJub25lIiAvPjx0ZXh0IHg9IjYiIHk9IjEzIiBzdHlsZT0iZm9udC1zaXplOiAxNHB4OyBmb250LWZhbWlseTogU2Fucy1zZXJpZjsgZm9udC13ZWlnaHQ6IGJvbGQ7IHN0cm9rZTogbm9uZTsgZmlsbDogI2ZmZmZmZjsiPiE8L3RleHQ+PC9nPjwvc3ZnPg==") !important;
+  background-repeat: no-repeat !important;
+  background-position: right calc(0.375em + 0.1875rem) center !important;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
 }
 
 .invalid-feedback {
@@ -13062,7 +13076,11 @@ a:hover {
   height: 170px;
   overflow: hidden;
   position: relative;
-  background: white;
+  background: #ececec;
+}
+
+.shop-seller .content-title .cover-photo img {
+  margin: 0 auto;
 }
 
 .shop-seller .content-title .cover-photo label {
@@ -13353,7 +13371,7 @@ a:hover {
   position: absolute;
   font-size: 18px;
   color: #888;
-  top: 25%;
+  line-height: 33px;
   left: 13px;
 }
 

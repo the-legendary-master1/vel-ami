@@ -39,7 +39,7 @@
                                             <h5 class="item-name mb2 font-weight-bold">{{ $product->name }}</h5>
 
                                             <div class="prRa clearfix">
-                                                <span class="price">₱ {{ $product->price }}</span>
+                                                <span class="price">₱ {{ number_format($product->price, 2) }}</span>
                                                 <div class="pull-right show-mobile">
                                                     <span class="fa fa-star fa-1x text-info"></span>
                                                     <span class="fa fa-star fa-1x text-info"></span>

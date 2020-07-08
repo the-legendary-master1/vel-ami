@@ -41,7 +41,10 @@
                     <div class="tagline">
                         <h6 class="strapline" v-cloak>@{{ myShopData.description }}
                             @auth
-                                <span class="cursor btn btn-info btn-xs" @click="updateShopDesc(myShopData)" style="font-size:10px;">edit</span>
+                                <span class="cursor btn btn-info btn-xs" @click="updateShopDesc(myShopData)" style="font-size:10px;">
+                                    <span v-if="myShopData.description">Edit</span>
+                                    <span v-else>Add shop description</span>
+                                </span>
                             @endauth
                         </h6>
                     </div>
@@ -88,7 +91,7 @@
                                         <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
 
                                         <div class="prRa clearfix ">
-                                            <span class="price">₱ @{{ product.price }} </span>
+                                            <span class="price">₱ @{{ product.price.toLocaleString() }} </span>
                                             <div class="pull-right show-mobile">
                                                 <span class="fa fa-star text-info"></span>
                                                 <span class="fa fa-star text-info"></span>
@@ -163,6 +166,7 @@
                             errDescription: false,
                             errDetails: false,
                             errTags: false,
+                            errImage: false,
                             store: false,
                             update: false,
                             notags: false,
@@ -176,11 +180,29 @@
                             // Dropzone
                             dropzoneOptions: {
                                 url: 'https://httpbin.org/post',
+                                uploadMultiple: true,
                                 maxFilesize: 2, // MB
                                 maxFiles: 5,
                                 thumbnailWidth: 150,
                                 thumbnailHeight: 150,
                                 addRemoveLinks: true,
+                                acceptedFiles: 'image/jpeg, image/jpg, image/png',
+                                // complete: function(file) {
+                                //     if (file.status == "success") {
+                                //         var valid = true;
+
+                                //         $('.dropzone').each(function() {
+                                //             if ($(this).find('.dz-success').length === 0) {
+                                //                 valid = false;
+                                //             }
+                                //         })
+
+                                //         if (valid) 
+                                //             $('#productModal').find('.submit').prop('disabled', false);
+                                //         else
+                                //             $('#productModal').find('.submit').prop('disabled', true);
+                                //     }
+                                // },
                             },
                         @endauth
                     },
@@ -210,7 +232,8 @@
                             })
 
                             this.getProducts();
-                            // $('#productModal').find('.submit').prop('disabled', true);
+
+                            $('#productModal').find('.submit').prop('disabled', true);
 
                         },
                         methods: {
@@ -254,14 +277,55 @@
                                 this.product.selectedTags.splice(index, 1);
                                 this.tagsList = [];
                             },
-                            multipleFilesCompleted(files) {
-                                console.log('files', files);
+                            afterComplete(response) {
 
-                                // $('#productModal').find('.submit').prop('disabled', false);
+                                if (response.length > 0) {
+                                    var valid = true;
+                                    if ( $('.dropzone').hasClass('dz-max-files-reached') ) {
+                                        $('#productModal').find('.submit').prop('disabled', true);
+                                    }
+                                    else {
+                                        $('.dropzone').each(function() {
+                                            if ($(this).find('.dz-success').length === 0) {
+                                                valid = false;
+                                            }
+                                        })
+                                        if (valid) 
+                                            $('#productModal').find('.submit').prop('disabled', false);
+                                    }
+                                }
+                            },
+                            afterRemove(file) {
+                                if (file.status == "success") {
+                                    var valid = false;
+
+                                    $('.dropzone').each(function() {
+                                        if ($(this).find('.dz-success').length === 0) {
+                                            valid = true;
+                                        }
+                                    })
+                                    if (valid) 
+                                        $('#productModal').find('.submit').prop('disabled', true);
+                                }
+                            },
+                            maxFiles(files) {
+                                let filesCount = files.length;
+                                if (filesCount <= 5) {
+                                    $('#productModal').find('.submit').prop('disabled', false);
+                                }
+                                else {
+                                    $('#productModal').find('.submit').prop('disabled', true);
+                                }
+                            },
+                            dzComplete(files, message, xhr) {
+                                if (files[0].status == "error") {
+                                    swal("", "You cannot upload more than 5 images", "warning");
+                                    $('#productModal').find('.submit').prop('disabled', true);
+                                }
                             },
                             submitProduct() {
+                                this.loading();
                                 let images = this.$refs.product_images.getAcceptedFiles();
-                                console.log(images);
 
                                 let formData = new FormData();
                                     formData.append('category', this.product.category);
@@ -270,7 +334,6 @@
                                     formData.append('price', this.product.price);
                                     formData.append('description', this.product.description);
                                     formData.append('details', this.product.details);
-                                    // formData.append('thumbnail', this.product.thumbnail);
                                     formData.append('tags[]', this.product.selectedTags);
                                     formData.append('my_shop_id', this.myShopData.id);
 
@@ -286,11 +349,8 @@
                                 if (this.product.id)
                                     formData.append('id', this.product.id);
 
-                                // for (var pair of formData.entries()) {
-                                //     console.log(pair[0]+ ', ' + pair[1]); 
-                                // }; return false;
-
                                 axios.post( this.url + '/store-product', formData).then( response => {
+                                    this.removeloading();
                                     $('#productModal').modal('hide');
                                     var txt = 'added.';
 
@@ -305,21 +365,35 @@
                                     })
                                 })
                                 .catch( error => {
+                                    this.removeloading();
+
+                                    swal({
+                                        title: 'Oops!',
+                                        text: 'There\'s wrong with your inputs, please double check.',
+                                        icon: 'error',
+                                        timer: 1500,
+                                        buttons: false,
+                                    })
+
                                     var errors = error.response.data.errors;
                                     var form = $('.product-form');
                                     var arrErrors = [];
-
                                     form.find('.form-control').removeClass('is-invalid');
+                                    form.find('.dropzone').removeClass('is-invalid');
                                     $.each(errors, function(index, val) {
                                         form.find('#' + index).addClass('is-invalid');
+                                        form.find('#dropzone').addClass('is-invalid');
                                         arrErrors.push(index);
                                     });
 
+                                    console.log(arrErrors);
                                     if ($.inArray("category", arrErrors) !== -1)        this.errCategory = true;
                                     if ($.inArray("name", arrErrors) !== -1)            this.errProductName = true;
                                     if ($.inArray("price", arrErrors) !== -1)           this.errPrice = true;
-                                    if ($.inArray("errDescription", arrErrors) !== -1)  this.errDescription = true;
-                                    if ($.inArray("description", arrErrors) !== -1)     this.errDetails = true;
+                                    if ($.inArray("description", arrErrors) !== -1)     this.errDescription = true;
+                                    if ($.inArray("details", arrErrors) !== -1)         this.errDetails = true;
+                                    if ($.inArray("tags.0", arrErrors) !== -1)          this.errTags = true;
+                                    if ($.inArray("images.0", arrErrors) !== -1)          this.errImage = true;
                                 })
                             },
                             editProduct(data) {
@@ -345,18 +419,6 @@
                                     let url = '{{ url('/') }}/' + data.images[i].path;
                                     this.$refs.product_images.manuallyAddFile(file, url);
                                 }
-                                // var inputFile = $('#product_thumbnail[type="file"]');
-                                // var drEvent = inputFile.dropify();
-                                //     drEvent = drEvent.data('dropify');
-                                //     drEvent.resetPreview();
-                                //     drEvent.clearElement();
-                                //     drEvent.settings.defaultFile = '/' + data.thumbnail;
-                                //     drEvent.destroy();
-                                //     drEvent.init();   
-
-                                // inputFile.dropify({
-                                //     defaultFile: '/' + data.thumbnail
-                                // });
                                 
                                 $('#productModal').modal('show');
                             },
@@ -371,8 +433,10 @@
                                 })
                                 .then((willDelete) => {
                                     if (willDelete) {
+                                        this.loading();
                                         axios.post( this.url + '/delete-selected-products', { ids:selectedProducts }).then( response => {
 
+                                            this.removeloading();
                                             swal({
                                                 title: 'Success!',
                                                 text: 'Product has been deleted!',
@@ -382,6 +446,7 @@
                                             })
                                         })
                                         .catch(() => {
+                                            this.removeloading();
                                             swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
                                         })
                                     }
@@ -394,17 +459,22 @@
                                 window.location.href = `{{ url('/product') }}/${ this.replaceWhiteSpace(data.name) }/${ btoa(data.id) }`;
                             },
                             editShopLogo(data) {
+                                let logoUrl = data.shop_img;
+
+                                if (data.shop_img == '')
+                                    logoUrl = 'shop.png';
+
                                 var inputFile = $('#updateBrandLogoModal').find('input[type="file"]');
                                 var drEvent = inputFile.dropify();
                                     drEvent = drEvent.data('dropify');
                                     drEvent.resetPreview();
                                     drEvent.clearElement();
-                                    drEvent.settings.defaultFile = '{{ asset('files') }}/' + data.shop_img;
+                                    drEvent.settings.defaultFile = '{{ asset('files') }}/' + logoUrl;
                                     drEvent.destroy();
                                     drEvent.init();   
 
                                 inputFile.dropify({
-                                    defaultFile: '{{ asset('files') }}/' + data.shop_img
+                                    defaultFile: '{{ asset('files') }}/' + logoUrl
                                 });
                             },
                             updateShopLogo() {
@@ -424,36 +494,38 @@
                                     formData.append('id', this.myShopData.id);
                                     formData.append('shop_img', shop_logo);
 
-                                 axios.post( this.url + '/upload-shop-img', formData)
-                                    .then(() => {
-                                        $('#updateBrandLogoModal').modal('hide');
+                                this.loading();
+                                axios.post( this.url + '/upload-shop-img', formData).then( response => {
 
-                                        swal({
-                                            title: 'Nice!',
-                                            text: 'Your logo has been uploaded.',
-                                            icon: 'success',
-                                            timer: 1500,
-                                            buttons: false,
-                                        })
-
-                                        // Reset Form
-                                        $$('#updateBrandLogoModal').find('#shop_img_file').val('');
-                                        var shop_img_file = "";
-                                        var drEvent = $('#shop_img_file').dropify();
-                                            drEvent = drEvent.data('dropify');
-                                            drEvent.resetPreview();
-                                            drEvent.clearElement();
-                                            drEvent.settings.defaultFile = shop_img_file;
-                                            drEvent.destroy();
-                                            drEvent.init();    
-
-                                        $('.dropify#shop_img_file').dropify({
-                                            defaultFile: shop_img_file,
-                                        });  
+                                    this.removeloading();
+                                    $('#updateBrandLogoModal').modal('hide');
+                                    swal({
+                                        title: 'Nice!',
+                                        text: 'Your logo has been uploaded.',
+                                        icon: 'success',
+                                        timer: 1500,
+                                        buttons: false,
                                     })
-                                    .catch(() => {
-                                        swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
-                                    })
+
+                                    // // Reset Form
+                                    // $$('#updateBrandLogoModal').find('#shop_img_file').val('');
+                                    // var shop_img_file = "";
+                                    // var drEvent = $('#shop_img_file').dropify();
+                                    //     drEvent = drEvent.data('dropify');
+                                    //     drEvent.resetPreview();
+                                    //     drEvent.clearElement();
+                                    //     drEvent.settings.defaultFile = shop_img_file;
+                                    //     drEvent.destroy();
+                                    //     drEvent.init();    
+
+                                    // $('.dropify#shop_img_file').dropify({
+                                    //     defaultFile: shop_img_file,
+                                    // }); 
+                                })
+                                .catch(() => {
+                                    this.removeloading();
+                                    swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
+                                })
                             },
                             updateShopCoverPhoto(data) {
                                 let cover_photo_file = this.$refs.cover_photo_file.files[0];
@@ -462,34 +534,36 @@
                                     formData.append('id', this.myShopData.id);
                                     formData.append('cover_photo', cover_photo_file);
 
-
-                                axios.post( this.url + '/update-cover-photo', formData)
-                                    .then(() => {
-
-                                        swal({
-                                            title: 'Nice!',
-                                            text: 'Cover photo has been updated.',
-                                            icon: 'success',
-                                            timer: 1500,
-                                            buttons: false,
-                                        })
+                                $('.cover-photo').prepend('<div class="loading" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:999;display:flex;background-color:rgba(0, 0, 0, .3);"><img style="display:block;width:25px;margin:auto;" src="/files/pleasewait.gif"></div>')
+                                
+                                axios.post( this.url + '/update-cover-photo', formData).then(() => {
+                                    $('.cover-photo').find('.loading').remove();
+                                    swal({
+                                        title: 'Nice!',
+                                        text: 'Cover photo has been updated.',
+                                        icon: 'success',
+                                        timer: 1500,
+                                        buttons: false,
                                     })
-                                    .catch(() => {
-                                        swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
-                                    })
+                                })
+                                .catch(() => {
+                                    swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
+                                })
                             },
                             updateShopDesc(data) {
                                 let result = {
                                     id: data.id,
-                                    desc: data.desc,
+                                    desc: data.description,
                                 }
 
                                 this.shopDescData = result;
                                 $('#shop_desc_modal').modal('show');
                             },
                             submitShopDesc() {
+                                this.loading();
                                 axios.post( this.url + '/update-shop-desc', this.shopDescData)
                                     .then(() => {
+                                        this.removeloading();
                                         $('#shop_desc_modal').modal('hide');
 
                                         swal({
@@ -501,8 +575,15 @@
                                         })
                                     })
                                     .catch(() => {
+                                        this.removeloading();
                                         swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
                                     })
+                            },
+                            loading() {
+                                $('#wait').show();
+                            },
+                            removeloading() {
+                                $('#wait').hide();
                             },
                         }
                     @endauth

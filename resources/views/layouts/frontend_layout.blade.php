@@ -23,6 +23,7 @@
     }
 </style>
 <body class="sp">
+    <div id="wait" style="display:none;"><img src="{{ asset('files/pleasewait.gif') }}" style="width:50px;margin:auto;display:block"/></div>
     <div id="app">
         <nav class="navbar navbar-default @auth @else not-authen @endauth">
             <div class="container-fluid">
@@ -149,7 +150,7 @@
                                             @if (Auth::user()->role == 'User-Premium')
                                                 @if (Auth::user()->my_shop)
                                                     <li>
-                                                        <a href="{{ url('shop/' .strtolower(Auth::user()->my_shop['name'])). '/' .base64_encode(Auth::user()->my_shop['id']) }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
+                                                        <a href="{{ url('shop/' .strtolower(Auth::user()->my_shop['shop_url'])). '/' .base64_encode(Auth::user()->my_shop['id']) }}"><span class="fa fa-shopping-cart"></span> My Shop</a>
                                                     </li>
                                                 @else
                                                     <li>
@@ -327,6 +328,8 @@
             });
 
             $('#authenticate').on('submit', function(e) {
+                
+                $('#wait').show();
                 axios.post('{{ url('login') }}', $(this).serialize())
                     .then(function(response) {
                         window.location.reload();
@@ -334,23 +337,22 @@
                     .catch(function(error) {
                         var errors = error.response;
 
-                                console.log(errors);
-
-                        if (errors.statusText === 'Unprocessable Entity' || errors.status === 422) {
-                            if (errors.data) {
-                                console.log(errors.data.errors.email);
-                                if (errors.data.errors.email) {
-                                    $('input[type="email"]').parents('.form-group').addClass('has-error');
-                                    $('input[type="email"]').next().show();
-                                    $('input[type="email"]').next().find('strong').text(errors.data.errors.email);
-                                }
-                                if (errors.data.errors.password) {
-                                    $('input[type="password"]').parents('.form-group').addClass('has-error');
-                                    $('input[type="password"]').next().show();
-                                    $('input[type="password"]').next().find('strong').text(errors.data.errors.password);
+                            $('#wait').hide();
+                            if (errors.statusText === 'Unprocessable Entity' || errors.status === 422) {
+                                if (errors.data) {
+                                    console.log(errors.data.errors.email);
+                                    if (errors.data.errors.email) {
+                                        $('input[type="email"]').parents('.form-group').addClass('has-error');
+                                        $('input[type="email"]').next().show();
+                                        $('input[type="email"]').next().find('strong').text(errors.data.errors.email);
+                                    }
+                                    if (errors.data.errors.password) {
+                                        $('input[type="password"]').parents('.form-group').addClass('has-error');
+                                        $('input[type="password"]').next().show();
+                                        $('input[type="password"]').next().find('strong').text(errors.data.errors.password);
+                                    }
                                 }
                             }
-                        }
                     })
                 e.preventDefault();
                 return false;

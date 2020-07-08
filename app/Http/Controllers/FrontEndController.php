@@ -97,7 +97,7 @@ class FrontEndController extends Controller
     {
         $shopId = base64_decode($shopId);
         $products = Product::where('my_shop_id', $shopId)->orderBy('id', 'desc')->get();
-        $shop = MyShop::where('shop_url', $shop_url)->where('user_id', $shopId)->get()->first();
+        $shop = MyShop::find($shopId);
         $categories = Category::all();
 
         if ($products) {
@@ -140,7 +140,7 @@ class FrontEndController extends Controller
         return $tags;
     }
     public function storeProduct(Request $request)
-    {
+    {   
         $this->validate($request, [
             'category'  => 'required',
             'subcategory'  => 'required',
@@ -148,8 +148,8 @@ class FrontEndController extends Controller
             'price'  => 'required',
             'description'  => 'required',
             'details'  => 'required',
-            'images'  => 'required',
-            'tags'  => 'required',
+            'images.*'  => 'mimes:jpeg,jpg,png|required|max:2048',
+            'tags.*'  => 'required',
         ]);
 
         try {
@@ -172,20 +172,6 @@ class FrontEndController extends Controller
                 $product->tags = implode(',', $request->tags);
                 $product->save();
 
-                
-                    // if ( $request->hasFile('thumbnail') ) {
-                    //     $image = $request->file('thumbnail');
-                    //     $img_ext = $image->extension();
-
-                    //     $fakepath = $shop->name . '/' . $product->id . '/' . preg_replace('/\s+/', '_', $product->name) . '_thumbnail_1024x768_' . $product->id . date('is', strtotime(Carbon::now())) . '.' .$img_ext;
-                    //     $path =  $request->thumbnail->storeAs('products', $fakepath, 'public');
-
-                    //     $img_resize = Image::make( $image->getRealPath() );
-                    //     $img_resize->resize(1024, 768);
-                    //     $img_resize->save( 'files/' . $path );
-
-                    //     $images->thumbnail = 'files/' . $path;
-                    // }
                     if ( $request->hasFile('images') ) {
                         $shop = MyShop::find($request->my_shop_id);
                         $images = Product::find($product->id);
@@ -195,7 +181,10 @@ class FrontEndController extends Controller
                                 $path =  $image->storeAs('products', $filename .'.'. $img_ext, 'public');
 
                                 $img_resize = Image::make( $image->getRealPath() );
-                                $img_resize->resize(1024, 768);
+                                $img_resize->resize(640, 480, function ($constraint) {
+                                    $constraint->aspectRatio();
+                                    $constraint->upsize();
+                                });
                                 $img_resize->save( 'files/' . $path );
                                 $img_size = $img_resize->filesize();
                                 $img_type = $img_resize->mime();

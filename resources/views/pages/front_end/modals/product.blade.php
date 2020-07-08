@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="2" id="description" placeholder="Product Description" v-model="product.description"></textarea>
+                    <textarea class="form-control" rows="3" id="description" placeholder="Product Description" v-model="product.description"></textarea>
                     <span v-if="errDescription" class="invalid-feedback">
                         <strong>Please enter the product description</strong>
                     </span>
@@ -58,11 +58,10 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    {{-- <input type="file" class="product--dropify" id="product_thumbnail" @change="changeProductImages" ref="product_thumbnail" data-allowed-file-extensions="jpeg jpg png"> --}}
-                </div>
-                <div class="form-group">
-                    {{-- <input type="file" class="product--dropify" id="product_images" ref="product_images" multiple data-allowed-file-extensions="jpeg jpg png"> --}}
-                    <vue-dropzone ref="product_images" id="dropzone" :options="dropzoneOptions" vdropzone-complete-multiple="multipleFilesCompleted"></vue-dropzone>
+                    <vue-dropzone ref="product_images" id="dropzone" :options="dropzoneOptions" @vdropzone-success-multiple="afterComplete" @vdropzone-removed-file="afterRemove" @vdropzone-max-files-reached="maxFiles" @vdropzone-error-multiple="dzComplete"></vue-dropzone>
+                    <span v-if="errImage" class="invalid-feedback">
+                        <strong>Please upload an image of type: JPEG, JPG, PNG.</strong>
+                    </span>
                 </div>
                 <div class="form-group">
                     <div class="tags-control form-control" tabindex="0">
