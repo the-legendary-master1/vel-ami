@@ -387,6 +387,17 @@ a:hover {
 			font-size: 1rem;
 			font-weight: bold;
 		}
+		.comment {
+			img {
+				width: 16px;
+			}
+		}
+		.review-rating {
+			span {
+				margin: 0 1px;
+				float: left;
+			}
+		}
 	}
 	.reply {
 		background-color: #efefef;

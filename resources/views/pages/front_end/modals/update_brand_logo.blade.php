@@ -28,8 +28,6 @@
                     <div class="text-center" v-else>
                         <img :src="'{{ asset('files') }}/' + myShopData.shop_img" >
                     </div>
-                    {{-- <img v-bind:src="cropped"> --}}
-                    
                 </div>
             </div>
             <div class="modal-footer justify-content-center" v-if="imgCropper" >

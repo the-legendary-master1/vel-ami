@@ -17,6 +17,7 @@ use App\Events\GetShops;
 use App\Product;
 use Carbon\Carbon;
 use App\Tag;
+use App\ProductReview;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class FrontEndController extends Controller
@@ -26,10 +27,17 @@ class FrontEndController extends Controller
         $products = Product::with('shop')->orderBy('id', 'desc')->get();
 		return view('pages.front_end.index', compact('products'));
 	}
-	public function viewProduct($name, $id)
+	public function viewProduct(Request $request, $name, $id)
 	{
         $product = Product::find(base64_decode($id));
-		return view('pages.front_end.single_product', compact('product'));
+        $reviews = ProductReview::with('user')->where('product_id', base64_decode($id))->orderBy('id', 'desc')->get();
+
+		return view('pages.front_end.single_product', [
+            'request' => $request,
+            'product' => $product,
+            'authed' => Auth::user(),
+            'reviews' => $reviews,
+        ]);
     }
     public function chat()
     {
@@ -252,5 +260,22 @@ class FrontEndController extends Controller
         } catch (Exception $e) {
             return;
         }        
+    }
+    public function storeUserReview(Request $request)
+    {
+        try {
+            DB::transaction(function() use ($request) {
+                $review = new ProductReview;
+                $review->user_id = $request->user_id;
+                $review->product_id = base64_decode($request->product_id);
+                $review->comment = $request->comment;
+                $review->status = 0;
+                $review->save();
+            }, 2);
+            $review = ProductReview::where('product_id', base64_decode($request->product_id))->orderBy('id', 'desc')->get();
+            return response()->json(['message' => 'success', 'review' => $review]);
+        } catch (Exception $e) {
+            return;
+        }
     }
 }

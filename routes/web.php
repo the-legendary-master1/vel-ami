@@ -50,7 +50,7 @@
 	});	
 	
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
-
+		Route::post('/store-user-review', 'FrontEndController@storeUserReview');
 	});
 	
 	Route::middleware(['auth', 'user-premium'])->prefix('user-premium')->name('user-premium.')->group(function () {

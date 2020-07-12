@@ -135,328 +135,94 @@
                             </div>
                             <div class="tab-pane" id="post-reviews">
                                 <div id="more-info-wrapper">
-                                    <div class="header-reviews">
-                                        <div class="mb2 show-mobile">
-                                            <div class="clearfix mb1">
-                                                <div class="pull-left">
-                                                    <h5 class="text-muted text-uppercase">* Product Reviews</h5>
+
+                                    <div v-if="!reviews.length">
+                                        <span class="text-danger">No reviews</span>
+                                    </div>
+                                    <div v-else>
+                                        <div class="header-reviews">
+                                            <div class="mb2 show-mobile">
+                                                <div class="clearfix mb1">
+                                                    <div class="pull-left">
+                                                        <h5 class="text-muted text-uppercase">* Product Reviews</h5>
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <a href="#" class="text-info text-underline">see all (15)</a>
+                                                    </div>
                                                 </div>
-                                                <div class="pull-right">
-                                                    <a href="#" class="text-info text-underline">see all (15)</a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="rRate-star">
-                                                    <h4 class="font-weight-bold mt1 mb1">5.0</h4>
-                                                    <span class="fa fa-star fa-1-5x text-primary"></span>
-                                                    <span class="fa fa-star fa-1-5x text-primary"></span>
-                                                    <span class="fa fa-star fa-1-5x text-primary"></span>
-                                                    <span class="fa fa-star fa-1-5x text-primary"></span>
-                                                    <span class="fa fa-star fa-1-5x text-primary"></span>
+                                                <div class="text-center">
+                                                    <div class="rRate-star">
+                                                        <h4 class="font-weight-bold mt1 mb1">5.0</h4>
+                                                        <span class="fa fa-star fa-1-5x text-primary"></span>
+                                                        <span class="fa fa-star fa-1-5x text-primary"></span>
+                                                        <span class="fa fa-star fa-1-5x text-primary"></span>
+                                                        <span class="fa fa-star fa-1-5x text-primary"></span>
+                                                        <span class="fa fa-star fa-1-5x text-primary"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="reviews">
-                                        <div class="row">
-                                            <div class="col-md-2 cus-col no-pr">
-                                                <div class="user-icon">
-                                                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_171b23d41c8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_171b23d41c8%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="img-circle" width="45px" height="45px">
-                                                </div>
-                                                <div class="userFLname show-mobile">
-                                                    <h5>Firstname Lastname</h5>
-                                                </div>
-                                                <div class="review-option show-mobile">
-                                                    <a href="#" class="report-dis fa fa-ellipsis-v fa-2x text-muted"></a>
-                                                    <div class="tglDrDn" style="display:none">
-                                                        <span>Report Abuse</span>
+                                        <div class="reviews" :data-index="key" v-for="review, key in reviews">
+                                            <div class="row">
+                                                <div class="col-md-2 cus-col no-pr">
+                                                    <div class="user-icon">
+                                                        <img :src="'{{ asset('files') }}/'+review.img_path" class="img-circle img-thumbnail" width="45px" height="45px" v-if="review.img_path">
+                                                        <img src="{{ asset('/files/default_user.jpg') }}" class="img-circle img-thumbnail" width="45px" height="45px" v-else>
                                                     </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="col-md-10 cus-col no-pl">
-                                                <div class="user-review mb1 clearfix">
-                                                    <div class="show-mobile clearfix date-rete">
-                                                        <div class="review-rating pull-left mr1">
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
-                                                        </div>
-                                                        <div class="review-meta-data pull-left">
-                                                            <span class="date">08.40 AM, Wednesday</span>
+                                                    <div class="userFLname show-mobile">
+                                                        <h5>@{{ review.user.f_name }} @{{ review.user.l_name[0] }}.</h5>
+                                                    </div>
+                                                    <div class="review-option show-mobile">
+                                                        <a href="#" class="report-dis fa fa-ellipsis-v fa-2x text-muted"></a>
+                                                        <div class="tglDrDn" style="display:none">
+                                                            <span>Report Abuse</span>
                                                         </div>
                                                     </div>
                                                     <div class="clearfix"></div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                    Dolor sed viverra ipsum nunc aliquet bibendum enim. </p>
-                                                    <div class="show-desktop">
-                                                        <div class="review-meta-data pull-left">
-                                                            <span class="date">2 min ago</span>
+                                                </div>
+                                                <div class="col-md-10 cus-col no-pl">
+                                                    <div class="user-review mb1 clearfix">
+                                                        <div class="show-mobile clearfix date-rete">
+                                                            <div class="review-rating pull-left mr1">
+                                                                <span class="text-info fa fa-star" v-for="n in parseInt(review.rating)"></span>
+                                                                <span class="text-info fa fa-star-o" v-for="n in parseInt(5 - review.rating)"></span>
+                                                            </div>
+                                                            <div class="review-meta-data pull-left">
+                                                                <span v-cloak class="date">@{{ review.created_at | moment("from", "now") }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="review-rating pull-right">
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
+                                                        <div class="clearfix"></div>
+                                                        <div class="comment">
+                                                            <p v-cloak>@{{ review.comment }}</p>
                                                         </div>
-                                                    </div>
-                                                    <div class="view-replies show-mobile">
-                                                        <button class="btn btn-vrep toggle--replies" data-target="#rpliees">
-                                                            <span class="fa fa-reply"></span> View 112 replies
-                                                        </button>
-                                                        <button class="btn btn-vrep">
-                                                            Reply
-                                                        </button>
+                                                        <div class="show-desktop">
+                                                            <div class="review-meta-data pull-left">
+                                                                <span class="date">@{{ review.created_at | moment("from", "now") }}</span>
+                                                            </div>
+                                                            <div class="review-rating pull-right">
+                                                                <span class="text-info fa fa-star" v-for="n in parseInt(review.rating)"></span>
+                                                                <span class="text-info fa fa-star-o" v-for="n in parseInt(5 - review.rating)"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="view-replies show-mobile">
+                                                            <button class="btn btn-vrep toggle--replies" data-target="#rpliees">
+                                                                <span class="fa fa-reply"></span> View 112 replies
+                                                            </button>
+                                                            <button class="btn btn-vrep">
+                                                                Reply
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-    
-                                                {{-- REPLY --}}
-                                                <section class="reply" id="rpliees">
-                                                    <div class="row no-m">
-                                                        <label for="response" class="fr-store">
-                                                            <small class="label label-info"><i>Reply from store</i></small>
-                                                        </label>
-                                                        <div class="col-md-2 cus-col no-pr">
-                                                            <div class="user-icon">
-                                                                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_171b23d41c8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_171b23d41c8%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="img-circle" width="45px" height="45px">
-                                                            </div>
-                                                            <div class="userFLname show-mobile">
-                                                                <h5>Firstname Lastname</h5>
-                                                            </div>
-                                                            <div class="review-option show-mobile">
-                                                                <a href="#" class="report-dis">
-                                                                    <span class="fa fa-ellipsis-v fa-2x text-muted"></span>
-                                                                </a>
-                                                                <div class="tglDrDn" style="display:none">
-                                                                    <span>Report Abuse</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="col-md-10 cus-col no-pl">
-                                                            <div class="user-review mb1">
-                                                                <div class="show-mobile mt1 mb1">
-                                                                    <div class="review-rating pull-left mr1">
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                    </div>
-                                                                    <div class="review-meta-data pull-left">
-                                                                        <span class="date">08.40 AM, Wednesday</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                                Dolor sed viverra ipsum nunc aliquet bibendum enim. </p>
-                                                                <div class="show-desktop">
-                                                                    <div class="review-meta-data pull-left">
-                                                                        <span class="date">1 min ago</span>
-                                                                    </div>
-                                                                    {{-- no ratings basta owner ang mo comment --}}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="line"></div>
-                                                    <div class="row no-m">
-                                                        <div class="col-md-2 cus-col no-pr">
-                                                            <div class="user-icon">
-                                                                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_171b23d41c8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_171b23d41c8%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="img-circle" width="45px" height="45px">
-                                                            </div>
-                                                            <div class="userFLname show-mobile">
-                                                                <h5>Firstname Lastname</h5>
-                                                            </div>
-                                                            <div class="review-option show-mobile">
-                                                                <a href="#" class="report-dis">
-                                                                    <span class="fa fa-ellipsis-v fa-2x text-muted"></span>
-                                                                </a>
-                                                                <div class="tglDrDn" style="display:none">
-                                                                    <span>Report Abuse</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="col-md-10 cus-col no-pl">
-                                                            <div class="user-review mb1">
-                                                                <div class="show-mobile mt1 mb1">
-                                                                    <div class="review-rating pull-left mr1">
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                    </div>
-                                                                    <div class="review-meta-data pull-left">
-                                                                        <span class="date">08.40 AM, Wednesday</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                                Dolor sed viverra ipsum nunc aliquet bibendum enim. </p>
-                                                                <div class="show-desktop">
-                                                                    <div class="review-meta-data pull-left">
-                                                                        <span class="date">1 min ago</span>
-                                                                    </div>
-                                                                    <div class="review-rating pull-right">
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </section>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="reviews">
-                                        <div class="row">
-                                            <div class="col-md-2 cus-col no-pr">
-                                                <div class="user-icon">
-                                                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_171b23d41c8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_171b23d41c8%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="img-circle" width="45px" height="45px">
-                                                </div>
-                                                <div class="userFLname show-mobile">
-                                                    <h5>Firstname Lastname</h5>
-                                                </div>
-                                                <div class="review-option show-mobile">
-                                                    <a href="#" class="report-dis fa fa-ellipsis-v fa-2x text-muted"></a>
-                                                    <div class="tglDrDn" style="display:none">
-                                                        <span>Report Abuse</span>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="col-md-10 cus-col no-pl">
-                                                <div class="user-review mb1 clearfix">
-                                                    <div class="show-mobile clearfix date-rete">
-                                                        <div class="review-rating pull-left mr1">
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
-                                                        </div>
-                                                        <div class="review-meta-data pull-left">
-                                                            <span class="date">08.40 AM, Wednesday</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                    Dolor sed viverra ipsum nunc aliquet bibendum enim. </p>
-                                                    <div class="show-desktop">
-                                                        <div class="review-meta-data pull-left">
-                                                            <span class="date">1 min ago</span>
-                                                        </div>
-                                                        <div class="review-rating pull-right">
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
-                                                            <span class="text-info fa fa-star-o"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="view-replies show-mobile">
-                                                        <button class="btn btn-vrep toggle--replies" data-target="#rpliees">
-                                                            <span class="fa fa-reply"></span> View 112 replies
-                                                        </button>
-                                                        <button class="btn btn-vrep">
-                                                            Reply
-                                                        </button>
-                                                    </div>
-                                                </div>
-    
-                                                {{-- REPLY --}}
-                                                <section class="reply" id="rpliees">
-                                                    <div class="row no-m">
-                                                        <label for="response" class="fr-store">
-                                                            <small class="label label-info"><i>Reply from store</i></small>
-                                                        </label>
-                                                        <div class="col-md-2 cus-col no-pr">
-                                                            <div class="user-icon">
-                                                                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_171b23d41c8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_171b23d41c8%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="img-circle" width="45px" height="45px">
-                                                            </div>
-                                                            <div class="userFLname show-mobile">
-                                                                <h5>Firstname Lastname</h5>
-                                                            </div>
-                                                            <div class="review-option show-mobile">
-                                                                <a href="#" class="report-dis fa fa-ellipsis-v fa-2x text-muted"></a>
-                                                                <div class="tglDrDn" style="display:none">
-                                                                    <span>Report Abuse</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="col-md-10 cus-col no-pl">
-                                                            <div class="user-review mb1">
-                                                                <div class="show-mobile mt1 mb1">
-                                                                    <div class="review-rating pull-left mr1">
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                    </div>
-                                                                    <div class="review-meta-data pull-left">
-                                                                        <span class="date">08.40 AM, Wednesday</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                                Dolor sed viverra ipsum nunc aliquet bibendum enim. </p>
-                                                                <div class="show-desktop">
-                                                                    <div class="review-meta-data pull-left">
-                                                                        <span class="date">1 min ago</span>
-                                                                    </div>
-                                                                    {{-- no ratings basta owner ang mo comment --}}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="line"></div>
-                                                    <div class="row no-m">
-                                                        <div class="col-md-2 cus-col no-pr">
-                                                            <div class="user-icon">
-                                                                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_171b23d41c8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_171b23d41c8%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="img-circle" width="45px" height="45px">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-10 cus-col no-pl">
-                                                            <div class="user-review">
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                                Dolor sed viverra ipsum nunc aliquet bibendum enim. </p>
-                                                                <div class="show-desktop">
-                                                                    <div class="review-meta-data pull-left">
-                                                                        <span class="date">1 min ago</span>
-                                                                    </div>
-                                                                    <div class="review-rating pull-right">
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                        <span class="text-info fa fa-star-o"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- input review --}}
                                     <div class="input-container clearfix">
                                         <div class="inputtts">
-                                            <label for="input-review" class="show-desktop">Write a review</label>
+                                            <label for="input-review" class="show-desktop" @click="submitReview">Write a review</label>
                                             <div class="input-group">
                                                 <label for="review-imgs" class="cursor show-mobile upload-photos-mbl"><span class="fa fa-camera"></span></label>
-                                                <textarea name="review" id="input-review" placeholder="Write a review..."></textarea>
+                                                <textarea v-model="review.comment" name="review_comment" id="input-review" placeholder="Write a review..."></textarea>
                                                 <div class="input-options">
                                                     <div class="input-imgs">
                                                         <input type="file" name="review-imgs" class="d-none hidden" id="review-imgs">
@@ -502,6 +268,50 @@
 @section('extraJS')
 <script>
     $(function() {
+        const app = new Vue({
+            el: '#app',
+            data: {
+                @auth
+                    url: '{{ url('/') }}/{{ strtolower(Auth::user()->role) }}',
+                    review: {
+                        user_id: '{{ Auth::user()->id }}',
+                        product_id: '{{ $request->id }}',
+                        comment: '',
+                        attachments: [],
+                        rating: '',
+                    },
+                @endauth
+                reviews: {!! json_encode($reviews) !!},
+            },
+            mounted() {
+                $.each($('#post-reviews .reviews'), function(index, val) {
+                    let userReviewRaw = $(this).find('.comment').text();
+                    let userReview = emojione.toImage(userReviewRaw);
+                        
+                    $(this).find('.comment').html(userReview);
+                });
+            },
+            methods: {
+                submitReview() {
+                    let comment = $('textarea[name="review_comment"]').val();
+
+                    let formData = new FormData();
+                        formData.append('user_id', this.review.user_id);
+                        formData.append('product_id', this.review.product_id);
+                        formData.append('comment', comment);
+
+                    axios.post( this.url + '/store-user-review', formData ).then( response => {
+                        $.each(response.data.review, function(index, val) {
+                            console.log(index,val);
+                            if (index == "comments") {
+                                var text = emojione.toImage(val);
+                                $('#post-reviews h6').html(text);
+                            }
+                        });
+                    })
+                }
+            },
+        });
         var bx = $('.product--slider').bxSlider({
             slideWidth: sliderWidth(),
             mode: sliderMode(),
@@ -529,7 +339,6 @@
             if ( $(window).width() < 768 ) {
                 wd = 600;
             }
-
             return wd;
         }
         function sliderMode() {
@@ -557,16 +366,20 @@
             recentEmojis: false,
             inline: true,
         });
+        // var emojiVal = $('#post-reviews .fr-emoji').text();
+        // var test = emojione.toImage(emojiVal);
+        // $('#post-reviews .fr-emoji').html(test);
+
+
         $('.review-emots').on('click', function() {
             $('.emojionearea-button').trigger('click');
         });
         var ii = $(".selectpicker-ratings > option").map(function() { 
             return $(this).text(); 
-            // console.log($(this).text());
         });
 
         $.each(ii, function(index, val) {
-            console.log(index, val);
+            // console.log(index, val);
         });
     });
 </script>

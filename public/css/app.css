@@ -12657,6 +12657,15 @@ a:hover {
   font-weight: bold;
 }
 
+.reviews .user-review .comment img {
+  width: 16px;
+}
+
+.reviews .user-review .review-rating span {
+  margin: 0 1px;
+  float: left;
+}
+
 .reviews .reply {
   background-color: #efefef;
   padding: 15px 5px;

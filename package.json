@@ -28,6 +28,7 @@
         "sweetalert": "^2.1.2",
         "sweetalert2": "^9.15.2",
         "vue-croppie": "^2.0.2",
+        "vue-moment": "^4.1.0",
         "vue2-dropzone": "^3.6.0"
     }
 }
