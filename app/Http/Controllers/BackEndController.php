@@ -15,6 +15,7 @@ use App\Events\getUsers;
 use App\Events\GetShops;
 use Illuminate\Http\Request;
 use App\Events\GetCategories;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class BackEndController extends Controller
 {
@@ -253,11 +254,32 @@ class BackEndController extends Controller
 		try {
 			DB::transaction(function() use ($req) {
 				$shop = MyShop::find($req->id);
-                    if ($req->hasFile('shop_img')) {
-                        $shop_img_extension = $req->file('shop_img')->extension();
-                        $shop_img_path = $req->shop_img->storeAs('shop_img', 'shop_img_' . $req->id . date('is', strtotime(Carbon::now())) . '.'.$shop_img_extension, 'public');
-                        $shop->shop_img = $shop_img_path;
-                    }
+				$logo_file = $req->shop_img;
+				list($type, $logo_file) = explode(':', $logo_file);
+				list(, $logo_file) = explode(',', $logo_file);
+
+				$data = base64_decode($logo_file);
+				$filename = 'shop_img_' . $req->id . date('is', strtotime(Carbon::now())) . '.png';
+				$path = public_path('files/shop_img/');
+
+				file_put_contents($path . $filename, $data);
+                $shop->shop_img = 'shop_img/' . $filename;
+
+                    // if ($req->hasFile('shop_img')) {
+                    // 	$image_file = $req->file('shop_img');
+                    //     $shop_img_extension = $image_file->extension();
+                    //     $shop_img_path = $req->shop_img->storeAs('shop_img', 'shop_img_' . $req->id . date('is', strtotime(Carbon::now())) . '.'.$shop_img_extension, 'public');
+
+                    //     $img_canvas = Image::canvas(110, 110);
+                    //     $image = Image::make( $image_file->getRealPath() );
+                    //     $image->resize(110, 110, function($constraint) {
+                    //     	$constraint->aspectRatio();
+                    //     	$constraint->upsize();
+                    //     });
+                    //     $img_canvas->insert($image, 'center');
+                    //     $img_canvas->save( 'files/' . $shop_img_path );
+                    //     $shop->shop_img = $shop_img_path;
+                    // }
 				$shop->save();
 			}, 2);
 

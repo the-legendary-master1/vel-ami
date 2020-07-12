@@ -183,7 +183,6 @@ class FrontEndController extends Controller
                                 $img_resize = Image::make( $image->getRealPath() );
                                 $img_resize->resize(640, 480, function ($constraint) {
                                     $constraint->aspectRatio();
-                                    $constraint->upsize();
                                 });
                                 $img_resize->save( 'files/' . $path );
                                 $img_size = $img_resize->filesize();
@@ -230,9 +229,19 @@ class FrontEndController extends Controller
             DB::transaction(function() use ($request) {
                 if ( $request->hasFile('cover_photo') ) {
                     $shop = MyShop::find($request->id);
-                    $img_ext = $request->file('cover_photo')->extension();
+                    $image_file = $request->file('cover_photo');
+                    $img_ext = $image_file->extension();
                     $path = $shop->name . '/cover-photo/cover_photo_' . $shop->name . '_' . $request->id . date('is', strtotime(Carbon::now())) .'.'.$img_ext;
                     $img_path = $request->cover_photo->storeAs('products', $path, 'public');
+
+                    $img_canvas = Image::canvas(900, 170);
+                    $image = Image::make( $image_file->getRealPath() );
+                    $image->resize(900, 170, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+
+                    $img_canvas->insert($image, 'center');
+                    $img_canvas->save('files/' . $img_path);
 
                     $shop->cover_photo = $img_path;
                     $shop->save();

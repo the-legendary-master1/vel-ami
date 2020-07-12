@@ -19,12 +19,15 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "ajv": "^6.12.3",
+        "croppie": "^2.6.5",
         "dropify": "^0.2.2",
         "font-awesome": "^4.7.0",
         "laravel-echo": "^1.7.0",
         "pusher-js": "^6.0.2",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^9.15.2",
+        "vue-croppie": "^2.0.2",
         "vue2-dropzone": "^3.6.0"
     }
 }

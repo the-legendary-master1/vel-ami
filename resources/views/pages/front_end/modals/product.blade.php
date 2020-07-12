@@ -58,7 +58,15 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <vue-dropzone ref="product_images" id="dropzone" :options="dropzoneOptions" @vdropzone-success-multiple="afterComplete" @vdropzone-removed-file="afterRemove" @vdropzone-max-files-reached="maxFiles" @vdropzone-error-multiple="dzComplete"></vue-dropzone>
+                    <vue-dropzone 
+                        ref="product_images" 
+                        id="dropzone" 
+                        :options="dropzoneOptions" 
+                        @vdropzone-success-multiple="afterComplete" 
+                        @vdropzone-removed-file="afterRemove" 
+                        @vdropzone-max-files-reached="maxFiles" 
+                        vdropzone-error-multiple="dzComplete">
+                    </vue-dropzone>
                     <span v-if="errImage" class="invalid-feedback">
                         <strong>Please upload an image of type: JPEG, JPG, PNG.</strong>
                     </span>
