@@ -183,8 +183,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </nav>
         <main>
@@ -286,6 +284,7 @@
     <script type="text/javascript" src="{{ url('/') }}/js/extra_js/emoji.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/4.5.0/lib/js/emojione.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.17/dist/js/bootstrap-select.min.js"></script>
+
     @yield('extraJS')
     <script>
         $(function() {

@@ -9,7 +9,9 @@
 	Route::get('/view-shop/{shopName}', 'FrontEndController@viewShop'); // dummy lang sa
 	Route::get('/profile/{id}', 'FrontEndController@profile'); // dummy lang sa
 	Route::get('/shop/{shop_url}/{id}', 'FrontEndController@shop');
-
+	Route::get('/get-reviews/{id}', 'FrontEndController@getReviews');
+	Route::get('/get-products', 'FrontEndController@getProducts');
+	
 	// Post Requests
 	Route::post('/sign-up', 'FrontEndController@signUp')->name('sign-up');
 	Route::post('/login-user', 'FrontEndController@loginUser')->name('login');
@@ -21,6 +23,8 @@
 	Route::get('register', function () {
 		return redirect('/');
 	});
+
+	Route::post('/store-reply-review', 'FrontEndController@storeReplyReview');
 
 // BackEnd Requests
 	// Get Requests
@@ -41,16 +45,19 @@
 		Route::get('/get-shops', 'BackEndController@getShops');
 		Route::get('/get-categories', 'BackEndController@getCategories');
 		Route::get('/get-tags', 'BackEndController@getTags');
+		// Route::get('/reported-reviews', 'BackEndController@reportedReviews');
 
 		Route::post('/new-category', 'BackEndController@newCategory');
 		Route::post('/update-category', 'BackEndController@updateCategory');
 		Route::post('/new-tag', 'BackEndController@newTag');
 		Route::post('/update-tag', 'BackEndController@updateTag');
 		Route::post('/approve-user-request', 'BackEndController@approveUserRequest');
+		// Route::post('/remove-user-review', 'BackEndController@removeUserReview');
 	});	
 	
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
 		Route::post('/store-user-review', 'FrontEndController@storeUserReview');
+		Route::post('/report-review', 'FrontEndController@reportReview');
 	});
 	
 	Route::middleware(['auth', 'user-premium'])->prefix('user-premium')->name('user-premium.')->group(function () {
@@ -63,10 +70,11 @@
 
 		Route::get('/get-categories', 'BackEndController@getCategories');
 		Route::get('/get-tags', 'BackEndController@getTags');
-		Route::get('/get-products', 'FrontEndController@getProducts');
 		Route::post('/store-product', 'FrontEndController@storeProduct');
 		Route::get('/search-tags', 'FrontEndController@searchTags');
 		Route::get('/selected-products', 'FrontEndController@selectedProducts');
 		Route::post('/delete-selected-products', 'FrontEndController@deleteSelectedProducts');
 		Route::post('/update-cover-photo', 'FrontEndController@updateCoverPhoto');
+		Route::post('/store-user-review', 'FrontEndController@storeUserReview');
+		Route::post('/report-review', 'FrontEndController@reportReview');
 	});

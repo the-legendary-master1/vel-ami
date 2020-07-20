@@ -10,4 +10,16 @@ class ProductReview extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
+	public function reply()
+	{
+		return $this->hasMany('App\ReviewReply');
+	}
+	public function product()
+	{
+		return $this->belongsTo('App\Product', 'product_id');
+	}
+	public function reported()
+	{
+		return $this->hasMany('App\ReportedReview');
+	}
 }

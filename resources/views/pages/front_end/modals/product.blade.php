@@ -46,27 +46,49 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" id="description" placeholder="Product Description" v-model="product.description"></textarea>
+                    {{-- <textarea class="form-control" rows="3" id="description" placeholder="Product Description" v-model="product.description"></textarea> --}}
+                    <quill-editor
+                        ref="productdesc"
+                        v-model="product.description"
+                        :options="editorOption"
+                      />
                     <span v-if="errDescription" class="invalid-feedback">
                         <strong>Please enter the product description</strong>
                     </span>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="4" id="details" placeholder="Product Details" v-model="product.details"></textarea>
+                    {{-- <textarea class="form-control" rows="4" id="details" placeholder="Product Details" v-model="product.details"></textarea> --}}
+
+                    <quill-editor
+                        ref="productdetails"
+                        v-model="product.details"
+                        :options="editorOption"
+                      />
                     <span v-if="errDetails" class="invalid-feedback">
                         <strong>Please enter the product details</strong>
                     </span>
                 </div>
-                <div class="form-group">
-                    <vue-dropzone 
+                <div class="form-group form-group-images">
+                    {{-- <vue-dropzone 
                         ref="product_images" 
                         id="dropzone" 
                         :options="dropzoneOptions" 
                         @vdropzone-success-multiple="afterComplete" 
                         @vdropzone-removed-file="afterRemove" 
                         @vdropzone-max-files-reached="maxFiles" 
-                        vdropzone-error-multiple="dzComplete">
-                    </vue-dropzone>
+                        @vdropzone-error-multiple="dzComplete"
+                        @vdropzone-file-added-manually="dzThumbnil">
+                    </vue-dropzone> --}}
+                    <div class="preview-product-images" v-if="preview_images">
+                        <div class="pre-imgs-wrap" v-for="(image, index) in preview_images" >
+                            <div :style="{ 'background-image': `url(${image.preview})` }" class="preview-images"></div>
+                            <button @click="deleteImage(index, image.uid)" class="btn-danger remove-preview" type="button">&times;</button>
+                        </div>
+                    </div>
+                    <label class="add-product-images">
+                        <input type="file" ref="product_images" class="hidden d-none" @change="handleProductImgs" multiple>
+                        <span class="fa fa-plus"></span> Add Files
+                    </label>
                     <span v-if="errImage" class="invalid-feedback">
                         <strong>Please upload an image of type: JPEG, JPG, PNG.</strong>
                     </span>

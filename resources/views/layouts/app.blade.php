@@ -12,13 +12,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ url('/') }}/css/extra_css/emoji.min.css"> --}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ url('/') }}/js/extra_js/emoji.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/4.5.0/lib/js/emojione.min.js"></script> --}}
     @yield('extraCSS')
 </head>
 <body>
     <div id="app">
+    <div id="wait" style="display:none;"><img src="{{ asset('files/pleasewait.gif') }}" style="width:50px;margin:auto;display:block"/></div>
         <div id="vilami_top">
             <div class="row">
                 <div class="col-sm-3 vcenter text-left valami_brand">
@@ -96,6 +100,9 @@
                                 <a href="{{ url('super-admin/tags') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/tags')) ? 'active' : '' }}">
                                     <span class="fa fa-tags"></span> Tags
                                 </a>
+                                {{-- <a href="{{ url('super-admin/reported-reviews') }}" class="valami_left_content_sidebar_item {{ (request()->is('super-admin/reported-reviews')) ? 'active' : '' }}">
+                                    <span class="fa fa-flag"></span> Reported Reviews
+                                </a> --}}
                             </div>
                         @endif
                     @else

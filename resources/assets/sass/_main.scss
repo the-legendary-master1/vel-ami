@@ -18,6 +18,10 @@ main {
 .cursor {
 	cursor: pointer;
 }
+a:focus,
+button:focus {
+	outline: 0 !important;
+}
 a {
 	color: #333;
 	text-decoration: none;
@@ -247,6 +251,24 @@ a:hover {
 	padding-right: 15px;
 	padding-left: 15px;
 }
+.prRating {
+    width: calc(100% - 60px);
+    margin-left: 60px;
+}
+.rRate-star, .stars {
+	> div {
+		justify-content: center;
+	}
+}
+
+
+.rate-num {
+	margin-top: 5px;
+
+	strong {
+		font-size: 15px;
+	}
+}
 .post-wrapper {
 	padding-right: 12px;
 	padding-left: 12px;
@@ -368,28 +390,157 @@ a:hover {
 	margin-left: 0;
 	margin-right: 0;
 }
+.form-group-images {
+	border: thin dashed #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+
+    .pre-imgs-wrap {
+    	border: thin solid #e6e6e6;
+		position: relative;
+		text-align: center;
+		display: inline-block;
+		border-radius: 18px;
+		overflow: hidden;
+	    margin: 0 4px 3px;
+	    width: 106px;
+	    height: 106px;
+
+		.preview-images {
+		    width: 106px;
+		    height: 106px;
+		}
+		.remove-preview {
+			font-size: 12px;
+			border: 0;
+		}
+    }
+    label {
+		border: thin dashed #ccc;
+		padding: 6px 39px;
+		border-radius: 6px;
+		margin: 0 auto;
+		text-align: center;
+		display: block;
+		cursor: pointer;
+
+		&:hover {
+			border-color: #999;
+   			background-color: rgba(0, 0, 0, .03);
+		}
+    }
+}
+.tglDrDn {
+    position: absolute;
+    width: 150px;
+    right: 0px;
+    margin-top: 10px;
+    border-radius: 6px;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, .15);
+    font-size: 11px;
+
+    a {
+    	display: block;
+    	padding: 8px 15px;
+
+    	i {
+    		margin-right: 3px;
+    	}
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        right: 8px;
+        background: #fff;
+        width: 20px;
+        height: 15px;
+        border: thin solid #d6d6d6;
+        border-bottom: 0;
+        border-top-left-radius: 100%;
+    }
+}
+.quill-editor .ql-container.ql-snow {
+	min-height: 130px;
+}
+.btn[disabled]:hover {
+    cursor: no-drop;
+}
 .reviews {
 	margin-bottom: 2.5rem;
 	
+	#rpliees:last-of-type {
+    	border-bottom-left-radius: 6px;
+    	border-bottom-right-radius: 6px;
+    	border-bottom: 0;
+	}
+	#rpliees:not(:last-of-type) {
+	    border-top-right-radius: 6px;
+	    border-top-left-radius: 6px;
+	}
+	.horizon-line {
+		border-bottom: 1px solid #efefef;
+
+		.cus-col.col-md-2 {
+			display: flex;
+		    align-items: center;
+		    text-align: center;
+		    justify-content: center;
+		}
+
+		.bR {
+		    position: absolute;
+		    left: 10px;
+
+		    span {
+		    	display: block;
+			    font-size: 10px;
+			    font-weight: 600;
+			    line-height: normal;
+		    }
+		}
+	}
 	.cus-col.col-md-2 {
-		width: 14%;
+		width: 10%;
 	}
 	.cus-col.col-md-10 {
-		width: 86%;
+		width: 90%;
 	}
 	.user-review {
 		font-size: 12px;
+		position: relative;
 
 		p {
 			margin-bottom: 0;
 		}
 		.date {
 			font-size: 1rem;
-			font-weight: bold;
+			font-weight: 300;
 		}
-		.comment {
+		.comment, .comment-reply {
 			img {
 				width: 16px;
+			}
+		}
+		.usr-attach {
+			div {
+				width: 90px;
+				height: 90px;
+				background-position: 50%;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-color: #eee;
+				display: inline-block;
+				max-width: 100%;
+				max-height: 100%;
+
+				&:not(:last-of-type) {
+					margin-right: 12px;
+				}
 			}
 		}
 		.review-rating {
@@ -397,6 +548,16 @@ a:hover {
 				margin: 0 1px;
 				float: left;
 			}
+		}
+		.review-option.show-desktop {
+			/*position: absolute;
+		    top: 5px;
+		    right: 5px;*/
+
+		    .report-dis {
+		    	font-size: 14px;
+		    	padding: 1px 4px;
+		    }
 		}
 	}
 	.reply {
@@ -411,6 +572,27 @@ a:hover {
 			margin: 7px 0 10px;
 		}
 	}
+}
+
+
+.remove-preview {
+	padding: 2px 5px;
+	line-height: normal;
+	position: absolute;
+	top: 10px;
+	right: 5px;
+	margin: 0 auto;
+	border-radius: 50%;
+	z-index: 1;
+	box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, .3)
+}
+.preview-images {
+	background-position: 50% 50%;
+    background-repeat: no-repeat;
+    height: 108px;
+    width: 108px;
+    background-size: cover;
+    transform: rotate(0deg);
 }
 .input-container {
     padding: 20px 25px;
@@ -431,10 +613,49 @@ a:hover {
 	    	padding: 5px 10px;
 		}
 	}
+	.review-attachements {
+		margin-left: 20%;
+	    overflow-x: auto;
+	    white-space: nowrap;
+	    margin-bottom: 3px;
+
+	    &::-webkit-scrollbar {
+			height: 10px;
+		}
+		&::-webkit-scrollbar-track {
+			background: #ddd;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: #bdbdbd;
+		}
+
+		ul li {
+			display: inline-block;
+		    position: relative;
+		    background-color: #eee;
+		    margin-right: 8px;
+		    overflow: hidden;
+		    border-radius: 20px;
+		    height: 108px;
+		    width: 108px;
+
+		    button {
+		    	font-size: 10px;
+		    }
+		}
+	}
 	.input-group {
 		float: left;
 		width: 80%;
-
+	
+		&:focus {
+			border-color: #66AFE9;
+		    outline: 0;
+		    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+		    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+		    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+		}
+	
 		textarea {
 			float: left;
 		    width: 75%;
@@ -468,12 +689,12 @@ a:hover {
 		    min-height: 20px;
 			
 			> *:not(:last-child) {
-			    border-right: thin solid #ccc;
+			    /*border-right: thin solid rgba(0, 0, 0, .1);*/
 			}
 			> * {
 			    float: left;
 			    height: 100%;
-			    padding: 9px 5px;
+			    padding: 9px 0;
 				
 				.fa:not(.bootstrap-select) {
 				    opacity: 0.6;
@@ -483,6 +704,9 @@ a:hover {
 						opacity: 1;
 					}
 			    }
+			}
+			.input-submit {
+				padding: 8px 0px;
 			}
 		    .input-imgs {
 	    	    padding: 9px 8px; 
@@ -503,8 +727,12 @@ a:hover {
 		    		font-size: 16px;
 		    	}
 		    }
+			.btn-send-reply {
+				border: none;
+			    outline: 0;
+			    background-color: transparent;
+			}
 		    .input-ratings {
-		    	border-right: none;
 		    	padding: 0;
     			max-width: 60px;
 				
@@ -523,6 +751,7 @@ a:hover {
 					> .dropdown-toggle {
 						border: 0;
 	    				margin-top: 1px;
+	    				outline: 0 !important;
 						
 	    				.filter-option, .bs-caret {
 	    					opacity: 0.6;
@@ -566,6 +795,46 @@ a:hover {
 		    }
     	}
 	}
+}
+.replying-to {
+	background-color: #efefef;
+    padding: 10px;
+    margin-left: 20%;
+    font-size: 11px;
+    line-height: normal;
+    position: relative;
+
+    > div {
+    	width: 95%;
+    	display: inline-block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+    }
+	button {
+		display: inline-block;
+	    position: absolute;
+	    top: 0;
+	    right: 5px;
+	    border: 0;
+	    background-color: transparent;
+	    font-weight: bold;
+	    font-size: 18px;
+	    padding: 10px 10px;
+	    color: #999;
+	}
+}
+.btn-vrep {
+    padding: 1px 6px;
+    font-size: 1rem;
+    background-color: transparent;
+    border: thin solid #d6d6d6;
+    color: #666;
+    outline: 0 !important;
+
+    &:hover, &:focus {
+        background-color: #d8d8d8;
+    }
 }
 .hide-input-file {
 	position: absolute;
@@ -612,7 +881,7 @@ a:hover {
 
 /*CUSTOMIZE MODAL*/
 .modal-sm {
-	max-width: 420px;
+	max-width: 500px;
 	width: 95%;
 	margin: 1%;
 }
@@ -736,7 +1005,7 @@ a:hover {
 .sticky-header-shop {
 	position: sticky;
     top: 62px;
-    z-index: 999;
+    z-index: 1;
     padding-top: 0;
 }
 .shop-seller {
@@ -785,14 +1054,26 @@ a:hover {
 		    overflow: hidden;
 		    position: relative;
 		    background: #ececec;
-		
+			
+			.drag-move {
+				position: absolute;
+			    z-index: 1;
+			    top: 40%;
+			    left: 0;
+			    right: 0;
+			    color: white;
+			    margin: auto;
+			    width: 180px;
+			    padding: 5px 10px;
+			    border-radius: 2px;
+			    font-size: 11px;
+			    background: rgba(84, 97, 133, .4);
+			}
 			img {
 				margin: 0 auto;
 			}
 		    label {
 		    	position: absolute;
-			    top: 10px;
-			    left: 10px;
 			    cursor: pointer;
 			    z-index: 1;
 			    color: #efefef;
@@ -807,6 +1088,15 @@ a:hover {
 			    .show-on-hover {
 			    	opacity: 0;
 			    }
+		    }
+		    .update-cp {
+			    top: 10px;
+			    left: 10px;
+		    }
+		    .save-cp {
+			    right: 5px;
+				bottom: 5px;
+				background: rgba(84, 97, 133, .4);
 		    }
 		    &:hover {
 		    	label {
@@ -1240,7 +1530,6 @@ ul#item-list {
 .product-options {
 	position: absolute;
 	left: -23px;
-	z-index: 1;
 
 	.check-to-delete {
 		span {

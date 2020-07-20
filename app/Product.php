@@ -14,4 +14,12 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    public function reviews()
+    {
+        return $this->hasMany('App\ProductReview');
+    }
+    public function images()
+    {
+        return $this->hasMany('App\ProductImage');
+    }
 }

@@ -376,7 +376,7 @@
                 font-size: 2.5rem;
             }
             .post-details {
-                width: 600px;
+                /*width: 600px;*/
                 max-width: 100%;
                 margin: 0 auto;
                 margin-top: 4rem;
@@ -407,20 +407,25 @@
                 padding: 10px 20px;
 
                 .inputtts {
+                    width: 100%;
+
                     textarea {
                         padding-right: 37px;
                     }
                 }
                 .input-group {
-                    width: 100%;
+                    width: 95%;
+                    float: right;
 
                     label.upload-photos-mbl {
                         position: absolute;
                         top: 0;
-                        left: 0;
-                        padding: 5px 8px;
+                        left: -40px;
+                        padding: 8px 8px;
                         margin: 0;
-                        border-right: thin solid #b5b3b3;
+                        z-index: 1;
+                        color: #999;
+                        font-size: 17px;
                     }
                     textarea {
                         width: 100%;
@@ -434,9 +439,9 @@
             }
             .post-more-info {
                 max-width: 100%;
-                width: 600px;
+                /*width: 600px;*/
                 margin: 0 auto;
-                padding: 0 12px;
+                padding-bottom: 30px;
                 
                 .has-content {
                     padding: 0;
@@ -464,13 +469,17 @@
                             flex: 0 0 100%;
                             max-width: 100%;
                             padding: 0;
+                            padding-left: 27px;
+                            justify-content: left;
 
                             .user-icon, .userFLname {
                                 float: left
                             }
                             .userFLname {
                                 h5 {
-                                    padding: 14px;
+                                    padding: 11px;
+                                    margin-left: 5px;
+                                    font-size: 12px;
                                 }
                             }
                             .review-option {
@@ -480,31 +489,6 @@
                                 
                                 .fa-2x {
                                     font-size: 18px;
-                                }
-                                .tglDrDn {
-                                    position: absolute;
-                                    border: thin solid rgb(214, 214, 214);
-                                    padding: 8px;
-                                    width: 100px;
-                                    right: 0px;
-                                    text-align: center;
-                                    margin-top: 10px;
-                                    border-radius: 2px;
-                                    background-color: #fff;
-                                    z-index: 1;
-
-                                    &:before {
-                                        content: "";
-                                        position: absolute;
-                                        top: -15px;
-                                        right: 8px;
-                                        background: #fff;
-                                        width: 20px;
-                                        height: 15px;
-                                        border: thin solid #d6d6d6;
-                                        border-bottom: 0;
-                                        border-top-left-radius: 100%;
-                                    }
                                 }
                             }
                         }
@@ -521,40 +505,39 @@
                             }
                             .user-review {
                                 margin: 1rem;
+                                padding-left: 17px;
                                 
                                 .date-rete {
                                     margin-bottom: 4px; 
 
                                     .date {
                                         font-size: 1rem;
+                                        float: left;
+                                        line-height: normal;
+                                        font-weight: 300;
                                     }
                                 }
                                 .view-replies {
                                     margin-top: 8px;
-
-                                    .btn-vrep {
-                                        padding: 3px 6px;
-                                        font-size: 1rem;
-                                        background-color: transparent;
-                                        border: thin solid #d6d6d6;
-                                        color: #666;
-
-                                        &:hover, &:focus {
-                                            background-color: #d8d8d8;
-                                        }
-                                    }
                                 }
                             }
                             .reply {
-                                display: none;
-                                margin: 12px;
-                                padding: 15px 18px;
-                                border-radius: 4px;
+                                /*display: none;*/
+                                margin-left: 25px;
+                                margin-right: 25px;
+                                padding: 15px;
+                                border-bottom: 1px solid #ccc;
 
                                 &.active {
                                     display: block;
                                 }
-
+                                .col-md-2.cus-col {
+                                    padding-left: 0;
+                                }
+                                .user-review {
+                                    padding-left: 2px;
+                                    margin: 0;
+                                }
                             }
                         }
                     }
@@ -721,6 +704,10 @@
                     opacity: 1 !important;
                 }
             }
+        }
+        .replying-to, .review-attachements {
+            margin-left: 0 !important;
+            margin-bottom: 10px;
         }
 	}
 }

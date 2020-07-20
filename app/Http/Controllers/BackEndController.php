@@ -9,10 +9,12 @@ use App\Tag;
 use App\User;
 use App\MyShop;
 use App\Category;
+use App\ReportedReview;
 use Carbon\Carbon;
 use App\Events\GetTags;
 use App\Events\getUsers;
 use App\Events\GetShops;
+use App\Events\GetReportedReviews;
 use Illuminate\Http\Request;
 use App\Events\GetCategories;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -324,4 +326,13 @@ class BackEndController extends Controller
 			return;
 		}
 	}
+	// public function reportedReviews()
+	// {	
+	// 	$reported = ReportedReview::with('review', 'review.user', 'user')->orderBy('id', 'desc')->get();
+	// 	return view('pages.back_end.reported_reviews', compact('reported'));
+	// }
+	// public function removeUserReview(Request $request)
+	// {
+	// 	return ReportedReview::find($request->id)->delete();
+	// }
 }
