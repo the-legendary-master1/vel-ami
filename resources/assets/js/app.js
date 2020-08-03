@@ -13,9 +13,9 @@ import 'quill/dist/quill.snow.css' // for snow theme
 Vue.use(VueQuillEditor)
 
 // dropzone
-import vue2Dropzone from 'vue2-dropzone';
-import 'vue2-dropzone/dist/vue2Dropzone.min.css';
-Vue.component('vueDropzone', vue2Dropzone);
+// import vue2Dropzone from 'vue2-dropzone';
+// import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+// Vue.component('vueDropzone', vue2Dropzone);
 
 
 // image cropper
@@ -51,5 +51,12 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 // Star Rating
 import StarRating from 'vue-star-rating';
 Vue.component('star-rating', StarRating);
+
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
+
+// import emojione from 'emojione'
+import emojionearea from 'emojionearea'
+import 'emojionearea/dist/emojionearea.min.css'
 
 

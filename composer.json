@@ -8,10 +8,11 @@
         "php": ">=7.0.0",
         "anhskohbo/no-captcha": "^3.2",
         "fideloper/proxy": "~3.3",
+        "intervention/image": "2.*",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "pusher/pusher-php-server": "^4.1",
-        "intervention/image": "2.*"
+        "mervick/emojionearea": "^3.0.0",
+        "pusher/pusher-php-server": "^4.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

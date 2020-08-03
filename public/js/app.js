@@ -12557,7 +12557,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(67);
 
 
 /***/ }),
@@ -12576,15 +12576,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_core_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_core_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_quill_dist_quill_snow_css__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_quill_dist_quill_snow_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_quill_dist_quill_snow_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue2_dropzone__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue2_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue2_dropzone_dist_vue2Dropzone_min_css__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue2_dropzone_dist_vue2Dropzone_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue2_dropzone_dist_vue2Dropzone_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_croppie__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_croppie_croppie_css__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_croppie_croppie_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_croppie_croppie_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue_star_rating__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_vue_star_rating__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_croppie__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_croppie_croppie_css__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_croppie_croppie_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_croppie_croppie_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_star_rating__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_star_rating__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_chat_scroll__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vue_chat_scroll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_vue_chat_scroll__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_emojionearea__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_emojionearea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_emojionearea__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_emojionearea_dist_emojionearea_min_css__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_emojionearea_dist_emojionearea_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_emojionearea_dist_emojionearea_min_css__);
 __webpack_require__(17);
 
 window.Vue = __webpack_require__(40);
@@ -12600,20 +12602,21 @@ window.Vue = __webpack_require__(40);
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_quill_editor___default.a);
 
 // dropzone
+// import vue2Dropzone from 'vue2-dropzone';
+// import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+// Vue.component('vueDropzone', vue2Dropzone);
 
-
-Vue.component('vueDropzone', __WEBPACK_IMPORTED_MODULE_5_vue2_dropzone___default.a);
 
 // image cropper
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_7_vue_croppie__["a" /* default */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_croppie__["a" /* default */]);
 
 // Moment
-Vue.use(__webpack_require__(63));
+Vue.use(__webpack_require__(60));
 
 // Pagination
-Vue.component('pagination', __webpack_require__(64));
+Vue.component('pagination', __webpack_require__(61));
 
 // import custom components
 // import ProductReview from './components/ProductReview';
@@ -12636,7 +12639,14 @@ Vue.component('pagination', __webpack_require__(64));
 
 // Star Rating
 
-Vue.component('star-rating', __WEBPACK_IMPORTED_MODULE_9_vue_star_rating___default.a);
+Vue.component('star-rating', __WEBPACK_IMPORTED_MODULE_7_vue_star_rating___default.a);
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_8_vue_chat_scroll___default.a);
+
+// import emojione from 'emojione'
+
+
 
 /***/ }),
 /* 17 */
@@ -65276,64 +65286,11 @@ exports.push([module.i, "/*!\n * Quill Editor v1.3.7\n * https://quilljs.com/\n 
 
 /***/ }),
 /* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define(t):(e=e||self).vue2Dropzone=t()}(this,function(){"use strict";var e,t=(function(e){var t=function(){function e(e,t){for(var i=0;i<t.length;i++){var n=t[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,i,n){return i&&e(t.prototype,i),n&&e(t,n),t}}();function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var r=function(){function e(){n(this,e)}return t(e,[{key:"on",value:function(e,t){return this._callbacks=this._callbacks||{},this._callbacks[e]||(this._callbacks[e]=[]),this._callbacks[e].push(t),this}},{key:"emit",value:function(e){this._callbacks=this._callbacks||{};var t=this._callbacks[e];if(t){for(var i=arguments.length,n=Array(i>1?i-1:0),r=1;r<i;r++)n[r-1]=arguments[r];for(var o=0,s=s=t;;){if(o>=s.length)break;s[o++].apply(this,n)}}return this}},{key:"off",value:function(e,t){if(!this._callbacks||0===arguments.length)return this._callbacks={},this;var i=this._callbacks[e];if(!i)return this;if(1===arguments.length)return delete this._callbacks[e],this;for(var n=0;n<i.length;n++){if(i[n]===t){i.splice(n,1);break}}return this}}]),e}(),o=function(e){function o(e,t){n(this,o);var r,s=i(this,(o.__proto__||Object.getPrototypeOf(o)).call(this)),a=void 0;if(s.element=e,s.version=o.version,s.defaultOptions.previewTemplate=s.defaultOptions.previewTemplate.replace(/\n*/g,""),s.clickableElements=[],s.listeners=[],s.files=[],"string"==typeof s.element&&(s.element=document.querySelector(s.element)),!s.element||null==s.element.nodeType)throw new Error("Invalid dropzone element.");if(s.element.dropzone)throw new Error("Dropzone already attached.");o.instances.push(s),s.element.dropzone=s;var l,u=null!=(r=o.optionsForElement(s.element))?r:{};if(s.options=o.extend({},s.defaultOptions,u,null!=t?t:{}),s.options.forceFallback||!o.isBrowserSupported())return l=s.options.fallback.call(s),i(s,l);if(null==s.options.url&&(s.options.url=s.element.getAttribute("action")),!s.options.url)throw new Error("No URL provided.");if(s.options.acceptedFiles&&s.options.acceptedMimeTypes)throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");if(s.options.uploadMultiple&&s.options.chunking)throw new Error("You cannot set both: uploadMultiple and chunking.");return s.options.acceptedMimeTypes&&(s.options.acceptedFiles=s.options.acceptedMimeTypes,delete s.options.acceptedMimeTypes),null!=s.options.renameFilename&&(s.options.renameFile=function(e){return s.options.renameFilename.call(s,e.name,e)}),s.options.method=s.options.method.toUpperCase(),(a=s.getExistingFallback())&&a.parentNode&&a.parentNode.removeChild(a),!1!==s.options.previewsContainer&&(s.options.previewsContainer?s.previewsContainer=o.getElement(s.options.previewsContainer,"previewsContainer"):s.previewsContainer=s.element),s.options.clickable&&(!0===s.options.clickable?s.clickableElements=[s.element]:s.clickableElements=o.getElements(s.options.clickable,"clickable")),s.init(),s}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(o,r),t(o,null,[{key:"initClass",value:function(){this.prototype.Emitter=r,this.prototype.events=["drop","dragstart","dragend","dragenter","dragover","dragleave","addedfile","addedfiles","removedfile","thumbnail","error","errormultiple","processing","processingmultiple","uploadprogress","totaluploadprogress","sending","sendingmultiple","success","successmultiple","canceled","canceledmultiple","complete","completemultiple","reset","maxfilesexceeded","maxfilesreached","queuecomplete"],this.prototype.defaultOptions={url:null,method:"post",withCredentials:!1,timeout:3e4,parallelUploads:2,uploadMultiple:!1,chunking:!1,forceChunking:!1,chunkSize:2e6,parallelChunkUploads:!1,retryChunks:!1,retryChunksLimit:3,maxFilesize:256,paramName:"file",createImageThumbnails:!0,maxThumbnailFilesize:10,thumbnailWidth:120,thumbnailHeight:120,thumbnailMethod:"crop",resizeWidth:null,resizeHeight:null,resizeMimeType:null,resizeQuality:.8,resizeMethod:"contain",filesizeBase:1e3,maxFiles:null,headers:null,clickable:!0,ignoreHiddenFiles:!0,acceptedFiles:null,acceptedMimeTypes:null,autoProcessQueue:!0,autoQueue:!0,addRemoveLinks:!1,previewsContainer:null,hiddenInputContainer:"body",capture:null,renameFilename:null,renameFile:null,forceFallback:!1,dictDefaultMessage:"Drop files here to upload",dictFallbackMessage:"Your browser does not support drag'n'drop file uploads.",dictFallbackText:"Please use the fallback form below to upload your files like in the olden days.",dictFileTooBig:"File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",dictInvalidFileType:"You can't upload files of this type.",dictResponseError:"Server responded with {{statusCode}} code.",dictCancelUpload:"Cancel upload",dictUploadCanceled:"Upload canceled.",dictCancelUploadConfirmation:"Are you sure you want to cancel this upload?",dictRemoveFile:"Remove file",dictRemoveFileConfirmation:null,dictMaxFilesExceeded:"You can not upload any more files.",dictFileSizeUnits:{tb:"TB",gb:"GB",mb:"MB",kb:"KB",b:"b"},init:function(){},params:function(e,t,i){if(i)return{dzuuid:i.file.upload.uuid,dzchunkindex:i.index,dztotalfilesize:i.file.size,dzchunksize:this.options.chunkSize,dztotalchunkcount:i.file.upload.totalChunkCount,dzchunkbyteoffset:i.index*this.options.chunkSize}},accept:function(e,t){return t()},chunksUploaded:function(e,t){t()},fallback:function(){var e=void 0;this.element.className=this.element.className+" dz-browser-not-supported";for(var t=0,i=i=this.element.getElementsByTagName("div");;){if(t>=i.length)break;var n=i[t++];if(/(^| )dz-message($| )/.test(n.className)){e=n,n.className="dz-message";break}}e||(e=o.createElement('<div class="dz-message"><span></span></div>'),this.element.appendChild(e));var r=e.getElementsByTagName("span")[0];return r&&(null!=r.textContent?r.textContent=this.options.dictFallbackMessage:null!=r.innerText&&(r.innerText=this.options.dictFallbackMessage)),this.element.appendChild(this.getFallbackForm())},resize:function(e,t,i,n){var r={srcX:0,srcY:0,srcWidth:e.width,srcHeight:e.height},o=e.width/e.height;null==t&&null==i?(t=r.srcWidth,i=r.srcHeight):null==t?t=i*o:null==i&&(i=t/o);var s=(t=Math.min(t,r.srcWidth))/(i=Math.min(i,r.srcHeight));if(r.srcWidth>t||r.srcHeight>i)if("crop"===n)o>s?(r.srcHeight=e.height,r.srcWidth=r.srcHeight*s):(r.srcWidth=e.width,r.srcHeight=r.srcWidth/s);else{if("contain"!==n)throw new Error("Unknown resizeMethod '"+n+"'");o>s?i=t/o:t=i*o}return r.srcX=(e.width-r.srcWidth)/2,r.srcY=(e.height-r.srcHeight)/2,r.trgWidth=t,r.trgHeight=i,r},transformFile:function(e,t){return(this.options.resizeWidth||this.options.resizeHeight)&&e.type.match(/image.*/)?this.resizeImage(e,this.options.resizeWidth,this.options.resizeHeight,this.options.resizeMethod,t):t(e)},previewTemplate:'<div class="dz-preview dz-file-preview">\n  <div class="dz-image"><img data-dz-thumbnail /></div>\n  <div class="dz-details">\n    <div class="dz-size"><span data-dz-size></span></div>\n    <div class="dz-filename"><span data-dz-name></span></div>\n  </div>\n  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>\n  <div class="dz-error-message"><span data-dz-errormessage></span></div>\n  <div class="dz-success-mark">\n    <svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">\n      <title>Check</title>\n      <defs></defs>\n      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">\n        <path d="M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" id="Oval-2" stroke-opacity="0.198794158" stroke="#747474" fill-opacity="0.816519475" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>\n      </g>\n    </svg>\n  </div>\n  <div class="dz-error-mark">\n    <svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">\n      <title>Error</title>\n      <defs></defs>\n      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">\n        <g id="Check-+-Oval-2" sketch:type="MSLayerGroup" stroke="#747474" stroke-opacity="0.198794158" fill="#FFFFFF" fill-opacity="0.816519475">\n          <path d="M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" id="Oval-2" sketch:type="MSShapeGroup"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>',drop:function(e){return this.element.classList.remove("dz-drag-hover")},dragstart:function(e){},dragend:function(e){return this.element.classList.remove("dz-drag-hover")},dragenter:function(e){return this.element.classList.add("dz-drag-hover")},dragover:function(e){return this.element.classList.add("dz-drag-hover")},dragleave:function(e){return this.element.classList.remove("dz-drag-hover")},paste:function(e){},reset:function(){return this.element.classList.remove("dz-started")},addedfile:function(e){var t=this;if(this.element===this.previewsContainer&&this.element.classList.add("dz-started"),this.previewsContainer){e.previewElement=o.createElement(this.options.previewTemplate.trim()),e.previewTemplate=e.previewElement,this.previewsContainer.appendChild(e.previewElement);for(var i=0,n=n=e.previewElement.querySelectorAll("[data-dz-name]");;){if(i>=n.length)break;var r=n[i++];r.textContent=e.name}for(var s=0,a=a=e.previewElement.querySelectorAll("[data-dz-size]");!(s>=a.length);)(r=a[s++]).innerHTML=this.filesize(e.size);this.options.addRemoveLinks&&(e._removeLink=o.createElement('<a class="dz-remove" href="javascript:undefined;" data-dz-remove>'+this.options.dictRemoveFile+"</a>"),e.previewElement.appendChild(e._removeLink));for(var l=function(i){return i.preventDefault(),i.stopPropagation(),e.status===o.UPLOADING?o.confirm(t.options.dictCancelUploadConfirmation,function(){return t.removeFile(e)}):t.options.dictRemoveFileConfirmation?o.confirm(t.options.dictRemoveFileConfirmation,function(){return t.removeFile(e)}):t.removeFile(e)},u=0,d=d=e.previewElement.querySelectorAll("[data-dz-remove]");;){if(u>=d.length)break;d[u++].addEventListener("click",l)}}},removedfile:function(e){return null!=e.previewElement&&null!=e.previewElement.parentNode&&e.previewElement.parentNode.removeChild(e.previewElement),this._updateMaxFilesReachedClass()},thumbnail:function(e,t){if(e.previewElement){e.previewElement.classList.remove("dz-file-preview");for(var i=0,n=n=e.previewElement.querySelectorAll("[data-dz-thumbnail]");;){if(i>=n.length)break;var r=n[i++];r.alt=e.name,r.src=t}return setTimeout(function(){return e.previewElement.classList.add("dz-image-preview")},1)}},error:function(e,t){if(e.previewElement){e.previewElement.classList.add("dz-error"),"String"!=typeof t&&t.error&&(t=t.error);for(var i=0,n=n=e.previewElement.querySelectorAll("[data-dz-errormessage]");;){if(i>=n.length)break;n[i++].textContent=t}}},errormultiple:function(){},processing:function(e){if(e.previewElement&&(e.previewElement.classList.add("dz-processing"),e._removeLink))return e._removeLink.innerHTML=this.options.dictCancelUpload},processingmultiple:function(){},uploadprogress:function(e,t,i){if(e.previewElement)for(var n=0,r=r=e.previewElement.querySelectorAll("[data-dz-uploadprogress]");;){if(n>=r.length)break;var o=r[n++];"PROGRESS"===o.nodeName?o.value=t:o.style.width=t+"%"}},totaluploadprogress:function(){},sending:function(){},sendingmultiple:function(){},success:function(e){if(e.previewElement)return e.previewElement.classList.add("dz-success")},successmultiple:function(){},canceled:function(e){return this.emit("error",e,this.options.dictUploadCanceled)},canceledmultiple:function(){},complete:function(e){if(e._removeLink&&(e._removeLink.innerHTML=this.options.dictRemoveFile),e.previewElement)return e.previewElement.classList.add("dz-complete")},completemultiple:function(){},maxfilesexceeded:function(){},maxfilesreached:function(){},queuecomplete:function(){},addedfiles:function(){}},this.prototype._thumbnailQueue=[],this.prototype._processingThumbnail=!1}},{key:"extend",value:function(e){for(var t=arguments.length,i=Array(t>1?t-1:0),n=1;n<t;n++)i[n-1]=arguments[n];for(var r=0,o=o=i;;){if(r>=o.length)break;var s=o[r++];for(var a in s){var l=s[a];e[a]=l}}return e}}]),t(o,[{key:"getAcceptedFiles",value:function(){return this.files.filter(function(e){return e.accepted}).map(function(e){return e})}},{key:"getRejectedFiles",value:function(){return this.files.filter(function(e){return!e.accepted}).map(function(e){return e})}},{key:"getFilesWithStatus",value:function(e){return this.files.filter(function(t){return t.status===e}).map(function(e){return e})}},{key:"getQueuedFiles",value:function(){return this.getFilesWithStatus(o.QUEUED)}},{key:"getUploadingFiles",value:function(){return this.getFilesWithStatus(o.UPLOADING)}},{key:"getAddedFiles",value:function(){return this.getFilesWithStatus(o.ADDED)}},{key:"getActiveFiles",value:function(){return this.files.filter(function(e){return e.status===o.UPLOADING||e.status===o.QUEUED}).map(function(e){return e})}},{key:"init",value:function(){var e=this;if("form"===this.element.tagName&&this.element.setAttribute("enctype","multipart/form-data"),this.element.classList.contains("dropzone")&&!this.element.querySelector(".dz-message")&&this.element.appendChild(o.createElement('<div class="dz-default dz-message"><span>'+this.options.dictDefaultMessage+"</span></div>")),this.clickableElements.length){!function t(){return e.hiddenFileInput&&e.hiddenFileInput.parentNode.removeChild(e.hiddenFileInput),e.hiddenFileInput=document.createElement("input"),e.hiddenFileInput.setAttribute("type","file"),(null===e.options.maxFiles||e.options.maxFiles>1)&&e.hiddenFileInput.setAttribute("multiple","multiple"),e.hiddenFileInput.className="dz-hidden-input",null!==e.options.acceptedFiles&&e.hiddenFileInput.setAttribute("accept",e.options.acceptedFiles),null!==e.options.capture&&e.hiddenFileInput.setAttribute("capture",e.options.capture),e.hiddenFileInput.style.visibility="hidden",e.hiddenFileInput.style.position="absolute",e.hiddenFileInput.style.top="0",e.hiddenFileInput.style.left="0",e.hiddenFileInput.style.height="0",e.hiddenFileInput.style.width="0",o.getElement(e.options.hiddenInputContainer,"hiddenInputContainer").appendChild(e.hiddenFileInput),e.hiddenFileInput.addEventListener("change",function(){var i=e.hiddenFileInput.files;if(i.length)for(var n=0,r=r=i;!(n>=r.length);){var o=r[n++];e.addFile(o)}return e.emit("addedfiles",i),t()})}()}this.URL=null!==window.URL?window.URL:window.webkitURL;for(var t=0,i=i=this.events;;){if(t>=i.length)break;var n=i[t++];this.on(n,this.options[n])}this.on("uploadprogress",function(){return e.updateTotalUploadProgress()}),this.on("removedfile",function(){return e.updateTotalUploadProgress()}),this.on("canceled",function(t){return e.emit("complete",t)}),this.on("complete",function(t){if(0===e.getAddedFiles().length&&0===e.getUploadingFiles().length&&0===e.getQueuedFiles().length)return setTimeout(function(){return e.emit("queuecomplete")},0)});var r=function(e){return e.stopPropagation(),e.preventDefault?e.preventDefault():e.returnValue=!1};return this.listeners=[{element:this.element,events:{dragstart:function(t){return e.emit("dragstart",t)},dragenter:function(t){return r(t),e.emit("dragenter",t)},dragover:function(t){var i=void 0;try{i=t.dataTransfer.effectAllowed}catch(e){}return t.dataTransfer.dropEffect="move"===i||"linkMove"===i?"move":"copy",r(t),e.emit("dragover",t)},dragleave:function(t){return e.emit("dragleave",t)},drop:function(t){return r(t),e.drop(t)},dragend:function(t){return e.emit("dragend",t)}}}],this.clickableElements.forEach(function(t){return e.listeners.push({element:t,events:{click:function(i){return(t!==e.element||i.target===e.element||o.elementInside(i.target,e.element.querySelector(".dz-message")))&&e.hiddenFileInput.click(),!0}}})}),this.enable(),this.options.init.call(this)}},{key:"destroy",value:function(){return this.disable(),this.removeAllFiles(!0),(null!=this.hiddenFileInput?this.hiddenFileInput.parentNode:void 0)&&(this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput),this.hiddenFileInput=null),delete this.element.dropzone,o.instances.splice(o.instances.indexOf(this),1)}},{key:"updateTotalUploadProgress",value:function(){var e=void 0,t=0,i=0;if(this.getActiveFiles().length){for(var n=0,r=r=this.getActiveFiles();;){if(n>=r.length)break;var o=r[n++];t+=o.upload.bytesSent,i+=o.upload.total}e=100*t/i}else e=100;return this.emit("totaluploadprogress",e,i,t)}},{key:"_getParamName",value:function(e){return"function"==typeof this.options.paramName?this.options.paramName(e):this.options.paramName+(this.options.uploadMultiple?"["+e+"]":"")}},{key:"_renameFile",value:function(e){return"function"!=typeof this.options.renameFile?e.name:this.options.renameFile(e)}},{key:"getFallbackForm",value:function(){var e,t=void 0;if(e=this.getExistingFallback())return e;var i='<div class="dz-fallback">';this.options.dictFallbackText&&(i+="<p>"+this.options.dictFallbackText+"</p>"),i+='<input type="file" name="'+this._getParamName(0)+'" '+(this.options.uploadMultiple?'multiple="multiple"':void 0)+' /><input type="submit" value="Upload!"></div>';var n=o.createElement(i);return"FORM"!==this.element.tagName?(t=o.createElement('<form action="'+this.options.url+'" enctype="multipart/form-data" method="'+this.options.method+'"></form>')).appendChild(n):(this.element.setAttribute("enctype","multipart/form-data"),this.element.setAttribute("method",this.options.method)),null!=t?t:n}},{key:"getExistingFallback",value:function(){for(var e=function(e){for(var t=0,i=i=e;;){if(t>=i.length)break;var n=i[t++];if(/(^| )fallback($| )/.test(n.className))return n}},t=["div","form"],i=0;i<t.length;i++){var n,r=t[i];if(n=e(this.element.getElementsByTagName(r)))return n}}},{key:"setupEventListeners",value:function(){return this.listeners.map(function(e){return function(){var t=[];for(var i in e.events){var n=e.events[i];t.push(e.element.addEventListener(i,n,!1))}return t}()})}},{key:"removeEventListeners",value:function(){return this.listeners.map(function(e){return function(){var t=[];for(var i in e.events){var n=e.events[i];t.push(e.element.removeEventListener(i,n,!1))}return t}()})}},{key:"disable",value:function(){var e=this;return this.clickableElements.forEach(function(e){return e.classList.remove("dz-clickable")}),this.removeEventListeners(),this.disabled=!0,this.files.map(function(t){return e.cancelUpload(t)})}},{key:"enable",value:function(){return delete this.disabled,this.clickableElements.forEach(function(e){return e.classList.add("dz-clickable")}),this.setupEventListeners()}},{key:"filesize",value:function(e){var t=0,i="b";if(e>0){for(var n=["tb","gb","mb","kb","b"],r=0;r<n.length;r++){var o=n[r];if(e>=Math.pow(this.options.filesizeBase,4-r)/10){t=e/Math.pow(this.options.filesizeBase,4-r),i=o;break}}t=Math.round(10*t)/10}return"<strong>"+t+"</strong> "+this.options.dictFileSizeUnits[i]}},{key:"_updateMaxFilesReachedClass",value:function(){return null!=this.options.maxFiles&&this.getAcceptedFiles().length>=this.options.maxFiles?(this.getAcceptedFiles().length===this.options.maxFiles&&this.emit("maxfilesreached",this.files),this.element.classList.add("dz-max-files-reached")):this.element.classList.remove("dz-max-files-reached")}},{key:"drop",value:function(e){if(e.dataTransfer){this.emit("drop",e);for(var t=[],i=0;i<e.dataTransfer.files.length;i++)t[i]=e.dataTransfer.files[i];if(this.emit("addedfiles",t),t.length){var n=e.dataTransfer.items;n&&n.length&&null!=n[0].webkitGetAsEntry?this._addFilesFromItems(n):this.handleFiles(t)}}}},{key:"paste",value:function(e){if(null!=(t=null!=e?e.clipboardData:void 0,i=function(e){return e.items},null!=t?i(t):void 0)){var t,i;this.emit("paste",e);var n=e.clipboardData.items;return n.length?this._addFilesFromItems(n):void 0}}},{key:"handleFiles",value:function(e){for(var t=0,i=i=e;;){if(t>=i.length)break;var n=i[t++];this.addFile(n)}}},{key:"_addFilesFromItems",value:function(e){var t=this;return function(){for(var i=[],n=0,r=r=e;;){if(n>=r.length)break;var o,s=r[n++];null!=s.webkitGetAsEntry&&(o=s.webkitGetAsEntry())?o.isFile?i.push(t.addFile(s.getAsFile())):o.isDirectory?i.push(t._addFilesFromDirectory(o,o.name)):i.push(void 0):null!=s.getAsFile&&(null==s.kind||"file"===s.kind)?i.push(t.addFile(s.getAsFile())):i.push(void 0)}return i}()}},{key:"_addFilesFromDirectory",value:function(e,t){var i=this,n=e.createReader(),r=function(e){return t=console,i="log",n=function(t){return t.log(e)},null!=t&&"function"==typeof t[i]?n(t,i):void 0;var t,i,n};return function e(){return n.readEntries(function(n){if(n.length>0){for(var r=0,o=o=n;!(r>=o.length);){var s=o[r++];s.isFile?s.file(function(e){if(!i.options.ignoreHiddenFiles||"."!==e.name.substring(0,1))return e.fullPath=t+"/"+e.name,i.addFile(e)}):s.isDirectory&&i._addFilesFromDirectory(s,t+"/"+s.name)}e()}return null},r)}()}},{key:"accept",value:function(e,t){return this.options.maxFilesize&&e.size>1024*this.options.maxFilesize*1024?t(this.options.dictFileTooBig.replace("{{filesize}}",Math.round(e.size/1024/10.24)/100).replace("{{maxFilesize}}",this.options.maxFilesize)):o.isValidFile(e,this.options.acceptedFiles)?null!=this.options.maxFiles&&this.getAcceptedFiles().length>=this.options.maxFiles?(t(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}",this.options.maxFiles)),this.emit("maxfilesexceeded",e)):this.options.accept.call(this,e,t):t(this.options.dictInvalidFileType)}},{key:"addFile",value:function(e){var t=this;return e.upload={uuid:o.uuidv4(),progress:0,total:e.size,bytesSent:0,filename:this._renameFile(e),chunked:this.options.chunking&&(this.options.forceChunking||e.size>this.options.chunkSize),totalChunkCount:Math.ceil(e.size/this.options.chunkSize)},this.files.push(e),e.status=o.ADDED,this.emit("addedfile",e),this._enqueueThumbnail(e),this.accept(e,function(i){return i?(e.accepted=!1,t._errorProcessing([e],i)):(e.accepted=!0,t.options.autoQueue&&t.enqueueFile(e)),t._updateMaxFilesReachedClass()})}},{key:"enqueueFiles",value:function(e){for(var t=0,i=i=e;;){if(t>=i.length)break;var n=i[t++];this.enqueueFile(n)}return null}},{key:"enqueueFile",value:function(e){var t=this;if(e.status!==o.ADDED||!0!==e.accepted)throw new Error("This file can't be queued because it has already been processed or was rejected.");if(e.status=o.QUEUED,this.options.autoProcessQueue)return setTimeout(function(){return t.processQueue()},0)}},{key:"_enqueueThumbnail",value:function(e){var t=this;if(this.options.createImageThumbnails&&e.type.match(/image.*/)&&e.size<=1024*this.options.maxThumbnailFilesize*1024)return this._thumbnailQueue.push(e),setTimeout(function(){return t._processThumbnailQueue()},0)}},{key:"_processThumbnailQueue",value:function(){var e=this;if(!this._processingThumbnail&&0!==this._thumbnailQueue.length){this._processingThumbnail=!0;var t=this._thumbnailQueue.shift();return this.createThumbnail(t,this.options.thumbnailWidth,this.options.thumbnailHeight,this.options.thumbnailMethod,!0,function(i){return e.emit("thumbnail",t,i),e._processingThumbnail=!1,e._processThumbnailQueue()})}}},{key:"removeFile",value:function(e){if(e.status===o.UPLOADING&&this.cancelUpload(e),this.files=s(this.files,e),this.emit("removedfile",e),0===this.files.length)return this.emit("reset")}},{key:"removeAllFiles",value:function(e){null==e&&(e=!1);for(var t=0,i=i=this.files.slice();;){if(t>=i.length)break;var n=i[t++];(n.status!==o.UPLOADING||e)&&this.removeFile(n)}return null}},{key:"resizeImage",value:function(e,t,i,n,r){var s=this;return this.createThumbnail(e,t,i,n,!0,function(t,i){if(null==i)return r(e);var n=s.options.resizeMimeType;null==n&&(n=e.type);var a=i.toDataURL(n,s.options.resizeQuality);return"image/jpeg"!==n&&"image/jpg"!==n||(a=u.restore(e.dataURL,a)),r(o.dataURItoBlob(a))})}},{key:"createThumbnail",value:function(e,t,i,n,r,o){var s=this,a=new FileReader;return a.onload=function(){if(e.dataURL=a.result,"image/svg+xml"!==e.type)return s.createThumbnailFromUrl(e,t,i,n,r,o);null!=o&&o(a.result)},a.readAsDataURL(e)}},{key:"createThumbnailFromUrl",value:function(e,t,i,n,r,o,s){var a=this,u=document.createElement("img");return s&&(u.crossOrigin=s),u.onload=function(){var s=function(e){return e(1)};return"undefined"!=typeof EXIF&&null!==EXIF&&r&&(s=function(e){return EXIF.getData(u,function(){return e(EXIF.getTag(this,"Orientation"))})}),s(function(r){e.width=u.width,e.height=u.height;var s=a.options.resize.call(a,e,t,i,n),d=document.createElement("canvas"),c=d.getContext("2d");switch(d.width=s.trgWidth,d.height=s.trgHeight,r>4&&(d.width=s.trgHeight,d.height=s.trgWidth),r){case 2:c.translate(d.width,0),c.scale(-1,1);break;case 3:c.translate(d.width,d.height),c.rotate(Math.PI);break;case 4:c.translate(0,d.height),c.scale(1,-1);break;case 5:c.rotate(.5*Math.PI),c.scale(1,-1);break;case 6:c.rotate(.5*Math.PI),c.translate(0,-d.width);break;case 7:c.rotate(.5*Math.PI),c.translate(d.height,-d.width),c.scale(-1,1);break;case 8:c.rotate(-.5*Math.PI),c.translate(-d.height,0)}l(c,u,null!=s.srcX?s.srcX:0,null!=s.srcY?s.srcY:0,s.srcWidth,s.srcHeight,null!=s.trgX?s.trgX:0,null!=s.trgY?s.trgY:0,s.trgWidth,s.trgHeight);var p=d.toDataURL("image/png");if(null!=o)return o(p,d)})},null!=o&&(u.onerror=o),u.src=e.dataURL}},{key:"processQueue",value:function(){var e=this.options.parallelUploads,t=this.getUploadingFiles().length,i=t;if(!(t>=e)){var n=this.getQueuedFiles();if(n.length>0){if(this.options.uploadMultiple)return this.processFiles(n.slice(0,e-t));for(;i<e;){if(!n.length)return;this.processFile(n.shift()),i++}}}}},{key:"processFile",value:function(e){return this.processFiles([e])}},{key:"processFiles",value:function(e){for(var t=0,i=i=e;;){if(t>=i.length)break;var n=i[t++];n.processing=!0,n.status=o.UPLOADING,this.emit("processing",n)}return this.options.uploadMultiple&&this.emit("processingmultiple",e),this.uploadFiles(e)}},{key:"_getFilesWithXhr",value:function(e){return this.files.filter(function(t){return t.xhr===e}).map(function(e){return e})}},{key:"cancelUpload",value:function(e){if(e.status===o.UPLOADING){for(var t=this._getFilesWithXhr(e.xhr),i=0,n=n=t;;){if(i>=n.length)break;n[i++].status=o.CANCELED}void 0!==e.xhr&&e.xhr.abort();for(var r=0,s=s=t;;){if(r>=s.length)break;var a=s[r++];this.emit("canceled",a)}this.options.uploadMultiple&&this.emit("canceledmultiple",t)}else e.status!==o.ADDED&&e.status!==o.QUEUED||(e.status=o.CANCELED,this.emit("canceled",e),this.options.uploadMultiple&&this.emit("canceledmultiple",[e]));if(this.options.autoProcessQueue)return this.processQueue()}},{key:"resolveOption",value:function(e){if("function"==typeof e){for(var t=arguments.length,i=Array(t>1?t-1:0),n=1;n<t;n++)i[n-1]=arguments[n];return e.apply(this,i)}return e}},{key:"uploadFile",value:function(e){return this.uploadFiles([e])}},{key:"uploadFiles",value:function(e){var t=this;this._transformFiles(e,function(i){if(e[0].upload.chunked){var n=e[0],r=i[0];n.upload.chunks=[];var s=function(){for(var i=0;void 0!==n.upload.chunks[i];)i++;if(!(i>=n.upload.totalChunkCount)){var s=i*t.options.chunkSize,a=Math.min(s+t.options.chunkSize,n.size),l={name:t._getParamName(0),data:r.webkitSlice?r.webkitSlice(s,a):r.slice(s,a),filename:n.upload.filename,chunkIndex:i};n.upload.chunks[i]={file:n,index:i,dataBlock:l,status:o.UPLOADING,progress:0,retries:0},t._uploadData(e,[l])}};if(n.upload.finishedChunkUpload=function(i){var r=!0;i.status=o.SUCCESS,i.dataBlock=null,i.xhr=null;for(var a=0;a<n.upload.totalChunkCount;a++){if(void 0===n.upload.chunks[a])return s();n.upload.chunks[a].status!==o.SUCCESS&&(r=!1)}r&&t.options.chunksUploaded(n,function(){t._finished(e,"",null)})},t.options.parallelChunkUploads)for(var a=0;a<n.upload.totalChunkCount;a++)s();else s()}else{for(var l=[],u=0;u<e.length;u++)l[u]={name:t._getParamName(u),data:i[u],filename:e[u].upload.filename};t._uploadData(e,l)}})}},{key:"_getChunk",value:function(e,t){for(var i=0;i<e.upload.totalChunkCount;i++)if(void 0!==e.upload.chunks[i]&&e.upload.chunks[i].xhr===t)return e.upload.chunks[i]}},{key:"_uploadData",value:function(e,t){for(var i=this,n=new XMLHttpRequest,r=0,s=s=e;;){if(r>=s.length)break;s[r++].xhr=n}e[0].upload.chunked&&(e[0].upload.chunks[t[0].chunkIndex].xhr=n);var a=this.resolveOption(this.options.method,e),l=this.resolveOption(this.options.url,e);n.open(a,l,!0),n.timeout=this.resolveOption(this.options.timeout,e),n.withCredentials=!!this.options.withCredentials,n.onload=function(t){i._finishedUploading(e,n,t)},n.onerror=function(){i._handleUploadError(e,n)},(null!=n.upload?n.upload:n).onprogress=function(t){return i._updateFilesUploadProgress(e,n,t)};var u={Accept:"application/json","Cache-Control":"no-cache","X-Requested-With":"XMLHttpRequest"};for(var d in this.options.headers&&o.extend(u,this.options.headers),u){var c=u[d];c&&n.setRequestHeader(d,c)}var p=new FormData;if(this.options.params){var h=this.options.params;for(var f in"function"==typeof h&&(h=h.call(this,e,n,e[0].upload.chunked?this._getChunk(e[0],n):null)),h){var m=h[f];p.append(f,m)}}for(var v=0,g=g=e;;){if(v>=g.length)break;var k=g[v++];this.emit("sending",k,n,p)}this.options.uploadMultiple&&this.emit("sendingmultiple",e,n,p),this._addFormElementData(p);for(var y=0;y<t.length;y++){var b=t[y];p.append(b.name,b.data,b.filename)}this.submitRequest(n,p,e)}},{key:"_transformFiles",value:function(e,t){for(var i=this,n=[],r=0,o=function(o){i.options.transformFile.call(i,e[o],function(i){n[o]=i,++r===e.length&&t(n)})},s=0;s<e.length;s++)o(s)}},{key:"_addFormElementData",value:function(e){if("FORM"===this.element.tagName)for(var t=0,i=i=this.element.querySelectorAll("input, textarea, select, button");;){if(t>=i.length)break;var n=i[t++],r=n.getAttribute("name"),o=n.getAttribute("type");if(o&&(o=o.toLowerCase()),null!=r)if("SELECT"===n.tagName&&n.hasAttribute("multiple"))for(var s=0,a=a=n.options;;){if(s>=a.length)break;var l=a[s++];l.selected&&e.append(r,l.value)}else(!o||"checkbox"!==o&&"radio"!==o||n.checked)&&e.append(r,n.value)}}},{key:"_updateFilesUploadProgress",value:function(e,t,i){var n=void 0;if(void 0!==i){if(n=100*i.loaded/i.total,e[0].upload.chunked){var r=e[0],o=this._getChunk(r,t);o.progress=n,o.total=i.total,o.bytesSent=i.loaded,r.upload.progress=0,r.upload.total=0,r.upload.bytesSent=0;for(var s=0;s<r.upload.totalChunkCount;s++)void 0!==r.upload.chunks[s]&&void 0!==r.upload.chunks[s].progress&&(r.upload.progress+=r.upload.chunks[s].progress,r.upload.total+=r.upload.chunks[s].total,r.upload.bytesSent+=r.upload.chunks[s].bytesSent);r.upload.progress=r.upload.progress/r.upload.totalChunkCount}else for(var a=0,l=l=e;;){if(a>=l.length)break;var u=l[a++];u.upload.progress=n,u.upload.total=i.total,u.upload.bytesSent=i.loaded}for(var d=0,c=c=e;;){if(d>=c.length)break;var p=c[d++];this.emit("uploadprogress",p,p.upload.progress,p.upload.bytesSent)}}else{var h=!0;n=100;for(var f=0,m=m=e;;){if(f>=m.length)break;var v=m[f++];100===v.upload.progress&&v.upload.bytesSent===v.upload.total||(h=!1),v.upload.progress=n,v.upload.bytesSent=v.upload.total}if(h)return;for(var g=0,k=k=e;;){if(g>=k.length)break;var y=k[g++];this.emit("uploadprogress",y,n,y.upload.bytesSent)}}}},{key:"_finishedUploading",value:function(e,t,i){var n=void 0;if(e[0].status!==o.CANCELED&&4===t.readyState){if("arraybuffer"!==t.responseType&&"blob"!==t.responseType&&(n=t.responseText,t.getResponseHeader("content-type")&&~t.getResponseHeader("content-type").indexOf("application/json")))try{n=JSON.parse(n)}catch(e){i=e,n="Invalid JSON response from server."}this._updateFilesUploadProgress(e),200<=t.status&&t.status<300?e[0].upload.chunked?e[0].upload.finishedChunkUpload(this._getChunk(e[0],t)):this._finished(e,n,i):this._handleUploadError(e,t,n)}}},{key:"_handleUploadError",value:function(e,t,i){if(e[0].status!==o.CANCELED){if(e[0].upload.chunked&&this.options.retryChunks){var n=this._getChunk(e[0],t);if(n.retries++<this.options.retryChunksLimit)return void this._uploadData(e,[n.dataBlock]);console.warn("Retried this chunk too often. Giving up.")}for(var r=0,s=s=e;;){if(r>=s.length)break;s[r++],this._errorProcessing(e,i||this.options.dictResponseError.replace("{{statusCode}}",t.status),t)}}}},{key:"submitRequest",value:function(e,t,i){e.send(t)}},{key:"_finished",value:function(e,t,i){for(var n=0,r=r=e;;){if(n>=r.length)break;var s=r[n++];s.status=o.SUCCESS,this.emit("success",s,t,i),this.emit("complete",s)}if(this.options.uploadMultiple&&(this.emit("successmultiple",e,t,i),this.emit("completemultiple",e)),this.options.autoProcessQueue)return this.processQueue()}},{key:"_errorProcessing",value:function(e,t,i){for(var n=0,r=r=e;;){if(n>=r.length)break;var s=r[n++];s.status=o.ERROR,this.emit("error",s,t,i),this.emit("complete",s)}if(this.options.uploadMultiple&&(this.emit("errormultiple",e,t,i),this.emit("completemultiple",e)),this.options.autoProcessQueue)return this.processQueue()}}],[{key:"uuidv4",value:function(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(e){var t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)})}}]),o}();o.initClass(),o.version="5.5.1",o.options={},o.optionsForElement=function(e){return e.getAttribute("id")?o.options[a(e.getAttribute("id"))]:void 0},o.instances=[],o.forElement=function(e){if("string"==typeof e&&(e=document.querySelector(e)),null==(null!=e?e.dropzone:void 0))throw new Error("No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone.");return e.dropzone},o.autoDiscover=!0,o.discover=function(){var e=void 0;if(document.querySelectorAll)e=document.querySelectorAll(".dropzone");else{e=[];var t=function(t){return function(){for(var i=[],n=0,r=r=t;;){if(n>=r.length)break;var o=r[n++];/(^| )dropzone($| )/.test(o.className)?i.push(e.push(o)):i.push(void 0)}return i}()};t(document.getElementsByTagName("div")),t(document.getElementsByTagName("form"))}return function(){for(var t=[],i=0,n=n=e;;){if(i>=n.length)break;var r=n[i++];!1!==o.optionsForElement(r)?t.push(new o(r)):t.push(void 0)}return t}()},o.blacklistedBrowsers=[/opera.*(Macintosh|Windows Phone).*version\/12/i],o.isBrowserSupported=function(){var e=!0;if(window.File&&window.FileReader&&window.FileList&&window.Blob&&window.FormData&&document.querySelector)if("classList"in document.createElement("a"))for(var t=0,i=i=o.blacklistedBrowsers;;){if(t>=i.length)break;i[t++].test(navigator.userAgent)&&(e=!1)}else e=!1;else e=!1;return e},o.dataURItoBlob=function(e){for(var t=atob(e.split(",")[1]),i=e.split(",")[0].split(":")[1].split(";")[0],n=new ArrayBuffer(t.length),r=new Uint8Array(n),o=0,s=t.length,a=0<=s;a?o<=s:o>=s;a?o++:o--)r[o]=t.charCodeAt(o);return new Blob([n],{type:i})};var s=function(e,t){return e.filter(function(e){return e!==t}).map(function(e){return e})},a=function(e){return e.replace(/[\-_](\w)/g,function(e){return e.charAt(1).toUpperCase()})};o.createElement=function(e){var t=document.createElement("div");return t.innerHTML=e,t.childNodes[0]},o.elementInside=function(e,t){if(e===t)return!0;for(;e=e.parentNode;)if(e===t)return!0;return!1},o.getElement=function(e,t){var i=void 0;if("string"==typeof e?i=document.querySelector(e):null!=e.nodeType&&(i=e),null==i)throw new Error("Invalid `"+t+"` option provided. Please provide a CSS selector or a plain HTML element.");return i},o.getElements=function(e,t){var i=void 0,n=void 0;if(e instanceof Array){n=[];try{for(var r=0,o=o=e;!(r>=o.length);)i=o[r++],n.push(this.getElement(i,t))}catch(e){n=null}}else if("string"==typeof e){n=[];for(var s=0,a=a=document.querySelectorAll(e);!(s>=a.length);)i=a[s++],n.push(i)}else null!=e.nodeType&&(n=[e]);if(null==n||!n.length)throw new Error("Invalid `"+t+"` option provided. Please provide a CSS selector, a plain HTML element or a list of those.");return n},o.confirm=function(e,t,i){return window.confirm(e)?t():null!=i?i():void 0},o.isValidFile=function(e,t){if(!t)return!0;t=t.split(",");for(var i=e.type,n=i.replace(/\/.*$/,""),r=0,o=o=t;;){if(r>=o.length)break;var s=o[r++];if("."===(s=s.trim()).charAt(0)){if(-1!==e.name.toLowerCase().indexOf(s.toLowerCase(),e.name.length-s.length))return!0}else if(/\/\*$/.test(s)){if(n===s.replace(/\/.*$/,""))return!0}else if(i===s)return!0}return!1},"undefined"!=typeof jQuery&&null!==jQuery&&(jQuery.fn.dropzone=function(e){return this.each(function(){return new o(this,e)})}),null!==e?e.exports=o:window.Dropzone=o,o.ADDED="added",o.QUEUED="queued",o.ACCEPTED=o.QUEUED,o.UPLOADING="uploading",o.PROCESSING=o.UPLOADING,o.CANCELED="canceled",o.ERROR="error",o.SUCCESS="success";var l=function(e,t,i,n,r,o,s,a,l,u){var d=function(e){e.naturalWidth;var t=e.naturalHeight,i=document.createElement("canvas");i.width=1,i.height=t;var n=i.getContext("2d");n.drawImage(e,0,0);for(var r=n.getImageData(1,0,1,t).data,o=0,s=t,a=t;a>o;)0===r[4*(a-1)+3]?s=a:o=a,a=s+o>>1;var l=a/t;return 0===l?1:l}(t);return e.drawImage(t,i,n,r,o,s,a,l,u/d)},u=function(){function e(){n(this,e)}return t(e,null,[{key:"initClass",value:function(){this.KEY_STR="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="}},{key:"encode64",value:function(e){for(var t="",i=void 0,n=void 0,r="",o=void 0,s=void 0,a=void 0,l="",u=0;o=(i=e[u++])>>2,s=(3&i)<<4|(n=e[u++])>>4,a=(15&n)<<2|(r=e[u++])>>6,l=63&r,isNaN(n)?a=l=64:isNaN(r)&&(l=64),t=t+this.KEY_STR.charAt(o)+this.KEY_STR.charAt(s)+this.KEY_STR.charAt(a)+this.KEY_STR.charAt(l),i=n=r="",o=s=a=l="",u<e.length;);return t}},{key:"restore",value:function(e,t){if(!e.match("data:image/jpeg;base64,"))return t;var i=this.decode64(e.replace("data:image/jpeg;base64,","")),n=this.slice2Segments(i),r=this.exifManipulation(t,n);return"data:image/jpeg;base64,"+this.encode64(r)}},{key:"exifManipulation",value:function(e,t){var i=this.getExifArray(t),n=this.insertExif(e,i);return new Uint8Array(n)}},{key:"getExifArray",value:function(e){for(var t=void 0,i=0;i<e.length;){if(255===(t=e[i])[0]&225===t[1])return t;i++}return[]}},{key:"insertExif",value:function(e,t){var i=e.replace("data:image/jpeg;base64,",""),n=this.decode64(i),r=n.indexOf(255,3),o=n.slice(0,r),s=n.slice(r),a=o;return a=(a=a.concat(t)).concat(s)}},{key:"slice2Segments",value:function(e){for(var t=0,i=[];;){if(255===e[t]&218===e[t+1])break;if(255===e[t]&216===e[t+1])t+=2;else{var n=t+(256*e[t+2]+e[t+3])+2,r=e.slice(t,n);i.push(r),t=n}if(t>e.length)break}return i}},{key:"decode64",value:function(e){var t=void 0,i=void 0,n="",r=void 0,o=void 0,s="",a=0,l=[];for(/[^A-Za-z0-9\+\/\=]/g.exec(e)&&console.warn("There were invalid base64 characters in the input text.\nValid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\nExpect errors in decoding."),e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");t=this.KEY_STR.indexOf(e.charAt(a++))<<2|(r=this.KEY_STR.indexOf(e.charAt(a++)))>>4,i=(15&r)<<4|(o=this.KEY_STR.indexOf(e.charAt(a++)))>>2,n=(3&o)<<6|(s=this.KEY_STR.indexOf(e.charAt(a++))),l.push(t),64!==o&&l.push(i),64!==s&&l.push(n),t=i=n="",r=o=s="",a<e.length;);return l}}]),e}();u.initClass(),o._autoDiscoverFunction=function(){if(o.autoDiscover)return o.discover()},function(e,t){var i=!1,n=!0,r=e.document,o=r.documentElement,s=r.addEventListener?"addEventListener":"attachEvent",a=r.addEventListener?"removeEventListener":"detachEvent",l=r.addEventListener?"":"on",u=function n(o){if("readystatechange"!==o.type||"complete"===r.readyState)return("load"===o.type?e:r)[a](l+o.type,n,!1),!i&&(i=!0)?t.call(e,o.type||o):void 0};if("complete"!==r.readyState){if(r.createEventObject&&o.doScroll){try{n=!e.frameElement}catch(e){}n&&function e(){try{o.doScroll("left")}catch(t){return void setTimeout(e,50)}return u("poll")}()}r[s](l+"DOMContentLoaded",u,!1),r[s](l+"readystatechange",u,!1),e[s](l+"load",u,!1)}}(window,o._autoDiscoverFunction)}(e={exports:{}},e.exports),e.exports),i={getSignedURL(e,t){let i={filePath:e.name,contentType:e.type};return new Promise((n,r)=>{var o=new FormData;let s=new XMLHttpRequest,a="function"==typeof t.signingURL?t.signingURL(e):t.signingURL;s.open("POST",a),s.onload=function(){200==s.status?n(JSON.parse(s.response)):r(s.statusText)},s.onerror=function(e){console.error("Network Error : Could not send request to AWS (Maybe CORS errors)"),r(e)},!0===t.withCredentials&&(s.withCredentials=!0),Object.entries(t.headers||{}).forEach(([e,t])=>{s.setRequestHeader(e,t)}),i=Object.assign(i,t.params||{}),Object.entries(i).forEach(([e,t])=>{o.append(e,t)}),s.send(o)})},sendFile(e,t,i){var n=i?this.setResponseHandler:this.sendS3Handler;return this.getSignedURL(e,t).then(t=>n(t,e)).catch(e=>e)},setResponseHandler(e,t){t.s3Signature=e.signature,t.s3Url=e.postEndpoint},sendS3Handler(e,t){let i=new FormData,n=e.signature;return Object.keys(n).forEach(function(e){i.append(e,n[e])}),i.append("file",t),new Promise((t,n)=>{let r=new XMLHttpRequest;r.open("POST",e.postEndpoint),r.onload=function(){if(201==r.status){var e=(new window.DOMParser).parseFromString(r.response,"text/xml").firstChild.children[0].innerHTML;t({success:!0,message:e})}else{var i=(new window.DOMParser).parseFromString(r.response,"text/xml").firstChild.children[0].innerHTML;n({success:!1,message:i+". Request is marked as resolved when returns as status 201"})}},r.onerror=function(e){var t=(new window.DOMParser).parseFromString(r.response,"text/xml").firstChild.children[1].innerHTML;n({success:!1,message:t})},r.send(i)})}};t.autoDiscover=!1;return function(e,t,i,n,r,o,s,a,l,u){"boolean"!=typeof s&&(l=a,a=s,s=!1);var d,c="function"==typeof i?i.options:i;if(e&&e.render&&(c.render=e.render,c.staticRenderFns=e.staticRenderFns,c._compiled=!0,r&&(c.functional=!0)),n&&(c._scopeId=n),o?(d=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),t&&t.call(this,l(e)),e&&e._registeredComponents&&e._registeredComponents.add(o)},c._ssrRegister=d):t&&(d=s?function(){t.call(this,u(this.$root.$options.shadowRoot))}:function(e){t.call(this,a(e))}),d)if(c.functional){var p=c.render;c.render=function(e,t){return d.call(t),p(e,t)}}else{var h=c.beforeCreate;c.beforeCreate=h?[].concat(h,d):[d]}return i}({render:function(){var e=this.$createElement,t=this._self._c||e;return t("div",{ref:"dropzoneElement",class:{"vue-dropzone dropzone":this.includeStyling},attrs:{id:this.id}},[this.useCustomSlot?t("div",{staticClass:"dz-message"},[this._t("default",[this._v("Drop files here to upload")])],2):this._e()])},staticRenderFns:[]},void 0,{props:{id:{type:String,required:!0,default:"dropzone"},options:{type:Object,required:!0},includeStyling:{type:Boolean,default:!0,required:!1},awss3:{type:Object,required:!1,default:null},destroyDropzone:{type:Boolean,default:!0,required:!1},duplicateCheck:{type:Boolean,default:!1,required:!1},useCustomSlot:{type:Boolean,default:!1,required:!1}},data:()=>({isS3:!1,isS3OverridesServerPropagation:!1,wasQueueAutoProcess:!0}),computed:{dropzoneSettings(){let e={thumbnailWidth:200,thumbnailHeight:200};return Object.keys(this.options).forEach(function(t){e[t]=this.options[t]},this),null!==this.awss3&&(e.autoProcessQueue=!1,this.isS3=!0,this.isS3OverridesServerPropagation=!1===this.awss3.sendFileToServer,void 0!==this.options.autoProcessQueue&&(this.wasQueueAutoProcess=this.options.autoProcessQueue),this.isS3OverridesServerPropagation&&(e.url=(e=>e[0].s3Url))),e}},mounted(){if(this.$isServer&&this.hasBeenMounted)return;this.hasBeenMounted=!0,this.dropzone=new t(this.$refs.dropzoneElement,this.dropzoneSettings);let e=this;this.dropzone.on("thumbnail",function(t,i){e.$emit("vdropzone-thumbnail",t,i)}),this.dropzone.on("addedfile",function(t){var i,n;if(e.duplicateCheck&&this.files.length)for(i=0,n=this.files.length;i<n-1;i++)this.files[i].name===t.name&&this.files[i].size===t.size&&this.files[i].lastModifiedDate.toString()===t.lastModifiedDate.toString()&&(this.removeFile(t),e.$emit("vdropzone-duplicate-file",t));e.$emit("vdropzone-file-added",t),e.isS3&&e.wasQueueAutoProcess&&!t.manuallyAdded&&e.getSignedAndUploadToS3(t)}),this.dropzone.on("addedfiles",function(t){e.$emit("vdropzone-files-added",t)}),this.dropzone.on("removedfile",function(t){e.$emit("vdropzone-removed-file",t),t.manuallyAdded&&null!==e.dropzone.options.maxFiles&&e.dropzone.options.maxFiles++}),this.dropzone.on("success",function(t,i){if(e.$emit("vdropzone-success",t,i),e.isS3){if(e.isS3OverridesServerPropagation){var n=(new window.DOMParser).parseFromString(i,"text/xml").firstChild.children[0].innerHTML;e.$emit("vdropzone-s3-upload-success",n)}e.wasQueueAutoProcess&&e.setOption("autoProcessQueue",!1)}}),this.dropzone.on("successmultiple",function(t,i){e.$emit("vdropzone-success-multiple",t,i)}),this.dropzone.on("error",function(t,i,n){e.$emit("vdropzone-error",t,i,n),this.isS3&&e.$emit("vdropzone-s3-upload-error")}),this.dropzone.on("errormultiple",function(t,i,n){e.$emit("vdropzone-error-multiple",t,i,n)}),this.dropzone.on("sending",function(t,i,n){if(e.isS3)if(e.isS3OverridesServerPropagation){let e=t.s3Signature;Object.keys(e).forEach(function(t){n.append(t,e[t])})}else n.append("s3ObjectLocation",t.s3ObjectLocation);e.$emit("vdropzone-sending",t,i,n)}),this.dropzone.on("sendingmultiple",function(t,i,n){e.$emit("vdropzone-sending-multiple",t,i,n)}),this.dropzone.on("complete",function(t){e.$emit("vdropzone-complete",t)}),this.dropzone.on("completemultiple",function(t){e.$emit("vdropzone-complete-multiple",t)}),this.dropzone.on("canceled",function(t){e.$emit("vdropzone-canceled",t)}),this.dropzone.on("canceledmultiple",function(t){e.$emit("vdropzone-canceled-multiple",t)}),this.dropzone.on("maxfilesreached",function(t){e.$emit("vdropzone-max-files-reached",t)}),this.dropzone.on("maxfilesexceeded",function(t){e.$emit("vdropzone-max-files-exceeded",t)}),this.dropzone.on("processing",function(t){e.$emit("vdropzone-processing",t)}),this.dropzone.on("processingmultiple",function(t){e.$emit("vdropzone-processing-multiple",t)}),this.dropzone.on("uploadprogress",function(t,i,n){e.$emit("vdropzone-upload-progress",t,i,n)}),this.dropzone.on("totaluploadprogress",function(t,i,n){e.$emit("vdropzone-total-upload-progress",t,i,n)}),this.dropzone.on("reset",function(){e.$emit("vdropzone-reset")}),this.dropzone.on("queuecomplete",function(){e.$emit("vdropzone-queue-complete")}),this.dropzone.on("drop",function(t){e.$emit("vdropzone-drop",t)}),this.dropzone.on("dragstart",function(t){e.$emit("vdropzone-drag-start",t)}),this.dropzone.on("dragend",function(t){e.$emit("vdropzone-drag-end",t)}),this.dropzone.on("dragenter",function(t){e.$emit("vdropzone-drag-enter",t)}),this.dropzone.on("dragover",function(t){e.$emit("vdropzone-drag-over",t)}),this.dropzone.on("dragleave",function(t){e.$emit("vdropzone-drag-leave",t)}),e.$emit("vdropzone-mounted")},beforeDestroy(){this.destroyDropzone&&this.dropzone.destroy()},methods:{manuallyAddFile:function(e,t){e.manuallyAdded=!0,this.dropzone.emit("addedfile",e);let i=!1;if((t.indexOf(".svg")>-1||t.indexOf(".png")>-1||t.indexOf(".jpg")>-1||t.indexOf(".jpeg")>-1||t.indexOf(".gif")>-1||t.indexOf(".webp")>-1)&&(i=!0),this.dropzone.options.createImageThumbnails&&i&&e.size<=1024*this.dropzone.options.maxThumbnailFilesize*1024){t&&this.dropzone.emit("thumbnail",e,t);for(var n=e.previewElement.querySelectorAll("[data-dz-thumbnail]"),r=0;r<n.length;r++)n[r].style.width=this.dropzoneSettings.thumbnailWidth+"px",n[r].style.height=this.dropzoneSettings.thumbnailHeight+"px",n[r].style["object-fit"]="contain"}this.dropzone.emit("complete",e),this.dropzone.options.maxFiles&&this.dropzone.options.maxFiles--,this.dropzone.files.push(e),this.$emit("vdropzone-file-added-manually",e)},setOption:function(e,t){this.dropzone.options[e]=t},removeAllFiles:function(e){this.dropzone.removeAllFiles(e)},processQueue:function(){let e=this.dropzone;this.isS3&&!this.wasQueueAutoProcess?this.getQueuedFiles().forEach(e=>{this.getSignedAndUploadToS3(e)}):this.dropzone.processQueue(),this.dropzone.on("success",function(){e.options.autoProcessQueue=!0}),this.dropzone.on("queuecomplete",function(){e.options.autoProcessQueue=!1})},init:function(){return this.dropzone.init()},destroy:function(){return this.dropzone.destroy()},updateTotalUploadProgress:function(){return this.dropzone.updateTotalUploadProgress()},getFallbackForm:function(){return this.dropzone.getFallbackForm()},getExistingFallback:function(){return this.dropzone.getExistingFallback()},setupEventListeners:function(){return this.dropzone.setupEventListeners()},removeEventListeners:function(){return this.dropzone.removeEventListeners()},disable:function(){return this.dropzone.disable()},enable:function(){return this.dropzone.enable()},filesize:function(e){return this.dropzone.filesize(e)},accept:function(e,t){return this.dropzone.accept(e,t)},addFile:function(e){return this.dropzone.addFile(e)},removeFile:function(e){this.dropzone.removeFile(e)},getAcceptedFiles:function(){return this.dropzone.getAcceptedFiles()},getRejectedFiles:function(){return this.dropzone.getRejectedFiles()},getFilesWithStatus:function(){return this.dropzone.getFilesWithStatus()},getQueuedFiles:function(){return this.dropzone.getQueuedFiles()},getUploadingFiles:function(){return this.dropzone.getUploadingFiles()},getAddedFiles:function(){return this.dropzone.getAddedFiles()},getActiveFiles:function(){return this.dropzone.getActiveFiles()},getSignedAndUploadToS3(e){var t=i.sendFile(e,this.awss3,this.isS3OverridesServerPropagation);this.isS3OverridesServerPropagation?t.then(()=>{setTimeout(()=>this.dropzone.processFile(e))}):t.then(t=>{t.success?(e.s3ObjectLocation=t.message,setTimeout(()=>this.dropzone.processFile(e)),this.$emit("vdropzone-s3-upload-success",t.message)):void 0!==t.message?this.$emit("vdropzone-s3-upload-error",t.message):this.$emit("vdropzone-s3-upload-error","Network Error : Could not send request to AWS. (Maybe CORS error)")}),t.catch(e=>{alert(e)})},setAWSSigningURL(e){this.isS3&&(this.awss3.signingURL=e)}}},void 0,!1,void 0,void 0,void 0)});
-//# sourceMappingURL=vue2Dropzone.js.map
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(58);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../css-loader/index.js!./vue2Dropzone.min.css", function() {
-			var newContent = require("!!../../css-loader/index.js!./vue2Dropzone.min.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "/*\n * The MIT License\n * Copyright (c) 2012 Matias Meno <m@tias.me>\n */\n@-webkit-keyframes passing-through {\n  0% {\n    opacity: 0;\n    -webkit-transform: translateY(40px);\n    -moz-transform: translateY(40px);\n    -ms-transform: translateY(40px);\n    -o-transform: translateY(40px);\n    transform: translateY(40px); }\n  30%, 70% {\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n    -moz-transform: translateY(0px);\n    -ms-transform: translateY(0px);\n    -o-transform: translateY(0px);\n    transform: translateY(0px); }\n  100% {\n    opacity: 0;\n    -webkit-transform: translateY(-40px);\n    -moz-transform: translateY(-40px);\n    -ms-transform: translateY(-40px);\n    -o-transform: translateY(-40px);\n    transform: translateY(-40px); } }\n@-moz-keyframes passing-through {\n  0% {\n    opacity: 0;\n    -webkit-transform: translateY(40px);\n    -moz-transform: translateY(40px);\n    -ms-transform: translateY(40px);\n    -o-transform: translateY(40px);\n    transform: translateY(40px); }\n  30%, 70% {\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n    -moz-transform: translateY(0px);\n    -ms-transform: translateY(0px);\n    -o-transform: translateY(0px);\n    transform: translateY(0px); }\n  100% {\n    opacity: 0;\n    -webkit-transform: translateY(-40px);\n    -moz-transform: translateY(-40px);\n    -ms-transform: translateY(-40px);\n    -o-transform: translateY(-40px);\n    transform: translateY(-40px); } }\n@keyframes passing-through {\n  0% {\n    opacity: 0;\n    -webkit-transform: translateY(40px);\n    -moz-transform: translateY(40px);\n    -ms-transform: translateY(40px);\n    -o-transform: translateY(40px);\n    transform: translateY(40px); }\n  30%, 70% {\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n    -moz-transform: translateY(0px);\n    -ms-transform: translateY(0px);\n    -o-transform: translateY(0px);\n    transform: translateY(0px); }\n  100% {\n    opacity: 0;\n    -webkit-transform: translateY(-40px);\n    -moz-transform: translateY(-40px);\n    -ms-transform: translateY(-40px);\n    -o-transform: translateY(-40px);\n    transform: translateY(-40px); } }\n@-webkit-keyframes slide-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: translateY(40px);\n    -moz-transform: translateY(40px);\n    -ms-transform: translateY(40px);\n    -o-transform: translateY(40px);\n    transform: translateY(40px); }\n  30% {\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n    -moz-transform: translateY(0px);\n    -ms-transform: translateY(0px);\n    -o-transform: translateY(0px);\n    transform: translateY(0px); } }\n@-moz-keyframes slide-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: translateY(40px);\n    -moz-transform: translateY(40px);\n    -ms-transform: translateY(40px);\n    -o-transform: translateY(40px);\n    transform: translateY(40px); }\n  30% {\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n    -moz-transform: translateY(0px);\n    -ms-transform: translateY(0px);\n    -o-transform: translateY(0px);\n    transform: translateY(0px); } }\n@keyframes slide-in {\n  0% {\n    opacity: 0;\n    -webkit-transform: translateY(40px);\n    -moz-transform: translateY(40px);\n    -ms-transform: translateY(40px);\n    -o-transform: translateY(40px);\n    transform: translateY(40px); }\n  30% {\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n    -moz-transform: translateY(0px);\n    -ms-transform: translateY(0px);\n    -o-transform: translateY(0px);\n    transform: translateY(0px); } }\n@-webkit-keyframes pulse {\n  0% {\n    -webkit-transform: scale(1);\n    -moz-transform: scale(1);\n    -ms-transform: scale(1);\n    -o-transform: scale(1);\n    transform: scale(1); }\n  10% {\n    -webkit-transform: scale(1.1);\n    -moz-transform: scale(1.1);\n    -ms-transform: scale(1.1);\n    -o-transform: scale(1.1);\n    transform: scale(1.1); }\n  20% {\n    -webkit-transform: scale(1);\n    -moz-transform: scale(1);\n    -ms-transform: scale(1);\n    -o-transform: scale(1);\n    transform: scale(1); } }\n@-moz-keyframes pulse {\n  0% {\n    -webkit-transform: scale(1);\n    -moz-transform: scale(1);\n    -ms-transform: scale(1);\n    -o-transform: scale(1);\n    transform: scale(1); }\n  10% {\n    -webkit-transform: scale(1.1);\n    -moz-transform: scale(1.1);\n    -ms-transform: scale(1.1);\n    -o-transform: scale(1.1);\n    transform: scale(1.1); }\n  20% {\n    -webkit-transform: scale(1);\n    -moz-transform: scale(1);\n    -ms-transform: scale(1);\n    -o-transform: scale(1);\n    transform: scale(1); } }\n@keyframes pulse {\n  0% {\n    -webkit-transform: scale(1);\n    -moz-transform: scale(1);\n    -ms-transform: scale(1);\n    -o-transform: scale(1);\n    transform: scale(1); }\n  10% {\n    -webkit-transform: scale(1.1);\n    -moz-transform: scale(1.1);\n    -ms-transform: scale(1.1);\n    -o-transform: scale(1.1);\n    transform: scale(1.1); }\n  20% {\n    -webkit-transform: scale(1);\n    -moz-transform: scale(1);\n    -ms-transform: scale(1);\n    -o-transform: scale(1);\n    transform: scale(1); } }\n.dropzone, .dropzone * {\n  box-sizing: border-box; }\n\n.dropzone {\n  min-height: 150px;\n  border: 2px solid rgba(0, 0, 0, 0.3);\n  background: white;\n  padding: 20px 20px; }\n  .dropzone.dz-clickable {\n    cursor: pointer; }\n    .dropzone.dz-clickable * {\n      cursor: default; }\n    .dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {\n      cursor: pointer; }\n  .dropzone.dz-started .dz-message {\n    display: none; }\n  .dropzone.dz-drag-hover {\n    border-style: solid; }\n    .dropzone.dz-drag-hover .dz-message {\n      opacity: 0.5; }\n  .dropzone .dz-message {\n    text-align: center;\n    margin: 2em 0; }\n  .dropzone .dz-preview {\n    position: relative;\n    display: inline-block;\n    vertical-align: top;\n    margin: 16px;\n    min-height: 100px; }\n    .dropzone .dz-preview:hover {\n      z-index: 1000; }\n      .dropzone .dz-preview:hover .dz-details {\n        opacity: 1; }\n    .dropzone .dz-preview.dz-file-preview .dz-image {\n      border-radius: 20px;\n      background: #999;\n      background: linear-gradient(to bottom, #eee, #ddd); }\n    .dropzone .dz-preview.dz-file-preview .dz-details {\n      opacity: 1; }\n    .dropzone .dz-preview.dz-image-preview {\n      background: white; }\n      .dropzone .dz-preview.dz-image-preview .dz-details {\n        -webkit-transition: opacity 0.2s linear;\n        -moz-transition: opacity 0.2s linear;\n        -ms-transition: opacity 0.2s linear;\n        -o-transition: opacity 0.2s linear;\n        transition: opacity 0.2s linear; }\n    .dropzone .dz-preview .dz-remove {\n      font-size: 14px;\n      text-align: center;\n      display: block;\n      cursor: pointer;\n      border: none; }\n      .dropzone .dz-preview .dz-remove:hover {\n        text-decoration: underline; }\n    .dropzone .dz-preview:hover .dz-details {\n      opacity: 1; }\n    .dropzone .dz-preview .dz-details {\n      z-index: 20;\n      position: absolute;\n      top: 0;\n      left: 0;\n      opacity: 0;\n      font-size: 13px;\n      min-width: 100%;\n      max-width: 100%;\n      padding: 2em 1em;\n      text-align: center;\n      color: rgba(0, 0, 0, 0.9);\n      line-height: 150%; }\n      .dropzone .dz-preview .dz-details .dz-size {\n        margin-bottom: 1em;\n        font-size: 16px; }\n      .dropzone .dz-preview .dz-details .dz-filename {\n        white-space: nowrap; }\n        .dropzone .dz-preview .dz-details .dz-filename:hover span {\n          border: 1px solid rgba(200, 200, 200, 0.8);\n          background-color: rgba(255, 255, 255, 0.8); }\n        .dropzone .dz-preview .dz-details .dz-filename:not(:hover) {\n          overflow: hidden;\n          text-overflow: ellipsis; }\n          .dropzone .dz-preview .dz-details .dz-filename:not(:hover) span {\n            border: 1px solid transparent; }\n      .dropzone .dz-preview .dz-details .dz-filename span, .dropzone .dz-preview .dz-details .dz-size span {\n        background-color: rgba(255, 255, 255, 0.4);\n        padding: 0 0.4em;\n        border-radius: 3px; }\n    .dropzone .dz-preview:hover .dz-image img {\n      -webkit-transform: scale(1.05, 1.05);\n      -moz-transform: scale(1.05, 1.05);\n      -ms-transform: scale(1.05, 1.05);\n      -o-transform: scale(1.05, 1.05);\n      transform: scale(1.05, 1.05);\n      -webkit-filter: blur(8px);\n      filter: blur(8px); }\n    .dropzone .dz-preview .dz-image {\n      border-radius: 20px;\n      overflow: hidden;\n      width: 120px;\n      height: 120px;\n      position: relative;\n      display: block;\n      z-index: 10; }\n      .dropzone .dz-preview .dz-image img {\n        display: block; }\n    .dropzone .dz-preview.dz-success .dz-success-mark {\n      -webkit-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);\n      -moz-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);\n      -ms-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);\n      -o-animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);\n      animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1); }\n    .dropzone .dz-preview.dz-error .dz-error-mark {\n      opacity: 1;\n      -webkit-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);\n      -moz-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);\n      -ms-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);\n      -o-animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1);\n      animation: slide-in 3s cubic-bezier(0.77, 0, 0.175, 1); }\n    .dropzone .dz-preview .dz-success-mark, .dropzone .dz-preview .dz-error-mark {\n      pointer-events: none;\n      opacity: 0;\n      z-index: 500;\n      position: absolute;\n      display: block;\n      top: 50%;\n      left: 50%;\n      margin-left: -27px;\n      margin-top: -27px; }\n      .dropzone .dz-preview .dz-success-mark svg, .dropzone .dz-preview .dz-error-mark svg {\n        display: block;\n        width: 54px;\n        height: 54px; }\n    .dropzone .dz-preview.dz-processing .dz-progress {\n      opacity: 1;\n      -webkit-transition: all 0.2s linear;\n      -moz-transition: all 0.2s linear;\n      -ms-transition: all 0.2s linear;\n      -o-transition: all 0.2s linear;\n      transition: all 0.2s linear; }\n    .dropzone .dz-preview.dz-complete .dz-progress {\n      opacity: 0;\n      -webkit-transition: opacity 0.4s ease-in;\n      -moz-transition: opacity 0.4s ease-in;\n      -ms-transition: opacity 0.4s ease-in;\n      -o-transition: opacity 0.4s ease-in;\n      transition: opacity 0.4s ease-in; }\n    .dropzone .dz-preview:not(.dz-processing) .dz-progress {\n      -webkit-animation: pulse 6s ease infinite;\n      -moz-animation: pulse 6s ease infinite;\n      -ms-animation: pulse 6s ease infinite;\n      -o-animation: pulse 6s ease infinite;\n      animation: pulse 6s ease infinite; }\n    .dropzone .dz-preview .dz-progress {\n      opacity: 1;\n      z-index: 1000;\n      pointer-events: none;\n      position: absolute;\n      height: 16px;\n      left: 50%;\n      top: 50%;\n      margin-top: -8px;\n      width: 80px;\n      margin-left: -40px;\n      background: rgba(255, 255, 255, 0.9);\n      -webkit-transform: scale(1);\n      border-radius: 8px;\n      overflow: hidden; }\n      .dropzone .dz-preview .dz-progress .dz-upload {\n        background: #333;\n        background: linear-gradient(to bottom, #666, #444);\n        position: absolute;\n        top: 0;\n        left: 0;\n        bottom: 0;\n        width: 0;\n        -webkit-transition: width 300ms ease-in-out;\n        -moz-transition: width 300ms ease-in-out;\n        -ms-transition: width 300ms ease-in-out;\n        -o-transition: width 300ms ease-in-out;\n        transition: width 300ms ease-in-out; }\n    .dropzone .dz-preview.dz-error .dz-error-message {\n      display: block; }\n    .dropzone .dz-preview.dz-error:hover .dz-error-message {\n      opacity: 1;\n      pointer-events: auto; }\n    .dropzone .dz-preview .dz-error-message {\n      pointer-events: none;\n      z-index: 1000;\n      position: absolute;\n      display: block;\n      display: none;\n      opacity: 0;\n      -webkit-transition: opacity 0.3s ease;\n      -moz-transition: opacity 0.3s ease;\n      -ms-transition: opacity 0.3s ease;\n      -o-transition: opacity 0.3s ease;\n      transition: opacity 0.3s ease;\n      border-radius: 8px;\n      font-size: 13px;\n      top: 130px;\n      left: -10px;\n      width: 140px;\n      background: #be2626;\n      background: linear-gradient(to bottom, #be2626, #a92222);\n      padding: 0.5em 1.2em;\n      color: white; }\n      .dropzone .dz-preview .dz-error-message:after {\n        content: '';\n        position: absolute;\n        top: -6px;\n        left: 64px;\n        width: 0;\n        height: 0;\n        border-left: 6px solid transparent;\n        border-right: 6px solid transparent;\n        border-bottom: 6px solid #be2626; }\n.vue-dropzone{border:2px solid #e5e5e5;font-family:Arial,sans-serif;letter-spacing:.2px;color:#777;transition:.2s linear}.vue-dropzone:hover{background-color:#f6f6f6}.vue-dropzone>i{color:#ccc}.vue-dropzone>.dz-preview .dz-image{border-radius:0;width:100%;height:100%}.vue-dropzone>.dz-preview .dz-image img:not([src]){width:200px;height:200px}.vue-dropzone>.dz-preview .dz-image:hover img{transform:none;-webkit-filter:none}.vue-dropzone>.dz-preview .dz-details{bottom:0;top:0;color:#fff;background-color:rgba(33,150,243,.8);transition:opacity .2s linear;text-align:left}.vue-dropzone>.dz-preview .dz-details .dz-filename{overflow:hidden}.vue-dropzone>.dz-preview .dz-details .dz-filename span,.vue-dropzone>.dz-preview .dz-details .dz-size span{background-color:transparent}.vue-dropzone>.dz-preview .dz-details .dz-filename:not(:hover) span{border:none}.vue-dropzone>.dz-preview .dz-details .dz-filename:hover span{background-color:transparent;border:none}.vue-dropzone>.dz-preview .dz-progress .dz-upload{background:#ccc}.vue-dropzone>.dz-preview .dz-remove{position:absolute;z-index:30;color:#fff;margin-left:15px;padding:10px;top:inherit;bottom:15px;border:2px #fff solid;text-decoration:none;text-transform:uppercase;font-size:.8rem;font-weight:800;letter-spacing:1.1px;opacity:0}.vue-dropzone>.dz-preview:hover .dz-remove{opacity:1}.vue-dropzone>.dz-preview .dz-error-mark,.vue-dropzone>.dz-preview .dz-success-mark{margin-left:auto;margin-top:auto;width:100%;top:35%;left:0}.vue-dropzone>.dz-preview .dz-error-mark svg,.vue-dropzone>.dz-preview .dz-success-mark svg{margin-left:auto;margin-right:auto}.vue-dropzone>.dz-preview .dz-error-message{margin-left:auto;margin-right:auto;left:0;width:100%;text-align:center}.vue-dropzone>.dz-preview .dz-error-message:after{display:none}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export VueCroppieComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_croppie__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_croppie__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_croppie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_croppie__);
 
 
@@ -65484,7 +65441,7 @@ if (window && window.Vue) {
 
 
 /***/ }),
-/* 60 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*************************
@@ -67131,13 +67088,13 @@ if (window && window.Vue) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).setImmediate))
 
 /***/ }),
-/* 61 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(59);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -67162,7 +67119,7 @@ if(false) {
 }
 
 /***/ }),
-/* 62 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -67176,7 +67133,7 @@ exports.push([module.i, ".croppie-container {\n    width: 100%;\n    height: 100
 
 
 /***/ }),
-/* 63 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {(function (global, factory) {
@@ -71979,7 +71936,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 64 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports =
@@ -72567,14 +72524,1899 @@ var LaravelVuePagination_component = normalizeComponent(
 //# sourceMappingURL=laravel-vue-pagination.common.js.map
 
 /***/ }),
-/* 65 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define("VueStarRating",[],e):"object"==typeof exports?exports.VueStarRating=e():t.VueStarRating=e()}(this,function(){return function(t){function e(n){if(r[n])return r[n].exports;var i=r[n]={i:n,l:!1,exports:{}};return t[n].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var r={};return e.m=t,e.c=r,e.i=function(t){return t},e.d=function(t,r,n){e.o(t,r)||Object.defineProperty(t,r,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var r=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(r,"a",r),r},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="/dist/",e(e.s=4)}([function(t,e){function r(t,e){var r=t[1]||"",i=t[3];if(!i)return r;if(e&&"function"==typeof btoa){var o=n(i);return[r].concat(i.sources.map(function(t){return"/*# sourceURL="+i.sourceRoot+t+" */"})).concat([o]).join("\n")}return[r].join("\n")}function n(t){return"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(t))))+" */"}t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var n=r(e,t);return e[2]?"@media "+e[2]+"{"+n+"}":n}).join("")},e.i=function(t,r){"string"==typeof t&&(t=[[null,t,""]]);for(var n={},i=0;i<this.length;i++){var o=this[i][0];"number"==typeof o&&(n[o]=!0)}for(i=0;i<t.length;i++){var a=t[i];"number"==typeof a[0]&&n[a[0]]||(r&&!a[2]?a[2]=r:r&&(a[2]="("+a[2]+") and ("+r+")"),e.push(a))}},e}},function(t,e){t.exports=function(t,e,r,n,i){var o,a=t=t||{},s=typeof t.default;"object"!==s&&"function"!==s||(o=t,a=t.default);var u="function"==typeof a?a.options:a;e&&(u.render=e.render,u.staticRenderFns=e.staticRenderFns),n&&(u._scopeId=n);var d;if(i?(d=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),r&&r.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},u._ssrRegister=d):r&&(d=r),d){var l=u.functional,c=l?u.render:u.beforeCreate;l?u.render=function(t,e){return d.call(e),c(t,e)}:u.beforeCreate=c?[].concat(c,d):[d]}return{esModule:o,exports:a,options:u}}},function(t,e,r){function n(t){for(var e=0;e<t.length;e++){var r=t[e],n=l[r.id];if(n){n.refs++;for(var i=0;i<n.parts.length;i++)n.parts[i](r.parts[i]);for(;i<r.parts.length;i++)n.parts.push(o(r.parts[i]));n.parts.length>r.parts.length&&(n.parts.length=r.parts.length)}else{for(var a=[],i=0;i<r.parts.length;i++)a.push(o(r.parts[i]));l[r.id]={id:r.id,refs:1,parts:a}}}}function i(){var t=document.createElement("style");return t.type="text/css",c.appendChild(t),t}function o(t){var e,r,n=document.querySelector('style[data-vue-ssr-id~="'+t.id+'"]');if(n){if(h)return g;n.parentNode.removeChild(n)}if(v){var o=p++;n=f||(f=i()),e=a.bind(null,n,o,!1),r=a.bind(null,n,o,!0)}else n=i(),e=s.bind(null,n),r=function(){n.parentNode.removeChild(n)};return e(t),function(n){if(n){if(n.css===t.css&&n.media===t.media&&n.sourceMap===t.sourceMap)return;e(t=n)}else r()}}function a(t,e,r,n){var i=r?"":n.css;if(t.styleSheet)t.styleSheet.cssText=m(e,i);else{var o=document.createTextNode(i),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(o,a[e]):t.appendChild(o)}}function s(t,e){var r=e.css,n=e.media,i=e.sourceMap;if(n&&t.setAttribute("media",n),i&&(r+="\n/*# sourceURL="+i.sources[0]+" */",r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(i))))+" */"),t.styleSheet)t.styleSheet.cssText=r;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(r))}}var u="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!u)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var d=r(14),l={},c=u&&(document.head||document.getElementsByTagName("head")[0]),f=null,p=0,h=!1,g=function(){},v="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());t.exports=function(t,e,r){h=r;var i=d(t,e);return n(i),function(e){for(var r=[],o=0;o<i.length;o++){var a=i[o],s=l[a.id];s.refs--,r.push(s)}e?(i=d(t,e),n(i)):i=[];for(var o=0;o<r.length;o++){var s=r[o];if(0===s.refs){for(var u=0;u<s.parts.length;u++)s.parts[u]();delete l[s.id]}}}};var m=function(){var t=[];return function(e,r){return t[e]=r,t.filter(Boolean).join("\n")}}()},function(t,e,r){function n(t){r(13)}var i=r(1)(r(5),r(11),n,"data-v-34cbeed1",null);t.exports=i.exports},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=r(3),i=function(t){return t&&t.__esModule?t:{default:t}}(n);e.default=i.default},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=r(9),i=function(t){return t&&t.__esModule?t:{default:t}}(n);e.default={components:{star:i.default},model:{prop:"rating",event:"rating-selected"},props:{increment:{type:Number,default:1},rating:{type:Number,default:0},roundStartRating:{type:Boolean,default:!0},activeColor:{type:String,default:"#ffd055"},inactiveColor:{type:String,default:"#d8d8d8"},maxRating:{type:Number,default:5},starPoints:{type:Array,default:function(){return[]}},starSize:{type:Number,default:50},showRating:{type:Boolean,default:!0},readOnly:{type:Boolean,default:!1},textClass:{type:String,default:""},inline:{type:Boolean,default:!1},borderColor:{type:String,default:"#999"},borderWidth:{type:Number,default:0},roundedCorners:{type:Boolean,default:!1},padding:{type:Number,default:0},rtl:{type:Boolean,default:!1},fixedPoints:{type:Number,default:null},glow:{type:Number,default:0},glowColor:{type:String,default:"#fff"}},created:function(){this.step=100*this.increment,this.currentRating=this.rating,this.selectedRating=this.currentRating,this.createStars(this.roundStartRating)},methods:{setRating:function(t,e){if(!this.readOnly){var r=this.rtl?(100-t.position)/100:t.position/100;this.currentRating=(t.id+r-1).toFixed(2),this.currentRating=this.currentRating>this.maxRating?this.maxRating:this.currentRating,this.createStars(),e?(this.selectedRating=this.currentRating,this.$emit("rating-selected",this.selectedRating),this.ratingSelected=!0):this.$emit("current-rating",this.currentRating)}},resetRating:function(){this.readOnly||(this.currentRating=this.selectedRating,this.createStars(this.shouldRound))},createStars:function(){(!(arguments.length>0&&void 0!==arguments[0])||arguments[0])&&this.round();for(var t=0;t<this.maxRating;t++){var e=0;t<this.currentRating&&(e=this.currentRating-t>1?100:100*(this.currentRating-t)),this.$set(this.fillLevel,t,Math.round(e))}},round:function(){var t=1/this.increment;this.currentRating=Math.min(this.maxRating,Math.ceil(this.currentRating*t)/t)}},computed:{formattedRating:function(){return null===this.fixedPoints?this.currentRating:this.currentRating.toFixed(this.fixedPoints)},shouldRound:function(){return this.ratingSelected||this.roundStartRating},margin:function(){return this.padding+this.borderWidth}},watch:{rating:function(t){this.currentRating=t,this.selectedRating=t,this.createStars(this.shouldRound)}},data:function(){return{step:0,fillLevel:[],currentRating:0,selectedRating:0,ratingSelected:!1}}}},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={props:{fill:{type:Number,default:0},points:{type:Array,default:function(){return[]}},size:{type:Number,default:50},starId:{type:Number,required:!0},activeColor:{type:String,required:!0},inactiveColor:{type:String,required:!0},borderColor:{type:String,default:"#000"},borderWidth:{type:Number,default:0},roundedCorners:{type:Boolean,default:!1},rtl:{type:Boolean,default:!1},glow:{type:Number,default:0},glowColor:{type:String,required:!1}},created:function(){this.starPoints=this.points.length?this.points:this.starPoints,this.calculatePoints(),this.grad=this.getRandomId(),this.glowId=this.getRandomId()},computed:{starPointsToString:function(){return this.starPoints.join(",")},getGradId:function(){return"url(#"+this.grad+")"},getSize:function(){var t=this.roundedCorners&&this.borderWidth<=0?parseInt(this.size)-parseInt(this.border):this.size;return parseInt(t)+parseInt(this.border)},getFill:function(){return this.rtl?100-this.fill+"%":this.fill+"%"},border:function(){return this.roundedCorners&&this.borderWidth<=0?6:this.borderWidth},getBorderColor:function(){return this.roundedCorners&&this.borderWidth<=0?this.fill<=0?this.inactiveColor:this.activeColor:this.borderColor},maxSize:function(){return this.starPoints.reduce(function(t,e){return Math.max(t,e)})},viewBox:function(){return"0 0 "+this.maxSize+" "+this.maxSize}},methods:{mouseMoving:function(t){this.$emit("star-mouse-move",{event:t,position:this.getPosition(t),id:this.starId})},getPosition:function(t){var e=.92*this.size,r=this.rtl?Math.min(t.offsetX,45):Math.max(t.offsetX,1),n=Math.round(100/e*r);return Math.min(n,100)},selected:function(t){this.$emit("star-selected",{id:this.starId,position:this.getPosition(t)})},getRandomId:function(){return Math.random().toString(36).substring(7)},calculatePoints:function(){var t=this;this.starPoints=this.starPoints.map(function(e){return t.size/t.maxSize*e+1.5*t.border})}},data:function(){return{starPoints:[19.8,2.2,6.6,43.56,39.6,17.16,0,17.16,33,43.56],grad:"",glowId:""}}}},function(t,e,r){e=t.exports=r(0)(void 0),e.push([t.i,".vue-star-rating-star[data-v-21f5376e]{overflow:visible!important}",""])},function(t,e,r){e=t.exports=r(0)(void 0),e.push([t.i,".vue-star-rating-star[data-v-34cbeed1]{display:inline-block}.vue-star-rating-pointer[data-v-34cbeed1]{cursor:pointer}.vue-star-rating[data-v-34cbeed1]{display:flex;align-items:center}.vue-star-rating-inline[data-v-34cbeed1]{display:inline-flex}.vue-star-rating-rating-text[data-v-34cbeed1]{margin-top:7px;margin-left:7px}.vue-star-rating-rtl[data-v-34cbeed1]{direction:rtl}.vue-star-rating-rtl .vue-star-rating-rating-text[data-v-34cbeed1]{margin-right:10px;direction:rtl}",""])},function(t,e,r){function n(t){r(12)}var i=r(1)(r(6),r(10),n,"data-v-21f5376e",null);t.exports=i.exports},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("svg",{staticClass:"vue-star-rating-star",attrs:{height:t.getSize,width:t.getSize,viewBox:t.viewBox},on:{mousemove:t.mouseMoving,click:t.selected}},[r("linearGradient",{attrs:{id:t.grad,x1:"0",x2:"100%",y1:"0",y2:"0"}},[r("stop",{attrs:{offset:t.getFill,"stop-color":t.rtl?t.inactiveColor:t.activeColor}}),t._v(" "),r("stop",{attrs:{offset:t.getFill,"stop-color":t.rtl?t.activeColor:t.inactiveColor}})],1),t._v(" "),r("filter",{attrs:{id:t.glowId,height:"130%",width:"130%",filterUnits:"userSpaceOnUse"}},[r("feGaussianBlur",{attrs:{stdDeviation:t.glow,result:"coloredBlur"}}),t._v(" "),r("feMerge",[r("feMergeNode",{attrs:{in:"coloredBlur"}}),t._v(" "),r("feMergeNode",{attrs:{in:"SourceGraphic"}})],1)],1),t._v(" "),r("polygon",{directives:[{name:"show",rawName:"v-show",value:t.fill>1,expression:"fill > 1"}],attrs:{points:t.starPointsToString,fill:t.getGradId,stroke:t.glowColor,filter:"url(#"+this.glowId+")"}}),t._v(" "),r("polygon",{attrs:{points:t.starPointsToString,fill:t.getGradId,stroke:t.getBorderColor,"stroke-width":t.border,"stroke-linejoin":t.roundedCorners?"round":"miter"}}),t._v(" "),r("polygon",{attrs:{points:t.starPointsToString,fill:t.getGradId}})],1)},staticRenderFns:[]}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("div",{class:["vue-star-rating",{"vue-star-rating-rtl":t.rtl},{"vue-star-rating-inline":t.inline}]},[r("div",{staticClass:"vue-star-rating",on:{mouseleave:t.resetRating}},[t._l(t.maxRating,function(e){return r("span",{key:e,class:[{"vue-star-rating-pointer":!t.readOnly},"vue-star-rating-star"],style:{"margin-right":t.margin+"px"}},[r("star",{attrs:{fill:t.fillLevel[e-1],size:t.starSize,points:t.starPoints,"star-id":e,step:t.step,"active-color":t.activeColor,"inactive-color":t.inactiveColor,"border-color":t.borderColor,"border-width":t.borderWidth,"rounded-corners":t.roundedCorners,rtl:t.rtl,glow:t.glow,"glow-color":t.glowColor},on:{"star-selected":function(e){t.setRating(e,!0)},"star-mouse-move":t.setRating}})],1)}),t._v(" "),t.showRating?r("span",{class:["vue-star-rating-rating-text",t.textClass]},[t._v(" "+t._s(t.formattedRating))]):t._e()],2)])},staticRenderFns:[]}},function(t,e,r){var n=r(7);"string"==typeof n&&(n=[[t.i,n,""]]),n.locals&&(t.exports=n.locals);r(2)("0ab8a16d",n,!0)},function(t,e,r){var n=r(8);"string"==typeof n&&(n=[[t.i,n,""]]),n.locals&&(t.exports=n.locals);r(2)("2e648ff1",n,!0)},function(t,e){t.exports=function(t,e){for(var r=[],n={},i=0;i<e.length;i++){var o=e[i],a=o[0],s=o[1],u=o[2],d=o[3],l={id:t+":"+i,css:s,media:u,sourceMap:d};n[a]?n[a].parts.push(l):r.push(n[a]={id:a,parts:[l]})}return r}}])});
 //# sourceMappingURL=star-rating.min.js.map
 
 /***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, global['vue-chat-scroll'] = factory());
+}(this, (function () { 'use strict';
+
+  /**
+  * @name VueJS vChatScroll (vue-chat-scroll)
+  * @description Monitors an element and scrolls to the bottom if a new child is added
+  * @author Theodore Messinezis <theo@theomessin.com>
+  * @file v-chat-scroll  directive definition
+  */
+  var scrollToBottom = function scrollToBottom(el, smooth) {
+    if (typeof el.scroll === "function") {
+      el.scroll({
+        top: el.scrollHeight,
+        behavior: smooth ? 'smooth' : 'instant'
+      });
+    } else {
+      el.scrollTop = el.scrollHeight;
+    }
+  };
+
+  var vChatScroll = {
+    bind: function bind(el, binding) {
+      var scrolled = false;
+      el.addEventListener('scroll', function (e) {
+        scrolled = el.scrollTop + el.clientHeight + 1 < el.scrollHeight;
+
+        if (scrolled && el.scrollTop === 0) {
+          el.dispatchEvent(new Event("v-chat-scroll-top-reached"));
+        }
+      });
+      new MutationObserver(function (e) {
+        var config = binding.value || {};
+        if (config.enabled === false) return;
+        var pause = config.always === false && scrolled;
+        var addedNodes = e[e.length - 1].addedNodes.length;
+        var removedNodes = e[e.length - 1].removedNodes.length;
+
+        if (config.scrollonremoved) {
+          if (pause || addedNodes != 1 && removedNodes != 1) return;
+        } else {
+          if (pause || addedNodes != 1) return;
+        }
+
+        var smooth = config.smooth;
+        var loadingRemoved = !addedNodes && removedNodes === 1;
+
+        if (loadingRemoved && config.scrollonremoved && 'smoothonremoved' in config) {
+          smooth = config.smoothonremoved;
+        }
+
+        scrollToBottom(el, smooth);
+      }).observe(el, {
+        childList: true,
+        subtree: true
+      });
+    },
+    inserted: function inserted(el, binding) {
+      var config = binding.value || {};
+      scrollToBottom(el, config.notSmoothOnInit ? false : config.smooth);
+    }
+  };
+
+  /**
+  * @name VueJS vChatScroll (vue-chat-scroll)
+  * @description Monitors an element and scrolls to the bottom if a new child is added
+  * @author Theodore Messinezis <theo@theomessin.com>
+  * @file vue-chat-scroll plugin definition
+  */
+  var VueChatScroll = {
+    install: function install(Vue, options) {
+      Vue.directive('chat-scroll', vChatScroll);
+    }
+  };
+
+  if (typeof window !== 'undefined' && window.Vue) {
+    window.Vue.use(VueChatScroll);
+  }
+
+  return VueChatScroll;
+
+})));
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/*!
+ * EmojioneArea v3.4.1
+ * https://github.com/mervick/emojionearea
+ * Copyright Andrey Izman and other contributors
+ * Released under the MIT license
+ * Date: 2018-04-27T09:03Z
+ */
+window = ( typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {} );
+document = window.document || {};
+
+; ( function ( factory, global ) {
+    if ( true ) {
+
+        // CommonJS
+        factory( __webpack_require__( 5 ) );
+    } else if ( typeof define === "function" && define.amd ) {
+
+        // AMD
+        define( [ "jquery" ], factory );
+    } else {
+
+        // Normal script tag
+        factory( global.jQuery );
+    }
+}( function ( $ ) {
+    "use strict";
+
+    var unique = 0;
+    var eventStorage = {};
+    var possibleEvents = {};
+    var emojione = window.emojione;
+    var readyCallbacks = [];
+    function emojioneReady (fn) {
+        if (emojione) {
+            fn();
+        } else {
+            readyCallbacks.push(fn);
+        }
+    };
+    var blankImg = 'data:image/gif;base64,R0lGODlhAQABAJH/AP///wAAAMDAwAAAACH5BAEAAAIALAAAAAABAAEAAAICVAEAOw==';
+    var slice = [].slice;
+    var css_class = "emojionearea";
+    var emojioneSupportMode = 0;
+    var invisibleChar = '&#8203;';
+    function trigger(self, event, args) {
+        var result = true, j = 1;
+        if (event) {
+            event = event.toLowerCase();
+            do {
+                var _event = j==1 ? '@' + event : event;
+                if (eventStorage[self.id][_event] && eventStorage[self.id][_event].length) {
+                    $.each(eventStorage[self.id][_event], function (i, fn) {
+                        return result = fn.apply(self, args|| []) !== false;
+                    });
+                }
+            } while (result && !!j--);
+        }
+        return result;
+    }
+    function attach(self, element, events, target) {
+        target = target || function (event, callerEvent) { return $(callerEvent.currentTarget) };
+        $.each(events, function(event, link) {
+            event = $.isArray(events) ? link : event;
+            (possibleEvents[self.id][link] || (possibleEvents[self.id][link] = []))
+                .push([element, event, target]);
+        });
+    }
+    function getTemplate(template, unicode, shortname) {
+        var imageType = emojione.imageType, imagePath;
+        if (imageType=='svg'){
+            imagePath = emojione.imagePathSVG;
+        } else {
+            imagePath = emojione.imagePathPNG;
+        }
+        var friendlyName = '';
+        if (shortname) {
+            friendlyName = shortname.substr(1, shortname.length - 2).replace(/_/g, ' ').replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        }
+        var fname = '';
+        if (unicode.uc_base && emojioneSupportMode > 4) {
+            fname = unicode.uc_base;
+            unicode = unicode.uc_output.toUpperCase();
+        } else {
+            fname = unicode;
+        }
+        template = template.replace('{name}', shortname || '')
+            .replace('{friendlyName}', friendlyName)
+            .replace('{img}', imagePath + (emojioneSupportMode < 2 ? fname.toUpperCase() : fname) + '.' + imageType)
+            .replace('{uni}', unicode);
+
+        if(shortname) {
+            template = template.replace('{alt}', emojione.shortnameToUnicode(shortname));
+        } else {
+            template = template.replace('{alt}', emojione.convert(unicode));
+        }
+
+        return template;
+    };
+    function shortnameTo(str, template, clear) {
+        return str.replace(/:?\+?[\w_\-]+:?/g, function(shortname) {
+            shortname = ":" + shortname.replace(/:$/,'').replace(/^:/,'') + ":";
+            var unicode = emojione.emojioneList[shortname];
+            if (unicode) {
+                if (emojioneSupportMode > 4) {
+                    return getTemplate(template, unicode, shortname);
+                } else {
+                    if (emojioneSupportMode > 3) unicode = unicode.unicode;
+                    return getTemplate(template, unicode[unicode.length-1], shortname);
+                }
+            }
+            return clear ? '' : shortname;
+        });
+    };
+    function pasteHtmlAtCaret(html) {
+        var sel, range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                range.deleteContents();
+                var el = document.createElement("div");
+                el.innerHTML = html;
+                var frag = document.createDocumentFragment(), node, lastNode;
+                while ( (node = el.firstChild) ) {
+                    lastNode = frag.appendChild(node);
+                }
+                range.insertNode(frag);
+                if (lastNode) {
+                    range = range.cloneRange();
+                    range.setStartAfter(lastNode);
+                    range.collapse(true);
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+            }
+        } else if (document.selection && document.selection.type != "Control") {
+            document.selection.createRange().pasteHTML(html);
+        }
+    }
+    function getEmojioneVersion() {
+        return window.emojioneVersion || '3.1.2';
+    };
+    function isObject(variable) {
+        return typeof variable === 'object';
+    };
+    function detectVersion(emojione) {
+        var version;
+        if (emojione.cacheBustParam) {
+            version = emojione.cacheBustParam;
+            if (!isObject(emojione['jsEscapeMap'])) return '1.5.2';
+            if (version === "?v=1.2.4") return '2.0.0';
+            if (version === "?v=2.0.1") return '2.1.0'; // v2.0.1 || v2.1.0
+            if (version === "?v=2.1.1") return '2.1.1';
+            if (version === "?v=2.1.2") return '2.1.2';
+            if (version === "?v=2.1.3") return '2.1.3';
+            if (version === "?v=2.1.4") return '2.1.4';
+            if (version === "?v=2.2.7") return '2.2.7';
+            return '2.2.7';
+        } else {
+            return emojione.emojiVersion;
+        }
+    };
+    function getSupportMode(version) {
+        switch (version) {
+            case '1.5.2': return 0;
+            case '2.0.0': return 1;
+            case '2.1.0':
+            case '2.1.1': return 2;
+            case '2.1.2': return 3;
+            case '2.1.3':
+            case '2.1.4':
+            case '2.2.7': return 4;
+            case '3.0.1':
+            case '3.0.2':
+            case '3.0.3':
+            case '3.0': return 5;
+            case '3.1.0':
+            case '3.1.1':
+            case '3.1.2':
+            case '3.1':
+            default: return 6;
+        }
+    };
+    function getDefaultOptions () {
+        if ($.fn.emojioneArea && $.fn.emojioneArea.defaults) {
+            return $.fn.emojioneArea.defaults;
+        }
+
+        var defaultOptions = {
+            attributes: {
+                dir               : "ltr",
+                spellcheck        : false,
+                autocomplete      : "off",
+                autocorrect       : "off",
+                autocapitalize    : "off",
+            },
+            search            : true,
+            placeholder       : null,
+            emojiPlaceholder  : ":smiley:",
+            searchPlaceholder : "SEARCH",
+            container         : null,
+            hideSource        : true,
+            shortnames        : true,
+            sprite            : true,
+            pickerPosition    : "top", // top | bottom | right
+            filtersPosition   : "top", // top | bottom
+            searchPosition    : "top", // top | bottom
+            hidePickerOnBlur  : true,
+            buttonTitle       : "Use the TAB key to insert emoji faster",
+            tones             : true,
+            tonesStyle        : "bullet", // bullet | radio | square | checkbox
+            inline            : null, // null - auto
+            saveEmojisAs      : "unicode", // unicode | shortname | image
+            shortcuts         : true,
+            autocomplete      : true,
+            autocompleteTones : false,
+            standalone        : false,
+            useInternalCDN    : true, // Use the self loading mechanism
+            imageType         : "png", // Default image type used by internal CDN
+            recentEmojis      : true,
+            textcomplete: {
+                maxCount      : 15,
+                placement     : null // null - default | top | absleft | absright
+            }
+        };
+
+        var supportMode = !emojione ? getSupportMode(getEmojioneVersion()) : getSupportMode(detectVersion(emojione));
+
+        if (supportMode > 4) {
+            defaultOptions.filters = {
+                tones: {
+                    title: "Diversity",
+                    emoji: "open_hands raised_hands palms_up_together clap pray thumbsup thumbsdown punch fist left_facing_fist right_facing_fist " +
+                    "fingers_crossed v metal love_you_gesture ok_hand point_left point_right point_up_2 point_down point_up raised_hand " +
+                    "raised_back_of_hand hand_splayed vulcan wave call_me muscle middle_finger writing_hand selfie nail_care ear " +
+                    "nose baby boy girl man woman blond-haired_woman blond-haired_man older_man older_woman " +
+                    "man_with_chinese_cap woman_wearing_turban man_wearing_turban woman_police_officer " +
+                    "man_police_officer woman_construction_worker man_construction_worker " +
+                    "woman_guard man_guard woman_detective man_detective woman_health_worker man_health_worker " +
+                    "woman_farmer man_farmer woman_cook man_cook woman_student man_student woman_singer man_singer woman_teacher " +
+                    "man_teacher woman_factory_worker man_factory_worker woman_technologist man_technologist woman_office_worker " +
+                    "man_office_worker woman_mechanic man_mechanic woman_scientist man_scientist woman_artist man_artist " +
+                    "woman_firefighter man_firefighter woman_pilot man_pilot woman_astronaut man_astronaut woman_judge " +
+                    "man_judge mrs_claus santa princess prince bride_with_veil man_in_tuxedo angel pregnant_woman " +
+                    "breast_feeding woman_bowing man_bowing man_tipping_hand woman_tipping_hand " +
+                    "man_gesturing_no woman_gesturing_no man_gesturing_ok woman_gesturing_ok " +
+                    "man_raising_hand woman_raising_hand woman_facepalming man_facepalming " +
+                    "woman_shrugging man_shrugging man_pouting woman_pouting " +
+                    "man_frowning woman_frowning man_getting_haircut woman_getting_haircut " +
+                    "man_getting_face_massage woman_getting_face_massage man_in_business_suit_levitating dancer man_dancing " +
+                    "woman_walking man_walking woman_running man_running adult child older_adult " +
+                    "bearded_person woman_with_headscarf woman_mage man_mage " +
+                    "woman_fairy man_fairy woman_vampire man_vampire mermaid merman woman_elf man_elf " +
+                    "snowboarder woman_lifting_weights man_lifting_weights woman_cartwheeling " +
+                    "man_cartwheeling woman_bouncing_ball man_bouncing_ball " +
+                    "woman_playing_handball man_playing_handball woman_golfing man_golfing " +
+                    "woman_surfing man_surfing woman_swimming man_swimming woman_playing_water_polo " +
+                    "man_playing_water_polo woman_rowing_boat man_rowing_boat " +
+                    "horse_racing woman_biking man_biking woman_mountain_biking " +
+                    "man_mountain_biking woman_juggling man_juggling " +
+                    "woman_in_steamy_room man_in_steamy_room woman_climbing " +
+                    "man_climbing woman_in_lotus_position man_in_lotus_position bath person_in_bed"
+                },
+
+                recent: {
+                    icon: "clock3",
+                    title: "Recent",
+                    emoji: ""
+                },
+
+                smileys_people: {
+                    icon: "yum",
+                    title: "Smileys & People",
+                    emoji: "grinning smiley smile grin laughing sweat_smile joy rofl relaxed blush innocent slight_smile upside_down " +
+                    "wink relieved crazy_face star_struck heart_eyes kissing_heart kissing kissing_smiling_eyes kissing_closed_eyes yum " +
+                    "stuck_out_tongue_winking_eye stuck_out_tongue_closed_eyes stuck_out_tongue money_mouth hugging nerd sunglasses " +
+                    "cowboy smirk unamused disappointed pensive worried face_with_raised_eyebrow face_with_monocle confused slight_frown " +
+                    "frowning2 persevere confounded tired_face weary triumph angry rage face_with_symbols_over_mouth " +
+                    "no_mouth neutral_face expressionless hushed frowning anguished open_mouth astonished dizzy_face exploding_head flushed scream " +
+                    "fearful cold_sweat cry disappointed_relieved drooling_face sob sweat sleepy sleeping rolling_eyes thinking " +
+                    "shushing_face face_with_hand_over_mouth lying_face grimacing zipper_mouth face_vomiting nauseated_face sneezing_face mask thermometer_face " +
+                    "head_bandage smiling_imp imp japanese_ogre japanese_goblin poop ghost skull skull_crossbones alien space_invader " +
+                    "robot jack_o_lantern clown smiley_cat smile_cat joy_cat heart_eyes_cat smirk_cat kissing_cat scream_cat crying_cat_face " +
+                    "pouting_cat open_hands raised_hands palms_up_together clap pray handshake thumbsup thumbsdown punch fist left_facing_fist " +
+                    "right_facing_fist fingers_crossed v metal love_you_gesture ok_hand point_left point_right point_up_2 point_down point_up " +
+                    "raised_hand raised_back_of_hand hand_splayed vulcan wave call_me muscle middle_finger writing_hand selfie " +
+                    "nail_care ring lipstick kiss lips tongue ear nose footprints eye eyes speaking_head bust_in_silhouette " +
+                    "busts_in_silhouette baby boy girl man woman blond-haired_woman blond_haired_man older_man older_woman " +
+                    "man_with_chinese_cap woman_wearing_turban man_wearing_turban woman_police_officer police_officer " +
+                    "woman_construction_worker construction_worker woman_guard guard woman_detective detective woman_health_worker " +
+                    "man_health_worker woman_farmer man_farmer woman_cook man_cook woman_student man_student woman_singer man_singer " +
+                    "woman_teacher man_teacher woman_factory_worker man_factory_worker woman_technologist man_technologist " +
+                    "woman_office_worker man_office_worker woman_mechanic man_mechanic woman_scientist man_scientist woman_artist " +
+                    "man_artist woman_firefighter man_firefighter woman_pilot man_pilot woman_astronaut man_astronaut woman_judge " +
+                    "man_judge mrs_claus santa princess prince bride_with_veil man_in_tuxedo angel pregnant_woman breast_feeding woman_bowing " +
+                    "man_bowing woman_tipping_hand man_tipping_hand woman_gesturing_no man_gesturing_no woman_gesturing_ok " +
+                    "man_gesturing_ok woman_raising_hand man_raising_hand woman_facepalming man_facepalming woman_shrugging " +
+                    "man_shrugging woman_pouting man_pouting woman_frowning man_frowning woman_getting_haircut man_getting_haircut " +
+                    "woman_getting_face_massage man_getting_face_massage man_in_business_suit_levitating dancer man_dancing women_with_bunny_ears_partying " +
+                    "men_with_bunny_ears_partying woman_walking man_walking woman_running man_running couple two_women_holding_hands " +
+                    "two_men_holding_hands couple_with_heart couple_ww couple_mm couplekiss kiss_ww kiss_mm family family_mwg family_mwgb " +
+                    "family_mwbb family_mwgg family_wwb family_wwg family_wwgb family_wwbb family_wwgg family_mmb family_mmg family_mmgb " +
+                    "family_mmbb family_mmgg family_woman_boy family_woman_girl family_woman_girl_boy family_woman_boy_boy " +
+                    "family_woman_girl_girl family_man_boy family_man_girl family_man_girl_boy family_man_boy_boy family_man_girl_girl " +
+                    "bearded_person woman_with_headscarf woman_mage man_mage woman_fairy man_fairy woman_vampire man_vampire " +
+                    "mermaid merman woman_elf man_elf woman_genie man_genie woman_zombie man_zombie " +
+                    "womans_clothes shirt jeans necktie dress bikini kimono high_heel sandal boot mans_shoe athletic_shoe womans_hat " +
+                    "tophat mortar_board crown helmet_with_cross school_satchel pouch purse handbag briefcase eyeglasses dark_sunglasses " +
+                    "closed_umbrella umbrella2 brain billed_cap scarf gloves coat socks "
+                },
+
+                animals_nature: {
+                    icon: "hamster",
+                    title: "Animals & Nature",
+                    emoji: "dog cat mouse hamster rabbit fox bear panda_face koala tiger lion_face cow pig pig_nose frog monkey_face see_no_evil " +
+                    "hear_no_evil speak_no_evil monkey chicken penguin bird baby_chick hatching_chick hatched_chick duck eagle owl bat wolf boar " +
+                    "horse unicorn bee bug butterfly snail shell beetle ant spider spider_web turtle snake lizard scorpion crab squid octopus shrimp " +
+                    "tropical_fish fish blowfish dolphin shark whale whale2 crocodile leopard tiger2 water_buffalo ox cow2 deer dromedary_camel camel " +
+                    "elephant rhino gorilla racehorse pig2 goat ram sheep dog2 poodle cat2 rooster turkey dove rabbit2 mouse2 rat chipmunk dragon " +
+                    "giraffe zebra hedgehog sauropod t_rex cricket dragon_face feet cactus christmas_tree evergreen_tree deciduous_tree palm_tree seedling herb shamrock four_leaf_clover " +
+                    "bamboo tanabata_tree leaves fallen_leaf maple_leaf mushroom ear_of_rice bouquet tulip rose wilted_rose sunflower blossom " +
+                    "cherry_blossom hibiscus earth_americas earth_africa earth_asia full_moon waning_gibbous_moon last_quarter_moon " +
+                    "waning_crescent_moon new_moon waxing_crescent_moon first_quarter_moon waxing_gibbous_moon new_moon_with_face " +
+                    "full_moon_with_face sun_with_face first_quarter_moon_with_face last_quarter_moon_with_face crescent_moon dizzy star star2 " +
+                    "sparkles zap fire boom comet sunny white_sun_small_cloud partly_sunny white_sun_cloud white_sun_rain_cloud rainbow cloud " +
+                    "cloud_rain thunder_cloud_rain cloud_lightning cloud_snow snowman2 snowman snowflake wind_blowing_face dash cloud_tornado " +
+                    "fog ocean droplet sweat_drops umbrella "
+                },
+
+                food_drink: {
+                    icon: "pizza",
+                    title: "Food & Drink",
+                    emoji: "green_apple apple pear tangerine lemon banana watermelon grapes strawberry melon cherries peach pineapple kiwi " +
+                    "avocado tomato eggplant cucumber carrot corn hot_pepper potato sweet_potato chestnut peanuts honey_pot croissant " +
+                    "bread french_bread cheese egg cooking bacon pancakes fried_shrimp poultry_leg meat_on_bone pizza hotdog hamburger " +
+                    "fries stuffed_flatbread taco burrito salad shallow_pan_of_food spaghetti ramen stew fish_cake sushi bento curry " +
+                    "rice_ball rice rice_cracker oden dango shaved_ice ice_cream icecream cake birthday custard lollipop candy " +
+                    "chocolate_bar popcorn doughnut cookie milk baby_bottle coffee tea sake beer beers champagne_glass wine_glass " +
+                    "tumbler_glass cocktail tropical_drink champagne spoon fork_and_knife fork_knife_plate dumpling fortune_cookie " +
+                    "takeout_box chopsticks bowl_with_spoon cup_with_straw coconut broccoli pie pretzel cut_of_meat sandwich canned_food"
+                },
+
+                activity: {
+                    icon: "basketball",
+                    title: "Activity",
+                    emoji: "soccer basketball football baseball tennis volleyball rugby_football 8ball ping_pong badminton goal hockey field_hockey " +
+                    "cricket_game golf bow_and_arrow fishing_pole_and_fish boxing_glove martial_arts_uniform ice_skate ski skier snowboarder " +
+                    "woman_lifting_weights man_lifting_weights person_fencing women_wrestling men_wrestling woman_cartwheeling " +
+                    "man_cartwheeling woman_bouncing_ball man_bouncing_ball woman_playing_handball man_playing_handball woman_golfing " +
+                    "man_golfing woman_surfing man_surfing woman_swimming man_swimming woman_playing_water_polo " +
+                    "man_playing_water_polo woman_rowing_boat man_rowing_boat horse_racing woman_biking man_biking woman_mountain_biking man_mountain_biking " +
+                    "woman_in_steamy_room man_in_steamy_room woman_climbing man_climbing woman_in_lotus_position man_in_lotus_position " +
+                    "running_shirt_with_sash medal military_medal first_place second_place " +
+                    "third_place trophy rosette reminder_ribbon ticket tickets circus_tent woman_juggling man_juggling performing_arts art " +
+                    "clapper microphone headphones musical_score musical_keyboard drum saxophone trumpet guitar violin game_die dart bowling " +
+                    "video_game slot_machine sled curling_stone "
+                },
+
+                travel_places: {
+                    icon: "rocket",
+                    title: "Travel & Places",
+                    emoji: "red_car taxi blue_car bus trolleybus race_car police_car ambulance fire_engine minibus truck articulated_lorry tractor " +
+                    "scooter bike motor_scooter motorcycle rotating_light oncoming_police_car oncoming_bus oncoming_automobile oncoming_taxi " +
+                    "aerial_tramway mountain_cableway suspension_railway railway_car train mountain_railway monorail bullettrain_side " +
+                    "bullettrain_front light_rail steam_locomotive train2 metro tram station helicopter airplane_small airplane " +
+                    "airplane_departure airplane_arriving rocket satellite_orbital seat canoe sailboat motorboat speedboat cruise_ship " +
+                    "ferry ship anchor construction fuelpump busstop vertical_traffic_light traffic_light map moyai statue_of_liberty " +
+                    "fountain tokyo_tower european_castle japanese_castle stadium ferris_wheel roller_coaster carousel_horse beach_umbrella " +
+                    "beach island mountain mountain_snow mount_fuji volcano desert camping tent railway_track motorway construction_site " +
+                    "factory house house_with_garden homes house_abandoned office department_store post_office european_post_office hospital " +
+                    "bank hotel convenience_store school love_hotel wedding classical_building church mosque synagogue kaaba shinto_shrine " +
+                    "japan rice_scene park sunrise sunrise_over_mountains stars sparkler fireworks city_sunset city_dusk cityscape " +
+                    "night_with_stars milky_way bridge_at_night foggy flying_saucer"
+                },
+
+                objects: {
+                    icon: "bulb",
+                    title: "Objects",
+                    emoji: "watch iphone calling computer keyboard desktop printer mouse_three_button trackball joystick compression minidisc " +
+                    "floppy_disk cd dvd vhs camera camera_with_flash video_camera movie_camera projector film_frames telephone_receiver " +
+                    "telephone pager fax tv radio microphone2 level_slider control_knobs stopwatch timer alarm_clock clock hourglass " +
+                    "hourglass_flowing_sand satellite battery electric_plug bulb flashlight candle wastebasket oil money_with_wings " +
+                    "dollar yen euro pound moneybag credit_card gem scales wrench hammer hammer_pick tools pick nut_and_bolt gear " +
+                    "chains gun bomb knife dagger crossed_swords shield smoking coffin urn amphora crystal_ball prayer_beads barber " +
+                    "alembic telescope microscope hole pill syringe thermometer toilet potable_water shower bathtub bath bellhop key " +
+                    "key2 door couch bed sleeping_accommodation frame_photo shopping_bags shopping_cart gift balloon flags ribbon " +
+                    "confetti_ball tada dolls izakaya_lantern wind_chime envelope envelope_with_arrow incoming_envelope e-mail " +
+                    "love_letter inbox_tray outbox_tray package label mailbox_closed mailbox mailbox_with_mail mailbox_with_no_mail " +
+                    "postbox postal_horn scroll page_with_curl page_facing_up bookmark_tabs bar_chart chart_with_upwards_trend " +
+                    "chart_with_downwards_trend notepad_spiral calendar_spiral calendar date card_index card_box ballot_box " +
+                    "file_cabinet clipboard file_folder open_file_folder dividers newspaper2 newspaper notebook " +
+                    "notebook_with_decorative_cover ledger closed_book green_book blue_book orange_book books book bookmark link " +
+                    "paperclip paperclips triangular_ruler straight_ruler pushpin round_pushpin scissors pen_ballpoint pen_fountain " +
+                    "black_nib paintbrush crayon pencil pencil2 mag mag_right lock_with_ink_pen closed_lock_with_key lock unlock"
+                },
+
+                symbols: {
+                    icon: "heartpulse",
+                    title: "Symbols",
+                    emoji: "heart orange_heart yellow_heart green_heart blue_heart purple_heart black_heart broken_heart heart_exclamation two_hearts " +
+                    "revolving_hearts heartbeat heartpulse sparkling_heart cupid gift_heart heart_decoration peace cross star_and_crescent " +
+                    "om_symbol wheel_of_dharma star_of_david six_pointed_star menorah yin_yang orthodox_cross place_of_worship ophiuchus " +
+                    "aries taurus gemini cancer leo virgo libra scorpius sagittarius capricorn aquarius pisces id atom accept radioactive " +
+                    "biohazard mobile_phone_off vibration_mode u6709 u7121 u7533 u55b6 u6708 eight_pointed_black_star vs white_flower " +
+                    "ideograph_advantage secret congratulations u5408 u6e80 u5272 u7981 a b ab cl o2 sos x o octagonal_sign no_entry " +
+                    "name_badge no_entry_sign 100 anger hotsprings no_pedestrians do_not_litter no_bicycles non-potable_water underage " +
+                    "no_mobile_phones no_smoking exclamation grey_exclamation question grey_question bangbang interrobang low_brightness " +
+                    "high_brightness part_alternation_mark warning children_crossing trident fleur-de-lis beginner recycle " +
+                    "white_check_mark u6307 chart sparkle eight_spoked_asterisk negative_squared_cross_mark globe_with_meridians " +
+                    "diamond_shape_with_a_dot_inside m cyclone zzz atm wc wheelchair parking u7a7a sa passport_control customs " +
+                    "baggage_claim left_luggage mens womens baby_symbol restroom put_litter_in_its_place cinema signal_strength koko " +
+                    "symbols information_source abc abcd capital_abcd ng ok up cool new free zero one two three four five six seven " +
+                    "eight nine keycap_ten 1234 hash asterisk arrow_forward pause_button play_pause stop_button record_button eject " +
+                    "track_next track_previous fast_forward rewind arrow_double_up arrow_double_down arrow_backward arrow_up_small " +
+                    "arrow_down_small arrow_right arrow_left arrow_up arrow_down arrow_upper_right arrow_lower_right arrow_lower_left " +
+                    "arrow_upper_left arrow_up_down left_right_arrow arrow_right_hook leftwards_arrow_with_hook arrow_heading_up " +
+                    "arrow_heading_down twisted_rightwards_arrows repeat repeat_one arrows_counterclockwise arrows_clockwise " +
+                    "musical_note notes heavy_plus_sign heavy_minus_sign heavy_division_sign heavy_multiplication_x heavy_dollar_sign " +
+                    "currency_exchange tm copyright registered wavy_dash curly_loop loop end back on top soon heavy_check_mark " +
+                    "ballot_box_with_check radio_button white_circle black_circle red_circle blue_circle small_red_triangle " +
+                    "small_red_triangle_down small_orange_diamond small_blue_diamond large_orange_diamond large_blue_diamond " +
+                    "white_square_button black_square_button black_small_square white_small_square black_medium_small_square " +
+                    "white_medium_small_square black_medium_square white_medium_square black_large_square white_large_square speaker " +
+                    "mute sound loud_sound bell no_bell mega loudspeaker speech_left eye_in_speech_bubble speech_balloon thought_balloon " +
+                    "anger_right spades clubs hearts diamonds black_joker flower_playing_cards mahjong clock1 clock2 clock3 clock4 clock5 " +
+                    "clock6 clock7 clock8 clock9 clock10 clock11 clock12 clock130 clock230 clock330 clock430 clock530 clock630 " +
+                    "clock730 clock830 clock930 clock1030 clock1130 clock1230"
+                },
+
+                flags: {
+                    icon: "flag_gb",
+                    title: "Flags",
+                    emoji: "flag_white flag_black checkered_flag triangular_flag_on_post rainbow_flag flag_af flag_ax flag_al flag_dz flag_as " +
+                    "flag_ad flag_ao flag_ai flag_aq flag_ag flag_ar flag_am flag_aw flag_au flag_at flag_az flag_bs flag_bh flag_bd flag_bb " +
+                    "flag_by flag_be flag_bz flag_bj flag_bm flag_bt flag_bo flag_ba flag_bw flag_br flag_io flag_vg flag_bn flag_bg flag_bf " +
+                    "flag_bi flag_kh flag_cm flag_ca flag_ic flag_cv flag_bq flag_ky flag_cf flag_td flag_cl flag_cn flag_cx flag_cc flag_co " +
+                    "flag_km flag_cg flag_cd flag_ck flag_cr flag_ci flag_hr flag_cu flag_cw flag_cy flag_cz flag_dk flag_dj flag_dm flag_do " +
+                    "flag_ec flag_eg flag_sv flag_gq flag_er flag_ee flag_et flag_eu flag_fk flag_fo flag_fj flag_fi flag_fr flag_gf flag_pf " +
+                    "flag_tf flag_ga flag_gm flag_ge flag_de flag_gh flag_gi flag_gr flag_gl flag_gd flag_gp flag_gu flag_gt flag_gg flag_gn " +
+                    "flag_gw flag_gy flag_ht flag_hn flag_hk flag_hu flag_is flag_in flag_id flag_ir flag_iq flag_ie flag_im flag_il flag_it " +
+                    "flag_jm flag_jp crossed_flags flag_je flag_jo flag_kz flag_ke flag_ki flag_xk flag_kw flag_kg flag_la flag_lv flag_lb " +
+                    "flag_ls flag_lr flag_ly flag_li flag_lt flag_lu flag_mo flag_mk flag_mg flag_mw flag_my flag_mv flag_ml flag_mt flag_mh " +
+                    "flag_mq flag_mr flag_mu flag_yt flag_mx flag_fm flag_md flag_mc flag_mn flag_me flag_ms flag_ma flag_mz flag_mm flag_na " +
+                    "flag_nr flag_np flag_nl flag_nc flag_nz flag_ni flag_ne flag_ng flag_nu flag_nf flag_kp flag_mp flag_no flag_om flag_pk " +
+                    "flag_pw flag_ps flag_pa flag_pg flag_py flag_pe flag_ph flag_pn flag_pl flag_pt flag_pr flag_qa flag_re flag_ro flag_ru " +
+                    "flag_rw flag_ws flag_sm flag_st flag_sa flag_sn flag_rs flag_sc flag_sl flag_sg flag_sx flag_sk flag_si flag_gs flag_sb " +
+                    "flag_so flag_za flag_kr flag_ss flag_es flag_lk flag_bl flag_sh flag_kn flag_lc flag_pm flag_vc flag_sd flag_sr flag_sz " +
+                    "flag_se flag_ch flag_sy flag_tw flag_tj flag_tz flag_th flag_tl flag_tg flag_tk flag_to flag_tt flag_tn flag_tr flag_tm " +
+                    "flag_tc flag_tv flag_vi flag_ug flag_ua flag_ae flag_gb flag_us flag_uy flag_uz flag_vu flag_va flag_ve flag_vn flag_wf " +
+                    "flag_eh flag_ye flag_zm flag_zw flag_ac flag_ta flag_bv flag_hm flag_sj flag_um flag_ea flag_cp flag_dg flag_mf " +
+                    "united_nations england scotland wales"
+                }
+            };
+        } else {
+            defaultOptions.filters = {
+                tones: {
+                    title: "Diversity",
+                    emoji: "santa runner surfer swimmer lifter ear nose point_up_2 point_down point_left point_right punch " +
+                    "wave ok_hand thumbsup thumbsdown clap open_hands boy girl man woman cop bride_with_veil person_with_blond_hair " +
+                    "man_with_gua_pi_mao man_with_turban older_man grandma baby construction_worker princess angel " +
+                    "information_desk_person guardsman dancer nail_care massage haircut muscle spy hand_splayed middle_finger " +
+                    "vulcan no_good ok_woman bow raising_hand raised_hands person_frowning person_with_pouting_face pray rowboat " +
+                    "bicyclist mountain_bicyclist walking bath metal point_up basketball_player fist raised_hand v writing_hand"
+                },
+
+                recent: {
+                    icon: "clock3",
+                    title: "Recent",
+                    emoji: ""
+                },
+
+                smileys_people: {
+                    icon: "yum",
+                    title: "Smileys & People",
+                    emoji: "grinning grimacing grin joy smiley smile sweat_smile laughing innocent wink blush slight_smile " +
+                    "upside_down relaxed yum relieved heart_eyes kissing_heart kissing kissing_smiling_eyes " +
+                    "kissing_closed_eyes stuck_out_tongue_winking_eye stuck_out_tongue_closed_eyes stuck_out_tongue " +
+                    "money_mouth nerd sunglasses hugging smirk no_mouth neutral_face expressionless unamused rolling_eyes " +
+                    "thinking flushed disappointed worried angry rage pensive confused slight_frown frowning2 persevere " +
+                    "confounded tired_face weary triumph open_mouth scream fearful cold_sweat hushed frowning anguished " +
+                    "cry disappointed_relieved sleepy sweat sob dizzy_face astonished zipper_mouth mask thermometer_face " +
+                    "head_bandage sleeping zzz poop smiling_imp imp japanese_ogre japanese_goblin skull ghost alien robot " +
+                    "smiley_cat smile_cat joy_cat heart_eyes_cat smirk_cat kissing_cat scream_cat crying_cat_face " +
+                    "pouting_cat raised_hands clap wave thumbsup thumbsdown punch fist v ok_hand raised_hand open_hands " +
+                    "muscle pray point_up point_up_2 point_down point_left point_right middle_finger hand_splayed metal " +
+                    "vulcan writing_hand nail_care lips tongue ear nose eye eyes bust_in_silhouette busts_in_silhouette " +
+                    "speaking_head baby boy girl man woman person_with_blond_hair older_man older_woman man_with_gua_pi_mao " +
+                    "man_with_turban cop construction_worker guardsman spy santa angel princess bride_with_veil walking " +
+                    "runner dancer dancers couple two_men_holding_hands two_women_holding_hands bow information_desk_person " +
+                    "no_good ok_woman raising_hand person_with_pouting_face person_frowning haircut massage couple_with_heart " +
+                    "couple_ww couple_mm couplekiss kiss_ww kiss_mm family family_mwg family_mwgb family_mwbb family_mwgg " +
+                    "family_wwb family_wwg family_wwgb family_wwbb family_wwgg family_mmb family_mmg family_mmgb family_mmbb " +
+                    "family_mmgg womans_clothes shirt jeans necktie dress bikini kimono lipstick kiss footprints high_heel " +
+                    "sandal boot mans_shoe athletic_shoe womans_hat tophat helmet_with_cross mortar_board crown school_satchel " +
+                    "pouch purse handbag briefcase eyeglasses dark_sunglasses ring closed_umbrella"
+                },
+
+                animals_nature: {
+                    icon: "hamster",
+                    title: "Animals & Nature",
+                    emoji: "dog cat mouse hamster rabbit bear panda_face koala tiger lion_face cow pig pig_nose frog " +
+                    "octopus monkey_face see_no_evil hear_no_evil speak_no_evil monkey chicken penguin bird baby_chick " +
+                    "hatching_chick hatched_chick wolf boar horse unicorn bee bug snail beetle ant spider scorpion crab " +
+                    "snake turtle tropical_fish fish blowfish dolphin whale whale2 crocodile leopard tiger2 water_buffalo " +
+                    "ox cow2 dromedary_camel camel elephant goat ram sheep racehorse pig2 rat mouse2 rooster turkey dove " +
+                    "dog2 poodle cat2 rabbit2 chipmunk feet dragon dragon_face cactus christmas_tree evergreen_tree " +
+                    "deciduous_tree palm_tree seedling herb shamrock four_leaf_clover bamboo tanabata_tree leaves " +
+                    "fallen_leaf maple_leaf ear_of_rice hibiscus sunflower rose tulip blossom cherry_blossom bouquet " +
+                    "mushroom chestnut jack_o_lantern shell spider_web earth_americas earth_africa earth_asia full_moon " +
+                    "waning_gibbous_moon last_quarter_moon waning_crescent_moon new_moon waxing_crescent_moon " +
+                    "first_quarter_moon waxing_gibbous_moon new_moon_with_face full_moon_with_face first_quarter_moon_with_face " +
+                    "last_quarter_moon_with_face sun_with_face crescent_moon star star2 dizzy sparkles comet sunny " +
+                    "white_sun_small_cloud partly_sunny white_sun_cloud white_sun_rain_cloud cloud cloud_rain " +
+                    "thunder_cloud_rain cloud_lightning zap fire boom snowflake cloud_snow snowman2 snowman wind_blowing_face " +
+                    "dash cloud_tornado fog umbrella2 umbrella droplet sweat_drops ocean"
+                },
+
+                food_drink: {
+                    icon: "pizza",
+                    title: "Food & Drink",
+                    emoji: "green_apple apple pear tangerine lemon banana watermelon grapes strawberry melon cherries peach " +
+                    "pineapple tomato eggplant hot_pepper corn sweet_potato honey_pot bread cheese poultry_leg meat_on_bone " +
+                    "fried_shrimp egg hamburger fries hotdog pizza spaghetti taco burrito ramen stew fish_cake sushi bento " +
+                    "curry rice_ball rice rice_cracker oden dango shaved_ice ice_cream icecream cake birthday custard candy " +
+                    "lollipop chocolate_bar popcorn doughnut cookie beer beers wine_glass cocktail tropical_drink champagne " +
+                    "sake tea coffee baby_bottle fork_and_knife fork_knife_plate"
+                },
+
+                activity: {
+                    icon: "basketball",
+                    title: "Activity",
+                    emoji: "soccer basketball football baseball tennis volleyball rugby_football 8ball golf golfer ping_pong " +
+                    "badminton hockey field_hockey cricket ski skier snowboarder ice_skate bow_and_arrow fishing_pole_and_fish " +
+                    "rowboat swimmer surfer bath basketball_player lifter bicyclist mountain_bicyclist horse_racing levitate " +
+                    "trophy running_shirt_with_sash medal military_medal reminder_ribbon rosette ticket tickets performing_arts " +
+                    "art circus_tent microphone headphones musical_score musical_keyboard saxophone trumpet guitar violin " +
+                    "clapper video_game space_invader dart game_die slot_machine bowling"
+                },
+
+                travel_places: {
+                    icon: "rocket",
+                    title: "Travel & Places",
+                    emoji: "red_car taxi blue_car bus trolleybus race_car police_car ambulance fire_engine minibus truck " +
+                    "articulated_lorry tractor motorcycle bike rotating_light oncoming_police_car oncoming_bus " +
+                    "oncoming_automobile oncoming_taxi aerial_tramway mountain_cableway suspension_railway railway_car " +
+                    "train monorail bullettrain_side bullettrain_front light_rail mountain_railway steam_locomotive train2 " +
+                    "metro tram station helicopter airplane_small airplane airplane_departure airplane_arriving sailboat " +
+                    "motorboat speedboat ferry cruise_ship rocket satellite_orbital seat anchor construction fuelpump busstop " +
+                    "vertical_traffic_light traffic_light checkered_flag ship ferris_wheel roller_coaster carousel_horse " +
+                    "construction_site foggy tokyo_tower factory fountain rice_scene mountain mountain_snow mount_fuji volcano " +
+                    "japan camping tent park motorway railway_track sunrise sunrise_over_mountains desert beach island " +
+                    "city_sunset city_dusk cityscape night_with_stars bridge_at_night milky_way stars sparkler fireworks " +
+                    "rainbow homes european_castle japanese_castle stadium statue_of_liberty house house_with_garden " +
+                    "house_abandoned office department_store post_office european_post_office hospital bank hotel " +
+                    "convenience_store school love_hotel wedding classical_building church mosque synagogue kaaba shinto_shrine"
+                },
+
+                objects: {
+                    icon: "bulb",
+                    title: "Objects",
+                    emoji: "watch iphone calling computer keyboard desktop printer mouse_three_button trackball joystick " +
+                    "compression minidisc floppy_disk cd dvd vhs camera camera_with_flash video_camera movie_camera projector " +
+                    "film_frames telephone_receiver telephone pager fax tv radio microphone2 level_slider control_knobs " +
+                    "stopwatch timer alarm_clock clock hourglass_flowing_sand hourglass satellite battery electric_plug bulb " +
+                    "flashlight candle wastebasket oil money_with_wings dollar yen euro pound moneybag credit_card gem scales " +
+                    "wrench hammer hammer_pick tools pick nut_and_bolt gear chains gun bomb knife dagger crossed_swords shield " +
+                    "smoking skull_crossbones coffin urn amphora crystal_ball prayer_beads barber alembic telescope microscope " +
+                    "hole pill syringe thermometer label bookmark toilet shower bathtub key key2 couch sleeping_accommodation " +
+                    "bed door bellhop frame_photo map beach_umbrella moyai shopping_bags balloon flags ribbon gift confetti_ball " +
+                    "tada dolls wind_chime crossed_flags izakaya_lantern envelope envelope_with_arrow incoming_envelope e-mail " +
+                    "love_letter postbox mailbox_closed mailbox mailbox_with_mail mailbox_with_no_mail package postal_horn " +
+                    "inbox_tray outbox_tray scroll page_with_curl bookmark_tabs bar_chart chart_with_upwards_trend " +
+                    "chart_with_downwards_trend page_facing_up date calendar calendar_spiral card_index card_box ballot_box " +
+                    "file_cabinet clipboard notepad_spiral file_folder open_file_folder dividers newspaper2 newspaper notebook " +
+                    "closed_book green_book blue_book orange_book notebook_with_decorative_cover ledger books book link " +
+                    "paperclip paperclips scissors triangular_ruler straight_ruler pushpin round_pushpin triangular_flag_on_post " +
+                    "flag_white flag_black closed_lock_with_key lock unlock lock_with_ink_pen pen_ballpoint pen_fountain " +
+                    "black_nib pencil pencil2 crayon paintbrush mag mag_right"
+                },
+
+                symbols: {
+                    icon: "heartpulse",
+                    title: "Symbols",
+                    emoji: "heart yellow_heart green_heart blue_heart purple_heart broken_heart heart_exclamation two_hearts " +
+                    "revolving_hearts heartbeat heartpulse sparkling_heart cupid gift_heart heart_decoration peace cross " +
+                    "star_and_crescent om_symbol wheel_of_dharma star_of_david six_pointed_star menorah yin_yang orthodox_cross " +
+                    "place_of_worship ophiuchus aries taurus gemini cancer leo virgo libra scorpius sagittarius capricorn " +
+                    "aquarius pisces id atom u7a7a u5272 radioactive biohazard mobile_phone_off vibration_mode u6709 u7121 " +
+                    "u7533 u55b6 u6708 eight_pointed_black_star vs accept white_flower ideograph_advantage secret congratulations " +
+                    "u5408 u6e80 u7981 a b ab cl o2 sos no_entry name_badge no_entry_sign x o anger hotsprings no_pedestrians " +
+                    "do_not_litter no_bicycles non-potable_water underage no_mobile_phones exclamation grey_exclamation question " +
+                    "grey_question bangbang interrobang 100 low_brightness high_brightness trident fleur-de-lis part_alternation_mark " +
+                    "warning children_crossing beginner recycle u6307 chart sparkle eight_spoked_asterisk negative_squared_cross_mark " +
+                    "white_check_mark diamond_shape_with_a_dot_inside cyclone loop globe_with_meridians m atm sa passport_control " +
+                    "customs baggage_claim left_luggage wheelchair no_smoking wc parking potable_water mens womens baby_symbol " +
+                    "restroom put_litter_in_its_place cinema signal_strength koko ng ok up cool new free zero one two three four " +
+                    "five six seven eight nine ten 1234 arrow_forward pause_button play_pause stop_button record_button track_next " +
+                    "track_previous fast_forward rewind twisted_rightwards_arrows repeat repeat_one arrow_backward arrow_up_small " +
+                    "arrow_down_small arrow_double_up arrow_double_down arrow_right arrow_left arrow_up arrow_down arrow_upper_right " +
+                    "arrow_lower_right arrow_lower_left arrow_upper_left arrow_up_down left_right_arrow arrows_counterclockwise " +
+                    "arrow_right_hook leftwards_arrow_with_hook arrow_heading_up arrow_heading_down hash asterisk information_source " +
+                    "abc abcd capital_abcd symbols musical_note notes wavy_dash curly_loop heavy_check_mark arrows_clockwise " +
+                    "heavy_plus_sign heavy_minus_sign heavy_division_sign heavy_multiplication_x heavy_dollar_sign currency_exchange " +
+                    "copyright registered tm end back on top soon ballot_box_with_check radio_button white_circle black_circle " +
+                    "red_circle large_blue_circle small_orange_diamond small_blue_diamond large_orange_diamond large_blue_diamond " +
+                    "small_red_triangle black_small_square white_small_square black_large_square white_large_square small_red_triangle_down " +
+                    "black_medium_square white_medium_square black_medium_small_square white_medium_small_square black_square_button " +
+                    "white_square_button speaker sound loud_sound mute mega loudspeaker bell no_bell black_joker mahjong spades " +
+                    "clubs hearts diamonds flower_playing_cards thought_balloon anger_right speech_balloon clock1 clock2 clock3 " +
+                    "clock4 clock5 clock6 clock7 clock8 clock9 clock10 clock11 clock12 clock130 clock230 clock330 clock430 " +
+                    "clock530 clock630 clock730 clock830 clock930 clock1030 clock1130 clock1230 eye_in_speech_bubble"
+                },
+
+                flags: {
+                    icon: "flag_gb",
+                    title: "Flags",
+                    emoji: "ac af al dz ad ao ai ag ar am aw au at az bs bh bd bb by be bz bj bm bt bo ba bw br bn bg bf bi " +
+                    "cv kh cm ca ky cf td flag_cl cn co km cg flag_cd cr hr cu cy cz dk dj dm do ec eg sv gq er ee et fk fo " +
+                    "fj fi fr pf ga gm ge de gh gi gr gl gd gu gt gn gw gy ht hn hk hu is in flag_id ir iq ie il it ci jm jp " +
+                    "je jo kz ke ki xk kw kg la lv lb ls lr ly li lt lu mo mk mg mw my mv ml mt mh mr mu mx fm md mc mn me " +
+                    "ms ma mz mm na nr np nl nc nz ni ne flag_ng nu kp no om pk pw ps pa pg py pe ph pl pt pr qa ro ru rw " +
+                    "sh kn lc vc ws sm st flag_sa sn rs sc sl sg sk si sb so za kr es lk sd sr sz se ch sy tw tj tz th tl " +
+                    "tg to tt tn tr flag_tm flag_tm ug ua ae gb us vi uy uz vu va ve vn wf eh ye zm zw re ax ta io bq cx " +
+                    "cc gg im yt nf pn bl pm gs tk bv hm sj um ic ea cp dg as aq vg ck cw eu gf tf gp mq mp sx ss tc "
+                }
+            };
+        };
+
+        return defaultOptions;
+    };
+    function getOptions(options) {
+        var default_options = getDefaultOptions();
+        if (options && options['filters']) {
+            var filters = default_options.filters;
+            $.each(options['filters'], function(filter, data) {
+                if (!isObject(data) || $.isEmptyObject(data)) {
+                    delete filters[filter];
+                    return;
+                }
+                $.each(data, function(key, val) {
+                    filters[filter][key] = val;
+                });
+            });
+            options['filters'] = filters;
+        }
+        return $.extend({}, default_options, options);
+    };
+
+    var saveSelection, restoreSelection;
+    if (window.getSelection && document.createRange) {
+        saveSelection = function(el) {
+            var sel = window.getSelection && window.getSelection();
+            if (sel && sel.rangeCount > 0) {
+                return sel.getRangeAt(0);
+            }
+        };
+
+        restoreSelection = function(el, sel) {
+            var range = document.createRange();
+            range.setStart(sel.startContainer, sel.startOffset);
+            range.setEnd(sel.endContainer, sel.endOffset)
+
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
+    } else if (document.selection && document.body.createTextRange) {
+        saveSelection = function(el) {
+            return document.selection.createRange();
+        };
+
+        restoreSelection = function(el, sel) {
+            var textRange = document.body.createTextRange();
+            textRange.moveToElementText(el);
+            textRange.setStart(sel.startContanier, sel.startOffset);
+            textRange.setEnd(sel.endContainer, sel.endOffset);
+            textRange.select();
+        };
+    }
+
+
+    var uniRegexp;
+    function unicodeTo(str, template) {
+        return str.replace(uniRegexp, function(unicodeChar) {
+            var map = emojione[(emojioneSupportMode === 0 ? 'jsecapeMap' : 'jsEscapeMap')];
+            if (typeof unicodeChar !== 'undefined' && unicodeChar in map) {
+                return getTemplate(template, map[unicodeChar], emojione.toShort(unicodeChar));
+            }
+            return unicodeChar;
+        });
+    }
+    function htmlFromText(str, self) {
+        str = str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#x27;')
+            .replace(/`/g, '&#x60;')
+            .replace(/(?:\r\n|\r|\n)/g, '\n')
+            .replace(/(\n+)/g, '<div>$1</div>')
+            .replace(/\n/g, '<br/>')
+            .replace(/<br\/><\/div>/g, '</div>');
+        if (self.shortnames) {
+            str = emojione.shortnameToUnicode(str);
+        }
+        return unicodeTo(str, self.emojiTemplate)
+            .replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')
+            .replace(/  /g, '&nbsp;&nbsp;');
+    }
+    function textFromHtml(str, self) {
+        str = str
+            .replace(/&#10;/g, '\n')
+            .replace(/&#09;/g, '\t')
+            .replace(/<img[^>]*alt="([^"]+)"[^>]*>/ig, '$1')
+            .replace(/\n|\r/g, '')
+            .replace(/<br[^>]*>/ig, '\n')
+            .replace(/(?:<(?:div|p|ol|ul|li|pre|code|object)[^>]*>)+/ig, '<div>')
+            .replace(/(?:<\/(?:div|p|ol|ul|li|pre|code|object)>)+/ig, '</div>')
+            .replace(/\n<div><\/div>/ig, '\n')
+            .replace(/<div><\/div>\n/ig, '\n')
+            .replace(/(?:<div>)+<\/div>/ig, '\n')
+            .replace(/([^\n])<\/div><div>/ig, '$1\n')
+            .replace(/(?:<\/div>)+/ig, '</div>')
+            .replace(/([^\n])<\/div>([^\n])/ig, '$1\n$2')
+            .replace(/<\/div>/ig, '')
+            .replace(/([^\n])<div>/ig, '$1\n')
+            .replace(/\n<div>/ig, '\n')
+            .replace(/<div>\n/ig, '\n\n')
+            .replace(/<(?:[^>]+)?>/g, '')
+            .replace(new RegExp(invisibleChar, 'g'), '')
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;/g, "'")
+            .replace(/&#x60;/g, '`')
+            .replace(/&#60;/g, '<')
+            .replace(/&#62;/g, '>')
+            .replace(/&amp;/g, '&');
+
+        switch (self.saveEmojisAs) {
+            case 'image':
+                str = unicodeTo(str, self.emojiTemplate);
+                break;
+            case 'shortname':
+                str = emojione.toShort(str);
+        }
+        return str;
+    }
+    function calcButtonPosition() {
+        var self = this,
+            offset = self.editor[0].offsetWidth - self.editor[0].clientWidth,
+            current = parseInt(self.button.css('marginRight'));
+        if (current !== offset) {
+            self.button.css({marginRight: offset});
+            if (self.floatingPicker) {
+                self.picker.css({right: parseInt(self.picker.css('right')) - current + offset});
+            }
+        }
+    }
+    function lazyLoading() {
+        var self = this;
+        if (!self.sprite && self.lasyEmoji[0] && self.lasyEmoji.eq(0).is(".lazy-emoji")) {
+            var pickerTop = self.picker.offset().top,
+                pickerBottom = pickerTop + self.picker.height() + 20;
+
+            self.lasyEmoji.each(function() {
+                var e = $(this), top = e.offset().top;
+
+                if (top > pickerTop && top < pickerBottom) {
+                    e.attr("src", e.data("src")).removeClass("lazy-emoji");
+                }
+
+                if (top > pickerBottom) {
+                    return false;
+                }
+            });
+            self.lasyEmoji = self.lasyEmoji.filter(".lazy-emoji");
+        }
+    };
+    function selector (prefix, skip_dot) {
+        return (skip_dot ? '' : '.') + css_class + (prefix ? ("-" + prefix) : "");
+    }
+    function div(prefix) {
+        var parent = $('<div/>', isObject(prefix) ? prefix : {"class" : selector(prefix, true)});
+        $.each(slice.call(arguments).slice(1), function(i, child) {
+            if ($.isFunction(child)) {
+                child = child.call(parent);
+            }
+            if (child) {
+                $(child).appendTo(parent);
+            }
+        });
+        return parent;
+    }
+    function getRecent () {
+        return localStorage.getItem("recent_emojis") || "";
+    }
+    function updateRecent(self, show) {
+        var emojis = getRecent();
+        if (!self.recent || self.recent !== emojis || show) {
+            if (emojis.length) {
+                var skinnable = self.scrollArea.is(".skinnable"),
+                    scrollTop, height;
+
+                if (!skinnable) {
+                    scrollTop = self.scrollArea.scrollTop();
+                    if (show) {
+                        self.recentCategory.show();
+                    }
+                    height = self.recentCategory.is(":visible") ? self.recentCategory.height() : 0;
+                }
+
+                var items = shortnameTo(emojis, self.emojiBtnTemplate, true).split('|').join('');
+                self.recentCategory.children(".emojibtn").remove();
+                $(items).insertAfter(self.recentCategory.children(".emojionearea-category-title"));
+
+
+                self.recentCategory.children(".emojibtn").on("click", function() {
+                    self.trigger("emojibtn.click", $(this));
+                });
+
+                self.recentFilter.show();
+
+                if (!skinnable) {
+                    self.recentCategory.show();
+
+                    var height2 = self.recentCategory.height();
+
+                    if (height !== height2) {
+                        self.scrollArea.scrollTop(scrollTop + height2 - height);
+                    }
+                }
+            } else {
+                if (self.recentFilter.hasClass("active")) {
+                    self.recentFilter.removeClass("active").next().addClass("active");
+                }
+                self.recentCategory.hide();
+                self.recentFilter.hide();
+            }
+            self.recent = emojis;
+        }
+    };
+    function setRecent(self, emoji) {
+        var recent = getRecent();
+        var emojis = recent.split("|");
+
+        var index = emojis.indexOf(emoji);
+        if (index !== -1) {
+            emojis.splice(index, 1);
+        }
+        emojis.unshift(emoji);
+
+        if (emojis.length > 9) {
+            emojis.pop();
+        }
+
+        localStorage.setItem("recent_emojis", emojis.join("|"));
+
+        updateRecent(self);
+    };
+// see https://github.com/Modernizr/Modernizr/blob/master/feature-detects/storage/localstorage.js
+    function supportsLocalStorage () {
+        var test = 'test';
+        try {
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch(e) {
+            return false;
+        }
+    }
+    function init(self, source, options) {
+        //calcElapsedTime('init', function() {
+        self.options = options = getOptions(options);
+        self.sprite = options.sprite && emojioneSupportMode < 3;
+        self.inline = options.inline === null ? source.is("INPUT") : options.inline;
+        self.shortnames = options.shortnames;
+        self.saveEmojisAs = options.saveEmojisAs;
+        self.standalone = options.standalone;
+        self.emojiTemplate = '<img alt="{alt}" class="emojione' + (self.sprite ? '-{uni}" src="' + blankImg + '"/>' : 'emoji" src="{img}"/>');
+        self.emojiTemplateAlt = self.sprite ? '<i class="emojione-{uni}"/>' : '<img class="emojioneemoji" src="{img}"/>';
+        self.emojiBtnTemplate = '<i class="emojibtn" role="button" data-name="{name}" title="{friendlyName}">' + self.emojiTemplateAlt + '</i>';
+        self.recentEmojis = options.recentEmojis && supportsLocalStorage();
+
+        var pickerPosition = options.pickerPosition;
+        self.floatingPicker = pickerPosition === 'top' || pickerPosition === 'bottom';
+        self.source = source;
+
+        if (source.is(":disabled") || source.is(".disabled")) {
+            self.disable();
+        }
+
+        var sourceValFunc = source.is("TEXTAREA") || source.is("INPUT") ? "val" : "text",
+            editor, button, picker, filters, filtersBtns, searchPanel, emojisList, categories, categoryBlocks, scrollArea,
+            tones = div('tones',
+                options.tones ?
+                    function() {
+                        this.addClass(selector('tones-' + options.tonesStyle, true));
+                        for (var i = 0; i <= 5; i++) {
+                            this.append($("<i/>", {
+                                "class": "btn-tone btn-tone-" + i + (!i ? " active" : ""),
+                                "data-skin": i,
+                                role: "button"
+                            }));
+                        }
+                    } : null
+            ),
+            app = div({
+                "class" : css_class + ((self.standalone) ? " " + css_class + "-standalone " : " ") + (source.attr("class") || ""),
+                role: "application"
+            },
+            editor = self.editor = div("editor").attr({
+                contenteditable: (self.standalone) ? false : true,
+                placeholder: options.placeholder || source.data("placeholder") || source.attr("placeholder") || "",
+                tabindex: 0
+            }),
+            button = self.button = div('button',
+                div('button-open'),
+                div('button-close')
+            ).attr('title', options.buttonTitle),
+            picker = self.picker = div('picker',
+                div('wrapper',
+                    filters = div('filters'),
+                    (options.search ?
+                        searchPanel = div('search-panel',
+                            div('search',
+                                options.search ?
+                                function() {
+                                    self.search = $("<input/>", {
+                                        "placeholder": options.searchPlaceholder || "",
+                                        "type": "text",
+                                        "class": "search"
+                                    });
+                                    this.append(self.search);
+                                } : null
+                            ),
+                            tones
+                        ) : null
+                    ),
+                    scrollArea = div('scroll-area',
+                        options.tones && !options.search ? div('tones-panel',
+                            tones
+                        ) : null,
+                        emojisList = div('emojis-list')
+                    )
+                )
+            ).addClass(selector('picker-position-' + options.pickerPosition, true))
+             .addClass(selector('filters-position-' + options.filtersPosition, true))
+             .addClass(selector('search-position-' + options.searchPosition, true))
+             .addClass('hidden')
+        );
+
+        if (options.search) {
+            searchPanel.addClass(selector('with-search', true));
+        }
+
+        self.searchSel = null;
+
+        editor.data(source.data());
+
+        $.each(options.attributes, function(attr, value) {
+            editor.attr(attr, value);
+        });
+
+        var mainBlock = div('category-block').attr({"data-tone": 0}).prependTo(emojisList);
+
+        $.each(options.filters, function(filter, params) {
+            var skin = 0;
+            if (filter === 'recent' && !self.recentEmojis) {
+                return;
+            }
+            if (filter !== 'tones') {
+                $("<i/>", {
+                    "class": selector("filter", true) + " " + selector("filter-" + filter, true),
+                    "data-filter": filter,
+                    title: params.title
+                })
+                .wrapInner(shortnameTo(params.icon, self.emojiTemplateAlt))
+                .appendTo(filters);
+            } else if (options.tones) {
+                skin = 5;
+            } else {
+                return;
+            }
+
+            do {
+                var category,
+                    items = params.emoji.replace(/[\s,;]+/g, '|');
+
+                if (skin === 0) {
+                    category = div('category').attr({
+                        name: filter,
+                        "data-tone": skin
+                    }).appendTo(mainBlock);
+                } else {
+                    category = div('category-block').attr({
+                        name: filter,
+                        "data-tone": skin
+                    }).appendTo(emojisList);
+                }
+
+                if (skin > 0) {
+                    category.hide();
+                    items = items.split('|').join('_tone' + skin + '|') + '_tone' + skin;
+                }
+
+                if (filter === 'recent') {
+                    items = getRecent();
+                }
+
+                items = shortnameTo(items,
+                    self.sprite ?
+                        '<i class="emojibtn" role="button" data-name="{name}" title="{friendlyName}"><i class="emojione-{uni}"></i></i>' :
+                        '<i class="emojibtn" role="button" data-name="{name}" title="{friendlyName}"><img class="emojioneemoji lazy-emoji" data-src="{img}"/></i>',
+                    true).split('|').join('');
+
+                category.html(items);
+                $('<div class="emojionearea-category-title"/>').text(params.title).prependTo(category);
+            } while (--skin > 0);
+        });
+
+        options.filters = null;
+        if (!self.sprite) {
+            self.lasyEmoji = emojisList.find(".lazy-emoji");
+        }
+
+        filtersBtns = filters.find(selector("filter"));
+        filtersBtns.eq(0).addClass("active");
+        categoryBlocks = emojisList.find(selector("category-block"))
+        categories = emojisList.find(selector("category"))
+
+        self.recentFilter = filtersBtns.filter('[data-filter="recent"]');
+        self.recentCategory = categories.filter("[name=recent]");
+
+        self.scrollArea = scrollArea;
+
+        if (options.container) {
+            $(options.container).wrapInner(app);
+        } else {
+            app.insertAfter(source);
+        }
+
+        if (options.hideSource) {
+            source.hide();
+        }
+
+        self.setText(source[sourceValFunc]());
+        source[sourceValFunc](self.getText());
+        calcButtonPosition.apply(self);
+
+        // if in standalone mode and no value is set, initialise with a placeholder
+        if (self.standalone && !self.getText().length) {
+            var placeholder = $(source).data("emoji-placeholder") || options.emojiPlaceholder;
+            self.setText(placeholder);
+            editor.addClass("has-placeholder");
+        }
+
+        // attach() must be called before any .on() methods !!!
+        // 1) attach() stores events into possibleEvents{},
+        // 2) .on() calls bindEvent() and stores handlers into eventStorage{},
+        // 3) bindEvent() finds events in possibleEvents{} and bind founded via jQuery.on()
+        // 4) attached events via jQuery.on() calls trigger()
+        // 5) trigger() calls handlers stored into eventStorage{}
+
+        attach(self, emojisList.find(".emojibtn"), {click: "emojibtn.click"});
+        attach(self, window, {resize: "!resize"});
+        attach(self, tones.children(), {click: "tone.click"});
+        attach(self, [picker, button], {mousedown: "!mousedown"}, editor);
+        attach(self, button, {click: "button.click"});
+        attach(self, editor, {paste :"!paste"}, editor);
+        attach(self, editor, ["focus", "blur"], function() { return self.stayFocused ? false : editor; } );
+        attach(self, picker, {mousedown: "picker.mousedown", mouseup: "picker.mouseup", click: "picker.click",
+            keyup: "picker.keyup", keydown: "picker.keydown", keypress: "picker.keypress"});
+        attach(self, editor, ["mousedown", "mouseup", "click", "keyup", "keydown", "keypress"]);
+        attach(self, picker.find(".emojionearea-filter"), {click: "filter.click"});
+        attach(self, source, {change: "source.change"});
+
+        if (options.search) {
+            attach(self, self.search, {keyup: "search.keypress", focus: "search.focus", blur: "search.blur"});
+        }
+
+        var noListenScroll = false;
+        scrollArea.on('scroll', function () {
+            if (!noListenScroll) {
+                lazyLoading.call(self);
+                if (scrollArea.is(":not(.skinnable)")) {
+                    var item = categories.eq(0), scrollTop = scrollArea.offset().top;
+                    categories.each(function (i, e) {
+                        if ($(e).offset().top - scrollTop >= 10) {
+                            return false;
+                        }
+                        item = $(e);
+                    });
+                    var filter = filtersBtns.filter('[data-filter="' + item.attr("name") + '"]');
+                    if (filter[0] && !filter.is(".active")) {
+                        filtersBtns.removeClass("active");
+                        filter.addClass("active");
+                    }
+                }
+            }
+        });
+
+        self.on("@filter.click", function(filter) {
+            var isActive = filter.is(".active");
+            if (scrollArea.is(".skinnable")) {
+                if (isActive) return;
+                tones.children().eq(0).click();
+            }
+            noListenScroll = true;
+            if (!isActive) {
+                filtersBtns.filter(".active").removeClass("active");
+                filter.addClass("active");
+            }
+            var headerOffset = categories.filter('[name="' + filter.data('filter') + '"]').offset().top,
+                scroll = scrollArea.scrollTop(),
+                offsetTop = scrollArea.offset().top;
+
+            scrollArea.stop().animate({
+                scrollTop: headerOffset + scroll - offsetTop - 2
+            }, 200, 'swing', function () {
+                lazyLoading.call(self);
+                noListenScroll = false;
+            });
+        })
+
+        .on("@picker.show", function() {
+            if (self.recentEmojis) {
+                updateRecent(self);
+            }
+            lazyLoading.call(self);
+        })
+
+        .on("@tone.click", function(tone) {
+            tones.children().removeClass("active");
+            var skin = tone.addClass("active").data("skin");
+            if (skin) {
+                scrollArea.addClass("skinnable");
+                categoryBlocks.hide().filter("[data-tone=" + skin + "]").show();
+                filtersBtns.removeClass("active");//.not('[data-filter="recent"]').eq(0).addClass("active");
+            } else {
+                scrollArea.removeClass("skinnable");
+                categoryBlocks.hide().filter("[data-tone=0]").show();
+                filtersBtns.eq(0).click();
+            }
+            lazyLoading.call(self);
+            if (options.search) {
+                self.trigger('search.keypress');
+            }
+        })
+
+        .on("@button.click", function(button) {
+            if (button.is(".active")) {
+                self.hidePicker();
+            } else {
+                self.showPicker();
+                self.searchSel = null;
+            }
+        })
+
+        .on("@!paste", function(editor, event) {
+
+            var pasteText = function(text) {
+                var caretID = "caret-" + (new Date()).getTime();
+                var html = htmlFromText(text, self);
+                pasteHtmlAtCaret(html);
+                pasteHtmlAtCaret('<i id="' + caretID +'"></i>');
+                editor.scrollTop(editorScrollTop);
+                var caret = $("#" + caretID),
+                    top = caret.offset().top - editor.offset().top,
+                    height = editor.height();
+                if (editorScrollTop + top >= height || editorScrollTop > top) {
+                    editor.scrollTop(editorScrollTop + top - 2 * height/3);
+                }
+                caret.remove();
+                self.stayFocused = false;
+                calcButtonPosition.apply(self);
+                trigger(self, 'paste', [editor, text, html]);
+            };
+
+            if (event.originalEvent.clipboardData) {
+                var text = event.originalEvent.clipboardData.getData('text/plain');
+                pasteText(text);
+
+                if (event.preventDefault){
+                    event.preventDefault();
+                } else {
+                    event.stop();
+                }
+
+                event.returnValue = false;
+                event.stopPropagation();
+                return false;
+            }
+
+            self.stayFocused = true;
+            // insert invisible character for fix caret position
+            pasteHtmlAtCaret('<span>' + invisibleChar + '</span>');
+
+            var sel = saveSelection(editor[0]),
+                editorScrollTop = editor.scrollTop(),
+                clipboard = $("<div/>", {contenteditable: true})
+                    .css({position: "fixed", left: "-999px", width: "1px", height: "1px", top: "20px", overflow: "hidden"})
+                    .appendTo($("BODY"))
+                    .focus();
+
+            window.setTimeout(function() {
+                editor.focus();
+                restoreSelection(editor[0], sel);
+                var text = textFromHtml(clipboard.html().replace(/\r\n|\n|\r/g, '<br>'), self);
+                clipboard.remove();
+                pasteText(text);
+            }, 200);
+        })
+
+        .on("@emojibtn.click", function(emojibtn) {
+            editor.removeClass("has-placeholder");
+
+            if (self.searchSel !== null) {
+                editor.focus();
+                restoreSelection(editor[0], self.searchSel);
+                self.searchSel = null;
+            }
+
+            if (self.standalone) {
+                editor.html(shortnameTo(emojibtn.data("name"), self.emojiTemplate));
+                self.trigger("blur");
+            } else {
+                saveSelection(editor[0]);
+                pasteHtmlAtCaret(shortnameTo(emojibtn.data("name"), self.emojiTemplate));
+            }
+
+            if (self.recentEmojis) {
+                setRecent(self, emojibtn.data("name"));
+            }
+
+            // self.search.val('').trigger("change");
+            self.trigger('search.keypress');
+        })
+
+        .on("@!resize @keyup @emojibtn.click", calcButtonPosition)
+
+        .on("@!mousedown", function(editor, event) {
+            if ($(event.target).hasClass('search')) {
+                // Allow search clicks
+                self.stayFocused = true;
+                if (self.searchSel === null) {
+                    self.searchSel = saveSelection(editor[0]);
+                }
+            } else {
+                if (!app.is(".focused")) {
+                    editor.trigger("focus");
+                }
+                event.preventDefault();
+            }
+            return false;
+        })
+
+        .on("@change", function() {
+            var html = self.editor.html().replace(/<\/?(?:div|span|p)[^>]*>/ig, '');
+            // clear input: chrome adds <br> when contenteditable is empty
+            if (!html.length || /^<br[^>]*>$/i.test(html)) {
+                self.editor.html(self.content = '');
+            }
+            source[sourceValFunc](self.getText());
+        })
+
+        .on("@source.change", function() {
+            self.setText(source[sourceValFunc]());
+            trigger('change');
+        })
+
+        .on("@focus", function() {
+            app.addClass("focused");
+        })
+
+        .on("@blur", function() {
+            app.removeClass("focused");
+
+            if (options.hidePickerOnBlur) {
+                self.hidePicker();
+            }
+
+            var content = self.editor.html();
+            if (self.content !== content) {
+                self.content = content;
+                trigger(self, 'change', [self.editor]);
+                source.trigger("blur").trigger("change");
+            } else {
+                source.trigger("blur");
+            }
+
+            if (options.search) {
+                self.search.val('');
+                self.trigger('search.keypress', true);
+            }
+        });
+
+        if (options.search) {
+            self.on("@search.focus", function() {
+                self.stayFocused = true;
+                self.search.addClass("focused");
+            })
+
+            .on("@search.keypress", function(hide) {
+                var filterBtns = picker.find(".emojionearea-filter");
+                var activeTone = (options.tones ? tones.find("i.active").data("skin") : 0);
+                var term = self.search.val().replace( / /g, "_" ).replace(/"/g, "\\\"");
+
+                if (term && term.length) {
+                    if (self.recentFilter.hasClass("active")) {
+                        self.recentFilter.removeClass("active").next().addClass("active");
+                    }
+
+                    self.recentCategory.hide();
+                    self.recentFilter.hide();
+
+                    categoryBlocks.each(function() {
+                        var matchEmojis = function(category, activeTone) {
+                            var $matched = category.find('.emojibtn[data-name*="' + term + '"]');
+                            if ($matched.length === 0) {
+                                if (category.data('tone') === activeTone) {
+                                    category.hide();
+                                }
+                                filterBtns.filter('[data-filter="' + category.attr('name') + '"]').hide();
+                            } else {
+                                var $notMatched = category.find('.emojibtn:not([data-name*="' + term + '"])');
+                                $notMatched.hide();
+
+                                $matched.show();
+
+                                if (category.data('tone') === activeTone) {
+                                    category.show();
+                                }
+
+                                filterBtns.filter('[data-filter="' + category.attr('name') + '"]').show();
+                            }
+                        }
+
+                        var $block = $(this);
+                        if ($block.data('tone') === 0) {
+                            categories.filter(':not([name="recent"])').each(function() {
+                                matchEmojis($(this), 0);
+                            })
+                        } else {
+                            matchEmojis($block, activeTone);
+                        }
+                    });
+                    if (!noListenScroll) {
+                        scrollArea.trigger('scroll');
+                    } else {
+                        lazyLoading.call(self);
+                    }
+                } else {
+                    updateRecent(self, true);
+                    categoryBlocks.filter('[data-tone="' + tones.find("i.active").data("skin") + '"]:not([name="recent"])').show();
+                    $('.emojibtn', categoryBlocks).show();
+                    filterBtns.show();
+                    lazyLoading.call(self);
+                }
+            })
+
+            .on("@search.blur", function() {
+                self.stayFocused = false;
+                self.search.removeClass("focused");
+                self.trigger("blur");
+            });
+        }
+
+        if (options.shortcuts) {
+            self.on("@keydown", function(_, e) {
+                if (!e.ctrlKey) {
+                    if (e.which == 9) {
+                        e.preventDefault();
+                        button.click();
+                    }
+                    else if (e.which == 27) {
+                        e.preventDefault();
+                        if (button.is(".active")) {
+                            self.hidePicker();
+                        }
+                    }
+                }
+            });
+        }
+
+        if (isObject(options.events) && !$.isEmptyObject(options.events)) {
+            $.each(options.events, function(event, handler) {
+                self.on(event.replace(/_/g, '.'), handler);
+            });
+        }
+
+        if (options.autocomplete) {
+            var autocomplete = function() {
+                var textcompleteOptions = {
+                    maxCount: options.textcomplete.maxCount,
+                    placement: options.textcomplete.placement
+                };
+
+                if (options.shortcuts) {
+                    textcompleteOptions.onKeydown = function (e, commands) {
+                        if (!e.ctrlKey && e.which == 13) {
+                            return commands.KEY_ENTER;
+                        }
+                    };
+                }
+
+                var map = $.map(emojione.emojioneList, function (_, emoji) {
+                    return !options.autocompleteTones ? /_tone[12345]/.test(emoji) ? null : emoji : emoji;
+                });
+                map.sort();
+                editor.textcomplete([
+                    {
+                        id: css_class,
+                        match: /\B(:[\-+\w]*)$/,
+                        search: function (term, callback) {
+                            callback($.map(map, function (emoji) {
+                                return emoji.indexOf(term) === 0 ? emoji : null;
+                            }));
+                        },
+                        template: function (value) {
+                            return shortnameTo(value, self.emojiTemplate) + " " + value.replace(/:/g, '');
+                        },
+                        replace: function (value) {
+                            return shortnameTo(value, self.emojiTemplate);
+                        },
+                        cache: true,
+                        index: 1
+                    }
+                ], textcompleteOptions);
+
+                if (options.textcomplete.placement) {
+                    // Enable correct positioning for textcomplete
+                    if ($(editor.data('textComplete').option.appendTo).css("position") == "static") {
+                        $(editor.data('textComplete').option.appendTo).css("position", "relative");
+                    }
+                }
+            };
+
+            var initAutocomplete = function() {
+                if (self.disabled) {
+                    var enable = function () {
+                        self.off('enabled', enable);
+                        autocomplete();
+                    };
+                    self.on('enabled', enable);
+                } else {
+                    autocomplete();
+                }
+            }
+
+            if ($.fn.textcomplete) {
+                initAutocomplete();
+            } else {
+                $.ajax({
+                    url: "https://cdn.rawgit.com/yuku-t/jquery-textcomplete/v1.3.4/dist/jquery.textcomplete.js",
+                    dataType: "script",
+                    cache: true,
+                    success: initAutocomplete
+                });
+            }
+        }
+
+        if (self.inline) {
+            app.addClass(selector('inline', true));
+            self.on("@keydown", function(_, e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        if (/firefox/i.test(navigator.userAgent)) {
+            // disabling resize images on Firefox
+            document.execCommand("enableObjectResizing", false, false);
+        }
+
+        self.isReady = true;
+        self.trigger("onLoad", editor);
+        self.trigger("ready", editor);
+        //}, self.id === 1); // calcElapsedTime()
+    };
+    var cdn = {
+        defaultBase: "https://cdnjs.cloudflare.com/ajax/libs/emojione/",
+        defaultBase3: "https://cdn.jsdelivr.net/",
+        base: null,
+        isLoading: false
+    };
+    function loadEmojione(options) {
+        var emojioneVersion = getEmojioneVersion()
+        options = getOptions(options);
+
+        if (!cdn.isLoading) {
+            if (!emojione || getSupportMode(detectVersion(emojione)) < 2) {
+                cdn.isLoading = true;
+                var emojioneJsCdnUrlBase;
+                if (getSupportMode(emojioneVersion) > 5) {
+                    emojioneJsCdnUrlBase = cdn.defaultBase3 + "npm/emojione@" + emojioneVersion;
+                } else if (getSupportMode(emojioneVersion) > 4) {
+                    emojioneJsCdnUrlBase = cdn.defaultBase3 + "emojione/" + emojioneVersion;
+                } else {
+                    emojioneJsCdnUrlBase = cdn.defaultBase + "/" + emojioneVersion;
+                }
+
+                $.ajax({
+                    url: emojioneJsCdnUrlBase + "/lib/js/emojione.min.js",
+                    dataType: "script",
+                    cache: true,
+                    success: function () {
+                        emojione = window.emojione;
+                        emojioneVersion = detectVersion(emojione);
+                        emojioneSupportMode = getSupportMode(emojioneVersion);
+                        var sprite;
+                        if (emojioneSupportMode > 4) {
+                            cdn.base = cdn.defaultBase3 + "emojione/assets/" + emojioneVersion;
+                            sprite = cdn.base + "/sprites/emojione-sprite-" + emojione.emojiSize + ".css";
+                        } else {
+                            cdn.base = cdn.defaultBase + emojioneVersion + "/assets";
+                            sprite = cdn.base + "/sprites/emojione.sprites.css";
+                        }
+                        if (options.sprite) {
+                            if (document.createStyleSheet) {
+                                document.createStyleSheet(sprite);
+                            } else {
+                                $('<link/>', {rel: 'stylesheet', href: sprite}).appendTo('head');
+                            }
+                        }
+                        while (readyCallbacks.length) {
+                            readyCallbacks.shift().call();
+                        }
+                        cdn.isLoading = false;
+                    }
+                });
+            } else {
+                emojioneVersion = detectVersion(emojione);
+                emojioneSupportMode = getSupportMode(emojioneVersion);
+                if (emojioneSupportMode > 4) {
+                    cdn.base = cdn.defaultBase3 + "emojione/assets/" + emojioneVersion;
+                } else {
+                    cdn.base = cdn.defaultBase + emojioneVersion + "/assets";
+                }
+            }
+        }
+
+        emojioneReady(function() {
+            var emojiSize = "";
+            if (options.useInternalCDN) {
+                if (emojioneSupportMode > 4) emojiSize = emojione.emojiSize + "/";
+
+                emojione.imagePathPNG = cdn.base + "/png/" + emojiSize;
+                emojione.imagePathSVG = cdn.base + "/svg/" + emojiSize;
+                emojione.imagePathSVGSprites = cdn.base + "/sprites/emojione.sprites.svg";
+                emojione.imageType = options.imageType;
+            }
+            if (getSupportMode(emojioneVersion) > 4) {
+                uniRegexp = emojione.regUnicode;
+                emojione.imageType = options.imageType || "png";
+            } else {
+                uniRegexp = new RegExp("<object[^>]*>.*?<\/object>|<span[^>]*>.*?<\/span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(" + emojione.unicodeRegexp + ")", "gi");
+            }
+        });
+    };
+    var EmojioneArea = function(element, options) {
+        var self = this;
+        loadEmojione(options);
+        eventStorage[self.id = ++unique] = {};
+        possibleEvents[self.id] = {};
+        emojioneReady(function() {
+            init(self, element, options);
+        });
+    };
+    function bindEvent(self, event) {
+        event = event.replace(/^@/, '');
+        var id = self.id;
+        if (possibleEvents[id][event]) {
+            $.each(possibleEvents[id][event], function(i, ev) {
+                // ev[0] = element
+                // ev[1] = event
+                // ev[2] = target
+                $.each($.isArray(ev[0]) ? ev[0] : [ev[0]], function(i, el) {
+                    $(el).on(ev[1], function() {
+                        var args = slice.call(arguments),
+                            target = $.isFunction(ev[2]) ? ev[2].apply(self, [event].concat(args)) : ev[2];
+                        if (target) {
+                            trigger(self, event, [target].concat(args));
+                        }
+                    });
+                });
+            });
+            possibleEvents[id][event] = null;
+        }
+    }
+
+    EmojioneArea.prototype.on = function(events, handler) {
+        if (events && $.isFunction(handler)) {
+            var self = this;
+            $.each(events.toLowerCase().split(' '), function(i, event) {
+                bindEvent(self, event);
+                (eventStorage[self.id][event] || (eventStorage[self.id][event] = [])).push(handler);
+            });
+        }
+        return this;
+    };
+
+    EmojioneArea.prototype.off = function(events, handler) {
+        if (events) {
+            var id = this.id;
+            $.each(events.toLowerCase().replace(/_/g, '.').split(' '), function(i, event) {
+                if (eventStorage[id][event] && !/^@/.test(event)) {
+                    if (handler) {
+                        $.each(eventStorage[id][event], function(j, fn) {
+                            if (fn === handler) {
+                                eventStorage[id][event].splice(j, 1);
+                            }
+                        });
+                    } else {
+                        eventStorage[id][event] = [];
+                    }
+                }
+            });
+        }
+        return this;
+    };
+
+    EmojioneArea.prototype.trigger = function() {
+        var args = slice.call(arguments),
+            call_args = [this].concat(args.slice(0,1));
+        call_args.push(args.slice(1));
+        return trigger.apply(this, call_args);
+    };
+
+    EmojioneArea.prototype.setFocus = function () {
+        var self = this;
+        emojioneReady(function () {
+            self.editor.focus();
+        });
+        return self;
+    };
+
+    EmojioneArea.prototype.setText = function (str) {
+        var self = this;
+        emojioneReady(function () {
+            self.editor.html(htmlFromText(str, self));
+            self.content = self.editor.html();
+            trigger(self, 'change', [self.editor]);
+            calcButtonPosition.apply(self);
+        });
+        return self;
+    }
+
+    EmojioneArea.prototype.getText = function() {
+        return textFromHtml(this.editor.html(), this);
+    }
+
+    EmojioneArea.prototype.showPicker = function () {
+        var self = this;
+        if (self._sh_timer) {
+            window.clearTimeout(self._sh_timer);
+        }
+        self.picker.removeClass("hidden");
+        self._sh_timer =  window.setTimeout(function() {
+            self.button.addClass("active");
+        }, 50);
+        trigger(self, "picker.show", [self.picker]);
+        return self;
+    }
+
+    EmojioneArea.prototype.hidePicker = function () {
+        var self = this;
+        if (self._sh_timer) {
+            window.clearTimeout(self._sh_timer);
+        }
+        self.button.removeClass("active");
+        self._sh_timer =  window.setTimeout(function() {
+            self.picker.addClass("hidden");
+        }, 500);
+        trigger(self, "picker.hide", [self.picker]);
+        return self;
+    }
+
+    EmojioneArea.prototype.enable = function () {
+        var self = this;
+        var next = function () {
+            self.disabled = false;
+            self.editor.prop('contenteditable', true);
+            self.button.show();
+            var editor = self[(self.standalone) ? "button" : "editor"];
+            editor.parent().removeClass('emojionearea-disable');
+            trigger(self, 'enabled', [editor]);
+        };
+        self.isReady ? next() : self.on("ready", next);
+        return self;
+    }
+
+    EmojioneArea.prototype.disable = function () {
+        var self = this;
+        self.disabled = true;
+        var next = function () {
+            self.editor.prop('contenteditable', false);
+            self.hidePicker();
+            self.button.hide();
+            var editor = self[(self.standalone) ? "button" : "editor"];
+            editor.parent().addClass('emojionearea-disable');
+            trigger(self, 'disabled', [editor]);
+        };
+        self.isReady ? next() : self.on("ready", next);
+        return self;
+    }
+
+    $.fn.emojioneArea = function(options) {
+        return this.each(function() {
+            if (!!this.emojioneArea) return this.emojioneArea;
+            $.data(this, 'emojioneArea', this.emojioneArea = new EmojioneArea($(this), options));
+            return this.emojioneArea;
+        });
+    };
+
+    $.fn.emojioneArea.defaults = getDefaultOptions();
+
+    $.fn.emojioneAreaText = function(options) {
+        options = getOptions(options);
+
+        var self = this, pseudoSelf = {
+            shortnames: (options && typeof options.shortnames !== 'undefined' ? options.shortnames : true),
+            emojiTemplate: '<img alt="{alt}" class="emojione' + (options && options.sprite && emojioneSupportMode < 3 ? '-{uni}" src="' + blankImg : 'emoji" src="{img}') + '"/>'
+        };
+
+        loadEmojione(options);
+        emojioneReady(function() {
+            self.each(function() {
+                var $this = $(this);
+                if (!$this.hasClass('emojionearea-text')) {
+                    $this.addClass('emojionearea-text').html(htmlFromText(($this.is('TEXTAREA') || $this.is('INPUT') ? $this.val() : $this.text()), pseudoSelf));
+                }
+                return $this;
+            });
+        });
+
+        return this;
+    };
+
+}, window ) );
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(66);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!./emojionearea.min.css", function() {
+			var newContent = require("!!../../css-loader/index.js!./emojionearea.min.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea]{position:absolute;z-index:1000;min-width:160px;padding:5px 0;margin:2px 0 0;font-size:14px;text-align:left;list-style:none;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid #ccc;border:1px solid rgba(0,0,0,.15);-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;-moz-box-shadow:0 6px 12px rgba(0,0,0,.175);-webkit-box-shadow:0 6px 12px rgba(0,0,0,.175);box-shadow:0 6px 12px rgba(0,0,0,.175)}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item{font-size:14px;padding:1px 3px;border:0}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item a{text-decoration:none;display:block;height:100%;line-height:1.8em;padding:0 1.54em 0 .615em;color:#4f4f4f}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item.active,.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item:hover{background-color:#e4e4e4}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item.active a,.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item:hover a{color:#333}.dropdown-menu.textcomplete-dropdown[data-strategy=emojionearea] li.textcomplete-item .emojioneemoji{font-size:inherit;height:2ex;width:2.1ex;min-height:20px;min-width:20px;display:inline-block;margin:0 5px .2ex 0;line-height:normal;vertical-align:middle;max-width:100%;top:0}.emojionearea-text .emojioneemoji,.emojionearea-text [class*=emojione-]{font-size:inherit;height:2ex;width:2.1ex;min-height:20px;min-width:20px;display:inline-block;margin:-.2ex .15em .2ex;line-height:normal;vertical-align:middle;max-width:100%;top:0}.emojionearea,.emojionearea *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}.emojionearea.emojionearea-disable{position:relative;background-color:#eee;-moz-user-select:-moz-none;-ms-user-select:none;-webkit-user-select:none;user-select:none}.emojionearea.emojionearea-disable:before{content:\"\";display:block;top:0;left:0;right:0;bottom:0;z-index:1;opacity:.3;position:absolute;background-color:#eee}.emojionearea,.emojionearea.form-control{display:block;position:relative!important;width:100%;height:auto;padding:0;font-size:14px;background-color:#FFF;border:1px solid #CCC;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-moz-transition:border-color .15s ease-in-out,-moz-box-shadow .15s ease-in-out;-o-transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;-webkit-transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}.emojionearea.focused{border-color:#66AFE9;outline:0;-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}.emojionearea .emojionearea-editor{display:block;height:auto;min-height:8em;max-height:15em;overflow:auto;padding:6px 24px 6px 12px;line-height:1.42857143;font-size:inherit;color:#555;background-color:transparent;border:0;cursor:text;margin-right:1px;-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.emojionearea .emojionearea-editor:empty:before{content:attr(placeholder);display:block;color:#BBB}.emojionearea .emojionearea-editor:focus{border:0;outline:0;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.emojionearea .emojionearea-editor .emojioneemoji,.emojionearea .emojionearea-editor [class*=emojione-]{font-size:inherit;height:2ex;width:2.1ex;min-height:20px;min-width:20px;display:inline-block;margin:-.2ex .15em .2ex;line-height:normal;vertical-align:middle;max-width:100%;top:0}.emojionearea.emojionearea-inline{height:34px}.emojionearea.emojionearea-inline>.emojionearea-editor{height:32px;min-height:20px;overflow:hidden;white-space:nowrap;position:absolute;top:0;left:12px;right:24px;padding:6px 0}.emojionearea.emojionearea-inline>.emojionearea-button{top:4px}.emojionearea .emojionearea-button{z-index:5;position:absolute;right:3px;top:3px;width:24px;height:24px;opacity:.6;cursor:pointer;-moz-transition:opacity .3s ease-in-out;-o-transition:opacity .3s ease-in-out;-webkit-transition:opacity .3s ease-in-out;transition:opacity .3s ease-in-out}.emojionearea .emojionearea-button:hover{opacity:1}.emojionearea .emojionearea-button>div{display:block;width:24px;height:24px;position:absolute;-moz-transition:all .4s ease-in-out;-o-transition:all .4s ease-in-out;-webkit-transition:all .4s ease-in-out;transition:all .4s ease-in-out}.emojionearea .emojionearea-button>div.emojionearea-button-open{background-position:0 -24px;filter:alpha(enabled=false);opacity:1}.emojionearea .emojionearea-button>div.emojionearea-button-close{background-position:0 0;-webkit-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);filter:alpha(Opacity=0);opacity:0}.emojionearea .emojionearea-button.active>div.emojionearea-button-open{-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);filter:alpha(Opacity=0);opacity:0}.emojionearea .emojionearea-button.active>div.emojionearea-button-close{-webkit-transform:rotate(0);-o-transform:rotate(0);transform:rotate(0);filter:alpha(enabled=false);opacity:1}.emojionearea .emojionearea-picker{background:#FFF;position:absolute;-moz-box-shadow:0 1px 5px rgba(0,0,0,.32);-webkit-box-shadow:0 1px 5px rgba(0,0,0,.32);box-shadow:0 1px 5px rgba(0,0,0,.32);-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;height:276px;width:316px;top:-15px;right:-15px;z-index:90;-moz-transition:all .25s ease-in-out;-o-transition:all .25s ease-in-out;-webkit-transition:all .25s ease-in-out;transition:all .25s ease-in-out;filter:alpha(Opacity=0);opacity:0;-moz-user-select:-moz-none;-ms-user-select:none;-webkit-user-select:none;user-select:none}.emojionearea .emojionearea-picker.hidden{display:none}.emojionearea .emojionearea-picker .emojionearea-wrapper{position:relative;height:276px;width:316px}.emojionearea .emojionearea-picker .emojionearea-wrapper:after{content:\"\";display:block;position:absolute;background-repeat:no-repeat;z-index:91}.emojionearea .emojionearea-picker .emojionearea-filters{width:100%;position:absolute;z-index:95;background:#F5F7F9;padding:0 0 0 7px;height:40px}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter{display:block;float:left;height:40px;width:32px;padding:7px 1px 0;cursor:pointer;-webkit-filter:grayscale(1);filter:grayscale(1)}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter.active{background:#fff}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter.active,.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter:hover{-webkit-filter:grayscale(0);filter:grayscale(0)}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter>i{width:24px;height:24px;top:0}.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter>img{width:24px;height:24px;margin:0 3px}.emojionearea .emojionearea-picker .emojionearea-search-panel{height:30px;position:absolute;z-index:95;top:40px;left:0;right:0;padding:5px 0 5px 8px}.emojionearea .emojionearea-picker .emojionearea-search-panel .emojionearea-tones{float:right;margin-right:10px;margin-top:-1px}.emojionearea .emojionearea-picker .emojionearea-tones-panel .emojionearea-tones{position:absolute;top:4px;left:171px}.emojionearea .emojionearea-picker .emojionearea-search{float:left;padding:0;height:20px;width:160px}.emojionearea .emojionearea-picker .emojionearea-search>input{outline:0;width:160px;min-width:160px;height:20px}.emojionearea .emojionearea-picker .emojionearea-tones{padding:0;width:120px;height:20px}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone{display:inline-block;padding:0;border:0;vertical-align:middle;outline:0;background:0 0;cursor:pointer;position:relative}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-0,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-0:after{background-color:#ffcf3e}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-1,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-1:after{background-color:#fae3c5}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-2,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-2:after{background-color:#e2cfa5}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-3,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-3:after{background-color:#daa478}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-4,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-4:after{background-color:#a78058}.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-5,.emojionearea .emojionearea-picker .emojionearea-tones>.btn-tone.btn-tone-5:after{background-color:#5e4d43}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone{width:20px;height:20px;margin:0;background-color:transparent}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone:after{content:\"\";position:absolute;display:block;top:4px;left:4px;width:12px;height:12px}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone.active:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone.active:after{top:0;left:0;width:20px;height:20px}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone{width:16px;height:16px;margin:0 2px}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone.active:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone.active:after{content:\"\";position:absolute;display:block;background-color:transparent;border:2px solid #fff;width:8px;height:8px;top:2px;left:2px;box-sizing:initial}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block:after,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block:before,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block>.emojionearea-category:after,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block>.emojionearea-category:before,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title:after,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title:before{content:\" \";clear:both;display:block}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-bullet>.btn-tone:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-radio>.btn-tone:after{-moz-border-radius:100%;-webkit-border-radius:100%;border-radius:100%}.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-checkbox>.btn-tone:after,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone,.emojionearea .emojionearea-picker .emojionearea-tones.emojionearea-tones-square>.btn-tone:after{-moz-border-radius:1px;-webkit-border-radius:1px;border-radius:1px}.emojionearea .emojionearea-picker .emojionearea-scroll-area{height:236px;overflow:auto;overflow-x:hidden;width:100%;position:absolute;padding:0 0 5px}.emojionearea .emojionearea-picker .emojionearea-search-panel+.emojionearea-scroll-area{height:206px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-emojis-list{z-index:1}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title{display:block;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:13px;font-weight:400;color:#b2b2b2;background:#FFF;line-height:20px;margin:0;padding:7px 0 5px 6px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block{padding:0 0 0 7px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block>.emojionearea-category{padding:0!important}.emojionearea .emojionearea-picker .emojionearea-scroll-area [class*=emojione-]{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;margin:0;width:24px;height:24px;top:0}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;width:24px;height:24px;float:left;display:block;margin:1px;padding:3px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn:hover{-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background-color:#e4e4e4;cursor:pointer}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn i,.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn img{float:left;display:block;width:24px;height:24px}.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn img.lazy-emoji{filter:alpha(Opacity=0);opacity:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-top .emojionearea-filters{top:0;-moz-border-radius-topleft:5px;-webkit-border-top-left-radius:5px;border-top-left-radius:5px;-moz-border-radius-topright:5px;-webkit-border-top-right-radius:5px;border-top-right-radius:5px}.emojionearea .emojionearea-picker.emojionearea-filters-position-top.emojionearea-search-position-top .emojionearea-scroll-area{bottom:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-top.emojionearea-search-position-bottom .emojionearea-scroll-area{top:40px}.emojionearea .emojionearea-picker.emojionearea-filters-position-top.emojionearea-search-position-bottom .emojionearea-search-panel{top:initial;bottom:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom .emojionearea-filters{bottom:0;-moz-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px;border-bottom-left-radius:5px;-moz-border-radius-bottomright:5px;-webkit-border-bottom-right-radius:5px;border-bottom-right-radius:5px}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-bottom .emojionearea-scroll-area{top:0}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-bottom .emojionearea-search-panel,.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-top .emojionearea-scroll-area{top:initial;bottom:40px}.emojionearea .emojionearea-picker.emojionearea-filters-position-bottom.emojionearea-search-position-top .emojionearea-search-panel{top:0}.emojionearea .emojionearea-picker.emojionearea-picker-position-top{margin-top:-286px;right:-14px}.emojionearea .emojionearea-picker.emojionearea-picker-position-top .emojionearea-wrapper:after{width:19px;height:10px;background-position:-2px -49px;bottom:-10px;right:20px}.emojionearea .emojionearea-picker.emojionearea-picker-position-top.emojionearea-filters-position-bottom .emojionearea-wrapper:after{background-position:-2px -80px}.emojionearea .emojionearea-picker.emojionearea-picker-position-left,.emojionearea .emojionearea-picker.emojionearea-picker-position-right{margin-right:-326px;top:-8px}.emojionearea .emojionearea-picker.emojionearea-picker-position-left .emojionearea-wrapper:after,.emojionearea .emojionearea-picker.emojionearea-picker-position-right .emojionearea-wrapper:after{width:10px;height:19px;background-position:0 -60px;top:13px;left:-10px}.emojionearea .emojionearea-picker.emojionearea-picker-position-left.emojionearea-filters-position-bottom .emojionearea-wrapper:after,.emojionearea .emojionearea-picker.emojionearea-picker-position-right.emojionearea-filters-position-bottom .emojionearea-wrapper:after{background-position:right -60px}.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom{margin-top:10px;right:-14px;top:47px}.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after{width:19px;height:10px;background-position:-2px -100px;top:-10px;right:20px}.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom.emojionearea-filters-position-bottom .emojionearea-wrapper:after{background-position:-2px -90px}.emojionearea .emojionearea-button.active+.emojionearea-picker{filter:alpha(enabled=false);opacity:1}.emojionearea .emojionearea-button.active+.emojionearea-picker-position-top{margin-top:-269px}.emojionearea .emojionearea-button.active+.emojionearea-picker-position-left,.emojionearea .emojionearea-button.active+.emojionearea-picker-position-right{margin-right:-309px}.emojionearea .emojionearea-button.active+.emojionearea-picker-position-bottom{margin-top:-7px}.emojionearea.emojionearea-standalone{display:inline-block;width:auto;box-shadow:none}.emojionearea.emojionearea-standalone .emojionearea-editor{min-height:33px;position:relative;padding:6px 42px 6px 6px}.emojionearea.emojionearea-standalone .emojionearea-editor::before{content:\"\";position:absolute;top:4px;left:50%;bottom:4px;border-left:1px solid #e6e6e6}.emojionearea.emojionearea-standalone .emojionearea-editor.has-placeholder .emojioneemoji{opacity:.4}.emojionearea.emojionearea-standalone .emojionearea-button{top:0;right:0;bottom:0;left:0;width:auto;height:auto}.emojionearea.emojionearea-standalone .emojionearea-button>div{right:6px;top:5px}.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after,.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-top .emojionearea-wrapper:after{right:23px}.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-left .emojionearea-wrapper:after,.emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-right .emojionearea-wrapper:after{top:15px}.emojionearea .emojionearea-button>div,.emojionearea .emojionearea-picker .emojionearea-wrapper:after{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAABuCAYAAADMB4ipAAAHfElEQVRo3u1XS1NT2Rb+9uOcQF4YlAJzLymFUHaLrdxKULvEUNpdTnRqD532f+AHMLMc94gqR1Zbt8rBnUh3YXipPGKwRDoWgXvrYiFUlEdIkPPYZ/dAkwox5yQCVt/bzRrBPnt9e+211/etFeDQDu3ArL+/X37OeqmRWoH7+vpItfWawStF1tfXR+zW9xW5ne0p8loOcAKuCdwpRft60C8a+X5zTvebCqcAvmidf1GGHtqhHdpf1qqKzsrKipyensbi4iKWl5cBAMFgEG1tbYhGo2hpadlbmxseHpaDg4MAgI6ODng8HgBAPp/H/Pw8AODatWvo7e2tvUHrui7v3r2L+fl5XL58GVeuXIHH49m1N5/Py0ePHmF0dBQdHR24desWVFXdtYdXAn/48CHm5+dx8+ZNRKPRigEUDpuenpb3799H4YaOnWh5eVmOj48jFoshGo0STdPkwMCAXF5elqV7BgYGpKZpMhqNklgshrGxMbx580Y6gicSCTDGEIvFAADpdBqpVArJZLK4J5lMIpVKIZ1OAwBisRgYY0gkEs6Rp1IphMNh+Hw+AgCGYQAANE0r7in8Xfjm8/lIOBzGq1evnMHX19fR1NRU/D8UCoFzjnA4XFwLh8PgnCMUChXXmpqakM1mUfVBS62xsZHk83lZWi1nz579ZA0AhBDO4A0NDchkMsWSJIRAURRiVy26rktVVUkmk0EgEHAGP3XqFKamppDP56Vpmrhz5w5u374t/X4/OP+w3TRNZLNZ6LoO0zSRz+dlf38/Ll686Jzz8+fPQwiBeDwOt9tNrl+/jkwmU6yaQpVkMhncuHEDbrebxONxCCEQiUScIw8Gg+TBgwdyZGQEyWRSdnV1kVQqJYeGhrC6ugrGGEKhEHp7e3Hy5EmSTCblvXv30NPTg2AwSA6M/vF4HCMjI7b0/yzh8vv9AIBsNrt34aokuQsLC7skt729varkHtqftUFf++FHsrq0QN3eBvp68Tfvf9Mv12oFCYU7G//e9nVuO7dpNbe2W4M//yQr0p8yRvyBo1Zr++lwLcCt7afD/sBRizJGavrB1dDYYh47Htrq+Kb7jBNwxzfdZ44dD201NLaYVUkU7ozQpuAJBkARwnRZpunN5zaa5hJjiXLH05GeiMd7JEM5zzHGNQBGZvk/Iv0yYVWMvK0zKk1Dl6ahW5RQobjqdjy+wEZn9PKF0n2d0csXPL7AhuKq26GECtPQLdPQZVtn1LlB69p7yRVVSEiDEGJwRd12e4+8PR3piRQidnuPvOWKuk0IMSSkwRVV6Np7WVVbSqvGsgSnlKkAFNPQXdrOtuKqcxtcUTUAhmUJnVJmlleJo3CVHmAaOlPUOmYJkxFKibQsSRkXhr4juKIKO2BHVSwcoLrqCVdUYho6K3YYRRWmoUtdey/tgKtK7rUffiQAsLq08MnbNLe2WwBgB/zHzueFyD8nwlIfbvdx8eU0WV1aKD1cVAMs9+F2j9gUPEEKemEJIe3AnXy4XfkBoNKSZHNthWfX31EA69VKttyHVyIOY1wRwmS6tqNsrr31vXo5k/bUu4gT2cp9lhbm0rzCJpeUUrE0vS63+c7/6uXMbDUWl/ssLczNFrVFddUT09AZpUy1LKvO0DVfPrfR9HxqfNbuEe185l9MFX3o6tIC5YpKFLWOfdQQ93Zu49j0+FDCDtjOp1yaOQCYhs4Y40wI05XfWj8yPT40Ua2ey33mEmMTtp2IUEq0nW3FKeJPGPjRp1Iz2QUuLUu66txG9NLVSK3gBZ+C1lcE54oqKOOCK6rm8QU2unu+u1ANuNynvFsBAG1ubbdMQ5eGviMAFDuP0w3sfMpvQEtb24fOQncU1bXl8R7JnOu+ZNv97XxKJwY6+PNPsrm13drObVqUMlMIU5OWpVHOc96Go5lTnV2fzC/VfAozD7HTCa6olBBa1Imlhbmq2lLuQ5xaW6nCPfnln0Yt7bDUhzhps8cfKH5//uTXmvS81OeLdqI/ZoROzSZrHqG/OvOPzxuhK5VgJTvV2bW3EdqJRABwrvvS/kfoSkoZvXT1YEbociHr7vnuYEfogpBFL109HKH/h0fomnXg3Lff79r7/MmvVbWG7gX4QObzc99+Tz7mHKah05KcW6ahQ9feS6cbMCdgt7eBWJagjCuUAC5tZzuouuo0Spm0hElc9R4cbf4bVl8v1p6WUmCuqEwIs34ruxaeeTy4uJVd67As08UVlVmWoG5vA7FLG3WMmHEupVTyW+vh2cn4DADMTsaTuc21LiGEhzHOnQ6gNtMrJSBMCKHkNt999WLi0S7hejEZH81n174WpukiIMw0dKq66p3Bw50RwhUVXFGJKUy28Xal48VkfKrSlWenhsc23q2cEB9SR7iiItwZIbbgHn8AlDFCCMW7laXjqZnHjkNpaubJzNuVpWZCKChjxOMPVH/QlaW0f/G3ZLqWWl6ce/bvlddp7yFD/w8Z+njoX1+GoZMjgzMAMDkyeLAMnRh+uKveJ0YGD4ahEyODFRk6OfrL/hj67GnckaHPng7vjaGzyYmaGDr77KktQ38H8tqx8Wja+WIAAAAASUVORK5CYII=)!important}.emojionearea.emojionearea-standalone .emojionearea-editor.has-placeholder{background-repeat:no-repeat;background-position:20px 4px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMAQMAAABsu86kAAAABlBMVEUAAAC/v79T5hyIAAAAAXRSTlMAQObYZgAAABNJREFUCNdjYGNgQEb/P4AQqiAASiUEG6Vit44AAAAASUVORK5CYII=)!important}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 67 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

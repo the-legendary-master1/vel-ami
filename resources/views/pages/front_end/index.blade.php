@@ -81,6 +81,63 @@
 
 @endsection
 @section('extraJS')
+@auth
+    <script>
+        $(function() {
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    userId: '{{ Auth::user()->id }}',
+                    url: '{{ url(strtolower(Auth::user()->role)) }}',
+                    unreadNotification: '',
+                    showMessages: false,
+                    loading: false,
+                    
+                },
+                mounted() {
+                    Echo.channel('get-messages').listen('.get-messages', (data) => {
+                        console.log(data);
+                        this.unreadMessages = data.chat;
+                    })
+                    $('.navbar-menu--click').on('click', function(e) {
+                        var nxt = $(this).next();
+                        
+                        $('#navbar-menu').find('.dropdown-menu').removeClass('show');
+                        nxt.toggleClass('show');
+                        $(this).toggleClass('active');
+
+                        e.stopPropagation();
+                        $(document).click(function() {
+                            nxt.removeClass('show'); 
+                        });
+                    });
+                },
+                methods: {
+
+                    // Header
+                    getMessages() {
+                        axios.get( this.url + '/get-messages', { params: { id: this.ownerId }} ).then( response => {
+                            this.loading = false
+                        })
+                    },
+                    openMessages() {
+                        this.loading = true
+                        this.showMessages = !this.showMessages;
+                        this.unreadNotification = 0;
+                        this.getMessages()
+                    },
+                    readMessage(customer_id, product_id) {
+                        let data = {
+                            customer_id: customer_id,
+                            product_id: product_id
+                        }
+                        axios.post( this.url + '/read-message', data );
+                    },
+                },
+            });
+        })
+    </script>
+@endauth
 @endsection
 
 

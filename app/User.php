@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Cache;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -21,5 +22,12 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\MyShop');
     }
-
+    public function chats()
+    {
+        return $this->hasMany('App\Chat', 'customer_id');
+    }
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
+    }
 }

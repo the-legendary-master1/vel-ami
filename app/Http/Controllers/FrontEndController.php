@@ -22,6 +22,11 @@ use App\ProductReview;
 use App\ProductImage;
 use App\ReviewReply;
 use App\ReportedReview;
+use App\Chat;
+use App\ChatAttachment;
+use App\Events\GetMessages;
+use App\Events\GetMessageNotifications;
+use App\Events\ChatTyping;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class FrontEndController extends Controller
@@ -50,21 +55,19 @@ class FrontEndController extends Controller
         }
 
         $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported')->where('product_id', base64_decode($id))->orderBy('id', 'desc')->paginate(5);
+        $chats = Chat::where('customer_id', Auth::user()->id)->where('owner_id', $product->shop['user_id'])->where('product_id', $product->id)->get()->first();
 
         foreach ($reviews as $review) {
             $review->attachments = json_decode($review->attachments, true);
         }
 
 		return view('pages.front_end.single_product', [
-            'request' => $request,
-            'product' => $product,
-            'average' => $average,
-            'reviews' => $reviews,
+            'request'   => $request,
+            'product'   => $product,
+            'average'   => $average,
+            'reviews'   => $reviews,
+            'chats'     => $chats,
         ]);
-    }
-    public function chat()
-    {
-        return view('pages.front_end.chat');
     }
     public function viewShop(Request $request)
     {
@@ -201,6 +204,7 @@ class FrontEndController extends Controller
                 $product->description = $request->description;
                 $product->details = $request->details;
                 $product->tags = implode(',', $request->tags);
+                $product->url = str_replace(' ', '-', $request->name);
                 $product->save();
 
                     if ( $request->hasFile('images') ) {
@@ -383,6 +387,166 @@ class FrontEndController extends Controller
                 }
             }, 2);
             event(new GetProductReviews());
+        } catch (Exception $e) {
+            return;
+        }
+    }
+    // public function chat($id, $name)
+    public function chat(Request $request, $name, $product_id)
+    {   
+        $product = Product::find($product_id);
+        $messages = Chat::with('user', 'attachments')->where('product_id', $product_id)->where('ref_id', $request->ref)->get();
+        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
+
+        $msgs = Chat::where('product_id', $product_id)->where('ref_id', $request->ref)->select('customer_id', 'owner_id')->get();
+        $customer_id;
+        $owner_id;
+        foreach ($msgs as $msg) {
+            if ($msg->customer_id != $msg->owner_id) {
+                $customer_id = $msg->customer_id;
+                $owner_id = $msg->owner_id;
+                break;
+            }
+        }    
+        // for owner
+        $user = User::find($customer_id);
+
+        // for cusutomer
+        if ($customer_id == Auth::user()->id)
+            $user = User::find($owner_id);
+
+        if ($user->isOnline())
+            $user->status = 'online';
+        else
+            $user->status = 'offline';
+
+        return view('pages.front_end.chat', [
+            'unreadNotification' => $unreadNotification,
+            'product_id'         => $product_id,
+            'owners_id'          => $product->shop->user_id,
+            'messages'           => $messages,
+            'request'            => $request,
+            'user'               => $user,
+        ]);
+    }
+    public function checkUserStatus($productId, $ref_id)
+    {
+        $messages = Chat::where('product_id', $productId)->where('ref_id', $ref_id)->select('customer_id', 'owner_id')->get();
+        $customer_id;
+        $owner_id;
+        foreach ($messages as $message) {
+            if ($message->customer_id != $message->owner_id) {
+                $customer_id = $message->customer_id;
+                $owner_id = $message->owner_id;
+                break;
+            }
+        }        
+        // for owner
+        $user = User::find($customer_id);
+
+        // for cusutomer
+        if ($customer_id == Auth::user()->id)
+            $user = User::find($owner_id);
+
+        if ($user->isOnline())
+            $user->status = 'online';
+        else
+            $user->status = 'offline';
+
+        return response()->json($user);
+    }
+    public function storeMessage(Request $request)
+    {
+        try {
+            DB::transaction(function() use ($request) {
+                $chat = new Chat;
+                $chat->product_id = $request->product_id;
+                $chat->owner_id = $request->owner_id;
+                $chat->customer_id = $request->customer_id;
+                $chat->message = $request->message;
+                $chat->status = 0; // sent
+                $chat->ref_id = $request->ref_id;
+                $chat->save();
+
+                if ( $request->hasFile('attachments') ) {
+                    foreach ($request->file('attachments') as $key => $attachment) {
+                            $img_ext = $attachment->extension();
+                            $filename = 'attachment_' . $chat->id . date('is', strtotime(Carbon::now())) . $key;
+                            $path =  $attachment->storeAs('attachments', $filename .'.'. $img_ext, 'public');
+
+                        $attachments = new ChatAttachment;
+                        $attachments->chat_id = $chat->id;
+                        $attachments->path = 'files/' . $path;
+                        $attachments->save();
+                    }
+                }
+                // if ( $request->hasFile('attachments') ) {
+                //     $attachments = Chat::find($chat->id);
+                //         foreach ($request->file('attachments') as $key => $attachment) {
+                //             $img_ext = $attachment->extension();
+                //             $filename = 'attachment_' . $chat->id . date('is', strtotime(Carbon::now())) . $key;
+                //             $path =  $attachment->storeAs('attachments', $filename .'.'. $img_ext, 'public');
+
+                //             // store attachments
+                //             $data['path'] = 'files/' . $path;
+                //             $arr[] = $data;
+                //         }
+                //     $attachments->attachments = json_encode($arr);
+                //     $attachments->save();
+                // }
+                event( new GetMessages( $chat->load('user', 'attachments') ));
+            }, 2);
+        } catch (Exception $e) {
+            return;
+        }
+    }
+    public function isTyping(Request $request)
+    {
+        try {
+            $customer = Chat::where('product_id', $request->product_id)->where('customer_id', $request->auth_id)->where('ref_id', $request->ref_id)->get();
+            if (count($customer) > 0) {
+                $user = User::with('chats')->find($request->auth_id);
+                $user['ref'] = $request->ref_id;
+                event(new ChatTyping( $user ));
+            }
+        } catch (Exception $e) {
+            return;
+        }
+    }
+    public function getMessages(Request $request)
+    {
+        try {
+            DB::transaction(function() use ($request) {
+                $user = User::find($request->id);
+
+                if ($user->role == "User-Premium") {
+                    $chats = Chat::with(['product:id,name,price', 'product.image'])->where('owner_id', $request->id)->orderBy('id', 'desc')->get();
+                    $messages = $chats->groupBy(['ref_id', 'status']);
+                }
+                // return response()->json($messages);
+                event( new GetMessages( $messages ));
+            }, 2);
+        } catch (Exception $e) {
+            return;
+        }
+    }
+    public function readMessage(Request $request)
+    {
+        try {
+            DB::transaction(function() use ($request) {
+                // from message notification
+                $messages = Chat::where('customer_id', $request->customer_id)->where('product_id', $request->product_id)->get();
+
+                if ($request->owner_id) {
+                    // click from message textbox
+                    $messages = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->get();
+                }
+
+                foreach ($messages as $message) {
+                    $message->status = 1; // seen
+                    $message->save();
+                }
+            }, 2);
         } catch (Exception $e) {
             return;
         }

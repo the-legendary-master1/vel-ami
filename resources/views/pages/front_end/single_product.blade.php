@@ -120,12 +120,14 @@
                                 <li class="active"><a href="#post-details" data-toggle="tab"><strong>Details</strong></a></li>
                                 <li><a href="#post-reviews" data-toggle="tab" ><strong>Reviews</strong></a></li>
                                 <li><a href="{{ url('/view-shop') }}/{{ $product->shop['shop_url'] }}?id={{ base64_encode($product->shop['id']) }}"><strong>View Shop</strong></a></li>
-                                <li>
-                                    <a href="{{ url('/') }}/chat">
-                                        <span class="fa fa-circle fa-sm text-online online-indicator"></span>
-                                        <strong>Chat Seller!</strong>
-                                    </a>
-                                </li>
+                                @if ($product->shop['user_id'] != Auth::user()->id)
+                                    <li>
+                                        <a href="{{ url('chat-seller/' .$product->url. '/' .$product->id. '?ref=' ) }}{{ (empty($chat->ref_id)) ? str_random(16) : $chat->ref_id }}">
+                                            <span class="fa fa-circle fa-sm text-online online-indicator"></span>
+                                            <strong>Chat Seller!</strong>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                         <div class="has-content tab-content">
@@ -409,8 +411,16 @@
                     replyContent: '',
                     replyToUser: '',
                     productData: {!! json_encode($product) !!},
+
+                // header
+                unreadNotification: '',
+                showMessages: false,
+                showLoading: false,
+                unreadMessages: [],
+
                 @endauth
                 reviews: {!! json_encode($reviews) !!},
+
             },
             mounted() {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -474,7 +484,6 @@
                 },
                 getReviews(page = 1) {
                     axios.get('{{ url('/get-reviews') }}/' + this.review.product_id + '?page=' + page).then( response => {
-                        console.log(response.data)
                         this.reviews = response.data;
                     })
                 },
@@ -572,6 +581,25 @@
                             })
                         }
                     });
+                },
+
+                // Header
+                getUnreadMessages() {
+                    axios.get( this.url + '/get-unread-messages', { params: { id: this.userId }} ).then( response => {
+                        this.showLoading = false
+                    })
+                },
+                openMessages() {
+                    this.showLoading = true
+                    this.showMessages = !this.showMessages;
+                    this.getUnreadMessages()
+                },
+                readMessage(customer_id, product_id) {
+                    let data = {
+                        customer_id: customer_id,
+                        product_id: product_id
+                    }
+                    axios.post( this.url + '/read-message', data );
                 },
             },
             filters: {

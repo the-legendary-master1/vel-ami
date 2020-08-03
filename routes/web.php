@@ -5,12 +5,18 @@
 	// Get Requests
 	Route::get('/', 'FrontEndController@index');
 	Route::get('/product/{name}/{id}', 'FrontEndController@viewProduct')->name('product');
-	Route::get('/chat', 'FrontEndController@chat'); // dummy lang sa
+	// Route::get('/chat', 'FrontEndController@chat'); // dummy lang sa
 	Route::get('/view-shop/{shopName}', 'FrontEndController@viewShop'); // dummy lang sa
 	Route::get('/profile/{id}', 'FrontEndController@profile'); // dummy lang sa
 	Route::get('/shop/{shop_url}/{id}', 'FrontEndController@shop');
 	Route::get('/get-reviews/{id}', 'FrontEndController@getReviews');
 	Route::get('/get-products', 'FrontEndController@getProducts');
+	// Route::get('/chat-seller/{id}/{name}', 'FrontEndController@chat');
+
+	// Chatting
+	Route::get('/chat-seller/{name}/{id}', 'FrontEndController@chat');
+	Route::post('/is-typing', 'FrontEndController@isTyping');
+	Route::get('/check-user-status/{pId}/{ref}', 'FrontEndController@checkUserStatus');
 	
 	// Post Requests
 	Route::post('/sign-up', 'FrontEndController@signUp')->name('sign-up');
@@ -58,6 +64,10 @@
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
 		Route::post('/store-user-review', 'FrontEndController@storeUserReview');
 		Route::post('/report-review', 'FrontEndController@reportReview');
+
+		Route::post('/store-message', 'FrontEndController@storeMessage');
+		Route::get('/get-messages', 'FrontEndController@getMessages');
+		Route::post('/read-message', 'FrontEndController@readMessage');
 	});
 	
 	Route::middleware(['auth', 'user-premium'])->prefix('user-premium')->name('user-premium.')->group(function () {
@@ -77,4 +87,9 @@
 		Route::post('/update-cover-photo', 'FrontEndController@updateCoverPhoto');
 		Route::post('/store-user-review', 'FrontEndController@storeUserReview');
 		Route::post('/report-review', 'FrontEndController@reportReview');
+
+		// store-message
+		Route::post('/store-message', 'FrontEndController@storeMessage');
+		Route::get('/get-messages', 'FrontEndController@getMessages');
+		Route::post('/read-message', 'FrontEndController@readMessage');
 	});

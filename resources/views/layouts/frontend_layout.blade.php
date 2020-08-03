@@ -9,11 +9,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- Scripts --}}
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <link rel="stylesheet" href="{{ url('/') }}/css/extra_css/emoji.min.css">
+    {{-- <link rel="stylesheet" href="{{ url('/') }}/css/extra_css/emoji.min.css"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.17/dist/css/bootstrap-select.min.css">
     @yield('extraCSS')
 </head>
@@ -76,38 +78,44 @@
                                     <li class="log"><a href="#" class="hover-nav-link" data-toggle="modal" data-target="#loginModal">Login</a></li>
                                 @else
                                     <li class="show-desktop">
-                                        <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
+                                        <div class="navbar-menu--click navbar-menu--hover cursor clearfix" @click="openMessages">
                                             <figure>
                                                 <img src="{{ asset('files/telegram.png') }}" class="img-circle img-responsive img-thumbnail">
                                             </figure>
-                                            <div class="ctr-notif">
-                                                <span class="label label-danger">5</span>
+                                            <div class="ctr-notif" v-cloak>
+                                                <span class="label label-danger" v-if="unreadNotification > 0">@{{ unreadNotification }}</span>
                                             </div>
                                         </div>
-                                        <ul class="dropdown-menu" id="item-list">
-                                            <li>
-                                                @for ($i = 0; $i < 3; $i++)
-                                                    <a href="#">
-                                                        <div class="item">
-                                                            <div class="item-img">
-                                                                <img src="{{ asset('files/shop.png') }}" class="img-circle img-responsive img-thumbnail" width="45px">
-                                                            </div>
-                                                            <div class="qty">
-                                                                <span class="label label-qty">{{ $i + 99 }}</span>
-                                                            </div>
-                                                            <div class="item-name-price">
-                                                                <div class="i-name">
-                                                                    <span>Mechanical Red Dragon Keyboard RGB</span>
+                                        <div class="dropdown-menu message-container" v-if="showMessages" style="display:block;">
+                                            <div v-if="loading" style="padding:6px 0" v-cloak><img src="{{ asset('files/pleasewait.gif') }}" style="width:22px;margin:auto;display:block"/></div>
+                                            <ul v-else id="message-list" v-cloak >
+                                                <li v-for="(message, index) in allMessages">
+                                                    {{-- <div> --}}
+                                                        <a :href="`{{ url('chat-seller') }}/${message[1][0].product.url}/${message[1][0].product.id}?ref=${message[1][0].ref_id}`"
+                                                            @click="readMessage(message)" 
+                                                            :class="(message[0]) ? 'unread-message' : 'seen-message' ">
+                                                            <div class="item" >
+                                                                <div class="item-img">
+                                                                    <div :style="'background-image:url({{ asset('/') }}' + message[1][0].product.image.path +')'"></div>
                                                                 </div>
-                                                                <div class="i-price">
-                                                                    <span>P 750.00</span>
+                                                                <div class="qty">
+                                                                    <span class="label label-qty" v-if="message[0]">@{{ message[0].length }}</span>
+                                                                    <span class="label label-qty" v-else>0</span>
+                                                                </div>
+                                                                <div class="item-name-price">
+                                                                    <div class="i-name">
+                                                                        <span v-cloak>@{{ message[1][0].product.name }}</span>
+                                                                    </div>
+                                                                    <div class="i-price">
+                                                                        <span v-cloak>P @{{ parseFloat(message[1][0].product.price.toFixed(2)).toLocaleString() }}</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </a>
-                                                @endfor
-                                            </li>
-                                        </ul>
+                                                        </a>
+                                                    {{-- </div> --}}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                     <li class="show-desktop">
                                         <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
@@ -279,28 +287,14 @@
     @include('pages.front_end.modals.messages_modal')
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/js/extra_js/emoji.min.js"></script>
+    {{-- <script type="text/javascript" src="{{ url('/') }}/js/extra_js/emoji.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/4.5.0/lib/js/emojione.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.17/dist/js/bootstrap-select.min.js"></script>
 
     @yield('extraJS')
     <script>
         $(function() {
-
-            $('.navbar-menu--click').on('click', function(e) {
-                var nxt = $(this).next();
-                
-                $('#navbar-menu').find('.dropdown-menu').removeClass('show');
-                nxt.toggleClass('show');
-                $(this).toggleClass('active');
-
-                e.stopPropagation();
-                $(document).click(function() {
-                    nxt.removeClass('show'); 
-                });
-            });
 
             $('.navbar-sp-categ, .click--ellipsis, .click--search').on('click', function(e) {
                 var target = $(this).data('target');
@@ -373,7 +367,6 @@
             });
         });
     </script>
-
     <script>
         $('#submit_signup').submit(function(e) {
             e.preventDefault();
@@ -410,7 +403,7 @@
                     buttons: true,
                     dangerMode: true,
                   })
-                  .then((willDelete,) => {
+                  .then((willDelete) => {
                       if (willDelete) {
                           axios.post('{{ url('upgrade-account') }}', {id: {{ Auth::user()->id }}})
                             .then(() => {
