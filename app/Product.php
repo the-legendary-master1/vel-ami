@@ -18,6 +18,10 @@ class Product extends Model
     {
         return $this->hasMany('App\ProductReview');
     }
+    public function ratings()
+    {
+        return $this->hasMany('App\ProductReview');
+    }
     public function images()
     {
         return $this->hasMany('App\ProductImage');

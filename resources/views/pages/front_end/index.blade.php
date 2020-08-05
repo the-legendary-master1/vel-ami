@@ -19,44 +19,40 @@
         </div>
         <div class="products mt2">
             <div class="row text-center">
-                @if ( count($products) > 0 )
-                    @foreach ($products as $product)
-                        <div class="col-md-4 pi cus-pad">
-                            <div class="product--details">
-                                <a href="{{ url('/product') }}/{{ preg_replace('/\s+/', '_', $product->name) }}/{{ base64_encode($product->id)}}" class="item-link">
-                                    <div class="text-center item--product item--hover">
-                                        <div class="item-img mb-3">
+                <div v-if="!products.data.length">
+                    <h1>No Products...</h1>
+                </div>
+                <div v-else>
+                    <div class="col-md-4 pi cus-pad" v-for="(product, key) in products.data">
+                        <div class="product--details" v-cloak>
+                            <a :href="`{{ url('/product') }}/${product.url}/${product.id}`" class="item-link">
+                                <div class="text-center item--product item--hover">
+                                    <div class="item-img mb-3">
+                                        <img v-for="(image, index) in product.images" v-if="index == 0" :src="'{{ url('/') }}/' + image.path" :alt="product.name" class="img-responsive">
+                                    </div>
+                                    <div class="item-details">
+                                        <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">@{{ product.shop.name }}</h6>
+                                        <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
 
-                                            @foreach ( json_decode($product->images, true) as $index => $image )
-                                                @if ($index == 0)
-                                                    <img src="{{ url('/') }}/{{ $image['path'] }}" alt="{{ $product->name }}" class="img-responsive"> 
-                                                @endif
-                                            @endforeach
-                                           
-                                        </div>
-                                        <div class="item-details">
-                                            <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">{{ $product->shop['name'] }}</h6>
-                                            <h5 class="item-name mb2 font-weight-bold">{{ $product->name }}</h5>
-
-                                            <div class="prRa clearfix">
-                                                <span class="price">₱ {{ number_format($product->price, 2) }}</span>
-                                                <div class="pull-right show-mobile">
-                                                    <span class="fa fa-star fa-1x text-info"></span>
-                                                    <span class="fa fa-star fa-1x text-info"></span>
-                                                    <span class="fa fa-star fa-1x text-info"></span>
-                                                    <span class="fa fa-star fa-1x text-info"></span>
-                                                    <span class="fa fa-star fa-1x text-info"></span>
-                                                </div>
+                                        <div class="prRa clearfix">
+                                            <span class="price">₱ @{{ product.price }}</span>
+                                            <div class="pull-right show-mobile">
+                                                <star-rating 
+                                                    :increment="0.1" 
+                                                    :rating="parseInt(product.total_rating)" 
+                                                    :read-only="true"
+                                                    :star-size="13"
+                                                    :show-rating="false"
+                                                    active-color="#31708f">
+                                                </star-rating>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         </div>
-                    @endforeach
-                @else
-                    <h1><i>No products available...</i></h1>
-                @endif
+                    </div>
+                </div>
                     
             </div>
             <div class="row">
@@ -89,16 +85,18 @@
                 data: {
                     userId: '{{ Auth::user()->id }}',
                     url: '{{ url(strtolower(Auth::user()->role)) }}',
-                    unreadNotification: '',
-                    showMessages: false,
-                    loading: false,
-                    
+                    products: {!! json_encode($products) !!},
+
+                    @auth
+                        // Header
+                        unreadNotification: {!! json_encode($unreadNotification) !!},
+                        showMessages: false,
+                        loading: false,
+                        allMessages: [],
+                    @endauth
                 },
                 mounted() {
-                    Echo.channel('get-messages').listen('.get-messages', (data) => {
-                        console.log(data);
-                        this.unreadMessages = data.chat;
-                    })
+                    console.log(this.products.data)
                     $('.navbar-menu--click').on('click', function(e) {
                         var nxt = $(this).next();
                         
@@ -111,28 +109,33 @@
                             nxt.removeClass('show'); 
                         });
                     });
+                    Echo.channel('get-messages').listen('.get-messages', (data) => {
+                        this.allMessages = data.chat;
+                    })
                 },
                 methods: {
 
-                    // Header
-                    getMessages() {
-                        axios.get( this.url + '/get-messages', { params: { id: this.ownerId }} ).then( response => {
-                            this.loading = false
-                        })
-                    },
-                    openMessages() {
-                        this.loading = true
-                        this.showMessages = !this.showMessages;
-                        this.unreadNotification = 0;
-                        this.getMessages()
-                    },
-                    readMessage(customer_id, product_id) {
-                        let data = {
-                            customer_id: customer_id,
-                            product_id: product_id
-                        }
-                        axios.post( this.url + '/read-message', data );
-                    },
+                    @auth
+                        // Header
+                        getMessages() {
+                            axios.get( this.url + '/get-messages', { params: { id: this.userId }} ).then( response => {
+                                this.loading = false
+                            })
+                        },
+                        openMessages() {
+                            this.loading = true
+                            this.showMessages = !this.showMessages;
+                            this.unreadNotification = 0;
+                            this.getMessages()
+                        },
+                        readMessage(customer_id, product_id) {
+                            let data = {
+                                customer_id: customer_id,
+                                product_id: product_id
+                            }
+                            axios.post( this.url + '/read-message', data );
+                        },
+                    @endauth
                 },
             });
         })

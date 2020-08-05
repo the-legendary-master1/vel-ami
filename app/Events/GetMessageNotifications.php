@@ -15,9 +15,11 @@ class GetMessageNotifications implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets;
 
     public $message;
-    public function __construct($message)
+    public $user;
+    public function __construct($message, $user)
     {
         $this->message = $message;
+        $this->user = $user;
     }
 
     public function broadcastOn()

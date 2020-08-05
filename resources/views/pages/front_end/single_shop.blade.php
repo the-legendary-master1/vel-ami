@@ -126,11 +126,14 @@
                                         <div class="prRa clearfix ">
                                             <span class="price">₱ @{{ product.price.toLocaleString() }} </span>
                                             <div class="pull-right show-mobile">
-                                                <span class="fa fa-star text-info"></span>
-                                                <span class="fa fa-star text-info"></span>
-                                                <span class="fa fa-star text-info"></span>
-                                                <span class="fa fa-star text-info"></span>
-                                                <span class="fa fa-star text-info"></span>
+                                                <star-rating 
+                                                    :increment="0.1" 
+                                                    :rating="parseInt(product.total_rating)" 
+                                                    :read-only="true"
+                                                    :star-size="13"
+                                                    :show-rating="false"
+                                                    active-color="#31708f">
+                                                </star-rating>
                                             </div>
                                         </div>
                                     </div>
@@ -209,18 +212,6 @@
                         selectedRemoved: [],
                         selectedProduct: [],
 
-                        // Dropzone
-                        // dropzoneOptions: {
-                        //     url: 'https://httpbin.org/post',
-                        //     uploadMultiple: true,
-                        //     maxFilesize: 2, // MB
-                        //     maxFiles: 5,
-                        //     thumbnailWidth: 150,
-                        //     thumbnailHeight: 150,
-                        //     addRemoveLinks: true,
-                        //     acceptedFiles: 'image/jpeg, image/jpg, image/png',
-                        // },
-
                         // Image Croppie
                         imgCropper: false,
                         current_shop_logo: null,
@@ -234,6 +225,13 @@
                             placeholder: 'Product description...',
                             theme: 'snow'
                         },
+
+                        // Header
+                        unreadNotification: {!! json_encode($unreadNotification) !!},
+                        showMessages: false,
+                        loading: false,
+                        allMessages: [],
+                        userId: {{ Auth::user()->id }},
                     @endauth
                     hasCoverPhoto: false,
                 },
@@ -261,6 +259,10 @@
                         })
                         this.getProducts();
                         // $('#productModal').find('.submit').prop('disabled', true);
+
+                        Echo.channel('get-messages').listen('.get-messages', (data) => {
+                            this.allMessages = data.chat;
+                        })
                     },
                     methods: {
                         getShop() {
@@ -626,6 +628,26 @@
                         removeloading() {
                             $('#wait').hide();
                         }, 
+
+                        // Header
+                        getMessages() {
+                            axios.get( this.url + '/get-messages', { params: { id: this.userId }} ).then( response => {
+                                this.loading = false
+                            })
+                        },
+                        openMessages() {
+                            this.loading = true
+                            this.showMessages = !this.showMessages;
+                            this.unreadNotification = 0;
+                            this.getMessages()
+                        },
+                        readMessage(customer_id, product_id) {
+                            let data = {
+                                customer_id: customer_id,
+                                product_id: product_id
+                            }
+                            axios.post( this.url + '/read-message', data );
+                        },
                     }
                 @endauth
             });

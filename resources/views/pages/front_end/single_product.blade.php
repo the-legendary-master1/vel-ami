@@ -62,7 +62,7 @@
                                 <div class="stars">
                                     <star-rating 
                                         :increment="0.1" 
-                                        :rating="{{ $average }}" 
+                                        :rating="productData.total_rating" 
                                         :read-only="true"
                                         :star-size="25"
                                         :show-rating="false"
@@ -70,7 +70,7 @@
                                     </star-rating>
                                 </div>
                                 <div class="rate-num">
-                                    <strong>{{ $average }}</strong> out of 5
+                                    <strong>@{{ productData.total_rating }}</strong> out of 5
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                                     <div class="pull-right show-mobile">
                                         <star-rating 
                                             :increment="0.1" 
-                                            :rating="{{ $average }}" 
+                                            :rating="productData.total_rating" 
                                             :read-only="true"
                                             :star-size="17"
                                             :show-rating="false"
@@ -122,7 +122,7 @@
                                 <li><a href="{{ url('/view-shop') }}/{{ $product->shop['shop_url'] }}?id={{ base64_encode($product->shop['id']) }}"><strong>View Shop</strong></a></li>
                                 @if ($product->shop['user_id'] != Auth::user()->id)
                                     <li>
-                                        <a href="{{ url('chat-seller/' .$product->url. '/' .$product->id. '?ref=' ) }}{{ (empty($chat->ref_id)) ? str_random(16) : $chat->ref_id }}">
+                                        <a href="{{ url('chat-seller/' .$product->url. '/' .$product->id. '?ref=' ) }}{{ (empty($chat->ref_id)) ? str_random(16) : $chat->ref_id }}" class="">
                                             <span class="fa fa-circle fa-sm text-online online-indicator"></span>
                                             <strong>Chat Seller!</strong>
                                         </a>
@@ -159,10 +159,10 @@
                                                 </div>
                                                 <div class="text-center">
                                                     <div class="rRate-star">
-                                                        <div class="mt1 mb1" style="font-size:15px;"><strong style="font-size:18px;">{{ $average }}</strong> out of 5</div>
+                                                        <div class="mt1 mb1" style="font-size:15px;"><strong style="font-size:18px;">@{{ productData.total_rating }}</strong> out of 5</div>
                                                         <star-rating 
                                                             :increment="0.1" 
-                                                            :rating="{{ $average }}" 
+                                                            :rating="productData.total_rating" 
                                                             :read-only="true"
                                                             :star-size="18"
                                                             :show-rating="false"
@@ -412,11 +412,11 @@
                     replyToUser: '',
                     productData: {!! json_encode($product) !!},
 
-                // header
-                unreadNotification: '',
-                showMessages: false,
-                showLoading: false,
-                unreadMessages: [],
+                    // Header
+                    unreadNotification: {!! json_encode($unreadNotification) !!},
+                    showMessages: false,
+                    msgLoading: false,
+                    allMessages: [],
 
                 @endauth
                 reviews: {!! json_encode($reviews) !!},
@@ -430,6 +430,9 @@
                 });
                 Echo.channel('get-product-reviews').listen('.get-product-reviews', () => {
                     this.getReviews();
+                })
+                Echo.channel('get-messages').listen('.get-messages', (data) => {
+                    this.allMessages = data.chat;
                 })
             },
             methods: {
@@ -531,7 +534,7 @@
                         el[0].emojioneArea.setText('');
                         this.review.attachments = [];
                 },
-                loading() {
+                showLoading() {
                     $('#wait').show();
                 },
                 removeloading() {
@@ -563,7 +566,7 @@
                                 formData.append('user_id', this.authId);
                                 formData.append('product_review_id', id);
 
-                            this.loading();
+                            this.showLoading();
                             axios.post( this.url + '/report-review', formData ).then( response => {
 
                                 this.removeloading();
@@ -583,24 +586,27 @@
                     });
                 },
 
-                // Header
-                getUnreadMessages() {
-                    axios.get( this.url + '/get-unread-messages', { params: { id: this.userId }} ).then( response => {
-                        this.showLoading = false
-                    })
-                },
-                openMessages() {
-                    this.showLoading = true
-                    this.showMessages = !this.showMessages;
-                    this.getUnreadMessages()
-                },
-                readMessage(customer_id, product_id) {
-                    let data = {
-                        customer_id: customer_id,
-                        product_id: product_id
-                    }
-                    axios.post( this.url + '/read-message', data );
-                },
+                @auth
+                    // Header
+                    getMessages() {
+                        axios.get( this.url + '/get-messages', { params: { id: this.authId }} ).then( response => {
+                            this.loading = false
+                        })
+                    },
+                    openMessages() {
+                        this.loading = true
+                        this.showMessages = !this.showMessages;
+                        this.unreadNotification = 0;
+                        this.getMessages()
+                    },
+                    readMessage(customer_id, product_id) {
+                        let data = {
+                            customer_id: customer_id,
+                            product_id: product_id
+                        }
+                        axios.post( this.url + '/read-message', data );
+                    },
+                @endauth
             },
             filters: {
                 renderEmoji(value) {

@@ -13,7 +13,6 @@
             </div>
         </div>
     </section>
-            <span>@{{ user.name }} @{{ user.status }}</span>
     <div class="main-content shop-seller msg-seller mt2">
         <div class="chat-wrapper">
             <section class="msger mt2">
@@ -199,18 +198,20 @@
                     });
 
                     Echo.channel('get-messages').listen('.get-messages', (data) => {
-                            console.log(data)
                         if (data.chat.user) {
                             if (data.chat.ref_id == this.ref_id)
                                 this.messages.push(data.chat);
                         }
                         else {
+                            console.log(data);
                             this.allMessages = data.chat;
                         }
                     })
-                    // Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
-                    //     this.allMessages = data.message;
-                    // })
+
+                    Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
+                        if (data.user == this.userId)
+                            this.allMessages = data.message;
+                    })
                     Echo.channel('is-typing').listen('.is-typing', (data) => {
                         if (data.msg.ref == this.ref_id) {
                             this.isTyping = data.msg;
@@ -310,7 +311,7 @@
 
                     // Header
                     getMessages() {
-                        axios.get( this.url + '/get-messages', { params: { id: this.ownerId }} ).then( response => {
+                        axios.get( this.url + '/get-messages', { params: { id: this.userId }} ).then( response => {
                             this.loading = false
                         })
                     },
@@ -320,11 +321,7 @@
                         this.unreadNotification = 0;
                         this.getMessages()
                     },
-                    readMessage(customer_id, product_id) {
-                        let data = {
-                            customer_id: customer_id,
-                            product_id: product_id
-                        }
+                    readMessage(data) {
                         axios.post( this.url + '/read-message', data );
                     },
                 },

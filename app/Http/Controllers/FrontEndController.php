@@ -33,45 +33,60 @@ class FrontEndController extends Controller
 {
 	public function index()
 	{
-        $products = Product::with('shop')->orderBy('id', 'desc')->get();
-		return view('pages.front_end.index', compact('products'));
+        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
+        $products = Product::with('shop:id,name', 'images:id,product_id,path', 'reviews:product_id,rating')->orderBy('id', 'desc')->paginate(18);
+        
+        foreach ($products as $product) {
+            $product->images = json_decode($product->images, true);
+        }
+
+		return view('pages.front_end.index', compact('products', 'unreadNotification'));
 	}
 	public function viewProduct(Request $request, $name, $id)
 	{
-        $product = Product::with('shop')->find(base64_decode($id));
-        $ratings = ProductReview::where('product_id', $product->id)->orderBy('rating', 'desc')->groupBy('rating');
-        $rates = $ratings->select('rating', DB::raw('count(*) as total_rates'))->get();
-        $stars = $ratings->select('rating', DB::raw( 'SUM(rating) as total_stars' ))->get();
+        $product = Product::with('shop')->find($id);
+        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
+        // $ratings = ProductReview::where('product_id', $id)->orderBy('rating', 'desc')->groupBy('rating');
+        // $rates = $ratings->select('rating', DB::raw('count(*) as total_rates'))->get();
+        // $stars = $ratings->select('rating', DB::raw( 'SUM(rating) as total_stars' ))->get();
 
-        $average = 0;
-        if ( $ratings->count() > 0 ) {
-            $total_ratings = 0;
-            foreach ($rates as $key => $value) {
-                $total_ratings += $value->total_rates;
-            }
-            $total_stars = ($stars[0]->total_stars) + ($stars[1]->total_stars) + ($stars[2]->total_stars) + ($stars[3]->total_stars) + ($stars[4]->total_stars);
+        // $average = 0;
+        // if ( $ratings->count() > 0 ) {
 
-            $average = round($total_stars / $total_ratings, 1);
-        }
+        //     $dataRatings = [];
+        //     foreach ($rates as $key => $value) {
+        //         $dataRatings[] = $value->total_rates;
+        //     }
 
-        $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported')->where('product_id', base64_decode($id))->orderBy('id', 'desc')->paginate(5);
-        $chats = Chat::where('customer_id', Auth::user()->id)->where('owner_id', $product->shop['user_id'])->where('product_id', $product->id)->get()->first();
+        //     $total_ratings = array_sum($dataRatings);
+        //     $dataStars = [];
+        //     foreach ($stars as $key => $star) {
+        //         $dataStars[] = $stars[$key]->total_stars;
+        //     }
+        //     $total_stars = array_sum($dataStars);
+        //     $average = round($total_stars / $total_ratings, 1);
+        // }
+
+        $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported')->where('product_id', $id)->orderBy('id', 'desc')->paginate(5);
+        $chat = Chat::where('customer_id', Auth::user()->id)->where('owner_id', $product->shop['user_id'])->where('product_id', $id)->get()->first();
 
         foreach ($reviews as $review) {
             $review->attachments = json_decode($review->attachments, true);
         }
 
 		return view('pages.front_end.single_product', [
-            'request'   => $request,
-            'product'   => $product,
-            'average'   => $average,
-            'reviews'   => $reviews,
-            'chats'     => $chats,
+            'unreadNotification' => $unreadNotification,
+            'request' => $request,
+            'product' => $product,
+            // 'average' => $average,
+            'reviews' => $reviews,
+            'chat' => $chat,
         ]);
     }
     public function viewShop(Request $request)
     {
         $shopId = base64_decode($request->id);
+        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
         $products = Product::where('my_shop_id', $shopId)->with('shop', 'images')->orderBy('id', 'desc')->get();
 
         foreach ($products as $product) {
@@ -80,7 +95,7 @@ class FrontEndController extends Controller
 
         $shop = MyShop::find($shopId);
         $categories = Category::all();
-        return view('pages.front_end.single_shop', compact('products', 'categories', 'shop'));
+        return view('pages.front_end.single_shop', compact('products', 'categories', 'shop', 'unreadNotification'));
     }
     public function profile()
     {
@@ -130,12 +145,13 @@ class FrontEndController extends Controller
     public function shop($shop_url, $shopId)
     {
         $shopId = base64_decode($shopId);
+        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
         $products = Product::with('images')->where('my_shop_id', $shopId)->orderBy('id', 'desc')->get();
         $shop = MyShop::find($shopId);
         $categories = Category::all();
 
         if ($products) {
-            return view('pages.front_end.single_shop', compact('products', 'categories', 'shop'));
+            return view('pages.front_end.single_shop', compact('products', 'categories', 'shop', 'unreadNotification'));
         } else {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
@@ -306,7 +322,7 @@ class FrontEndController extends Controller
     }
     public function getReviews($id)
     {
-        $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported')->where('product_id', base64_decode($id))->orderBy('id', 'desc')->paginate(5);
+        $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported')->where('product_id', $id)->orderBy('id', 'desc')->paginate(5);
 
         foreach ($reviews as $review) {
             $review->attachments = json_decode($review->attachments, true);
@@ -324,7 +340,7 @@ class FrontEndController extends Controller
             DB::transaction(function() use ($request) {
                 $review = new ProductReview;
                 $review->user_id = $request->user_id;
-                $review->product_id = base64_decode($request->product_id);
+                $review->product_id = $request->product_id;
                 $review->comment = $request->comment;
                 $review->rating = $request->rating;
                 $review->status = 0;
@@ -344,6 +360,31 @@ class FrontEndController extends Controller
                     $attachments->attachments = json_encode($arr);
                     $attachments->save();
                 }
+
+                $ratings = ProductReview::where('product_id', $request->product_id)->orderBy('rating', 'desc')->groupBy('rating');
+                $rates = $ratings->select('rating', DB::raw('count(*) as total_rates'))->get();
+                $stars = $ratings->select('rating', DB::raw( 'SUM(rating) as total_stars' ))->get();
+
+                $average = 0;
+                if ( $ratings->count() > 0 ) {
+
+                    $dataRatings = [];
+                    foreach ($rates as $key => $value) {
+                        $dataRatings[] = $value->total_rates;
+                    }
+
+                    $total_ratings = array_sum($dataRatings);
+                    $dataStars = [];
+                    foreach ($stars as $key => $star) {
+                        $dataStars[] = $stars[$key]->total_stars;
+                    }
+                    $total_stars = array_sum($dataStars);
+                    $average = round($total_stars / $total_ratings, 1);
+                }
+
+                $product = Product::find($request->product_id);
+                $product->total_rating = $average;
+                $product->save();
             }, 2);
             event(new GetProductReviews());
         } catch (Exception $e) {
@@ -458,13 +499,17 @@ class FrontEndController extends Controller
     public function storeMessage(Request $request)
     {
         try {
-            DB::transaction(function() use ($request) {
+            // DB::transaction(function() use ($request) {
+            return response()->json(['request' => $request->all()]);
                 $chat = new Chat;
                 $chat->product_id = $request->product_id;
                 $chat->owner_id = $request->owner_id;
                 $chat->customer_id = $request->customer_id;
                 $chat->message = $request->message;
-                $chat->status = 0; // sent
+                $chat->owner_status = 0; // customer sent, owner will get msg notif
+                if ( $request->owner_id == $request->customer_id) {
+                    $chat->customer_status= 0; // owner sent, customer will get msg notif
+                }
                 $chat->ref_id = $request->ref_id;
                 $chat->save();
 
@@ -480,22 +525,8 @@ class FrontEndController extends Controller
                         $attachments->save();
                     }
                 }
-                // if ( $request->hasFile('attachments') ) {
-                //     $attachments = Chat::find($chat->id);
-                //         foreach ($request->file('attachments') as $key => $attachment) {
-                //             $img_ext = $attachment->extension();
-                //             $filename = 'attachment_' . $chat->id . date('is', strtotime(Carbon::now())) . $key;
-                //             $path =  $attachment->storeAs('attachments', $filename .'.'. $img_ext, 'public');
-
-                //             // store attachments
-                //             $data['path'] = 'files/' . $path;
-                //             $arr[] = $data;
-                //         }
-                //     $attachments->attachments = json_encode($arr);
-                //     $attachments->save();
-                // }
                 event( new GetMessages( $chat->load('user', 'attachments') ));
-            }, 2);
+            // }, 2);
         } catch (Exception $e) {
             return;
         }
@@ -519,12 +550,15 @@ class FrontEndController extends Controller
             DB::transaction(function() use ($request) {
                 $user = User::find($request->id);
 
+                $chats = Chat::with(['product:id,name,price,url', 'product.image', 'user:id'])->orderBy('id', 'desc')->get();
                 if ($user->role == "User-Premium") {
-                    $chats = Chat::with(['product:id,name,price', 'product.image'])->where('owner_id', $request->id)->orderBy('id', 'desc')->get();
-                    $messages = $chats->groupBy(['ref_id', 'status']);
+                    $messages = $chats->where('owner_id', $request->id)->groupBy(['ref_id', 'customer_status']);
                 }
-                // return response()->json($messages);
-                event( new GetMessages( $messages ));
+                else {
+                    $messages = $chats->where('customer_id', $request->id)->groupBy(['ref_id', 'owner_status']);
+                }
+                $user = Auth::user()->id;
+                event( new GetMessageNotifications( $messages, $user ));
             }, 2);
         } catch (Exception $e) {
             return;
@@ -533,20 +567,36 @@ class FrontEndController extends Controller
     public function readMessage(Request $request)
     {
         try {
-            DB::transaction(function() use ($request) {
-                // from message notification
-                $messages = Chat::where('customer_id', $request->customer_id)->where('product_id', $request->product_id)->get();
+            // DB::transaction(function() use ($request) {
+                $msgs = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->select('customer_id', 'owner_id')->get();
+                $customer_id;
+                $owner_id;
+                foreach ($msgs as $msg) {
+                    if ($msg->customer_id != $msg->owner_id) {
+                        $customer_id = $msg->customer_id;
+                        $owner_id = $msg->owner_id;
+                        break;
+                    }
+                }    
+                $dataMessage = Chat::where('ref_id', $request->ref_id)->get();
+                // if owner
+                if ($owner_id == Auth::user()->id) {
+                    $messages = $dataMessage->where('owner_id', $request->owner_id);
 
-                if ($request->owner_id) {
-                    // click from message textbox
-                    $messages = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->get();
+                    foreach ($messages as $message) {
+                        $message->customer_status = 1; // seen owner side customer_status
+                        $message->save();
+                    }
                 }
+                else {
+                    $messages = $dataMessage->where('customer_id', $request->customer_id);
 
-                foreach ($messages as $message) {
-                    $message->status = 1; // seen
-                    $message->save();
+                    foreach ($messages as $message) {
+                        $message->owner_status = 1; // seen customer side
+                        $message->save();
+                    }
                 }
-            }, 2);
+            // }, 2);
         } catch (Exception $e) {
             return;
         }

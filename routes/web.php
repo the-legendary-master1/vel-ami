@@ -68,6 +68,7 @@
 		Route::post('/store-message', 'FrontEndController@storeMessage');
 		Route::get('/get-messages', 'FrontEndController@getMessages');
 		Route::post('/read-message', 'FrontEndController@readMessage');
+		Route::post('/seen-message', 'FrontEndController@seenMessage');
 	});
 	
 	Route::middleware(['auth', 'user-premium'])->prefix('user-premium')->name('user-premium.')->group(function () {
@@ -92,4 +93,5 @@
 		Route::post('/store-message', 'FrontEndController@storeMessage');
 		Route::get('/get-messages', 'FrontEndController@getMessages');
 		Route::post('/read-message', 'FrontEndController@readMessage');
+		Route::post('/seen-message', 'FrontEndController@seenMessage');
 	});
