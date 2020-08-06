@@ -26,6 +26,7 @@ use App\Chat;
 use App\ChatAttachment;
 use App\Events\GetMessages;
 use App\Events\GetMessageNotifications;
+use App\Events\GetUnreadNotifications;
 use App\Events\ChatTyping;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -437,18 +438,31 @@ class FrontEndController extends Controller
     {   
         $product = Product::find($product_id);
         $messages = Chat::with('user', 'attachments')->where('product_id', $product_id)->where('ref_id', $request->ref)->get();
-        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
 
-        $msgs = Chat::where('product_id', $product_id)->where('ref_id', $request->ref)->select('customer_id', 'owner_id')->get();
-        $customer_id;
-        $owner_id;
-        foreach ($msgs as $msg) {
-            if ($msg->customer_id != $msg->owner_id) {
-                $customer_id = $msg->customer_id;
-                $owner_id = $msg->owner_id;
-                break;
-            }
-        }    
+        $customer_id = Auth::user()->id;
+        $owner_id = $product->shop->user_id;
+
+        // if owner
+        if ($owner_id == $customer_id)
+            $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id');
+        else
+            $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id');
+
+        $checkMessage = Chat::where('product_id', $product_id)->where('ref_id', $request->ref)->count();
+        if ($checkMessage > 0) {
+            $msgs = Chat::where('product_id', $product_id)->where('ref_id', $request->ref)->select('customer_id', 'owner_id')->get();
+
+            $customer_id;
+            $owner_id;
+            foreach ($msgs as $msg) {
+                if ($msg->customer_id != $msg->owner_id) {
+                    $customer_id = $msg->customer_id;
+                    $owner_id = $msg->owner_id;
+                    break;
+                }
+            }    
+        } 
+        
         // for owner
         $user = User::find($customer_id);
 
@@ -462,7 +476,7 @@ class FrontEndController extends Controller
             $user->status = 'offline';
 
         return view('pages.front_end.chat', [
-            'unreadNotification' => $unreadNotification,
+            'unreadNotification' => count($unreadNotification),
             'product_id'         => $product_id,
             'owners_id'          => $product->shop->user_id,
             'messages'           => $messages,
@@ -472,43 +486,48 @@ class FrontEndController extends Controller
     }
     public function checkUserStatus($productId, $ref_id)
     {
-        $messages = Chat::where('product_id', $productId)->where('ref_id', $ref_id)->select('customer_id', 'owner_id')->get();
-        $customer_id;
-        $owner_id;
-        foreach ($messages as $message) {
-            if ($message->customer_id != $message->owner_id) {
-                $customer_id = $message->customer_id;
-                $owner_id = $message->owner_id;
-                break;
-            }
-        }        
-        // for owner
-        $user = User::find($customer_id);
+        $checkMessage = Chat::where('product_id', $productId)->where('ref_id', $ref_id)->count();
+        $user = [];
+        if ($checkMessage > 0) {
+            $messages = Chat::where('product_id', $productId)->where('ref_id', $ref_id)->select('customer_id', 'owner_id')->get();
+            $customer_id;
+            $owner_id;
+            foreach ($messages as $message) {
+                if ($message->customer_id != $message->owner_id) {
+                    $customer_id = $message->customer_id;
+                    $owner_id = $message->owner_id;
+                    break;
+                }
+            }        
+            // for owner
+            $user = User::find($customer_id);
 
-        // for cusutomer
-        if ($customer_id == Auth::user()->id)
-            $user = User::find($owner_id);
+            // for cusutomer
+            if ($customer_id == Auth::user()->id)
+                $user = User::find($owner_id);
 
-        if ($user->isOnline())
-            $user->status = 'online';
-        else
-            $user->status = 'offline';
+            if ($user->isOnline())
+                $user->status = 'online';
+            else
+                $user->status = 'offline';
+        }
 
         return response()->json($user);
     }
     public function storeMessage(Request $request)
     {
         try {
-            // DB::transaction(function() use ($request) {
-            return response()->json(['request' => $request->all()]);
+            DB::transaction(function() use ($request) {
                 $chat = new Chat;
                 $chat->product_id = $request->product_id;
                 $chat->owner_id = $request->owner_id;
                 $chat->customer_id = $request->customer_id;
                 $chat->message = $request->message;
                 $chat->owner_status = 0; // customer sent, owner will get msg notif
-                if ( $request->owner_id == $request->customer_id) {
-                    $chat->customer_status= 0; // owner sent, customer will get msg notif
+                $chat->customer_status = 1;
+                if ( $request->owner_id == $request->customer_id ) {
+                    $chat->customer_status = 0; // owner sent, customer will get msg notif
+                    $chat->owner_status = 1;
                 }
                 $chat->ref_id = $request->ref_id;
                 $chat->save();
@@ -525,8 +544,34 @@ class FrontEndController extends Controller
                         $attachments->save();
                     }
                 }
-                event( new GetMessages( $chat->load('user', 'attachments') ));
-            // }, 2);
+                if ( $request->owner_id == $request->customer_id )
+                    $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id')->count();
+                else
+                    $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id')->count();
+
+
+                $checkMessage = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->count();
+                if ($checkMessage > 0) {
+                    $msgs = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->select('customer_id', 'owner_id')->get();
+                    $customer_id;
+                    $owner_id;
+                    foreach ($msgs as $msg) {
+                        if ($msg->customer_id != $msg->owner_id) {
+                            $customer_id = $msg->customer_id;
+                            $owner_id = $msg->owner_id;
+                            break;
+                        }
+                    }
+                    // if owner
+                    if ($owner_id == Auth::user()->id)
+                        $user = User::select('id')->find($customer_id);
+                    else
+                        $user = User::select('id')->find($owner_id);
+                }
+
+                event( new GetMessages( $chat->load('user', 'attachments:chat_id,path') ));
+                event( new GetUnreadNotifications( $unreadNotification, $user ));
+            }, 2);
         } catch (Exception $e) {
             return;
         }
@@ -534,9 +579,10 @@ class FrontEndController extends Controller
     public function isTyping(Request $request)
     {
         try {
-            $customer = Chat::where('product_id', $request->product_id)->where('customer_id', $request->auth_id)->where('ref_id', $request->ref_id)->get();
-            if (count($customer) > 0) {
-                $user = User::with('chats')->find($request->auth_id);
+            $customer = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->count();
+
+            if ($customer > 0) {
+                $user = User::find($request->auth_id);
                 $user['ref'] = $request->ref_id;
                 event(new ChatTyping( $user ));
             }
@@ -552,10 +598,10 @@ class FrontEndController extends Controller
 
                 $chats = Chat::with(['product:id,name,price,url', 'product.image', 'user:id'])->orderBy('id', 'desc')->get();
                 if ($user->role == "User-Premium") {
-                    $messages = $chats->where('owner_id', $request->id)->groupBy(['ref_id', 'customer_status']);
+                    $messages = $chats->where('owner_id', $request->id)->groupBy(['ref_id', 'owner_status']);
                 }
                 else {
-                    $messages = $chats->where('customer_id', $request->id)->groupBy(['ref_id', 'owner_status']);
+                    $messages = $chats->where('customer_id', $request->id)->groupBy(['ref_id', 'customer_status']);
                 }
                 $user = Auth::user()->id;
                 event( new GetMessageNotifications( $messages, $user ));
@@ -567,36 +613,42 @@ class FrontEndController extends Controller
     public function readMessage(Request $request)
     {
         try {
-            // DB::transaction(function() use ($request) {
-                $msgs = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->select('customer_id', 'owner_id')->get();
-                $customer_id;
-                $owner_id;
-                foreach ($msgs as $msg) {
-                    if ($msg->customer_id != $msg->owner_id) {
-                        $customer_id = $msg->customer_id;
-                        $owner_id = $msg->owner_id;
-                        break;
-                    }
-                }    
-                $dataMessage = Chat::where('ref_id', $request->ref_id)->get();
-                // if owner
-                if ($owner_id == Auth::user()->id) {
-                    $messages = $dataMessage->where('owner_id', $request->owner_id);
+            DB::transaction(function() use ($request) {
+                $checkMessage = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->count();
 
-                    foreach ($messages as $message) {
-                        $message->customer_status = 1; // seen owner side customer_status
-                        $message->save();
+                if ($checkMessage > 0) {
+                    $msgs = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->select('customer_id', 'owner_id')->get();
+                    $customer_id;
+                    $owner_id;
+                    foreach ($msgs as $msg) {
+                        if ($msg->customer_id != $msg->owner_id) {
+                            $customer_id = $msg->customer_id;
+                            $owner_id = $msg->owner_id;
+                            break;
+                        }
+                    }    
+
+                    $messages = Chat::where('ref_id', $request->ref_id)->get();
+                    // if owner
+                    if ($owner_id == Auth::user()->id) {
+                        foreach ($messages as $message) {
+                            $message->owner_status = 1; // seen owner side 
+                            $message->save();
+                        }
+                        $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id')->count();
+                        $user = User::select('id')->find($owner_id);
+                    }
+                    else {
+                        foreach ($messages as $message) {
+                            $message->customer_status = 1; // seen customer side
+                            $message->save();
+                        }
+                        $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id')->count();
+                        $user = User::select('id')->find($customer_id);
                     }
                 }
-                else {
-                    $messages = $dataMessage->where('customer_id', $request->customer_id);
-
-                    foreach ($messages as $message) {
-                        $message->owner_status = 1; // seen customer side
-                        $message->save();
-                    }
-                }
-            // }, 2);
+                event( new GetUnreadNotifications( $unreadNotification, $user ));
+            }, 2);
         } catch (Exception $e) {
             return;
         }

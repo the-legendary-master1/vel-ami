@@ -38,7 +38,7 @@
                             <a class="navbar-brand" href="{{ url('/') }}">VEL-AMI</a>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="col-lg-6 col-md-5 col-sm-6 col-xs-6">
                         {{-- @auth --}}
                             {{-- @if (Auth::user()->role != 'Super-Admin') --}}
                                 <div class="search-operation @auth authen @endauth">
@@ -52,7 +52,7 @@
                             {{-- @endif --}}
                         {{-- @endauth --}}
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-9">
+                    <div class="col-lg-3 col-md-4 col-sm-3 col-xs-9">
                         <div class="navbar-sp-menu show-mobile pull-right">
                             <ul>
                                 <li><a href="#" class="click--search" data-target=".search-operation"><span class="fa fa-search"></span></a></li>
@@ -88,81 +88,85 @@
                                         </div>
                                         <div class="dropdown-menu message-container" v-if="showMessages" style="display:block;">
                                             <div v-if="loading" style="padding:6px 0" v-cloak><img src="{{ asset('files/pleasewait.gif') }}" style="width:22px;margin:auto;display:block"/></div>
-                                            <ul v-else id="message-list" v-cloak>
-                                                <li v-for="(parentMessage, index) in allMessages">
-                                                    {{-- <div v-for="(message, key) in parentMessage"> --}}
-                                                    <div v-if="parentMessage.length">
-                                                        <div v-for="(message, key) in parentMessage" v-if="key == 0">
-                                                            <a :class="message[0]" :href="`{{ url('chat-seller') }}/${message[0].product.url}/${message[0].product.id}?ref=${message[0].ref_id}`"
-                                                            @click.prevent="readMessage(message[0])" class="unread-message">
-                                                                <div class="item">
-                                                                    <div class="item-img">
-                                                                        <div :style="'background-image:url({{ asset('/') }}' + message[0].product.image.path +')'"></div>
-                                                                    </div>
-                                                                    <div class="qty">
-                                                                        <span class="label label-qty">@{{ message.length }}</span>
-                                                                    </div>
-                                                                    <div class="item-name-price">
-                                                                        <div class="i-name">
-                                                                            <span v-cloak>@{{ message[0].product.name }}</span>
+                                            <div v-else>
+                                                <ul id="message-list" :class="allMessages.length">
+                                                    <li v-if="!allMessages">No messages...</li>
+                                                    <li v-else v-for="(parentMessage, index) in allMessages">
+                                                        {{-- <div v-for="(message, key) in parentMessage"> --}}
+                                                        <div v-if="parentMessage.length">
+                                                            <div v-for="(message, key) in parentMessage" v-if="key == 0">
+                                                                <a :class="message[0]" :href="`{{ url('chat-seller') }}/${message[0].product.url}/${message[0].product.id}?ref=${message[0].ref_id}`"
+                                                                @click="readMessage(message[0])" class="unread-message">
+                                                                    <div class="item">
+                                                                        <div class="item-img">
+                                                                            <div :style="'background-image:url({{ asset('/') }}' + message[0].product.image.path +')'"></div>
                                                                         </div>
-                                                                        <div class="i-price">
-                                                                            <span v-cloak>P @{{ parseFloat(message[0].product.price.toFixed(2)).toLocaleString() }}</span>
+                                                                        <div class="qty">
+                                                                            <span class="label label-qty">@{{ message.length }}</span>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div v-else>
-                                                        {{-- seen messages --}}
-                                                        <div v-for="(message, key) in parentMessage">
-                                                            <a :class="message[0]" :href="`{{ url('chat-seller') }}/${message[0].product.url}/${message[0].product.id}?ref=${message[0].ref_id}`"
-                                                            @click.prevent="readMessage(message[0])" class="seen-message">
-                                                                <div class="item">
-                                                                    <div class="item-img">
-                                                                        <div :style="'background-image:url({{ asset('/') }}' + message[0].product.image.path +')'"></div>
-                                                                    </div>
-                                                                    <div class="qty">
-                                                                        <span class="label label-qty">0</span>
-                                                                    </div>
-                                                                    <div class="item-name-price">
-                                                                        <div class="i-name">
-                                                                            <span v-cloak>@{{ message[0].product.name }}</span>
-                                                                        </div>
-                                                                        <div class="i-price">
-                                                                            <span v-cloak>P @{{ parseFloat(message[0].product.price.toFixed(2)).toLocaleString() }}</span>
+                                                                        <div class="item-name-price">
+                                                                            <div class="i-name">
+                                                                                <span v-cloak>@{{ message[0].product.name }}</span>
+                                                                            </div>
+                                                                            <div class="i-price">
+                                                                                <span v-cloak>P @{{ parseFloat(message[0].product.price.toFixed(2)).toLocaleString() }}</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                       
-                                                        {{-- <a :class="message[1][0]" :href="`{{ url('chat-seller') }}/${message[1][0].product.url}/${message[1][0].product.id}?ref=${message[1][0].ref_id}`"
-                                                            @click.prevent="readMessage(message[1][0])" 
-                                                            :class="(message[0]) ? 'unread-message' : 'seen-message' ">
-                                                            <div class="item" >
-                                                                <div class="item-img">
-                                                                    <div :style="'background-image:url({{ asset('/') }}' + message[1][0].product.image.path +')'"></div>
-                                                                </div>
-                                                                <div class="qty">
-                                                                    <span class="label label-qty" v-if="message[0]">@{{ message[0].length }}</span>
-                                                                    <span class="label label-qty" v-else>0</span>
-                                                                </div>
-                                                                <div class="item-name-price">
-                                                                    <div class="i-name">
-                                                                        <span v-cloak>@{{ message[1][0].product.name }}</span>
-                                                                    </div>
-                                                                    <div class="i-price">
-                                                                        <span v-cloak>P @{{ parseFloat(message[1][0].product.price.toFixed(2)).toLocaleString() }}</span>
-                                                                    </div>
-                                                                </div>
+                                                                </a>
                                                             </div>
-                                                        </a> --}}
-                                                    {{-- </div> --}}
-                                                </li>
-                                            </ul>
+                                                        </div>
+                                                        <div v-else>
+                                                            {{-- seen messages --}}
+                                                            <div v-for="(message, key) in parentMessage">
+                                                                <a :class="message[0]" :href="`{{ url('chat-seller') }}/${message[0].product.url}/${message[0].product.id}?ref=${message[0].ref_id}`"
+                                                                @click="readMessage(message[0])" class="seen-message">
+                                                                    <div class="item">
+                                                                        <div class="item-img">
+                                                                            <div :style="'background-image:url({{ asset('/') }}' + message[0].product.image.path +')'"></div>
+                                                                        </div>
+                                                                        <div class="qty">
+                                                                            <span class="label label-qty">0</span>
+                                                                        </div>
+                                                                        <div class="item-name-price">
+                                                                            <div class="i-name">
+                                                                                <span v-cloak>@{{ message[0].product.name }}</span>
+                                                                            </div>
+                                                                            <div class="i-price">
+                                                                                <span v-cloak>P @{{ parseFloat(message[0].product.price.toFixed(2)).toLocaleString() }}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                           
+                                                            {{-- <a :class="message[1][0]" :href="`{{ url('chat-seller') }}/${message[1][0].product.url}/${message[1][0].product.id}?ref=${message[1][0].ref_id}`"
+                                                                @click.prevent="readMessage(message[1][0])" 
+                                                                :class="(message[0]) ? 'unread-message' : 'seen-message' ">
+                                                                <div class="item" >
+                                                                    <div class="item-img">
+                                                                        <div :style="'background-image:url({{ asset('/') }}' + message[1][0].product.image.path +')'"></div>
+                                                                    </div>
+                                                                    <div class="qty">
+                                                                        <span class="label label-qty" v-if="message[0]">@{{ message[0].length }}</span>
+                                                                        <span class="label label-qty" v-else>0</span>
+                                                                    </div>
+                                                                    <div class="item-name-price">
+                                                                        <div class="i-name">
+                                                                            <span v-cloak>@{{ message[1][0].product.name }}</span>
+                                                                        </div>
+                                                                        <div class="i-price">
+                                                                            <span v-cloak>P @{{ parseFloat(message[1][0].product.price.toFixed(2)).toLocaleString() }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a> --}}
+                                                        {{-- </div> --}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                                
                                         </div>
                                     </li>
                                     <li class="show-desktop">
@@ -182,7 +186,7 @@
                                                     <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive img-thumbnail">
                                                 </figure>
                                                 <div class="profile-option">
-                                                    <span class="profile-name">{{ Auth::user()->name }}</span>
+                                                    <span class="profile-name">{{ Auth::user()->f_name }}</span>
                                                     <span class="fa fa-caret-down valami_header_caret"></span>
                                                 </div>
                                             </div>

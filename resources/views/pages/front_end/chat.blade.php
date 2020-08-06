@@ -21,7 +21,7 @@
                         <div v-for="(message, index) in messages">
                             <div v-if="message.customer_id == userId" class="msg right-msg" :key="index">
                                 <div class="msg-img" :style="'background-image:url({{ asset('/') }}'+message.user.img_path+')'">
-                                    <span class="fa fa-circle online-indicator text-online"></span>
+                                    <span class="online-indicator text-online"></span>
                                 </div>
                                 <div class="msg-wrappe">
                                     <div class="msg-attach" v-if="message.attachments">
@@ -39,7 +39,7 @@
                             </div>
                             <div v-else class="msg left-msg">
                                 <div class="msg-img" :style="'background-image:url({{ asset('/') }}'+message.user.img_path+')'">
-                                    <span class="fa fa-circle online-indicator" 
+                                    <span class="online-indicator" 
                                     :class="(user.status == 'online') ? 'text-online' : 'text-muted'"></span>
                                 </div>
                                 <div class="msg-wrappe">
@@ -198,16 +198,16 @@
                     });
 
                     Echo.channel('get-messages').listen('.get-messages', (data) => {
-                        if (data.chat.user) {
-                            if (data.chat.ref_id == this.ref_id)
-                                this.messages.push(data.chat);
-                        }
-                        else {
-                            console.log(data);
-                            this.allMessages = data.chat;
-                        }
+                        if (data.chat.ref_id == this.ref_id)
+                            this.messages.push(data.chat)
                     })
 
+                    Echo.channel('get-unread-notifications').listen('.get-unread-notifications', (data) => {
+                        console.log(data);
+                        console.log(this.userId);
+                        if (data.user.id == this.userId)
+                            this.unreadNotification = data.unread
+                    })
                     Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
                         if (data.user == this.userId)
                             this.allMessages = data.message;
@@ -223,9 +223,9 @@
                             }, 3000);
                         }
                     })
-                    // setInterval(() => {
+                    setInterval(() => {
                         this.checkUserStatus()
-                    // }, 1000);
+                    }, 1000*20);
 
                     // var height = $('.ads-wrapper').outerHeight();
                     // $(window).resize(function(event) {
@@ -304,9 +304,10 @@
                             this.attachments = [];
                     },
                     checkUserStatus() {
-                            axios.get( `{{ url('check-user-status') }}/${this.productId}/${this.ref_id}`).then((response) => {
-                                this.user = response.data;
-                            })
+                        axios.get( `{{ url('check-user-status') }}/${this.productId}/${this.ref_id}`).then((response) => {
+                            console.log(response.data);
+                            this.user = response.data;
+                        })
                     },
 
                     // Header

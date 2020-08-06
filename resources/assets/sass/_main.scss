@@ -1288,11 +1288,16 @@ a:hover {
 				}
 				.online-indicator {
 					position: absolute;
-					right: 3px;
-					bottom: -2px;
-					font-size: 14px;
+				    right: -1px;
+				    bottom: -1px;
+				    font-size: 14px;
 				    margin: 0;
 				    top: inherit;
+				    background-color: #0e9c11;
+				    width: 15px;
+				    height: 15px;
+				    border: 2px solid white;
+				    border-radius: 50%;
 				}
 				.msg-img {
 					width: 37px;
