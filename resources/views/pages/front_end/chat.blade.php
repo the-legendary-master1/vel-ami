@@ -179,6 +179,7 @@
                         owner_id: this.ownerId, // tag-iya
                         ref_id: this.ref_id
                     };
+                    console.log(dataMessage)
                     this.emojiPicker =  $('#message').emojioneArea({
                         recentEmojis: false,
                         inline: true,
@@ -203,12 +204,11 @@
                     })
 
                     Echo.channel('get-unread-notifications').listen('.get-unread-notifications', (data) => {
-                        console.log(data);
-                        console.log(this.userId);
                         if (data.user.id == this.userId)
                             this.unreadNotification = data.unread
                     })
                     Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
+                        console.log(data.message)
                         if (data.user == this.userId)
                             this.allMessages = data.message;
                     })
@@ -305,7 +305,6 @@
                     },
                     checkUserStatus() {
                         axios.get( `{{ url('check-user-status') }}/${this.productId}/${this.ref_id}`).then((response) => {
-                            console.log(response.data);
                             this.user = response.data;
                         })
                     },

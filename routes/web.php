@@ -58,7 +58,11 @@
 		Route::post('/new-tag', 'BackEndController@newTag');
 		Route::post('/update-tag', 'BackEndController@updateTag');
 		Route::post('/approve-user-request', 'BackEndController@approveUserRequest');
-		// Route::post('/remove-user-review', 'BackEndController@removeUserReview');
+		
+		Route::post('/store-message', 'FrontEndController@storeMessage');
+		Route::get('/get-messages', 'FrontEndController@getMessages');
+		Route::post('/read-message', 'FrontEndController@readMessage');
+		Route::post('/seen-message', 'FrontEndController@seenMessage');
 	});	
 	
 	Route::middleware(['auth', 'user'])->prefix('user')->name('user.')->group(function () {
@@ -89,7 +93,6 @@
 		Route::post('/store-user-review', 'FrontEndController@storeUserReview');
 		Route::post('/report-review', 'FrontEndController@reportReview');
 
-		// store-message
 		Route::post('/store-message', 'FrontEndController@storeMessage');
 		Route::get('/get-messages', 'FrontEndController@getMessages');
 		Route::post('/read-message', 'FrontEndController@readMessage');

@@ -47,12 +47,17 @@
                 
             </div>
             <div class="shop-profile">
-
-                @if ( Auth::user()->id == $shop->user_id )
-                    <a href="#" class="cursor shop-logo-link" @auth @click="editShopLogo(myShopData)" @endauth>
+                
+                @auth
+                    @if ( Auth::user()->id == $shop->user_id )
+                        <a href="#" class="cursor shop-logo-link" @auth @click="editShopLogo(myShopData)" @endauth>
+                    @else
+                        <a href="#" class="cursor shop-logo-link">
+                    @endif
                 @else
                     <a href="#" class="cursor shop-logo-link">
-                @endif
+                @endauth
+                
                     <img :src="'{{ asset('files') }}/'+myShopData.shop_img" class="img-responsive img-thumbnail img-circle" v-if="myShopData.shop_img">
                     <img src="{{ asset('files/shop.png') }}" class="img-responsive img-thumbnail img-circle" v-else>
                     @auth
@@ -114,7 +119,7 @@
                                     </div>
                                 @endif
                             @endauth
-                            <a class="item-link" @click="viewProduct(product)">
+                            <a class="item-link" :href="`{{ url('/product') }}/${product.url}/${product.id}`">
                                 <div class="text-center item--product item--hover">
                                     <div class="item-img mb-3">
                                         <img v-for="(image, index) in product.images" v-if="index == 0" :src="'{{ url('/') }}/' + image.path" :alt="product.name" class="img-responsive">
@@ -260,8 +265,13 @@
                         this.getProducts();
                         // $('#productModal').find('.submit').prop('disabled', true);
 
-                        Echo.channel('get-messages').listen('.get-messages', (data) => {
-                            this.allMessages = data.chat;
+                        Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
+                            if (data.user == this.userId)
+                                this.allMessages = data.message;
+                        })
+                        Echo.channel('get-unread-notifications').listen('.get-unread-notifications', (data) => {
+                            if (data.user.id == this.userId)
+                                this.unreadNotification = data.unread
                         })
                     },
                     methods: {
@@ -338,7 +348,7 @@
                             this.preview_images.splice(index, 1)
                         },
                         submitProduct() {
-                            this.loading();
+                            this.showLoading();
                             // let images = this.$refs.product_images.getAcceptedFiles();
                             let formData = new FormData();
                                 formData.append('category', this.product.category);
@@ -350,8 +360,6 @@
                                 formData.append('tags[]', this.product.selectedTags);
                                 formData.append('my_shop_id', this.myShopData.id);
 
-
-                            console.log(this.remove_images_id);
                             this.preview_images.forEach((image, index) => {
                                 formData.append('images[' + index + ']', image.file);
                             })
@@ -366,7 +374,7 @@
 
 
                             axios.post( this.url + '/store-product', formData).then( response => {
-                                this.removeloading();
+                                this.removeLoading();
                                 $('#productModal').modal('hide');
                                 var txt = 'added.';
 
@@ -382,7 +390,7 @@
                                 this.preview_images = []
                             })
                             .catch( error => {
-                                this.removeloading();
+                                this.removeLoading();
 
                                 swal({
                                     title: 'Oops!',
@@ -449,10 +457,10 @@
                             })
                             .then((willDelete) => {
                                 if (willDelete) {
-                                    this.loading();
+                                    this.showLoading();
                                     axios.post( this.url + '/delete-selected-products', { ids:selectedProducts }).then( response => {
 
-                                        this.removeloading();
+                                        this.removeLoading();
                                         swal({
                                             title: 'Success!',
                                             text: 'Product has been deleted!',
@@ -462,18 +470,18 @@
                                         })
                                     })
                                     .catch(() => {
-                                        this.removeloading();
+                                        this.removeLoading();
                                         swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
                                     })
                                 }
                             });  
                         },
-                        replaceWhiteSpace(string) {
-                            return string.replace(/\s+/g, '_');
-                        },
-                        viewProduct(data) {
-                            window.location.href = `{{ url('/product') }}/${ this.replaceWhiteSpace(data.name) }/${ btoa(data.id) }`;
-                        },
+                        // replaceWhiteSpace(string) {
+                        //     return string.replace(/\s+/g, '_');
+                        // },
+                        // viewProduct(data) {
+                        //     window.location.href = `{{ url('/product') }}/${ this.replaceWhiteSpace(data.name) }/${ btoa(data.id) }`;
+                        // },
                         changeShopLogo(e) {
                             this.imgCropper = true;
                             var files = e.target.files || e.dataTransfer.files;
@@ -503,10 +511,10 @@
                                     formData.append('id', this.myShopData.id);
                                     formData.append('shop_img', output);
 
-                                this.loading();
+                                this.showLoading();
                                 axios.post( this.url + '/upload-shop-img', formData).then( response => {
 
-                                    this.removeloading();
+                                    this.removeLoading();
                                     $('#updateBrandLogoModal').modal('hide');
                                     swal({
                                         title: 'Nice!',
@@ -519,7 +527,7 @@
                                     this.imgCropper = false;
                                 })
                                 .catch(() => {
-                                    this.removeloading();
+                                    this.removeLoading();
                                     swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
                                 })
                             });
@@ -551,10 +559,10 @@
                                     formData.append('id', this.myShopData.id);
                                     formData.append('cover_photo', output);
 
-                                this.loading();
+                                this.showLoading();
                                 axios.post( this.url + '/update-cover-photo', formData).then(() => {
                                     // $('.cover-photo').find('.loading').remove();
-                                    this.removeloading();
+                                    this.removeLoading();
                                     swal({
                                         title: 'Nice!',
                                         text: 'Cover photo has been updated.',
@@ -565,7 +573,7 @@
                                     this.hasCoverPhoto = false;
                                 })
                                 .catch(() => {
-                                    this.removeloading();
+                                    this.removeLoading();
                                     swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
                                 })
                             });
@@ -603,10 +611,10 @@
                             $('#shop_desc_modal').modal('show');
                         },
                         submitShopDesc() {
-                            this.loading();
+                            this.showLoading();
                             axios.post( this.url + '/update-shop-desc', this.shopDescData)
                                 .then(() => {
-                                    this.removeloading();
+                                    this.removeLoading();
                                     $('#shop_desc_modal').modal('hide');
 
                                     swal({
@@ -618,14 +626,14 @@
                                     })
                                 })
                                 .catch(() => {
-                                    this.removeloading();
+                                    this.removeLoading();
                                     swal('Oops!', 'Something wen\'t wrong, please try again later.', 'warning');
                                 })
                         },
-                        loading() {
+                        showLoading() {
                             $('#wait').show();
                         },
-                        removeloading() {
+                        removeLoading() {
                             $('#wait').hide();
                         }, 
 

@@ -87,7 +87,9 @@
                                             </div>
                                         </div>
                                         <div class="dropdown-menu message-container" v-if="showMessages" style="display:block;">
-                                            <div v-if="loading" style="padding:6px 0" v-cloak><img src="{{ asset('files/pleasewait.gif') }}" style="width:22px;margin:auto;display:block"/></div>
+                                            <div v-if="loading" style="padding:6px 0" v-cloak>
+                                                <img src="{{ asset('files/pleasewait.gif') }}" style="width:22px;margin:auto;display:block"/>
+                                            </div>
                                             <div v-else>
                                                 <ul id="message-list" :class="allMessages.length">
                                                     <li v-if="!allMessages">No messages...</li>
@@ -140,33 +142,9 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                           
-                                                            {{-- <a :class="message[1][0]" :href="`{{ url('chat-seller') }}/${message[1][0].product.url}/${message[1][0].product.id}?ref=${message[1][0].ref_id}`"
-                                                                @click.prevent="readMessage(message[1][0])" 
-                                                                :class="(message[0]) ? 'unread-message' : 'seen-message' ">
-                                                                <div class="item" >
-                                                                    <div class="item-img">
-                                                                        <div :style="'background-image:url({{ asset('/') }}' + message[1][0].product.image.path +')'"></div>
-                                                                    </div>
-                                                                    <div class="qty">
-                                                                        <span class="label label-qty" v-if="message[0]">@{{ message[0].length }}</span>
-                                                                        <span class="label label-qty" v-else>0</span>
-                                                                    </div>
-                                                                    <div class="item-name-price">
-                                                                        <div class="i-name">
-                                                                            <span v-cloak>@{{ message[1][0].product.name }}</span>
-                                                                        </div>
-                                                                        <div class="i-price">
-                                                                            <span v-cloak>P @{{ parseFloat(message[1][0].product.price.toFixed(2)).toLocaleString() }}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </a> --}}
-                                                        {{-- </div> --}}
                                                     </li>
                                                 </ul>
                                             </div>
-                                                
                                         </div>
                                     </li>
                                     <li class="show-desktop">
@@ -461,7 +439,7 @@
                             .then(() => {
                                 swal('Request sent!', 'Please contact the admin and wait for approval!', 'success');
 
-                                setTimeout(function() {
+                                setTimeout(() => {
                                     window.location.reload();
                                 }, 1500)
                             })
@@ -469,7 +447,7 @@
                                 swal('Oops!', 'Something Went Wrong!', 'warning');
                             })
                       }
-                  });
+                  })
             })
 
             $('body').on('click', '.need_upgrade_sent', function() {

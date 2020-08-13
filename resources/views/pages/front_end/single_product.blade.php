@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb clearfix d-none d-md-inline-flex pt-0">
                     <li class="breadcrumb-item"><a class="white-text" href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}/{{ strtolower($product->category->name) }}" class="white-text">{{ $product->category->name }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}/{{ $product->category->url }}" class="white-text">{{ $product->category->name }}</a></li>
                     <li class="breadcrumb-item active">{{ $product->name }}</li>
                 </ol>
             </nav>
@@ -120,14 +120,23 @@
                                 <li class="active"><a href="#post-details" data-toggle="tab"><strong>Details</strong></a></li>
                                 <li><a href="#post-reviews" data-toggle="tab" ><strong>Reviews</strong></a></li>
                                 <li><a href="{{ url('/view-shop') }}/{{ $product->shop['shop_url'] }}?id={{ base64_encode($product->shop['id']) }}"><strong>View Shop</strong></a></li>
-                                @if ($product->shop['user_id'] != Auth::user()->id)
+                                @guest
                                     <li>
-                                        <a href="{{ url('chat-seller/' .$product->url. '/' .$product->id. '?ref=' ) }}{{ (empty($chat->ref_id)) ? str_random(16) : $chat->ref_id }}" class="">
+                                        <a href="#" data-toggle="modal" data-target="#loginModal">
                                             <span class="fa fa-circle fa-sm text-online online-indicator"></span>
                                             <strong>Chat Seller!</strong>
                                         </a>
                                     </li>
-                                @endif
+                                @else
+                                    @if ($product->shop['user_id'] != Auth::user()->id)
+                                        <li>
+                                            <a href="{{ url('chat-seller/' .$product->url. '/' .$product->id. '?ref=' ) }}{{ (empty($chat->ref_id)) ? str_random(16) : $chat->ref_id }}" class="">
+                                                <span class="fa fa-circle fa-sm text-online online-indicator"></span>
+                                                <strong>Chat Seller!</strong>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endguest
                             </ul>
                         </div>
                         <div class="has-content tab-content">
@@ -410,17 +419,16 @@
                     showRating: true,
                     replyContent: '',
                     replyToUser: '',
-                    productData: {!! json_encode($product) !!},
 
                     // Header
                     unreadNotification: {!! json_encode($unreadNotification) !!},
                     showMessages: false,
-                    msgLoading: false,
+                    loading: false,
                     allMessages: [],
 
                 @endauth
+                productData: {!! json_encode($product) !!},
                 reviews: {!! json_encode($reviews) !!},
-
             },
             mounted() {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -431,8 +439,16 @@
                 Echo.channel('get-product-reviews').listen('.get-product-reviews', () => {
                     this.getReviews();
                 })
-                Echo.channel('get-messages').listen('.get-messages', (data) => {
-                    this.allMessages = data.chat;
+                Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
+                    if (data.user == this.authId) {
+                         console.log(this.loading);
+
+                        this.allMessages = data.message;
+                    }
+                })
+                Echo.channel('get-unread-notifications').listen('.get-unread-notifications', (data) => {
+                    if (data.user.id == this.authId)
+                        this.unreadNotification = data.unread
                 })
             },
             methods: {

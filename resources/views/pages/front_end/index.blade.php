@@ -77,17 +77,17 @@
 
 @endsection
 @section('extraJS')
-@auth
     <script>
         $(function() {
             const app = new Vue({
                 el: '#app',
                 data: {
-                    userId: '{{ Auth::user()->id }}',
-                    url: '{{ url(strtolower(Auth::user()->role)) }}',
                     products: {!! json_encode($products) !!},
 
                     @auth
+                        userId: '{{ Auth::user()->id }}',
+                        url: '{{ url(strtolower(Auth::user()->role)) }}',
+                        
                         // Header
                         unreadNotification: {!! json_encode($unreadNotification) !!},
                         showMessages: false,
@@ -96,7 +96,6 @@
                     @endauth
                 },
                 mounted() {
-                    console.log(this.products.data)
                     $('.navbar-menu--click').on('click', function(e) {
                         var nxt = $(this).next();
                         
@@ -109,8 +108,15 @@
                             nxt.removeClass('show'); 
                         });
                     });
-                    Echo.channel('get-messages').listen('.get-messages', (data) => {
-                        this.allMessages = data.chat;
+                    
+                    Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
+                        console.log(data);
+                        if (data.user == this.userId)
+                            this.allMessages = data.message;
+                    })
+                    Echo.channel('get-unread-notifications').listen('.get-unread-notifications', (data) => {
+                        if (data.user.id == this.userId)
+                            this.unreadNotification = data.unread
                     })
                 },
                 methods: {
@@ -140,7 +146,6 @@
             });
         })
     </script>
-@endauth
 @endsection
 
 

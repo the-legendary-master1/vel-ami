@@ -34,42 +34,38 @@ class FrontEndController extends Controller
 {
 	public function index()
 	{
-        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
         $products = Product::with('shop:id,name', 'images:id,product_id,path', 'reviews:product_id,rating')->orderBy('id', 'desc')->paginate(18);
         
         foreach ($products as $product) {
             $product->images = json_decode($product->images, true);
         }
 
+        $unreadNotification = 0;
+        if (Auth::check()) {
+            if (Auth::user()->role == "User-Premium")
+                $unreadNotification = count( Chat::where('owner_status', 0)->get()->groupBy('ref_id') );
+            else
+                $unreadNotification = count( Chat::where('customer_status', 0)->get()->groupBy('ref_id') );
+        }
 		return view('pages.front_end.index', compact('products', 'unreadNotification'));
 	}
 	public function viewProduct(Request $request, $name, $id)
 	{
         $product = Product::with('shop')->find($id);
-        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
-        // $ratings = ProductReview::where('product_id', $id)->orderBy('rating', 'desc')->groupBy('rating');
-        // $rates = $ratings->select('rating', DB::raw('count(*) as total_rates'))->get();
-        // $stars = $ratings->select('rating', DB::raw( 'SUM(rating) as total_stars' ))->get();
+        $unreadNotification = 0;
+        $chat = [];
 
-        // $average = 0;
-        // if ( $ratings->count() > 0 ) {
+        if (Auth::check()) {
+            $chat = Chat::where('customer_id', Auth::user()->id)->where('owner_id', $product->shop['user_id'])->where('product_id', $id)->get()->first();
 
-        //     $dataRatings = [];
-        //     foreach ($rates as $key => $value) {
-        //         $dataRatings[] = $value->total_rates;
-        //     }
+            // if owner
+            if (Auth::user()->role == "User-Premium")
+                $unreadNotification = count( Chat::where('owner_status', 0)->get()->groupBy('ref_id') );
+            else
+                $unreadNotification = count( Chat::where('customer_status', 0)->get()->groupBy('ref_id') );
+        }
 
-        //     $total_ratings = array_sum($dataRatings);
-        //     $dataStars = [];
-        //     foreach ($stars as $key => $star) {
-        //         $dataStars[] = $stars[$key]->total_stars;
-        //     }
-        //     $total_stars = array_sum($dataStars);
-        //     $average = round($total_stars / $total_ratings, 1);
-        // }
-
-        $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported')->where('product_id', $id)->orderBy('id', 'desc')->paginate(5);
-        $chat = Chat::where('customer_id', Auth::user()->id)->where('owner_id', $product->shop['user_id'])->where('product_id', $id)->get()->first();
+        $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported', 'category')->where('product_id', $id)->orderBy('id', 'desc')->paginate(5);
 
         foreach ($reviews as $review) {
             $review->attachments = json_decode($review->attachments, true);
@@ -79,15 +75,14 @@ class FrontEndController extends Controller
             'unreadNotification' => $unreadNotification,
             'request' => $request,
             'product' => $product,
-            // 'average' => $average,
             'reviews' => $reviews,
             'chat' => $chat,
         ]);
     }
-    public function viewShop(Request $request)
+    public function viewShop(Request $request, $name)
     {
         $shopId = base64_decode($request->id);
-        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
+        $unreadNotification = Chat::groupBy('ref_id')->count();
         $products = Product::where('my_shop_id', $shopId)->with('shop', 'images')->orderBy('id', 'desc')->get();
 
         foreach ($products as $product) {
@@ -102,7 +97,6 @@ class FrontEndController extends Controller
     {
         return view('pages.front_end.profile');
     }
-
 	public function signUp(Request $req)
 	{
         $this->validate($req, [
@@ -433,7 +427,6 @@ class FrontEndController extends Controller
             return;
         }
     }
-    // public function chat($id, $name)
     public function chat(Request $request, $name, $product_id)
     {   
         $product = Product::find($product_id);
@@ -444,9 +437,9 @@ class FrontEndController extends Controller
 
         // if owner
         if ($owner_id == $customer_id)
-            $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id');
+            $unreadNotification = Chat::where('owner_status', 0)->groupBy('ref_id')->count();
         else
-            $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id');
+            $unreadNotification = Chat::where('customer_status', 0)->groupBy('ref_id')->count();
 
         $checkMessage = Chat::where('product_id', $product_id)->where('ref_id', $request->ref)->count();
         if ($checkMessage > 0) {
@@ -476,7 +469,7 @@ class FrontEndController extends Controller
             $user->status = 'offline';
 
         return view('pages.front_end.chat', [
-            'unreadNotification' => count($unreadNotification),
+            'unreadNotification' => $unreadNotification,
             'product_id'         => $product_id,
             'owners_id'          => $product->shop->user_id,
             'messages'           => $messages,
@@ -596,15 +589,14 @@ class FrontEndController extends Controller
             DB::transaction(function() use ($request) {
                 $user = User::find($request->id);
 
-                $chats = Chat::with(['product:id,name,price,url', 'product.image', 'user:id'])->orderBy('id', 'desc')->get();
-                if ($user->role == "User-Premium") {
+                $chats = Chat::with('product:id,name,price,url', 'product.image:product_id,path', 'user:id')->orderBy('id', 'desc')->select('id','product_id','customer_id','owner_id','owner_status','customer_status','ref_id')->get();
+
+                if ($user->role == "User-Premium")
                     $messages = $chats->where('owner_id', $request->id)->groupBy(['ref_id', 'owner_status']);
-                }
-                else {
+                else 
                     $messages = $chats->where('customer_id', $request->id)->groupBy(['ref_id', 'customer_status']);
-                }
-                $user = Auth::user()->id;
-                event( new GetMessageNotifications( $messages, $user ));
+
+                event( new GetMessageNotifications( $messages, $user->id ));
             }, 2);
         } catch (Exception $e) {
             return;
@@ -616,6 +608,8 @@ class FrontEndController extends Controller
             DB::transaction(function() use ($request) {
                 $checkMessage = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->count();
 
+                $unreadNotification = [];
+                $user = [];
                 if ($checkMessage > 0) {
                     $msgs = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->select('customer_id', 'owner_id')->get();
                     $customer_id;
