@@ -208,7 +208,6 @@
                             this.unreadNotification = data.unread
                     })
                     Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
-                        console.log(data.message)
                         if (data.user == this.userId)
                             this.allMessages = data.message;
                     })

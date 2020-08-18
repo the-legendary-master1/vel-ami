@@ -436,10 +436,13 @@ class FrontEndController extends Controller
         $owner_id = $product->shop->user_id;
 
         // if owner
-        if ($owner_id == $customer_id)
-            $unreadNotification = Chat::where('owner_status', 0)->groupBy('ref_id')->count();
-        else
-            $unreadNotification = Chat::where('customer_status', 0)->groupBy('ref_id')->count();
+        $unreadNotification = 0;
+        if (Auth::check()) {
+            if ($owner_id == $customer_id)
+                $unreadNotification = count( Chat::where('owner_status', 0)->get()->groupBy('ref_id') );
+            else
+                $unreadNotification = count( Chat::where('customer_status', 0)->get()->groupBy('ref_id') );
+        }
 
         $checkMessage = Chat::where('product_id', $product_id)->where('ref_id', $request->ref)->count();
         if ($checkMessage > 0) {
@@ -538,10 +541,9 @@ class FrontEndController extends Controller
                     }
                 }
                 if ( $request->owner_id == $request->customer_id )
-                    $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id')->count();
+                    $unreadNotification = count( Chat::where('owner_status', 0)->get()->groupBy('ref_id') );
                 else
-                    $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id')->count();
-
+                    $unreadNotification = count( Chat::where('customer_status', 0)->get()->groupBy('ref_id') );
 
                 $checkMessage = Chat::where('product_id', $request->product_id)->where('ref_id', $request->ref_id)->count();
                 if ($checkMessage > 0) {
@@ -629,7 +631,7 @@ class FrontEndController extends Controller
                             $message->owner_status = 1; // seen owner side 
                             $message->save();
                         }
-                        $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id')->count();
+                        $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id');
                         $user = User::select('id')->find($owner_id);
                     }
                     else {
@@ -637,10 +639,11 @@ class FrontEndController extends Controller
                             $message->customer_status = 1; // seen customer side
                             $message->save();
                         }
-                        $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id')->count();
+                        $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id');
                         $user = User::select('id')->find($customer_id);
                     }
                 }
+
                 event( new GetUnreadNotifications( $unreadNotification, $user ));
             }, 2);
         } catch (Exception $e) {

@@ -134,11 +134,7 @@
                             this.unreadNotification = 0;
                             this.getMessages()
                         },
-                        readMessage(customer_id, product_id) {
-                            let data = {
-                                customer_id: customer_id,
-                                product_id: product_id
-                            }
+                        readMessage(data) {
                             axios.post( this.url + '/read-message', data );
                         },
                     @endauth
