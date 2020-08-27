@@ -18,39 +18,37 @@
             <h6 class="strapline">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua </h6>
         </div>
         <div class="products mt2">
-            <div class="row text-center">
+            <div class="row product-row text-center">
                 <div v-if="!products.data.length">
                     <h1>No Products...</h1>
                 </div>
-                <div v-else>
-                    <div class="col-md-4 pi cus-pad" v-for="(product, key) in products.data">
-                        <div class="product--details" v-cloak>
-                            <a :href="`{{ url('/product') }}/${product.url}/${product.id}`" class="item-link">
-                                <div class="text-center item--product item--hover">
-                                    <div class="item-img mb-3">
-                                        <img v-for="(image, index) in product.images" v-if="index == 0" :src="'{{ url('/') }}/' + image.path" :alt="product.name" class="img-responsive">
-                                    </div>
-                                    <div class="item-details">
-                                        <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">@{{ product.shop.name }}</h6>
-                                        <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
+                <div v-else class="col-md-4 pi cus-pad" v-for="(product, key) in products.data">
+                    <div class="product--details" v-cloak>
+                        <a :href="`{{ url('/product') }}/${product.url}/${product.id}`" class="item-link">
+                            <div class="text-center item--product item--hover">
+                                <div class="item-img mb-3">
+                                    <img v-for="(image, index) in product.images" v-if="index == 0" :src="'{{ url('/') }}/' + image.path" :alt="product.name" class="img-responsive">
+                                </div>
+                                <div class="item-details">
+                                    <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">@{{ product.shop.name }}</h6>
+                                    <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
 
-                                        <div class="prRa clearfix">
-                                            <span class="price">₱ @{{ product.price }}</span>
-                                            <div class="pull-right show-mobile">
-                                                <star-rating 
-                                                    :increment="0.1" 
-                                                    :rating="parseInt(product.total_rating)" 
-                                                    :read-only="true"
-                                                    :star-size="13"
-                                                    :show-rating="false"
-                                                    active-color="#31708f">
-                                                </star-rating>
-                                            </div>
+                                    <div class="prRa clearfix">
+                                        <span class="price">₱ @{{ product.price }}</span>
+                                        <div class="pull-right show-mobile">
+                                            <star-rating 
+                                                :increment="0.1" 
+                                                :rating="parseInt(product.total_rating)" 
+                                                :read-only="true"
+                                                :star-size="13"
+                                                :show-rating="false"
+                                                active-color="#31708f">
+                                            </star-rating>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                     

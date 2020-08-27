@@ -12621,6 +12621,14 @@ a:hover {
   font-size: 16px;
 }
 
+.product-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+}
+
 .product--details {
   position: relative;
   margin-bottom: 20px;

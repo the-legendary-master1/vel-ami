@@ -99,52 +99,50 @@
             @endif
         @endauth
         <div class="products mt2">
-            <div class="row text-center">
+            <div class="row product-row text-center">
                 <div v-if="!products.length" class="col-md-12 col-xs-12">
                     <h1>No products available.</h1>
                 </div>
-                <div v-else>
-                    <div v-for="(product, index) in products" class="col-md-4 pi cus-pad">
-                        <div class="product--details">
-                            @auth
-                                @if ( Auth::user()->id == $shop->user_id )
-                                    <div class="product-options">
-                                        <div class="btn-group-vertical">
-                                            <button class="btn btn-info btn-xs edit--product" @click="editProduct(product)"><span class="fa fa-pencil"></span></button>
-                                            <label class="btn btn-danger btn-xs check-to-delete">
-                                                <input type="checkbox" v-model="selectedProduct" :value="product.id">
-                                                <span class="glyphicon glyphicon-ok"></span>
-                                            </label>
-                                        </div>
+                <div v-else v-for="(product, index) in products" class="col-md-4 pi cus-pad">
+                    <div class="product--details">
+                        @auth
+                            @if ( Auth::user()->id == $shop->user_id )
+                                <div class="product-options">
+                                    <div class="btn-group-vertical">
+                                        <button class="btn btn-info btn-xs edit--product" @click="editProduct(product)"><span class="fa fa-pencil"></span></button>
+                                        <label class="btn btn-danger btn-xs check-to-delete">
+                                            <input type="checkbox" v-model="selectedProduct" :value="product.id">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                        </label>
                                     </div>
-                                @endif
-                            @endauth
-                            <a class="item-link" :href="`{{ url('/product') }}/${product.url}/${product.id}`">
-                                <div class="text-center item--product item--hover">
-                                    <div class="item-img mb-3">
-                                        <img v-for="(image, index) in product.images" v-if="index == 0" :src="'{{ url('/') }}/' + image.path" :alt="product.name" class="img-responsive">
-                                    </div>
-                                    <div class="item-details">
-                                        <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">@{{ myShopData.name }}</h6>
-                                        <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
+                                </div>
+                            @endif
+                        @endauth
+                        <a class="item-link" :href="`{{ url('/product') }}/${product.url}/${product.id}`">
+                            <div class="text-center item--product item--hover">
+                                <div class="item-img mb-3">
+                                    <img v-for="(image, index) in product.images" v-if="index == 0" :src="'{{ url('/') }}/' + image.path" :alt="product.name" class="img-responsive">
+                                </div>
+                                <div class="item-details">
+                                    <h6 class="shop-name text-uppercase mb1 font-weight-bold show-desktop">@{{ myShopData.name }}</h6>
+                                    <h5 class="item-name mb2 font-weight-bold">@{{ product.name }}</h5>
 
-                                        <div class="prRa clearfix ">
-                                            <span class="price">₱ @{{ product.price.toLocaleString() }} </span>
-                                            <div class="pull-right show-mobile">
-                                                <star-rating 
-                                                    :increment="0.1" 
-                                                    :rating="parseInt(product.total_rating)" 
-                                                    :read-only="true"
-                                                    :star-size="13"
-                                                    :show-rating="false"
-                                                    active-color="#31708f">
-                                                </star-rating>
-                                            </div>
+                                    <div class="prRa clearfix ">
+                                        <span class="price">₱ @{{ product.price.toLocaleString() }} </span>
+                                        <div class="pull-right show-mobile">
+                                            <star-rating 
+                                                :increment="0.1" 
+                                                :rating="parseInt(product.total_rating)" 
+                                                :read-only="true"
+                                                :star-size="13"
+                                                :show-rating="false"
+                                                active-color="#31708f">
+                                            </star-rating>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

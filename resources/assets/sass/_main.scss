@@ -333,6 +333,10 @@ a:hover {
 		font-size: 16px;
 	}
 }
+.product-row {
+	display: flex;
+	flex-flow: wrap;
+}
 .product--details {
 	position: relative;
 	margin-bottom: 20px;

@@ -100,14 +100,14 @@
                                 @{{ tag }}
                                 <span>&times;</span>
                             </span>
-                            <input type="text" class="tag-input__text" id="tags" placeholder="Add Tags" @click="searchTags" @keyup="searchTags" v-model="product.tags" data-role="tagsinput">
+                            <input type="text" class="tag-input__text" id="tags" placeholder="Add Tags" @keyup="searchTags" v-model="product.tags" data-role="tagsinput">
                         </label>
                     </div>
                     <div class="tags-list" v-if="tagsList.length">
                         <ul class="tags-wrap">
-                            <li v-for="tag in tagsList" :key="tag.id" class="tags-item" style="display:inline-block;margin:3px;">
+                            <li v-for="tag in tagsList" :key="tag.id" class="tags-item" style="display:inline-block;">
                                 <a class="btn btn-primary btn-xs" @click.prevent="selectTags(tag.name)">
-                                    <span v-text="tag.name"></span>
+                                    <small><span v-text="tag.name"></span></small>
                                 </a>
                             </li>
                         </ul>

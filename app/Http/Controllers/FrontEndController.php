@@ -43,9 +43,9 @@ class FrontEndController extends Controller
         $unreadNotification = 0;
         if (Auth::check()) {
             if (Auth::user()->role == "User-Premium")
-                $unreadNotification = count( Chat::where('owner_status', 0)->get()->groupBy('ref_id') );
+                $unreadNotification = count( Chat::where('owner_id', Auth::user()->id)->where('owner_status', 0)->get()->groupBy('ref_id') );
             else
-                $unreadNotification = count( Chat::where('customer_status', 0)->get()->groupBy('ref_id') );
+                $unreadNotification = count( Chat::where('customer_id', Auth::user()->id)->where('customer_status', 0)->get()->groupBy('ref_id') );
         }
 		return view('pages.front_end.index', compact('products', 'unreadNotification'));
 	}
@@ -60,9 +60,9 @@ class FrontEndController extends Controller
 
             // if owner
             if (Auth::user()->role == "User-Premium")
-                $unreadNotification = count( Chat::where('owner_status', 0)->get()->groupBy('ref_id') );
+                $unreadNotification = count( Chat::where('owner_id', Auth::user()->id)->where('owner_status', 0)->get()->groupBy('ref_id') );
             else
-                $unreadNotification = count( Chat::where('customer_status', 0)->get()->groupBy('ref_id') );
+                $unreadNotification = count( Chat::where('customer_id', Auth::user()->id)->where('customer_status', 0)->get()->groupBy('ref_id') );
         }
 
         $reviews = ProductReview::with('user', 'reply', 'reply.user', 'product', 'product.shop', 'reported', 'category')->where('product_id', $id)->orderBy('id', 'desc')->paginate(5);
@@ -82,11 +82,18 @@ class FrontEndController extends Controller
     public function viewShop(Request $request, $name)
     {
         $shopId = base64_decode($request->id);
-        $unreadNotification = Chat::groupBy('ref_id')->count();
         $products = Product::where('my_shop_id', $shopId)->with('shop', 'images')->orderBy('id', 'desc')->get();
 
         foreach ($products as $product) {
             $product->images = json_decode($product->images, true);
+        }
+
+        $unreadNotification = 0;
+        if (Auth::check()) {
+            if (Auth::user()->role == "User-Premium")
+                $unreadNotification = count( Chat::where('owner_id', Auth::user()->id)->where('owner_status', 0)->get()->groupBy('ref_id') );
+            else
+                $unreadNotification = count( Chat::where('customer_id', Auth::user()->id)->where('customer_status', 0)->get()->groupBy('ref_id') );
         }
 
         $shop = MyShop::find($shopId);
@@ -142,8 +149,21 @@ class FrontEndController extends Controller
         $shopId = base64_decode($shopId);
         $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
         $products = Product::with('images')->where('my_shop_id', $shopId)->orderBy('id', 'desc')->get();
+
+        foreach ($products as $product) {
+            $product->images = json_decode($product->images, true);
+        }
+
         $shop = MyShop::find($shopId);
         $categories = Category::all();
+
+        $unreadNotification = 0;
+        if (Auth::check()) {
+            if (Auth::user()->role == "User-Premium")
+                $unreadNotification = count( Chat::where('owner_id', Auth::user()->id)->where('owner_status', 0)->get()->groupBy('ref_id') );
+            else
+                $unreadNotification = count( Chat::where('customer_id', Auth::user()->id)->where('customer_status', 0)->get()-> groupBy('ref_id') );
+        }
 
         if ($products) {
             return view('pages.front_end.single_shop', compact('products', 'categories', 'shop', 'unreadNotification'));
@@ -167,19 +187,21 @@ class FrontEndController extends Controller
     {
         $search = $request->get('search');
         $selected = $request->get('selected');
-        $tags = Tag::all();
+        $tags = [];
 
-        if ($search != '') {
-            if ($selected != '') {
-                $tags = Tag::where('name', 'LIKE', '%' .$search. '%')->whereNotIn('name', $selected)->get();
+        if (strlen($search) > 3) {
+            if ($search != '') {
+                if ($selected != '') {
+                    $tags = Tag::where('name', 'LIKE', $search. '%')->whereNotIn('name', $selected)->take(20)->get();
+                }
+                else {
+                    $tags = Tag::where('name', 'LIKE', $search. '%')->take(20)->get();
+                }
             }
             else {
-                $tags = Tag::where('name', 'LIKE', '%' .$search. '%')->get();
-            }
-        }
-        else {
-            if ($selected != '') {
-                $tags = Tag::whereNotIn('name', $selected)->get();
+                if ($selected != '') {
+                    $tags = Tag::whereNotIn('name', $selected)->take(20)->get();
+                }
             }
         }
         return $tags;
@@ -274,7 +296,6 @@ class FrontEndController extends Controller
     {
         try {
             DB::transaction(function() use ($request) {
-                // if ( $request->hasFile('cover_photo') ) {
                 $shop = MyShop::find($request->id);
                 $cover_photo_file = $request->cover_photo;
 
@@ -289,25 +310,6 @@ class FrontEndController extends Controller
                 $shop->cover_photo = 'shop_img/' . $filename;
                 $shop->save();
 
-
-
-                    // $image_file = $request->file('cover_photo');
-                    // $img_ext = $image_file->extension();
-                    // $path = $shop->name . '/cover-photo/cover_photo_' . $shop->name . '_' . $request->id . date('is', strtotime(Carbon::now())) .'.'.$img_ext;
-                    // $img_path = $request->cover_photo->storeAs('products', $path, 'public');
-
-                    // $img_canvas = Image::canvas(900, 170);
-                    // $image = Image::make( $image_file->getRealPath() );
-                    // $image->resize(900, 170, function($constraint) {
-                    //     $constraint->aspectRatio();
-                    // });
-
-                    // $img_canvas->insert($image, 'center');
-                    // $img_canvas->save('files/' . $img_path);
-
-                    // $shop->cover_photo = $img_path;
-                    // $shop->save();
-                // }
 
                 event(new GetShops());
             }, 2);
@@ -439,9 +441,9 @@ class FrontEndController extends Controller
         $unreadNotification = 0;
         if (Auth::check()) {
             if ($owner_id == $customer_id)
-                $unreadNotification = count( Chat::where('owner_status', 0)->get()->groupBy('ref_id') );
+                $unreadNotification = count( Chat::where('owner_id', Auth::user()->id)->where('owner_status', 0)->get()->groupBy('ref_id') );
             else
-                $unreadNotification = count( Chat::where('customer_status', 0)->get()->groupBy('ref_id') );
+                $unreadNotification = count( Chat::where('customer_id', Auth::user()->id)->where('customer_status', 0)->get()->groupBy('ref_id') );
         }
 
         $checkMessage = Chat::where('product_id', $product_id)->where('ref_id', $request->ref)->count();
@@ -631,7 +633,7 @@ class FrontEndController extends Controller
                             $message->owner_status = 1; // seen owner side 
                             $message->save();
                         }
-                        $unreadNotification = Chat::where('owner_status', 0)->get()->groupBy('ref_id');
+                        $unreadNotification = count( Chat::where('owner_id', Auth::user()->id)->where('owner_status', 0)->get()->groupBy('ref_id') );
                         $user = User::select('id')->find($owner_id);
                     }
                     else {
@@ -639,7 +641,7 @@ class FrontEndController extends Controller
                             $message->customer_status = 1; // seen customer side
                             $message->save();
                         }
-                        $unreadNotification = Chat::where('customer_status', 0)->get()->groupBy('ref_id');
+                        $unreadNotification = count( Chat::where('customer_id', Auth::user()->id)->where('customer_status', 0)->get()->groupBy('ref_id') );
                         $user = User::select('id')->find($customer_id);
                     }
                 }
