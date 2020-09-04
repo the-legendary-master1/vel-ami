@@ -147,7 +147,6 @@ class FrontEndController extends Controller
     public function shop($shop_url, $shopId)
     {
         $shopId = base64_decode($shopId);
-        $unreadNotification = Chat::where('status', 0)->groupBy('ref_id')->count();
         $products = Product::with('images')->where('my_shop_id', $shopId)->orderBy('id', 'desc')->get();
 
         foreach ($products as $product) {

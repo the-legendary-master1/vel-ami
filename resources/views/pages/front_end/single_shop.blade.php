@@ -232,6 +232,7 @@
                         // Header
                         unreadNotification: {!! json_encode($unreadNotification) !!},
                         showMessages: false,
+                        showOptions: false,
                         loading: false,
                         allMessages: [],
                         userId: {{ Auth::user()->id }},
@@ -240,6 +241,7 @@
                 },
                 @auth
                     mounted() {
+                        this.getMessages();
                         $('.selectpicker').select();
                         $('.product--dropify, .dropify').dropify();
                         $('.check-to-delete').on('change', function(e) {
@@ -644,12 +646,17 @@
                         openMessages() {
                             this.loading = true
                             this.showMessages = !this.showMessages;
+                            this.showOptions = false
                             this.unreadNotification = 0;
                             this.getMessages()
                         },
                         readMessage(data) {
                             axios.post( this.url + '/read-message', data );
                         },
+                        openOptions() {
+                            this.showOptions = !this.showOptions
+                            this.showMessages = false
+                        }
                     }
                 @endauth
             });

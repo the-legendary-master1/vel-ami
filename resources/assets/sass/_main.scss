@@ -1456,69 +1456,69 @@ a:hover {
 		top: -12px;
 		right: 10px;
 	}
-	#message-list {
-		padding: 0;
-		margin-top: 0;
-		max-height: 80vh;
-	    overflow-y: auto;
+}
+#message-list {
+	padding: 0;
+	margin-top: 0;
+	max-height: 80vh;
+    overflow-y: auto;
 
-		li {
-			a {
-				font-size: 13px;
-				border-bottom: thin solid #d6d6d6;
-				padding: 8px 10px;
-				line-height: normal;
-	
-				&.unread-message {
-					background: #edf2fa;
-				}
-				&:hover {
-					background: #efefef;
-				}
+	li {
+		a {
+			font-size: 13px;
+			border-bottom: thin solid #d6d6d6;
+			padding: 8px 10px;
+			line-height: normal;
+			display: block;
 
-				.item {
-					display: flex;
-					align-items: center;
-					
-					.item-img {
-						> div {
-							width: 60px;
-							height: 60px;
-							border-radius: 50%;
-							border: 2px solid #efefef;
-							background-size: 90px auto;
-							background-repeat: no-repeat;
-							background-position: center;
-						}
-					}
+			&.unread-message {
+				background: #edf2fa;
+			}
+			&:hover {
+				background: #efefef;
+			}
+
+			.item {
+				display: flex;
+				align-items: center;
+				
+				.item-img {
 					> div {
-						margin-right: 23px;
-
-						.label {
-						    border: thin solid #d6d6d6;
-						    color: #333;
-						    padding: 6px;
-						}
+						width: 60px;
+						height: 60px;
+						border-radius: 50%;
+						border: 2px solid #efefef;
+						background-size: 90px auto;
+						background-repeat: no-repeat;
+						background-position: center;
 					}
-					> .item-name-price {
-					    margin-right: 0;
-					    max-width: 190px;
-					    white-space: normal;
+				}
+				> div {
+					margin-right: 23px;
 
-					    .i-name {
-				    	    line-height: 17px;
-							margin-bottom: 5px;   
-							white-space: nowrap;
-						    overflow: hidden;
-						    text-overflow: ellipsis;
-					    }
+					.label {
+					    border: thin solid #d6d6d6;
+					    color: #333;
+					    padding: 6px;
 					}
+				}
+				> .item-name-price {
+				    margin-right: 0;
+				    max-width: 190px;
+				    white-space: normal;
+
+				    .i-name {
+			    	    line-height: 17px;
+						margin-bottom: 5px;   
+						white-space: nowrap;
+					    overflow: hidden;
+					    text-overflow: ellipsis;
+				    }
 				}
 			}
 		}
 	}
 }
-	
 .nav.navbar-right {
 	margin-right: 0;
 	> li {
@@ -1831,6 +1831,19 @@ a:hover {
 	    top: 0;
 	}
 }
+.mobile-message {
+	padding: 0 !important;
+	min-height: 500px;
+    max-height: 500px !important;
+
+	a {
+		padding-left: 25px !important;
+		padding-right: 25px !important;
+	}
+	.item-name-price {
+		max-width: none !important;
+	}
+}	
 
 @keyframes waveInfinite {
 	0%, 60%, 100% {

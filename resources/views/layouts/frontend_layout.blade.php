@@ -86,7 +86,7 @@
                                                 <span class="label label-danger" v-if="unreadNotification > 0">@{{ unreadNotification }}</span>
                                             </div>
                                         </div>
-                                        <div class="dropdown-menu message-container" v-if="showMessages" style="display:block;">
+                                        <div class="dropdown-menu message-container" v-if="showMessages" :class="{ show: showMessages }">
                                             <div v-if="loading" style="padding:6px 0" v-cloak>
                                                 <img src="{{ asset('files/pleasewait.gif') }}" style="width:22px;margin:auto;display:block"/>
                                             </div>
@@ -152,13 +152,13 @@
                                             <figure>
                                                 <img src="{{ asset('files/bell.png') }}" class="img-circle img-responsive img-thumbnail">
                                             </figure>
-                                            <div class="ctr-notif">
-                                                <span class="label label-danger">5</span>
+                                            <div class="ctr-notif" v-cloak>
+                                                <span class="label label-danger" v-if="unreadNotification > 0">@{{ unreadNotification }}</span>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="dropdown">
-                                        <div class="navbar-menu--click navbar-menu--hover cursor clearfix">
+                                        <div class="navbar-menu--click navbar-menu--hover cursor clearfix" @click="openOptions">
                                             <div class="nav-profile">
                                                 <figure>
                                                     <img src="{{ asset('files/default_user.jpg') }}" class="img-circle img-responsive img-thumbnail">
@@ -169,7 +169,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu" v-if="showOptions" :class="{ show: showOptions }">
                                             @if (Auth::user()->role == 'Super-Admin')
                                                 <li>
                                                     <a href="{{ url('super-admin/dashboard') }}"><span class="fa fa-dashboard"></span> Dashboard</a>
@@ -179,10 +179,10 @@
                                                 <a href="{{ url('profile') }}/{{ Auth::user()->id }}"><span class="fa fa-user-circle-o"></span> Profile</a>
                                             </li>
                                             <li class="show-mobile">
-                                                <a href="#" class="msgs" data-toggle="modal" data-target="#msgsModal">
+                                                <a href="#" class="msgs" data-toggle="modal" data-target="#msgsModal" @click="openMessages">
                                                     <span class="fa fa-telegram"></span>
                                                     Messages
-                                                    <span class="label label-danger">5</span>
+                                                    <span class="label label-danger" v-if="unreadNotification > 0">@{{ unreadNotification }}</span>
                                                 </a>
                                             </li>
                                             @if (Auth::user()->role == 'User-Premium')
@@ -214,7 +214,7 @@
                                                     {{ csrf_field() }}
                                                 </form>
                                             </li>
-                                        </ul>
+                                        </ul> 
                                     </li>
                                 @endguest
                             </ul>
@@ -308,13 +308,15 @@
                 </div>
             </div>
         </main>
-    </div>
 
-    @include('pages.front_end.modals.forgot_password')
-    @include('pages.front_end.modals.login')
-    @include('pages.back_end.modals.user_premium.setup_shop')
-    @include('pages.front_end.modals.sign_up')
-    @include('pages.front_end.modals.messages_modal')
+        @include('pages.front_end.modals.messages_modal')
+
+    </div>
+        @include('pages.front_end.modals.forgot_password')
+        @include('pages.front_end.modals.login')
+        @include('pages.back_end.modals.user_premium.setup_shop')
+        @include('pages.front_end.modals.sign_up')
+
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -325,6 +327,19 @@
     @yield('extraJS')
     <script>
         $(function() {
+    
+            // $('.navbar-menu--click').on('click', function(e) {
+            //     var nxt = $(this).next();
+                
+            //     $('#navbar-menu').find('.dropdown-menu').removeClass('show');
+            //     nxt.toggleClass('show');
+            //     $(this).toggleClass('active');
+
+            //     e.stopPropagation();
+            //     $(document).click(function() {
+            //         nxt.removeClass('show'); 
+            //     });
+            // });
 
             $('.navbar-sp-categ, .click--ellipsis, .click--search').on('click', function(e) {
                 var target = $(this).data('target');

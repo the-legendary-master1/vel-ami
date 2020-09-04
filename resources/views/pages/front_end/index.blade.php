@@ -89,26 +89,14 @@
                         // Header
                         unreadNotification: {!! json_encode($unreadNotification) !!},
                         showMessages: false,
+                        showOptions: false,
                         loading: false,
                         allMessages: [],
                     @endauth
                 },
                 mounted() {
-                    $('.navbar-menu--click').on('click', function(e) {
-                        var nxt = $(this).next();
-                        
-                        $('#navbar-menu').find('.dropdown-menu').removeClass('show');
-                        nxt.toggleClass('show');
-                        $(this).toggleClass('active');
-
-                        e.stopPropagation();
-                        $(document).click(function() {
-                            nxt.removeClass('show'); 
-                        });
-                    });
                     
                     Echo.channel('get-message-notifications').listen('.get-message-notifications', (data) => {
-                        console.log(data);
                         if (data.user == this.userId)
                             this.allMessages = data.message;
                     })
@@ -129,12 +117,17 @@
                         openMessages() {
                             this.loading = true
                             this.showMessages = !this.showMessages;
+                            this.showOptions = false
                             this.unreadNotification = 0;
                             this.getMessages()
                         },
                         readMessage(data) {
                             axios.post( this.url + '/read-message', data );
                         },
+                        openOptions() {
+                            this.showOptions = !this.showOptions
+                            this.showMessages = false
+                        }
                     @endauth
                 },
             });

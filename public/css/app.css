@@ -13888,29 +13888,30 @@ a:hover {
   right: 10px;
 }
 
-.message-container #message-list {
+#message-list {
   padding: 0;
   margin-top: 0;
   max-height: 80vh;
   overflow-y: auto;
 }
 
-.message-container #message-list li a {
+#message-list li a {
   font-size: 13px;
   border-bottom: thin solid #d6d6d6;
   padding: 8px 10px;
   line-height: normal;
+  display: block;
 }
 
-.message-container #message-list li a.unread-message {
+#message-list li a.unread-message {
   background: #edf2fa;
 }
 
-.message-container #message-list li a:hover {
+#message-list li a:hover {
   background: #efefef;
 }
 
-.message-container #message-list li a .item {
+#message-list li a .item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13919,7 +13920,7 @@ a:hover {
           align-items: center;
 }
 
-.message-container #message-list li a .item .item-img > div {
+#message-list li a .item .item-img > div {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -13929,23 +13930,23 @@ a:hover {
   background-position: center;
 }
 
-.message-container #message-list li a .item > div {
+#message-list li a .item > div {
   margin-right: 23px;
 }
 
-.message-container #message-list li a .item > div .label {
+#message-list li a .item > div .label {
   border: thin solid #d6d6d6;
   color: #333;
   padding: 6px;
 }
 
-.message-container #message-list li a .item > .item-name-price {
+#message-list li a .item > .item-name-price {
   margin-right: 0;
   max-width: 190px;
   white-space: normal;
 }
 
-.message-container #message-list li a .item > .item-name-price .i-name {
+#message-list li a .item > .item-name-price .i-name {
   line-height: 17px;
   margin-bottom: 5px;
   white-space: nowrap;
@@ -14320,6 +14321,21 @@ a:hover {
 
 #dropzone .dz-error-message {
   top: 0;
+}
+
+.mobile-message {
+  padding: 0 !important;
+  min-height: 500px;
+  max-height: 500px !important;
+}
+
+.mobile-message a {
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+}
+
+.mobile-message .item-name-price {
+  max-width: none !important;
 }
 
 @-webkit-keyframes waveInfinite {
